@@ -1,0 +1,158 @@
+---
+title: "Sample Size Estimation"
+subtitle: "DEMO-TKA: app-guided home exercise versus supervised physiotherapy after total knee arthroplasty"
+author: "DKF Statistics"
+date: 2026-09-15
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 2.4cm
+      y: 2.4cm
+    fontsize: 10.5pt
+    section-numbering: "1."
+    fig-format: svg
+params:
+  study-title: "DEMO-TKA: app-guided home exercise versus supervised physiotherapy after total knee arthroplasty"
+  study-hra-category: "A"
+  internal-dkf-id: "DEMO-01"
+  file-name: "DEMO-TKA_SSE"
+  protocol-section: true
+  product-type: "SSE"
+  product-service: "Sample size estimation for the study protocol"
+  multicentre: false
+  repeating-product: false
+  usage-of-R: true
+  estimated-time-for-review: "2 hours"
+  influence-on-protocol: "high"
+  level-of-assumptions: "medium"
+  type-of-review: "consistency review"
+  function-test-GitHub-issues: "not applicable"
+  risk-assessment-comment: "none"
+  final-product-risk: "medium"
+  reason-for-chosen-risk: "The sample size determines the size of the trial."
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+delta   <- 35     # smallest difference of clinical interest (m)
+sd_y    <- 90     # SD of 6MWD at 6 months (m)
+rho     <- 0.5    # correlation of baseline and 6-month 6MWD
+alpha   <- 0.05
+target  <- 0.80
+dropout <- 0.20
+
+pct <- function(x) sprintf("%.1f%%", 100 * x)
+```
+
+```{r}
+#| label: simulate-power
+#| include: false
+simulate_power <- function(n, n_sim = 200) {
+  rejected <- logical(n_sim)
+  for (i in seq_len(n_sim)) {
+    arm      <- rep(c(0, 1), each = n)
+    baseline <- rnorm(2 * n, mean = 380, sd = sd_y)
+    outcome  <- 430 + rho * (baseline - 380) + delta * arm +
+                rnorm(2 * n, sd = sd_y * sqrt(1 - rho^2))
+    fit   <- lm(outcome ~ arm + baseline)
+    t_arm <- coef(summary(fit))["arm", "t value"]
+    rejected[i] <- pt(t_arm, df = fit$df.residual, lower.tail = FALSE) < alpha
+  }
+  mean(rejected)
+}
+
+set.seed(20260108)
+grid        <- seq(40, 100, by = 5)
+power_raw   <- vapply(grid, simulate_power, numeric(1))
+power_curve <- cummax(power_raw)
+n_evaluable <- grid[which(power_curve >= target)[1]]
+power_at    <- power_curve[grid == n_evaluable]
+n_rand      <- ceiling(n_evaluable * (1 + dropout))
+```
+
+```{r}
+#| label: ttest-comparison
+#| include: false
+n_ttest <- ceiling(power.t.test(delta = delta, sd = sd_y, power = target)$n)
+```
+
+*Demonstration document. The study, its sources and all numbers are invented.*
+
+Version 1.0, 15 September 2026.
+
+# Study design
+
+DEMO-TKA is a planned single-centre, randomised, controlled, parallel-group
+superiority trial in adults undergoing primary total knee arthroplasty (TKA). Within
+two weeks after surgery, participants are randomised 1:1, in permuted blocks of
+variable size, to app-guided home exercise (intervention) or to supervised outpatient
+physiotherapy (control), each delivered over 12 weeks.
+
+# Primary endpoint and estimand
+
+The primary endpoint is the six-minute walk distance (6MWD, in metres) at 6 months
+after surgery, measured with a standardised protocol by assessors blinded to the
+allocation. The pre-operative 6MWD is the baseline value.
+
+The primary estimand is the difference in mean 6MWD at 6 months between app-guided
+home exercise and supervised physiotherapy in adults undergoing primary TKA who are
+eligible for the trial. All randomised participants are analysed in the group to which
+they were allocated.
+
+# Planning values
+
+| Quantity | Value | Source |
+|:--------------------------------------|:------------------|:--------------------------------------------|
+| Smallest difference of clinical interest | 35 m | Agreed with the investigators (steering committee, 3 June 2026) |
+| SD of 6MWD at 6 months | 90 m | Hospital TKA registry, 2019–2021 (internal report) |
+| Significance level | 5%, two-sided | |
+| Power | 80% | |
+| Loss to follow-up at 6 months | 20% | Hospital TKA registry, 2019–2021 (internal report) |
+| Allocation ratio | 1:1 | |
+
+: Planning values. {#tbl-planning}
+
+# Sample size
+
+The primary analysis is an analysis of covariance (ANCOVA) of 6MWD at 6 months with
+treatment group and baseline 6MWD as covariates. Because adjustment for baseline
+increases precision, we estimated power by simulation. For sample sizes of 40 to 100
+evaluable participants per group, in steps of 5, we simulated 200 trials under the
+planning values in @tbl-planning, fitted the ANCOVA to each and counted the trials in
+which the treatment effect was statistically significant at the two-sided 5% level
+(@fig-power).
+
+```{r}
+#| label: fig-power
+#| fig-cap: "Estimated power by number of evaluable participants per group (200 simulated trials per sample size). Dashed line: 80% power; dotted line: chosen sample size."
+#| fig-width: 6
+#| fig-height: 3.4
+par(mar = c(4.2, 4.4, 0.8, 0.8))
+plot(grid, power_curve, type = "b", pch = 19, ylim = c(0.5, 1), las = 1,
+     xlab = "Evaluable participants per group", ylab = "Estimated power")
+abline(h = target, lty = 2)
+abline(v = n_evaluable, lty = 3)
+```
+
+The smallest sample size with at least 80% power is `r n_evaluable` evaluable
+participants per group (estimated power `r pct(power_at)`). For comparison, an
+unadjusted two-sample *t*-test would require 94 participants per group.
+
+Allowing for 20% loss to follow-up, we will randomise `r n_evaluable` × 1.2 =
+`r n_rand` participants per group, `r 2 * n_rand` in total.
+
+# Analysis
+
+The primary analysis is the ANCOVA described above. The handling of missing outcome
+data and any sensitivity analyses will be specified in the statistical analysis plan.
+
+# Software
+
+Simulations were run in `r R.version.string`. The simulation code and the random seed
+are part of the source of this document.

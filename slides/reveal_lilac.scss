@@ -1,0 +1,237 @@
+/* ========================================================================
+   Lilac RevealJS theme
+   Standalone Quarto SCSS for the built-in revealjs format.
+   No DKF extension required.
+   ======================================================================== */
+
+/*-- scss:defaults --*/
+
+$presentation-font-size-root: 34px;
+
+$presentation-h1-font-size: 2.2em;
+$presentation-h2-font-size: 1.45em;
+$presentation-h3-font-size: 1.2em;
+
+$code-block-font-size: 0.62em;
+
+
+
+
+/* University of Basel colours */
+$unibas-darkmint:          #006D6A;
+$unibas-mint:              #1EA5A5;
+$unibas-mint-light:        #A5D7D2;
+$unibas-red:               #D20537;
+$unibas-anthracite:        #2D373C;
+$unibas-anthracite-light:  #46505A;
+
+/* Neutral colours */
+$black:                    #000000;
+$white:                    #FFFFFF;
+$gray-1:                   #333333;
+$gray-2:                   #666666;
+$gray-3:                   #777777;
+$gray-4:                   #C9C9C9;
+$gray-5:                   #D9D9D9;
+$gray-6:                   #EAEBEC;
+
+/* USB colours */
+$usb-red-100:       #FF0000;
+$usb-red-75:        #EA5E42;
+$usb-red-50:        #F39A7D;
+$usb-red-25:        #FAD0BE;
+
+$usb-winered-100:   #9B233C;
+$usb-winered-75:    #B35861;
+$usb-winered-50:    #C98E8F;
+$usb-winered-25:    #E4C6C5;
+
+$usb-pink-100:      #FA9196;
+$usb-pink-75:       #F5AFB6;
+$usb-pink-50:       #F9CCCF;
+$usb-pink-25:       #FCE7E7;
+
+$usb-violet-100:    #644164;
+$usb-violet-75:     #866A83;
+$usb-violet-50:     #AA96A8;
+$usb-violet-25:     #D3C9D3;
+
+$usb-lilac-100:     #DC87CD;
+$usb-lilac-75:      #D99FC7;
+$usb-lilac-50:      #E4C1DC;
+$usb-lilac-25:      #F1E0EF;
+
+$usb-lightblue-100: #82B4D7;
+$usb-lightblue-75:  #A7C7E2;
+$usb-lightblue-50:  #C7D9EC;
+$usb-lightblue-25:  #E4ECF6;
+
+$usb-turquoise-100: #78DEC8;
+$usb-turquoise-75:  #A0D4CA;
+$usb-turquoise-50:  #C4E3DD;
+$usb-turquoise-25:  #E2F1EE;
+
+$usb-darkgreen-100: #0A5F5A;
+$usb-darkgreen-75:  #547F7C;
+$usb-darkgreen-50:  #8DA5A3;
+$usb-darkgreen-25:  #C6D0CF;
+
+$usb-lime-100:      #F0EB96;
+$usb-lime-75:       #F2F0B2;
+$usb-lime-50:       #F6F5CE;
+$usb-lime-25:       #FAFAE7;
+
+$usb-apricot-100:   #FFB97D;
+$usb-apricot-75:    #F4C69C;
+$usb-apricot-50:    #F8DABE;
+$usb-apricot-25:    #FBECDE;
+
+$usb-darkbrown-100: #B96E50;
+$usb-darkbrown-75:  #C99277;
+$usb-darkbrown-50:  #DBB6A2;
+$usb-darkbrown-25:  #ECDACF;
+
+$usb-lightgreen-100: #B4D796;
+$usb-lightgreen-75:  #C7DFB0;
+$usb-lightgreen-50:  #DBEACC;
+$usb-lightgreen-25:  #EDF5E6;
+
+/* Standard Quarto RevealJS theme variables */
+$body-bg:                         $white;
+$body-color:                      $gray-1;
+$text-muted:                      $gray-2;
+$link-color:                      $usb-violet-100;
+$link-color-hover:                $usb-violet-75;
+$selection-bg:                    $usb-lilac-25;
+$selection-color:                 $gray-1;
+
+$presentation-heading-color:     $usb-violet-100;
+$presentation-heading-font-weight: 600;
+
+$code-block-bg:                   $gray-6;
+$code-block-border-color:         $gray-5;
+$code-color:                      $unibas-anthracite;
+$code-bg:                         $gray-6;
+
+$callout-color-note:              $usb-lilac-100;
+$callout-color-tip:               $usb-lightblue-100;
+$callout-color-important:         $usb-winered-100;
+
+/*-- scss:rules --*/
+
+:root {
+  --lilac-main: #644164;
+  --lilac-main-soft: #D3C9D3;
+  --lilac-accent: #DC87CD;
+  --lilac-accent-soft: #F1E0EF;
+  --lilac-cool-soft: #E4ECF6;
+  --lilac-text: #333333;
+  --lilac-muted: #666666;
+  --lilac-line: #D9D9D9;
+  --lilac-code-bg: #EAEBEC;
+}
+
+
+
+/* Titles and headings */
+.reveal .slides section#title-slide h1.title,
+.reveal .slides section#title-slide .title,
+.reveal .slides section.quarto-title-block h1,
+.reveal .slides section.quarto-title-block .title,
+.reveal .slide h1 {
+  color: $usb-violet-100;
+}
+
+.reveal .slides section#title-slide .subtitle,
+.reveal .slides section.quarto-title-block .subtitle,
+.reveal .slide h2 {
+  color: $usb-violet-75;
+}
+
+.reveal .slide h2 {
+  border-bottom: 0.08em solid $usb-lilac-25;
+  padding-bottom: 0.15em;
+}
+
+.reveal .slide h3 {
+  color: $usb-lilac-100;
+}
+
+/* Links and navigation */
+.reveal a,
+.reveal .slide-number {
+  color: $usb-violet-100;
+}
+
+.reveal a:hover {
+  color: $usb-violet-75;
+}
+
+.reveal .progress {
+  color: $usb-violet-100;
+}
+
+.reveal .progress span {
+  background: $usb-violet-100;
+}
+
+.reveal strong {
+  color: $usb-violet-100;
+}
+
+/* Inline and block code */
+.reveal .slide code {
+  background: $gray-6;
+  color: $unibas-anthracite;
+  border-radius: 0.18em;
+  padding-left: 0.12em;
+  padding-right: 0.12em;
+}
+
+.reveal .slide pre code,
+.reveal .slide div.sourceCode code {
+  background: transparent;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+/* Quotations and callouts */
+.reveal .slide blockquote {
+  border-left: 0.25rem solid $usb-lilac-100;
+  color: $gray-2;
+  padding-left: 0.75rem;
+}
+
+.reveal .slide .callout-note,
+.reveal .slide .callout-tip {
+  border-left-color: $usb-lilac-100;
+}
+
+/* Generic boxes. The dkf-box names are retained for existing slide markup. */
+.reveal .slide .accent-box,
+.reveal .slide .dkf-box-pink,
+.reveal .slide .dkf-box-red {
+  background: $usb-lilac-25;
+  border-left: 0.32rem solid $usb-lilac-100;
+  color: $gray-1;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+}
+
+.reveal .slide .info-box,
+.reveal .slide .dkf-box-mint {
+  background: $usb-lightblue-25;
+  border-left: 0.32rem solid $usb-lightblue-100;
+  color: $gray-1;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+}
+
+.reveal .slide .accent-box strong,
+.reveal .slide .info-box strong,
+.reveal .slide .dkf-box-mint strong,
+.reveal .slide .dkf-box-pink strong,
+.reveal .slide .dkf-box-red strong {
+  color: $usb-violet-100;
+}
