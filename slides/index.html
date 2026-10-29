@@ -992,7 +992,7 @@ margin-right: 0; }
 
 <section class="quarto-title-block center">
   <h1 class="title">AI-assisted review of statistical products</h1>
-  <p class="subtitle">A bitter lesson in ten months</p>
+  <p class="subtitle">From a single prompt to an agent that checks the numbers</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -1034,32 +1034,7 @@ Valentin Klotzbücher · DKF Basel
 <p>Brian et al., medRxiv, 28 October 2026, not peer reviewed. Humans: 2004 study, 607 reviewers. Two LLM judges. Fig. 1b, CC BY 4.0.</p>
 </div>
 <aside class="notes">
-<p>[0:00–1:15] This week’s debate: should journals ban AI in peer review? A new preprint repeated the classic BMJ experiment: errors inserted into trial reports, one answer key. Human reviewers in 2004 found about a quarter of the major errors; every one of 15 current models, reading only the text, found more, the best almost all. Caveats: a preprint, a historical human comparison, LLM judges, and models that also flag concerns on clean reports. The last author’s conclusion: for clinical trials, human-only review is dangerous.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
-<section class="slide level2">
-<h2>The bitter lesson</h2>
-<div class="bigquote">
-<p>The biggest lesson that can be read from 70 years of AI research is that general methods that leverage computation are ultimately the most effective, and by a large margin.</p>
-</div>
-<div class="attribution">
-<p>Rich Sutton, <em>The Bitter Lesson</em>, 13 March 2019</p>
-</div>
-<div class="fragment punchline">
-<p>Our small version, from ten months of building review tools: bespoke tools become obsolete quickly.</p>
-</div>
-<aside class="notes">
-<p>[1:15–2:00] So the evidence says: use it. Our own ten months add a caution, which Sutton put best: hand-built knowledge keeps losing to general methods that scale with computation. On a much smaller scale, the same thing happened to the tools we built for reviewing statistical products. This talk: what we built, what went obsolete, what we use now, and what we think lasts.</p>
+<p>[0:00–1:15] This week’s debate: should journals ban AI in peer review? A new preprint repeated the classic BMJ experiment: errors inserted into trial reports, one answer key. Human reviewers in 2004 found about a quarter of the major errors; every one of 15 current models, reading only the text, found more, the best almost all. Caveats: a preprint, a historical human comparison, LLM judges, and models that also flag concerns on clean reports. The last author’s conclusion: for clinical trials, human-only review is dangerous. Today: how we put this to work on our own statistical products, before they go out.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1100,7 +1075,7 @@ display:block!important;
 </div>
 </div></div>
 <aside class="notes">
-<p>[2:00–3:00] The second statistician reads the rendered document against its Quarto source and the protocol or SAP. Keep the three levels in mind; they come back in the demo. A reader finds the first, a careful reader of the code the second, and only someone who runs things finds the third.</p>
+<p>[1:15–2:15] The second statistician reads the rendered document against its Quarto source and the protocol or SAP. Keep the three levels in mind; they come back in the demo. A reader finds the first, a careful reader of the code the second, and only someone who runs things finds the third.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1142,10 +1117,10 @@ display:block!important;
   </div>
 </div>
 <div class="fragment punchline">
-<p>Each step made most of the previous step’s code unnecessary.</p>
+<p>Each step was useful; the last one can finally run the code.</p>
 </div>
 <aside class="notes">
-<p>[3:00–3:45] A quick tour. Every step worked; every step was overtaken within a few months. The costs are from our own run logs.</p>
+<p>[2:15–3:00] A quick tour of what we tried. Every step was useful to us, and each model generation read more carefully than the last. The costs are from our own run logs.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1184,7 +1159,7 @@ display:block!important;
 <p>Useful, and still a good quick second pair of eyes.</p>
 </div>
 <aside class="notes">
-<p>[3:45–4:30] The prototype reads the source and the PDF together and returns the form we already use. It was cheap and fast, and colleagues found it useful.</p>
+<p>[3:00–3:45] The prototype reads the source and the PDF together and returns the form we already use. It was cheap and fast, and colleagues found it useful.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1198,34 +1173,36 @@ display:block!important;
 }</style></aside>
 </section>
 <section class="slide level2">
-<h2>Most of the code was plumbing</h2>
+<h2>What we learned building it</h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><strong>What the prototype had to handle</strong></p>
+<p><strong>What took the effort</strong></p>
 <div class="tight compact">
 <ul>
-<li>a background job and polling for one provider, streaming for the other</li>
-<li>the PDF uploaded to a files API for one, sent inline for the other</li>
-<li>two Python SDKs driven from R through <code>reticulate</code></li>
-<li>a completion marker to prove the source was read to the end</li>
-<li>job records, token counts, cost estimates</li>
+<li>background jobs, polling and streaming</li>
+<li>uploading PDFs; two Python SDKs driven from R</li>
+<li>proving the model read the source to the end</li>
+<li>token counts and cost estimates</li>
 </ul>
 </div>
 </div><div class="column" style="width:50%;">
-<p><strong>What changed underneath, in ten months</strong></p>
+<p><strong>What carried over</strong></p>
 <div class="tight compact">
 <ul>
-<li>six frontier models: Claude Opus 4, 4.7, 5; GPT-5 Pro, 5.2 Pro, 5.5 Pro</li>
-<li><code>temperature = 0</code> in our May code; “rejected outright” on current models by August</li>
-<li>new reasoning and effort settings with each generation</li>
+<li>the checklist: what a second statistician checks</li>
+<li>the DKF form as the output</li>
+<li>a record of every run</li>
 </ul>
+</div>
+<div class="small muted">
+<p>Meanwhile, six frontier models came out in ten months: Claude Opus 4, 4.7, 5; GPT-5 Pro, 5.2 Pro, 5.5 Pro.</p>
 </div>
 </div></div>
 <div class="fragment punchline">
-<p>The plumbing aged fastest. What lasted was the checklist in the prompt.</p>
+<p>The models improve every few months, and what we know about reviewing carries over.</p>
 </div>
 <aside class="notes">
-<p>[4:30–5:30] This is the bitter lesson in miniature. Most of our effort went into code that talks to one provider’s interface at one point in time. The part worth keeping was the knowledge of what to check.</p>
+<p>[3:45–4:45] Most of our effort went into code that talks to one provider’s interface at one point in time: background jobs, uploads, two SDKs. (One example: our May code set temperature to zero; by August current models rejected that setting outright.) What carried over to every new model was the knowledge of what to check and the form we want back.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1264,10 +1241,10 @@ display:block!important;
 </div>
 </div></div>
 <div class="fragment punchline">
-<p>A careful reader, not a checker.</p>
+<p>Reading is a strong start. Checking needs the code.</p>
 </div>
 <aside class="notes">
-<p>[5:30–6:30] Both studies say a single call reads attentively: on trial reports it beats human reviewers, on economics papers it finds most of what experts agree on. But it can only read. The preprint’s authors say so themselves: their errors were all visible in the text, and the next gains need access to code, protocols and registry entries. Everything a reading model says about a number is a guess about that number.</p>
+<p>[4:45–5:45] Both studies say a single call reads attentively: on trial reports it beats human reviewers, on economics papers it finds most of what experts agree on. But it can only read. The preprint’s authors say so themselves: their errors were all visible in the text, and the next gains need access to code, protocols and registry entries. Everything a reading model says about a number is a guess about that number.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1281,7 +1258,7 @@ display:block!important;
 }</style></aside>
 </section>
 <section class="slide level2">
-<h2>Meanwhile, others built bigger tools. We didn’t.</h2>
+<h2>Others built review pipelines; we built on open skills</h2>
 <div class="cards">
 <div class="card">
 <div class="card-title">
@@ -1297,15 +1274,15 @@ Referee-style reports on research papers, checking logic, clarity and internal c
 </div>
 </div>
 <div class="fragment">
-<div class="bigquote">
-<p>“Reviewer 2—he dead.” … “Yes, I decided it was obsolete.”</p>
+<div class="accent-box">
+<p>In October, Reviewer 2’s author released “the three skills that I use to begin my reviews, now freely available for anyone to use”. Our DKF skills build on them.</p>
 </div>
 <div class="attribution">
-<p>Joseph Francis, author of Reviewer 2, on X, 26 October 2026. Released alongside: “the three skills that I use to begin my reviews, now freely available for anyone to use”.</p>
+<p>Joseph Francis on X, 26 October 2026; github.com/isitcredible/research_skills (MIT)</p>
 </div>
 </div>
 <aside class="notes">
-<p>[6:30–7:30] Bespoke review pipelines and services appeared, and some are very good. We thought about building one and didn’t. The author of the most elaborate pipeline retired it this October and released agent skills instead. That is where we went too.</p>
+<p>[5:45–6:30] Dedicated review pipelines and services appeared, and some are very good. We didn’t build one. Instead we built on the open skills that Reviewer 2’s author released this October: free, readable, and easy to adapt to our products and our form.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1355,7 +1332,7 @@ display:block!important;
 <p>The general part does the work. The skill holds what we know about reviewing.</p>
 </div>
 <aside class="notes">
-<p>[7:30–8:45] The difference that matters for statisticians is the right-hand column: the agent can run the code. That is Sutton’s “leverage computation”, literally. The skill is text: what to check and how to report it, not how to talk to an API.</p>
+<p>[6:30–7:45] The difference that matters for statisticians is the right-hand column: the agent can run the code. It reads the source, runs it, recomputes the numbers and checks them against the text. The skill is text: what to check and how to report it, not how to talk to an API.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1386,7 +1363,7 @@ display:block!important;
 <p>Adapted from Joseph Francis’s research_skills (MIT licence), written for economics papers with replication packages; the clinical modules, the data rules and the form are ours.</p>
 </div>
 <aside class="notes">
-<p>[8:45–10:00] Five stages and two optional ones. The fresh agents matter: the challenge and the verdict are written by agents that did not produce the findings, so they have no stake in them. The modules fire depending on the product; for an SSE, sample size, simulation, RCT and a light missing-data check.</p>
+<p>[7:45–9:00] Five stages and two optional ones. The fresh agents matter: the challenge and the verdict are written by agents that did not produce the findings, so they have no stake in them. The modules fire depending on the product; for an SSE, sample size, simulation, RCT and a light missing-data check.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1426,7 +1403,7 @@ display:block!important;
 </div>
 </div></div>
 <aside class="notes">
-<p>[10:00–11:00] Two things make this usable in a CTU. First, the output can be checked: nothing is asserted without a trace. Second, patient data stays out unless someone decided otherwise before the run, and the decision is recorded.</p>
+<p>[9:00–10:00] Two things make this usable in a CTU. First, the output can be checked: nothing is asserted without a trace. Second, patient data stays out unless someone decided otherwise before the run, and the decision is recorded.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1489,7 +1466,7 @@ display:block!important;
 </table>
 </div></div>
 <aside class="notes">
-<p>[11:00–12:00] We wrote a small SSE with six planted errors, two at each level. Then we gave it to each approach and scored the reviews against the answer key. The issues are the kind we see in real products, with invented numbers.</p>
+<p>[10:00–11:00] We wrote a small SSE with six planted errors, two at each level. Then we gave it to each approach and scored the reviews against the answer key. The issues are the kind we see in real products, with invented numbers.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1511,7 +1488,7 @@ display:block!important;
 <p>The SSE reports <strong>81.5% at 55</strong> per group. Re-run with 20,000 trials: <strong>76%</strong> with the code’s one-sided test, <strong>65%</strong> with the two-sided test the text states. The planning values support 79 evaluable per group: <strong>198 randomised, not 132</strong>.</p>
 </div>
 <aside class="notes">
-<p>[12:00–13:15] Wine: what the SSE plotted, a running maximum of noisy estimates. Grey circles: what was actually simulated where it differs. Mint: the power of the test the text promises. The design as written has about 63% power. No amount of reading gets you these numbers; you have to run something.</p>
+<p>[11:00–12:15] Wine: what the SSE plotted, a running maximum of noisy estimates. Grey circles: what was actually simulated where it differs. Mint: the power of the test the text promises. The design as written has about 63% power. No amount of reading gets you these numbers; you have to run something.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1586,7 +1563,7 @@ display:block!important;
 <p>The question is not which model is smarter, but which approach can run the code.</p>
 </div>
 <aside class="notes">
-<p>[13:15–14:30] Fill from demo/runs/scoreboard.csv before the talk. Expectation, to be confirmed by the runs: all approaches find the text issues; the single call finds some code issues; only the agent establishes the computation issues and gives their size.</p>
+<p>[12:15–13:30] Fill from demo/runs/scoreboard.csv before the talk. Expectation, to be confirmed by the runs: all approaches find the text issues; the single call finds some code issues; only the agent establishes the computation issues and gives their size.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1618,7 +1595,7 @@ display:block!important;
 </div>
 </div></div>
 <aside class="notes">
-<p>[14:30–15:15] The deliverable is a draft of the form the second statistician fills in anyway. They read it, check what they doubt, edit, and sign.</p>
+<p>[13:30–14:15] The deliverable is a draft of the form the second statistician fills in anyway. They read it, check what they doubt, edit, and sign.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1632,49 +1609,70 @@ display:block!important;
 }</style></aside>
 </section>
 <section class="slide level2">
-<h2>Isn’t a skill just another bespoke tool?</h2>
-<p>Partly, yes, and it will go obsolete too.</p>
-<div class="columns">
-<div class="column" style="width:50%;">
-<p><strong>Why it ages better than our prototype</strong></p>
-<div class="tight">
-<ul>
-<li>plain text, no plumbing: it says what to check, not how to call a model</li>
-<li>runs on other capable agents too, and improves when the model does</li>
-<li>cheap to change, and cheap to throw away</li>
-</ul>
-</div>
-</div><div class="column" style="width:50%;">
-<p><strong>The next round is already here</strong></p>
-<div class="tight">
-<ul>
-<li>Claude Science, Anthropic’s research workbench, now has a built-in reviewer that checks claims against what actually ran</li>
-<li>Reviewer 2’s author: “something better and free coming shortly”</li>
-</ul>
-</div>
-</div></div>
-<div class="fragment punchline">
-<p>Write down what you check. Keep the tooling thin and disposable.</p>
-</div>
-<aside class="notes">
-<p>[15:15–16:30] The honest answer to the obvious objection. Skills are human knowledge built in, which is exactly what Sutton warns about. The difference is that they hold only the domain part, and they are cheap to discard. Platforms are already building review in.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
-<section class="slide level2">
-<h2>What lasts</h2>
+<h2>Where to start</h2>
 <div class="tight">
 <ol type="1">
-<li><strong>Test cases with known answers.</strong> Like the trial-report benchmark or this SSE: they tell you when a tool has become obsolete, and whether its successor is better.</li>
+<li><strong>Chat, on non-sensitive material.</strong> Explain unfamiliar code, check a paragraph against its table, draft questions for a SAP.</li>
+<li><strong>One call before review.</strong> The PDF and its source with a reviewer’s checklist: minutes, and cents to a few dollars.</li>
+<li><strong>An agent with review skills for a full pre-review.</strong> It runs the code, recomputes and leaves a record; no patient data by default.</li>
+<li><strong>A few test cases with known answers.</strong> Plant errors in your own kind of document and see which approach finds them.</li>
+</ol>
+</div>
+<div class="fragment punchline">
+<p>Errors found while they are still cheap to fix: before the protocol, not after the trial.</p>
+</div>
+<aside class="notes">
+<p>[14:15–15:15] What you can do on Monday. Each step is useful on its own; start with the first and move on as your data rules allow. The aim is better research: errors found while they are still cheap to fix.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section class="slide level2">
+<h2>A closing thought: the bitter lesson</h2>
+<div class="bigquote">
+<p>The biggest lesson that can be read from 70 years of AI research is that general methods that leverage computation are ultimately the most effective, and by a large margin.</p>
+</div>
+<div class="attribution">
+<p>Rich Sutton, <em>The Bitter Lesson</em>, 13 March 2019</p>
+</div>
+<div class="fragment">
+<div class="tight compact">
+<ul>
+<li>Review tools turn over in months: Reviewer 2’s author retired his pipeline in October (“I decided it was obsolete”), and Claude Science now has a built-in reviewer that checks claims against what actually ran</li>
+<li>Our prototype went the same way, and our skills will too: they are plain text, cheap to change</li>
+</ul>
+</div>
+</div>
+<div class="fragment punchline">
+<p>The good news: every new model makes the same checklist more powerful.</p>
+</div>
+<aside class="notes">
+<p>[15:15–16:30] Sutton wrote about AI research, but the lesson fits our small story: hand-built machinery keeps losing to general methods that use more computation. Our prototype, Reviewer 2, probably our skills too, all turn over in months. That is good news for statisticians. We don’t need to build tools; we need to know what to check, and every new model applies that knowledge better.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section class="slide level2">
+<h2>What to invest in</h2>
+<div class="tight">
+<ol type="1">
+<li><strong>Test cases with known answers.</strong> Like the trial-report benchmark or this SSE: they show which tool works for us, and when a new one works better.</li>
 <li><strong>Standards for the review itself.</strong> Traceable numbers, a status for every check, the form.</li>
 <li><strong>Rules for data.</strong> What may be sent where, decided before the run.</li>
 <li><strong>The statistician who signs.</strong> The output is a draft; the responsibility stays with the reviewer.</li>
@@ -1684,7 +1682,7 @@ display:block!important;
 <p>Proposal: a shared set of planted-issue SSEs and SAPs across Swiss CTUs.</p>
 </div>
 <aside class="notes">
-<p>[16:30–17:45] If tools go obsolete in months, invest in what outlives them. Test cases are the most useful: we can each write two or three, and every new tool gets scored on the same set. That is something the SCTO platforms could host.</p>
+<p>[16:30–17:45] If the tools change every few months, invest in what carries over. Test cases are the most useful: we can each write two or three, and every new tool gets scored on the same set. That is something the SCTO platforms could host.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1703,8 +1701,8 @@ display:block!important;
 <div class="column" style="width:55%;">
 <div class="small tight">
 <ul>
-<li><em>The Bitter Lesson</em>: incompleteideas.net/IncIdeas/BitterLesson.html</li>
 <li>Brian et al. 2026: doi.org/10.64898/2026.10.25.26366455</li>
+<li><em>The Bitter Lesson</em>: incompleteideas.net/IncIdeas/BitterLesson.html</li>
 <li>research_skills: github.com/isitcredible/research_skills</li>
 <li>Reviewer 2: github.com/isitcredible/reviewer2</li>
 <li>Refine: refine.ink</li>

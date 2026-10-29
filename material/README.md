@@ -62,5 +62,5 @@ was run in Claude Code (p. 16).
   the specificity caveat, Fig. 1b and Rust's quote.
 - "What one call can and cannot do": the boundary sentence above, as the bridge from
   reading to checking.
-- Demo and "What lasts": our demo follows the same design (inserted errors, one answer
+- Demo and "What to invest in": our demo follows the same design (inserted errors, one answer
   key), extended to code and computation.

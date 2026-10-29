@@ -1,15 +1,20 @@
 # AI-assisted review of statistical products: SCTO talk
 
-A 20-minute talk for statisticians, *AI-assisted review of statistical products: a bitter
-lesson in ten months*, and the synthetic demonstration product it is built around.
+A 20-minute talk for statisticians, *AI-assisted review of statistical products: from a
+single prompt to an agent that checks the numbers*, and the synthetic demonstration
+product it is built around.
 
-The talk follows the DKF's approaches in order: chat, a single scripted API call (the
-review prototype), the bespoke review pipelines and services we did not build
-(Reviewer 2, Refine), and the agent skills we use now
-([`stats_review`](https://github.com/valentinklotzbuecher/stats_review)). Its theme is
-Sutton's bitter lesson: bespoke tools become obsolete quickly, so invest in what
-outlasts them (test cases with known answers, review standards, data rules, the
-statistician who signs).
+The talk aims to get statisticians using these tools for better research. It opens with
+new evidence that language models find errors human reviewers miss in trial reports,
+then follows the DKF's approaches in order: chat, a single scripted API call (the review
+prototype), the review pipelines and services others built (Reviewer 2, Refine), and the
+agent skills we use now
+([`stats_review`](https://github.com/valentinklotzbuecher/stats_review)), which can run
+the code. A synthetic SSE shows what each approach finds, and a slide gives concrete
+first steps. It closes with Sutton's bitter lesson: the tools turn over in months, so
+invest in what carries over (test cases with known answers, review standards, data
+rules, the statistician who signs), and every new model makes the same checklist more
+powerful.
 
 ## Contents
 
