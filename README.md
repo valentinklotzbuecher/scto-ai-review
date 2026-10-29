@@ -22,6 +22,7 @@ demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only revi
 demo/answer-key.md      the six planted issues, with their consequences
 demo/answer-key.R       recomputes every number in the answer key and on the slides
 demo/runs/              each approach's review of the demo, and the scoreboard
+material/               sources: the trial-report preprint, tweet screenshots, notes
 ```
 
 ## Rendering
@@ -63,11 +64,16 @@ describes, and transfer the counts to the scoreboard slide. Replace the placehol
 
 ## Sources for the slides
 
+- Brian, Pereira Hernández, Yin, Koury, Rust, *Large language models detect
+  methodological errors that human peer review misses in clinical trials*, medRxiv,
+  28 October 2026, doi:10.64898/2026.10.25.26366455 (CC BY 4.0; in `material/`, with
+  notes); Ruslan Rust on X ("For clinical trials, I'd even call human-only review
+  dangerous")
 - Rich Sutton, *The Bitter Lesson*, 13 March 2019,
   incompleteideas.net/IncIdeas/BitterLesson.html
 - Reviewer 2: github.com/isitcredible/reviewer2 (README: 30+ chained calls, 15–45
   minutes, a few dollars); Joseph Francis on X, 26 October 2026 ("Reviewer 2—he
-  dead", "Yes, I decided it was obsolete")
+  dead", "Yes, I decided it was obsolete"; screenshot in `material/`)
 - research_skills: github.com/isitcredible/research_skills (MIT, 0.9 first public
   release)
 - Refine: refine.ink (referee-style reports; about $50 per paper in 2026)

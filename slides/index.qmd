@@ -18,6 +18,53 @@ format:
     code-line-numbers: false
 ---
 
+## Should journals ban AI in peer review?
+
+:::: {.columns}
+::: {.column width="58%"}
+::: compact
+Fourteen known errors inserted into reports of randomised trials; every review scored
+against the same answer key:
+:::
+
+::: {.tight .compact}
+- **Human peer reviewers: 27%** of the major errors
+- **Each of 15 language models, text only: 53–96%**
+- On 58 trials published in 2026: 58–99%
+- the models also flagged 14–29% of the error types on unmodified reports
+:::
+
+::: {.fragment}
+::: {.bigquote .quote-mid}
+"For clinical trials, I'd even call human-only review dangerous."
+:::
+
+::: attribution
+Ruslan Rust, last author, on X
+:::
+:::
+:::
+
+::: {.column width="42%" .fig-tall .fig-motivation}
+![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
+:::
+::::
+
+::: {.tiny .muted}
+Brian et al., medRxiv, 28 October 2026, not peer reviewed. Humans: 2004 study, 607 reviewers.
+Two LLM judges. Fig. 1b, CC BY 4.0.
+:::
+
+::: notes
+[0:00–1:15] This week's debate: should journals ban AI in peer review? A new preprint
+repeated the classic BMJ experiment: errors inserted into trial reports, one answer
+key. Human reviewers in 2004 found about a quarter of the major errors; every one of
+15 current models, reading only the text, found more, the best almost all. Caveats:
+a preprint, a historical human comparison, LLM judges, and models that also flag
+concerns on clean reports. The last author's conclusion: for clinical trials,
+human-only review is dangerous.
+:::
+
 ## The bitter lesson
 
 ::: bigquote
@@ -36,9 +83,10 @@ obsolete quickly.
 :::
 
 ::: notes
-[0:00–1:00] Sutton's point is about AI research: hand-built knowledge keeps losing to
-general methods that scale with computation. On a much smaller scale, the same thing
-happened to the tools we built for reviewing statistical products. This talk: what we
+[1:15–2:00] So the evidence says: use it. Our own ten months add a caution, which
+Sutton put best: hand-built knowledge keeps losing to general methods that scale with
+computation. On a much smaller scale, the same thing happened to the tools we built
+for reviewing statistical products. This talk: what we
 built, what went obsolete, what we use now, and what we think lasts.
 :::
 
@@ -74,7 +122,7 @@ number, a figure built on noise</div>
 ::::
 
 ::: notes
-[1:00–2:15] The second statistician reads the rendered document against its Quarto
+[2:00–3:00] The second statistician reads the rendered document against its Quarto
 source and the protocol or SAP. Keep the three levels in mind; they come back in the
 demo. A reader finds the first, a careful reader of the code the second, and only
 someone who runs things finds the third.
@@ -116,7 +164,7 @@ Each step made most of the previous step's code unnecessary.
 :::
 
 ::: notes
-[2:15–3:15] A quick tour. Every step worked; every step was overtaken within a few
+[3:00–3:45] A quick tour. Every step worked; every step was overtaken within a few
 months. The costs are from our own run logs.
 :::
 
@@ -152,7 +200,7 @@ Useful, and still a good quick second pair of eyes.
 :::
 
 ::: notes
-[3:15–4:15] The prototype reads the source and the PDF together and returns the form
+[3:45–4:30] The prototype reads the source and the PDF together and returns the form
 we already use. It was cheap and fast, and colleagues found it useful.
 :::
 
@@ -188,7 +236,7 @@ The plumbing aged fastest. What lasted was the checklist in the prompt.
 :::
 
 ::: notes
-[4:15–5:15] This is the bitter lesson in miniature. Most of our effort went into
+[4:30–5:30] This is the bitter lesson in miniature. Most of our effort went into
 code that talks to one provider's interface at one point in time. The part worth
 keeping was the knowledge of what to check.
 :::
@@ -199,24 +247,27 @@ keeping was the knowledge of what to check.
 ::: {.column width="50%"}
 **It reads well**
 
-In our Unjournal project, one call per paper found **80%** of the issues the human
-expert evaluators agreed on (range 50–100% across 12 papers), and **52%** of its own
-issues were among them.
-
-::: {.small .muted}
-Economics and policy papers, not clinical products; method and caveats at
-llm-uj-research-eval.netlify.app
+::: {.tight .compact}
+- trial reports: every model beat the human reviewers on the inserted errors (first
+  slide)
+- our Unjournal comparison: one call per paper found **80%** of the issues the expert
+  evaluators agreed on, across 12 economics and policy papers
 :::
 :::
 
 ::: {.column width="50%"}
 **It cannot check**
 
-::: tight
+::: {.tight .compact}
 - run the code
 - recompute a printed number
 - re-run the simulation behind a figure
 - show what it checked and what it only found plausible
+:::
+
+::: quote-small
+"Every error tested here is visible in the text, whereas errors in data handling or
+analysis code […] are not." Brian et al. 2026
 :::
 :::
 ::::
@@ -226,9 +277,11 @@ A careful reader, not a checker.
 :::
 
 ::: notes
-[5:15–6:15] The evidence from our Unjournal comparison is that a single call reads
-papers about as attentively as an expert, finding most of the consensus issues. But
-it can only read. Everything it says about a number is a guess about that number.
+[5:30–6:30] Both studies say a single call reads attentively: on trial reports it
+beats human reviewers, on economics papers it finds most of what experts agree on.
+But it can only read. The preprint's authors say so themselves: their errors were all
+visible in the text, and the next gains need access to code, protocols and registry
+entries. Everything a reading model says about a number is a guess about that number.
 :::
 
 ## Meanwhile, others built bigger tools. We didn't.
@@ -254,7 +307,7 @@ Joseph Francis, author of Reviewer 2, on X, 26 October 2026. Released alongside:
 :::
 
 ::: notes
-[6:15–7:15] Bespoke review pipelines and services appeared, and some are very good.
+[6:30–7:30] Bespoke review pipelines and services appeared, and some are very good.
 We thought about building one and didn't. The author of the most elaborate pipeline
 retired it this October and released agent skills instead. That is where we went too.
 :::
@@ -301,7 +354,7 @@ The general part does the work. The skill holds what we know about reviewing.
 :::
 
 ::: notes
-[7:15–8:30] The difference that matters for statisticians is the right-hand column:
+[7:30–8:45] The difference that matters for statisticians is the right-hand column:
 the agent can run the code. That is Sutton's "leverage computation", literally. The
 skill is text: what to check and how to report it, not how to talk to an API.
 :::
@@ -332,7 +385,7 @@ with replication packages; the clinical modules, the data rules and the form are
 :::
 
 ::: notes
-[8:30–9:45] Five stages and two optional ones. The fresh agents matter: the challenge
+[8:45–10:00] Five stages and two optional ones. The fresh agents matter: the challenge
 and the verdict are written by agents that did not produce the findings, so they have
 no stake in them. The modules fire depending on the product; for an SSE, sample size,
 simulation, RCT and a light missing-data check.
@@ -368,7 +421,7 @@ simulation, RCT and a light missing-data check.
 ::::
 
 ::: notes
-[9:45–10:45] Two things make this usable in a CTU. First, the output can be checked:
+[10:00–11:00] Two things make this usable in a CTU. First, the output can be checked:
 nothing is asserted without a trace. Second, patient data stays out unless someone
 decided otherwise before the run, and the decision is recorded.
 :::
@@ -382,6 +435,11 @@ decided otherwise before the run, and the decision is recorded.
 App-guided home exercise versus supervised physiotherapy after knee replacement.
 Six-minute walk distance at 6 months; ANCOVA; power by simulation. Two pages of
 Quarto and R.
+
+::: {.small .muted}
+The design of the trial-report benchmark (inserted errors, one answer key), extended
+to code and computation.
+:::
 :::
 
 ::: {.column width="67%" .demo-table}
@@ -397,7 +455,7 @@ Quarto and R.
 ::::
 
 ::: notes
-[10:45–11:45] We wrote a small SSE with six planted errors, two at each level. Then
+[11:00–12:00] We wrote a small SSE with six planted errors, two at each level. Then
 we gave it to each approach and scored the reviews against the answer key. The
 issues are the kind we see in real products, with invented numbers.
 :::
@@ -415,7 +473,7 @@ values support 79 evaluable per group: **198 randomised, not 132**.
 :::
 
 ::: notes
-[11:45–13:00] Wine: what the SSE plotted, a running maximum of noisy estimates. Grey
+[12:00–13:15] Wine: what the SSE plotted, a running maximum of noisy estimates. Grey
 circles: what was actually simulated where it differs. Mint: the power of the test
 the text promises. The design as written has about 63% power. No amount of reading
 gets you these numbers; you have to run something.
@@ -441,7 +499,7 @@ The question is not which model is smarter, but which approach can run the code.
 :::
 
 ::: notes
-[13:00–14:15] Fill from demo/runs/scoreboard.csv before the talk. Expectation, to be
+[13:15–14:30] Fill from demo/runs/scoreboard.csv before the talk. Expectation, to be
 confirmed by the runs: all approaches find the text issues; the single call finds
 some code issues; only the agent establishes the computation issues and gives their
 size.
@@ -469,7 +527,7 @@ Screenshot of `CONSISTENCY_REVIEW.html` from the demo run
 ::::
 
 ::: notes
-[14:15–15:00] The deliverable is a draft of the form the second statistician fills in
+[14:30–15:15] The deliverable is a draft of the form the second statistician fills in
 anyway. They read it, check what they doubt, edit, and sign.
 :::
 
@@ -504,7 +562,7 @@ Write down what you check. Keep the tooling thin and disposable.
 :::
 
 ::: notes
-[15:00–16:15] The honest answer to the obvious objection. Skills are human knowledge
+[15:15–16:30] The honest answer to the obvious objection. Skills are human knowledge
 built in, which is exactly what Sutton warns about. The difference is that they hold
 only the domain part, and they are cheap to discard. Platforms are already building
 review in.
@@ -513,8 +571,8 @@ review in.
 ## What lasts
 
 ::: tight
-1. **Test cases with known answers.** Like this SSE: they tell you when a tool has
-   become obsolete, and whether its successor is better.
+1. **Test cases with known answers.** Like the trial-report benchmark or this SSE:
+   they tell you when a tool has become obsolete, and whether its successor is better.
 2. **Standards for the review itself.** Traceable numbers, a status for every check,
    the form.
 3. **Rules for data.** What may be sent where, decided before the run.
@@ -527,7 +585,7 @@ Proposal: a shared set of planted-issue SSEs and SAPs across Swiss CTUs.
 :::
 
 ::: notes
-[16:15–17:30] If tools go obsolete in months, invest in what outlives them. Test cases
+[16:30–17:45] If tools go obsolete in months, invest in what outlives them. Test cases
 are the most useful: we can each write two or three, and every new tool gets scored
 on the same set. That is something the SCTO platforms could host.
 :::
@@ -538,6 +596,7 @@ on the same set. That is something the SCTO platforms could host.
 ::: {.column width="55%"}
 ::: {.small .tight}
 - *The Bitter Lesson*: incompleteideas.net/IncIdeas/BitterLesson.html
+- Brian et al. 2026: doi.org/10.64898/2026.10.25.26366455
 - research_skills: github.com/isitcredible/research_skills
 - Reviewer 2: github.com/isitcredible/reviewer2
 - Refine: refine.ink
@@ -555,7 +614,7 @@ The demo SSE, its answer key and these slides are available on request.
 ::::
 
 ::: notes
-[17:30–20:00] Questions.
+[17:45–20:00] Questions.
 :::
 
 # Backup {.divider}

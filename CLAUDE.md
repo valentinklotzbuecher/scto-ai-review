@@ -21,7 +21,8 @@ A talk (`slides/`) and a synthetic demonstration SSE with planted issues (`demo/
 - Scoreboard counts come only from recorded runs in `demo/runs/`, scored against
   `demo/answer-key.md`. Never fill them in from expectation.
 - Facts about other tools and people are quoted from the sources listed in
-  `README.md`; add the source when adding a fact.
+  `README.md`; add the source when adding a fact, and keep source files in `material/`
+  with a note of where each fact is (page or post).
 
 ## Rendering and checking
 

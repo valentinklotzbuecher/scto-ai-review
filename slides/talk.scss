@@ -178,3 +178,16 @@ $presentation-h2-font-size: 1.35em;
 .reveal .compact { font-size: 0.86em; }
 .reveal .demo-table table { font-size: 0.8em; width: 100%; }
 .reveal .demo-table table td:first-child { width: 8.5em; }
+
+/* Tall figure beside text, and a short quotation */
+.reveal .fig-tall img { max-height: 540px; width: auto; display: block; margin: 0 auto; }
+.reveal .quote-small {
+  font-size: 0.7em;
+  color: var(--muted);
+  border-left: 0.25rem solid var(--lilac);
+  padding-left: 0.6em;
+  margin-top: 0.8em;
+  line-height: 1.35;
+}
+.reveal .bigquote.quote-mid { font-size: 0.9em; margin-top: 0.4em; }
+.reveal .fig-motivation img { max-height: 520px; }
