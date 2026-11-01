@@ -7,7 +7,7 @@ read this file can find the planted issues without doing the review.
 The demo SSE (`demo/sse/DEMO-TKA_SSE.qmd` and its rendered PDF) contains six planted
 issues: two visible in the rendered text, two visible only in the source code, and two
 that need a calculation or a re-run to establish. Every number below is recomputed by
-`Rscript demo/answer-key.R` (base R; seeded; about 30 seconds).
+`Rscript demo/answer-key.R` (base R; seeded; about a minute).
 
 ## The six issues
 
@@ -39,7 +39,7 @@ they were allocated" is an analysis-set statement, not a strategy.
 
 `pt(t_arm, df = fit$df.residual, lower.tail = FALSE) < alpha` with `alpha <- 0.05` is a
 one-sided test at 5%, roughly a two-sided test at 10%. At 55 per group the power of the
-two-sided test the text states is 64.6% (exact; 64.3% in 20,000 simulated trials), not
+two-sided test the text states is 64.2% (exact; 64.3% in 20,000 simulated trials), not
 at least 80%.
 
 ### 4. The unstated correlation (code)
@@ -50,7 +50,10 @@ gives no source. The two-sided sample size per group for 80% power:
 
 | Correlation | 0 | 0.3 | 0.5 | 0.7 |
 |---|---|---|---|---|
-| Evaluable per group | 105 | 96 | 79 | 54 |
+| Evaluable per group | 106 | 96 | 80 | 55 |
+
+55 per group give 80% power only from a correlation of 0.696 (0.585 with the code's
+one-sided test).
 
 ### 5. Running maximum and first crossing on noise (computation)
 
@@ -58,8 +61,8 @@ The raw estimates at 55, 60 and 65 per group are 81.5%, 77.0% and 79.0%. `cummax
 turns them into a flat 81.5%, so Figure 1 shows a curve that was never simulated, and the
 first crossing of 80% is selected on Monte Carlo noise: with 200 trials per point the
 Monte Carlo standard error at 80% is 2.8 percentage points. Even with the code's own
-one-sided test, the power at 55 per group is 75.6% (exact; 75.6% in 20,000 simulated
-trials); the one-sided test would need 62 per group.
+one-sided test, the power at 55 per group is 75.3% (exact; 75.6% in 20,000 simulated
+trials); the one-sided test would need 63 per group.
 
 Raw estimates by sample size per group (seed 20260108, 200 trials each):
 
@@ -78,11 +81,18 @@ only running the code, or doing the calculation, shows the mismatch.
 
 ## What the planning values support
 
-With the stated two-sided 5% level, the ANCOVA needs 78.8, so 79 evaluable participants
-per group (79.6% in 20,000 simulated trials at 79; 80% exactly at 78.8). With 20% loss
-to follow-up: 79 / 0.8 = 98.75, so **99 per group, 198 in total**, against the SSE's
+With the stated two-sided 5% level, the ANCOVA needs 79.3, so 80 evaluable participants
+per group (exact power 79.8% at 79 and 80.3% at 80; 20,000 simulated trials give 79.7%
+at 80, with a standard error of 0.3 points, too few to separate 79 from 80). With 20%
+loss to follow-up: 80 / 0.8 = **100 per group, 200 in total**, against the SSE's
 **132**. As planned (66 randomised and about 52.8 evaluable per group), the trial has
-about **63%** power for the two-sided test.
+about **62%** power for the two-sided test.
+
+Exact power here treats the baseline as random, as the SSE simulates it: the chance
+difference in baseline means between the arms costs about half a participant per group.
+The first version of this key treated the baseline as fixed and gave 79 per group (198
+in total). The agent's review of 31 October 2026 used the random-baseline power and was
+right (`runs/2026-10-31_agent/`).
 
 ## Expected findings that were not planted
 

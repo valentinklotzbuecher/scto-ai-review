@@ -21,13 +21,22 @@ simulate_power <- function(n, n_sim = 200, sided = 1) {
   mean(rejected)
 }
 
-# Exact ANCOVA power (non-central t), given the planning values
+# Exact ANCOVA power, given the planning values. The baseline is random, as the SSE
+# simulates it: given the baseline values, the t statistic is non-central t with
+# non-centrality lambda0 * sqrt(1 - B), where B ~ Beta(1/2, n - 1) comes from the chance
+# difference in baseline means between the arms. (Treating the baseline as fixed,
+# lambda0 alone, overstates power: 80.1% instead of 79.8% at 79 per group.)
 ancova_power <- function(n, sided = 2, r = rho) {
-  se <- sd_y * sqrt(1 - r^2) * sqrt(2 / n); df <- 2 * n - 3
-  1 - pt(qt(1 - alpha / sided, df), df, delta / se)
+  df <- 2 * n - 3; tc <- qt(1 - alpha / sided, df)
+  lam0 <- delta / (sd_y * sqrt(1 - r^2) * sqrt(2 / n))
+  given <- function(lam) 1 - pt(tc, df, lam) + (sided == 2) * pt(-tc, df, lam)
+  # B = u^2, so that the integrand has no singularity at 0
+  integrate(function(u) given(lam0 * sqrt(1 - u^2)) *
+              2 * exp((n - 2) * log1p(-u^2) - lbeta(0.5, n - 1)),
+            0, 1, rel.tol = 1e-10)$value
 }
 ancova_n <- function(sided = 2, r = rho)
-  uniroot(function(n) ancova_power(n, sided, r) - target, c(5, 2000))$root
+  uniroot(function(n) ancova_power(n, sided, r) - target, c(5, 500), tol = 1e-8)$root
 
 line <- function(...) cat(sprintf(...), "\n", sep = "")
 
@@ -61,15 +70,29 @@ line("dropout: %d x 1.2 = %d (as written); %d / 0.8 = %.2f -> %d per group, %d t
 # 4. The design the planning values support
 n2 <- ancova_n(2); n_ok <- ceiling(n2)
 set.seed(3)
-line("two-sided ANCOVA: n = %.1f -> %d evaluable per group; 20,000 trials at %d: %.3f",
-     n2, n_ok, n_ok, simulate_power(n_ok, 20000, sided = 2))
+line("two-sided ANCOVA: n = %.2f -> %d evaluable per group; exact power at %d: %.4f, at %d: %.4f",
+     n2, n_ok, n_ok - 1, ancova_power(n_ok - 1, 2), n_ok, ancova_power(n_ok, 2))
+p_sim <- simulate_power(n_ok, 20000, sided = 2)
+line("  20,000 trials at %d: %.3f (Monte Carlo SE %.3f; too few to separate %d from %d)",
+     n_ok, p_sim, sqrt(p_sim * (1 - p_sim) / 20000), n_ok - 1, n_ok)
+fixed_power <- function(n) {  # the first version of this key: baseline fixed
+  df <- 2 * n - 3
+  1 - pt(qt(1 - alpha / 2, df), df, delta / (sd_y * sqrt(1 - rho^2) * sqrt(2 / n)))
+}
+n_fix <- uniroot(function(n) fixed_power(n) - target, c(5, 500), tol = 1e-8)$root
+line("  baseline treated as fixed (first version of this key): n = %.2f -> %d; power at %d: %.4f",
+     n_fix, ceiling(n_fix), n_ok - 1, fixed_power(n_ok - 1))
 line("randomise %d / 0.8 = %.2f -> %d per group, %d total",
      n_ok, n_ok / 0.8, ceiling(n_ok / 0.8), 2 * ceiling(n_ok / 0.8))
-line("one-sided ANCOVA (the code's test, infinite replicates): n = %.1f per group", ancova_n(1))
+line("one-sided ANCOVA (the code's test, infinite replicates): n = %.2f -> %d per group",
+     ancova_n(1), ceiling(ancova_n(1)))
 
 # 5. The unstated correlation drives the result
 for (r in c(0, 0.3, 0.5, 0.7))
   line("rho = %.1f: two-sided n = %.1f -> %d per group", r, ancova_n(2, r), ceiling(ancova_n(2, r)))
+line("correlation at which 55 per group give 80%%: two-sided %.3f, one-sided %.3f",
+     uniroot(function(r) ancova_power(55, 2, r) - target, c(0, 0.9))$root,
+     uniroot(function(r) ancova_power(55, 1, r) - target, c(0, 0.9))$root)
 
 # 6. The typed t-test number
 line("t-test: n = %.2f -> %d per group (typed: 94; SD 85 gives %.2f -> %d)",

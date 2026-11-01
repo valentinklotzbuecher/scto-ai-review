@@ -22,7 +22,7 @@ powerful.
 slides/index.qmd        the deck (Quarto reveal.js, lilac theme), with speaker notes
 slides/index.html       the rendered deck, self-contained
 slides/talk.scss        talk-specific styles on top of reveal_lilac.scss
-slides/assets/          the demo figure and the script that draws it
+slides/assets/          the demo figure, the script that draws it, the review-form screenshot
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
 demo/answer-key.md      the six planted issues, with their consequences
 demo/answer-key.R       recomputes every number in the answer key and on the slides
@@ -36,11 +36,14 @@ material/               sources: the trial-report preprint, tweet screenshots, n
 quarto render slides/index.qmd             # the deck; no R needed
 Rscript slides/assets/make-figures.R       # redraws the demo figure (base R)
 quarto render demo/sse/DEMO-TKA_SSE.qmd    # the SSE as PDF via Typst; needs R and knitr
-Rscript demo/answer-key.R                  # about 30 seconds
+Rscript demo/answer-key.R                  # about a minute
 ```
 
 The rendered PDF in `demo/sse/` is the one every approach reviews. If you re-render it,
 re-run every approach on the new PDF.
+
+The committed figure was drawn with Liberation Sans as the default sans-serif font;
+another default font changes its look, not its numbers.
 
 ## Running the demo
 
@@ -64,8 +67,12 @@ key and the slides name the planted issues.
    consistency review.
 
 Score each review against `demo/answer-key.md`, record it as `demo/runs/README.md`
-describes, and transfer the counts to the scoreboard slide. Replace the placeholder on
-"What the reviewer gets" with a screenshot of the agent's `CONSISTENCY_REVIEW.html`.
+describes, and transfer the counts to the scoreboard slide.
+
+The agent's run of 31 October 2026 is in `demo/runs/2026-10-31_agent/`, with its score.
+"What the reviewer gets" shows its `CONSISTENCY_REVIEW.html`
+(`slides/assets/consistency-review.png`: Chromium at 900 px wide, light colour scheme,
+twice the pixel density, cropped from Decision to the first major issue).
 
 ## Sources for the slides
 
@@ -86,4 +93,5 @@ describes, and transfer the counts to the scoreboard slide. Replace the placehol
   human consensus issues, range 50–100%, 52% overlap, 12 papers)
 - Claude Science's built-in reviewer: claude.com/docs/claude-science/the-reviewer
 - Costs and model versions: run logs in `stats_review/archive/2026_api_prototype/`
-  and the decks in `dkf-llm-explorations`
+  and the decks in `dkf-llm-explorations`; for the demo's agent run, the session record
+  summarised in `demo/runs/2026-10-31_agent/SCORE.md`

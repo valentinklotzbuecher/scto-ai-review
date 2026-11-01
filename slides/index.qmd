@@ -446,19 +446,19 @@ issues are the kind we see in real products, with invented numbers.
 ## One figure, two stories
 
 ::: figure-wide
-![](assets/power-figure.svg){fig-alt="Power by evaluable participants per group. The SSE's plotted curve, a running maximum of 200-trial estimates, crosses 80% at 55 per group. The true power of the two-sided test the SSE states is 65% at 55 and reaches 80% at 79 per group."}
+![](assets/power-figure.svg){fig-alt="Power by evaluable participants per group. The SSE's plotted curve, a running maximum of 200-trial estimates, crosses 80% at 55 per group. The true power of the two-sided test the SSE states is 64% at 55; 80% needs 80 per group."}
 :::
 
 ::: {.small}
-The SSE reports **81.5% at 55** per group. Re-run with 20,000 trials: **76%** with the
-code's one-sided test, **65%** with the two-sided test the text states. The planning
-values support 79 evaluable per group: **198 randomised, not 132**.
+The SSE reports **81.5% at 55** per group. The true power there is **75%** with the
+code's one-sided test and **64%** with the two-sided test the text states. The planning
+values support 80 evaluable per group: **200 randomised, not 132**.
 :::
 
 ::: notes
 [11:00–12:15] Wine: what the SSE plotted, a running maximum of noisy estimates. Grey
 circles: what was actually simulated where it differs. Mint: the power of the test
-the text promises. The design as written has about 63% power. No amount of reading
+the text promises. The design as written has about 62% power. No amount of reading
 gets you these numbers; you have to run something.
 :::
 
@@ -469,49 +469,63 @@ gets you these numbers; you have to run something.
 |:---|:-:|:-:|:-:|:-:|:-:|:-:|
 | Chat (PDF and source pasted) | · | · | · | · | · | · |
 | One call (review prototype) | · | · | · | · | · | · |
-| Agent with skills (standard depth) | · | · | · | · | · | · |
+| Agent with skills (standard depth) | 2 | 2 | 2 | 3 / 0 | 3.4 h | subscription |
 :::
 
 ::: {.small .muted}
 Scored against the answer key: an issue counts when the review names the problem and
-where it is. Runs on the identical PDF and source.
+where it is. Same PDF and source for every run; · not yet run. Agent: Claude Opus 5.5;
+model time, over 1½ days with two waits for the usage limit; about $72 at API prices.
 :::
 
 ::: {.fragment .punchline}
-The question is not which model is smarter, but which approach can run the code.
+The agent found all six, and showed what each one costs in participants.
+:::
+
+::: {.fragment .small}
+It also caught a slip in our answer key: 80 per group, not 79 (backup).
 :::
 
 ::: notes
-[12:15–13:30] Fill from demo/runs/scoreboard.csv before the talk. Expectation, to be
-confirmed by the runs: all approaches find the text issues; the single call finds
-some code issues; only the agent establishes the computation issues and gives their
-size.
+[12:15–13:30] The agent, at standard depth, found all six planted issues, two at each
+level, and sized each one: at the code's correlation the stated test needs 80
+evaluable per group, not 55; the first-crossing rule picks a sample size below 80% true
+power in 39% of runs. It added three points a reviewer would accept: where the SD and
+the loss come from, missing at random, clustering by physiotherapist. And it caught a
+slip in our own key: we had treated the baseline as fixed. Chat and one call: fill
+from demo/runs/scoreboard.csv. If reading finds the code issues but cannot size the
+computation ones, close with: the question is not which model is smarter, but which
+approach can run the code.
 :::
 
 ## What the reviewer gets
 
 :::: {.columns}
-::: {.column width="44%"}
-::: tight
+::: {.column width="40%"}
+::: {.tight .compact}
 - the DKF form, with the Decision boxes computed from the issues
-- each issue with where it is, the evidence (file and line, script and log) and a
-  suggested fix
+- each issue with where it is (page, file and line), its numbers and a fix
 - answers to the questions in the assignment
 - what the review could not check, and why
-- `REVIEW` comments written into a copy of the `.qmd`
+- `REVIEW` comments in a copy of the `.qmd`
+- behind it, the script and log for every number
 :::
 :::
 
-::: {.column width="56%"}
-::: placeholder
-Screenshot of `CONSISTENCY_REVIEW.html` from the demo run
+::: {.column width="60%" .screenshot}
+![](assets/consistency-review.png){fig-alt="Excerpt of the demo run's consistency review: all five Decision boxes ticked; general comments saying the document does not establish its sample size of 55 evaluable and 66 randomised participants per group, and that at a correlation of 0.5 the planned ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the unsourced baseline–outcome correlation."}
+
+::: {.tiny .muted}
+The demo run's form, excerpt: 4 major and 6 minor issues.
 :::
 :::
 ::::
 
 ::: notes
 [13:30–14:15] The deliverable is a draft of the form the second statistician fills in
-anyway. They read it, check what they doubt, edit, and sign.
+anyway. Here every Decision box is ticked, and the general comments lead with the
+sample size the document does not establish. They read it, check what they doubt,
+edit, and sign.
 :::
 
 ## Where to start
@@ -660,7 +674,7 @@ Output: Decision · General Comments · Major Issues · Minor Issues · Answers
 ## Inside a review job
 
 ```text
-jobs/2026-10_DEMO-TKA/
+jobs/2026-11_DEMO-TKA/
 ├── 00_ASSIGNMENT.md     product type, questions, data mode, depth, clearances
 ├── 00_INTAKE.md         what was received; requests for the operator
 ├── PROGRESS.md          done, running, next: a stopped run resumes here
@@ -670,6 +684,7 @@ jobs/2026-10_DEMO-TKA/
 ├── analysis/            consistency matrix, spec map, statement ledger, results
 ├── work/                scripts and logs of every re-run
 ├── SYNTHESIS.md         the verdict
+├── ISSUES.md            the issue ledger the form is built from
 └── CONSISTENCY_REVIEW.html   the draft form
 ```
 
@@ -677,6 +692,44 @@ jobs/2026-10_DEMO-TKA/
 Job folders are never committed. A stage counts as done only when its check script
 passes.
 :::
+
+## One finding, traced: 80 per group, not 79
+
+:::: {.columns}
+::: {.column width="56%"}
+**The review says**
+
+::: quote-small
+"At a correlation of 0.5 the planned ANCOVA needs 80 evaluable and 100 randomised
+participants per group (200 in total) under the stated two-sided test"
+:::
+
+**Its evidence**
+
+::: {.tight .small}
+- exact power with a random baseline: 79.83% at 79, 80.34% at 80
+  (`work/logs/ss_exact_ancova.log`)
+- rebuilt by the challenge agent (`work/challenge/s1_N_exact.log`)
+- the SSE's own simulation, made two-sided, 10,000 trials per point: 80% crossed at
+  78.5 and 79.2 (`work/challenge/s5_N_sim.log`)
+:::
+:::
+
+::: {.column width="44%"}
+**Our answer key said 79**
+
+::: {.tight .small}
+- it treated the baseline as fixed; the SSE draws it at random
+- the chance baseline difference between the arms costs about half a participant per
+  group
+- recomputed with a random baseline: 79.8% at 79, 80.3% at 80
+:::
+
+::: {.fragment .punchline}
+The agent was right; we corrected the key.
+:::
+:::
+::::
 
 ## Data modes
 
@@ -694,6 +747,9 @@ passes.
   environment (check `/status`)
 - In our trial on a 7-page SSE each stage used about 0.5 million tokens; module agents
   run one at a time so a usage limit stops at most one of them part-way
+- The demo review (two pages, standard depth): about 15 agents, 3.4 hours of model
+  time, 1.3 million output tokens; it waited twice for the 5-hour limit and resumed;
+  about $72 at API list prices
 - Depth `quick` for routine SSEs; a stopped run resumes from its progress file
 - Data terms depend on the plan: on personal plans, model training on your sessions
   is a privacy setting; commercial plans and the API are not covered by it
@@ -704,13 +760,14 @@ passes.
 | | As written | Correct |
 |:--|:--:|:--:|
 | Test in the simulation | one-sided 5% | two-sided 5% |
-| Power at 55 per group | 81.5% (200 trials, running max) | 65% (exact; 64.3% in 20,000 trials) |
-| Evaluable per group for 80% | 55 | 79 |
-| Dropout inflation | 55 × 1.2 = 66 | 79 / 0.8 → 99 |
-| Randomised in total | 132 | 198 |
+| Power at 55 per group | 81.5% (200 trials, running max) | 64% (exact 64.2%; 64.3% in 20,000 trials) |
+| Evaluable per group for 80% | 55 | 80 |
+| Dropout inflation | 55 × 1.2 = 66 | 80 / 0.8 = 100 |
+| Randomised in total | 132 | 200 |
 | Unadjusted *t*-test, per group | 94 (typed) | 105 |
 | Baseline correlation | 0.5, code only | stated and sourced |
 
 ::: {.small .muted}
-All values from `demo/answer-key.R`.
+All values from `demo/answer-key.R`; exact power with the baseline random, as the SSE
+simulates it.
 :::

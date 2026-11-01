@@ -155,17 +155,12 @@ $presentation-h2-font-size: 1.35em;
 .reveal .score table td:not(:first-child),
 .reveal .score table th:not(:first-child) { text-align: center; }
 
-/* Placeholders for content that exists only after the demo runs */
-.reveal .placeholder {
-  border: 2px dashed var(--line);
-  border-radius: 0.4em;
-  color: var(--muted);
-  font-size: 0.66em;
-  padding: 1.2em 1em;
-  min-height: 9em;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
-  background: #FCFCFC;
+/* Screenshot of the review form */
+.reveal .screenshot img {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 0.3em;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Figure on the demo slide */
@@ -176,7 +171,7 @@ $presentation-h2-font-size: 1.35em;
 
 /* Denser text blocks */
 .reveal .compact { font-size: 0.86em; }
-.reveal .demo-table table { font-size: 0.8em; width: 100%; }
+.reveal .demo-table table { font-size: 0.8em; width: calc(100% - 0.5rem); }
 .reveal .demo-table table td:first-child { width: 8.5em; }
 
 /* Tall figure beside text, and a short quotation */

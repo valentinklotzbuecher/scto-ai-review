@@ -24,14 +24,18 @@ grid      <- seq(40, 100, by = 5)
 power_raw <- vapply(grid, simulate_power, numeric(1))
 plotted   <- cummax(power_raw)
 
-# Exact power of the ANCOVA (non-central t)
+# Exact power of the ANCOVA with a random baseline, as in demo/answer-key.R
 ancova_power <- function(n, sided) {
-  se <- sd_y * sqrt(1 - rho^2) * sqrt(2 / n); df <- 2 * n - 3
-  1 - pt(qt(1 - alpha / sided, df), df, delta / se)
+  df <- 2 * n - 3; tc <- qt(1 - alpha / sided, df)
+  lam0 <- delta / (sd_y * sqrt(1 - rho^2) * sqrt(2 / n))
+  given <- function(lam) 1 - pt(tc, df, lam) + (sided == 2) * pt(-tc, df, lam)
+  integrate(function(u) given(lam0 * sqrt(1 - u^2)) *
+              2 * exp((n - 2) * log1p(-u^2) - lbeta(0.5, n - 1)),
+            0, 1, rel.tol = 1e-10)$value
 }
 n_fine  <- seq(40, 100, by = 0.5)
-true_1s <- ancova_power(n_fine, 1)
-true_2s <- ancova_power(n_fine, 2)
+true_1s <- vapply(n_fine, ancova_power, numeric(1), sided = 1)
+true_2s <- vapply(n_fine, ancova_power, numeric(1), sided = 2)
 
 wine <- "#9B233C"; mint <- "#1EA5A5"; grey <- "#8C8C8C"; ink <- "#333333"
 muted <- "#666666"; grid_col <- "#E6E6E6"
