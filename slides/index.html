@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Valentin Klotzbücher · DKF Basel">
-  <meta name="dcterms.date" content="2026-11-01">
+  <meta name="dcterms.date" content="2026-11-03">
   <title>AI-assisted review of statistical products</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1002,7 +1002,7 @@ Valentin Klotzbücher · DKF Basel
 </div>
 </div>
 
-  <p class="date">2026-11-01</p>
+  <p class="date">2026-11-03</p>
 </section>
 <section class="slide level2">
 <h2>Should journals ban AI in peer review?</h2>
@@ -1545,19 +1545,28 @@ display:block!important;
 <td style="text-align: center;">·</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Agent with skills (standard depth)</td>
+<td style="text-align: left;">Agent with skills, standard depth</td>
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">3 / 0</td>
 <td style="text-align: center;">3.4 h</td>
-<td style="text-align: center;">subscription</td>
+<td style="text-align: center;">$72</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Agent with skills, modules skipped</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1 / 0</td>
+<td style="text-align: center;">1.6 h</td>
+<td style="text-align: center;">$27</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="small muted">
-<p>Scored against the answer key: an issue counts when the review names the problem and where it is. Same PDF and source for every run; · not yet run. Agent: Claude Opus 5.5; model time, over 1½ days with two waits for the usage limit; about $72 at API prices.</p>
+<p>Scored against the answer key: an issue counts when the review names the problem and where it is. Same PDF and source for every run; · not yet run. Time: model time (usage limits stretched both agent runs over days). Cost: at API list prices; both ran on a subscription.</p>
 </div>
 <div class="fragment punchline">
 <p>The agent found all six, and showed what each one costs in participants.</p>
@@ -1566,7 +1575,7 @@ display:block!important;
 <p>It also caught a slip in our answer key: 80 per group, not 79 (backup).</p>
 </div>
 <aside class="notes">
-<p>[12:15–13:30] The agent, at standard depth, found all six planted issues, two at each level, and sized each one: at the code’s correlation the stated test needs 80 evaluable per group, not 55; the first-crossing rule picks a sample size below 80% true power in 39% of runs. It added three points a reviewer would accept: where the SD and the loss come from, missing at random, clustering by physiotherapist. And it caught a slip in our own key: we had treated the baseline as fixed. Chat and one call: fill from demo/runs/scoreboard.csv. If reading finds the code issues but cannot size the computation ones, close with: the question is not which model is smarter, but which approach can run the code.</p>
+<p>[12:15–13:30] Two agent runs, with and without the clinical modules: both found all six planted issues, two at each level, and sized each one. The run without modules needed about an hour and a half of model time; the days they took were usage limits, not work. From the first run: at the code’s correlation the stated test needs 80 evaluable per group, not 55; the first-crossing rule picks a sample size below 80% true power in 39% of runs. It added three points a reviewer would accept: where the SD and the loss come from, missing at random, clustering by physiotherapist. And it caught a slip in our own key: we had treated the baseline as fixed. Chat and one call: fill from demo/runs/scoreboard.csv. If reading finds the code issues but cannot size the computation ones, close with: the question is not which model is smarter, but which approach can run the code.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;

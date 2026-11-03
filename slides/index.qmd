@@ -469,13 +469,15 @@ gets you these numbers; you have to run something.
 |:---|:-:|:-:|:-:|:-:|:-:|:-:|
 | Chat (PDF and source pasted) | · | · | · | · | · | · |
 | One call (review prototype) | · | · | · | · | · | · |
-| Agent with skills (standard depth) | 2 | 2 | 2 | 3 / 0 | 3.4 h | subscription |
+| Agent with skills, standard depth | 2 | 2 | 2 | 3 / 0 | 3.4 h | $72 |
+| Agent with skills, modules skipped | 2 | 2 | 2 | 1 / 0 | 1.6 h | $27 |
 :::
 
 ::: {.small .muted}
 Scored against the answer key: an issue counts when the review names the problem and
-where it is. Same PDF and source for every run; · not yet run. Agent: Claude Opus 5.5;
-model time, over 1½ days with two waits for the usage limit; about $72 at API prices.
+where it is. Same PDF and source for every run; · not yet run. Time: model time (usage
+limits stretched both agent runs over days). Cost: at API list prices; both ran on a
+subscription.
 :::
 
 ::: {.fragment .punchline}
@@ -487,8 +489,10 @@ It also caught a slip in our answer key: 80 per group, not 79 (backup).
 :::
 
 ::: notes
-[12:15–13:30] The agent, at standard depth, found all six planted issues, two at each
-level, and sized each one: at the code's correlation the stated test needs 80
+[12:15–13:30] Two agent runs, with and without the clinical modules: both found all
+six planted issues, two at each level, and sized each one. The run without modules
+needed about an hour and a half of model time; the days they took were usage limits,
+not work. From the first run: at the code's correlation the stated test needs 80
 evaluable per group, not 55; the first-crossing rule picks a sample size below 80% true
 power in 39% of runs. It added three points a reviewer would accept: where the SD and
 the loss come from, missing at random, clustering by physiotherapist. And it caught a
