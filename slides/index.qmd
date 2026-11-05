@@ -467,17 +467,17 @@ gets you these numbers; you have to run something.
 ::: score
 | Approach | [Text]{.chip .text} of 2 | [Code]{.chip .code} of 2 | [Computation]{.chip .comp} of 2 | Other findings, valid / not | Time | Cost |
 |:---|:-:|:-:|:-:|:-:|:-:|:-:|
-| Chat (PDF and source pasted) | · | · | · | · | · | · |
-| One call (review prototype) | · | · | · | · | · | · |
-| Agent with skills, standard depth | 2 | 2 | 2 | 3 / 0 | 3.4 h | $72 |
-| Agent with skills, modules skipped | 2 | 2 | 2 | 1 / 0 | 1.6 h | $27 |
+| Chat | · | · | · | · | · | · |
+| One call (prototype) | · | · | · | · | · | · |
+| Agent, standard | 2 | 2 | 2 | 3 / 0 | 3.4 h | $72 |
+| Agent, no modules | 2 | 2 | 2 | 1 / 0 | 1.6 h | $27 |
+| Agent, quick | 2 | 2 | 2 | 2 / 0 | 0.5 h | $10 |
 :::
 
 ::: {.small .muted}
 Scored against the answer key: an issue counts when the review names the problem and
-where it is. Same PDF and source for every run; · not yet run. Time: model time (usage
-limits stretched both agent runs over days). Cost: at API list prices; both ran on a
-subscription.
+where it is. Same PDF and source for every run; · not yet run. Time: model time. Cost:
+at API list prices; all ran on a subscription.
 :::
 
 ::: {.fragment .punchline}
@@ -485,14 +485,15 @@ The agent found all six, and showed what each one costs in participants.
 :::
 
 ::: {.fragment .small}
-It also caught a slip in our answer key: 80 per group, not 79 (backup).
+At quick depth: all six in 34 minutes, start to finished form, for about $10.
 :::
 
 ::: notes
-[12:15–13:30] Two agent runs, with and without the clinical modules: both found all
-six planted issues, two at each level, and sized each one. The run without modules
-needed about an hour and a half of model time; the days they took were usage limits,
-not work. From the first run: at the code's correlation the stated test needs 80
+[12:15–13:30] Three agent runs, all six planted issues found every time, two at each
+level, each one sized. The first two, at standard depth, took one and a half to three
+and a half hours of model time, and days of waiting for usage limits. So we cut the
+skills down to size: at quick depth the same review took 34 minutes and about $10,
+with a form a third the length. From the first run: at the code's correlation the stated test needs 80
 evaluable per group, not 55; the first-crossing rule picks a sample size below 80% true
 power in 39% of runs. It added three points a reviewer would accept: where the SD and
 the loss come from, missing at random, clustering by physiotherapist. And it caught a
@@ -517,10 +518,10 @@ approach can run the code.
 :::
 
 ::: {.column width="60%" .screenshot}
-![](assets/consistency-review.png){fig-alt="Excerpt of the demo run's consistency review: all five Decision boxes ticked; general comments saying the document does not establish its sample size of 55 evaluable and 66 randomised participants per group, and that at a correlation of 0.5 the planned ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the unsourced baseline–outcome correlation."}
+![](assets/consistency-review.png){fig-alt="Excerpt of the quick demo run's consistency review: all five Decision boxes ticked; general comments saying the planned 55 evaluable and 66 randomised participants per group do not give the stated 80% power, and that the ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the one-sided rejection rule, the noisy choice of N and the dropout allowance, with code lines and fixes."}
 
 ::: {.tiny .muted}
-The demo run's form, excerpt: 4 major and 6 minor issues.
+The quick run's form, excerpt: 3 major and 3 minor issues, about 1,100 words.
 :::
 :::
 ::::
@@ -749,11 +750,10 @@ The agent was right; we corrected the key.
 - The skills run inside Claude Code, so a review counts against a subscription's
   usage limits rather than API credits, as long as no API key is set in the
   environment (check `/status`)
-- In our trial on a 7-page SSE each stage used about 0.5 million tokens; module agents
-  run one at a time so a usage limit stops at most one of them part-way
-- The demo review (two pages, standard depth): about 15 agents, 3.4 hours of model
-  time, 1.3 million output tokens; it waited twice for the 5-hour limit and resumed;
-  about $72 at API list prices
+- The demo review at standard depth: about 15 agents, 3.4 hours of model time, about
+  $72 at API list prices, two waits for the 5-hour limit
+- At depth `quick` (skills 0.2): 3 agents, 34 minutes start to finished form, about
+  $10 at API list prices
 - Depth `quick` for routine SSEs; a stopped run resumes from its progress file
 - Data terms depend on the plan: on personal plans, model training on your sessions
   is a privacy setting; commercial plans and the API are not covered by it
