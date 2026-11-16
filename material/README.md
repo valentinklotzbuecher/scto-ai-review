@@ -4,7 +4,7 @@
 |---|---|---|
 | `brian-2026-llm-peer-review-medrxiv-v2.pdf` | Brian D, Pereira Hernández XI, Yin H, Koury J, Rust R. *Large language models detect methodological errors that human peer review misses in clinical trials.* medRxiv, version 2 posted 28 October 2026. doi:10.64898/2026.10.25.26366455 | CC BY 4.0: reuse with attribution. `slides/assets/brian2026-fig1b.png` is cropped from its Fig. 1b. Not peer reviewed. |
 | `rust-2026-10-tweet.png` | Ruslan Rust (last author) on X announcing the preprint; the date is not visible in the screenshot | Source of the quote on the opening slide |
-| `francis-2026-10-26-tweet.jpeg` | Joseph Francis on X, 26 October 2026, retiring Reviewer 2 | Source of the quotes on the "Meanwhile" slide |
+| `francis-2026-10-26-tweet.jpeg` | Joseph Francis on X, 26 October 2026, retiring Reviewer 2 | Source of the "obsolete" quote in the notes of "What carries over" and on the backup slide "Others built review pipelines", and of the quote about the released skills there |
 
 ## Brian et al. 2026 in brief
 
@@ -60,7 +60,8 @@ was run in Claude Code (p. 16).
 
 - Opening slide, "Should journals ban AI in peer review?": the 27% against 53–96%,
   the specificity caveat, Fig. 1b and Rust's quote.
-- "What one call can and cannot do": the boundary sentence above, as the bridge from
-  reading to checking.
-- Demo and "What to invest in": our demo follows the same design (inserted errors, one answer
-  key), extended to code and computation.
+- "A reader: chat, or one scripted call": the boundary sentence above, as the bridge
+  from reading to checking.
+- "Six planted issues, two at each level" and "What carries over": our demo follows the
+  same design (inserted errors, one answer key), extended to code and computation.
+- Backup, "How well one call reads": the 53–96% against 27% again.

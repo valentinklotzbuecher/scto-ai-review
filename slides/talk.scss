@@ -112,6 +112,7 @@ $presentation-h2-font-size: 1.35em;
 
 /* Three-way comparison diagram */
 .reveal .trio { display: grid; grid-template-columns: 1fr 1.25fr 1.35fr; gap: 1em; margin-top: 0.5em; }
+.reveal .trio.duo { grid-template-columns: 1fr 1.35fr; max-width: 30em; margin-left: auto; margin-right: auto; }
 .reveal .trio-col { display: flex; flex-direction: column; align-items: center; text-align: center; }
 .reveal .trio-title { font-weight: 600; color: var(--violet); font-size: 0.82em; margin-bottom: 0.4em; }
 .reveal .node {
@@ -166,8 +167,15 @@ $presentation-h2-font-size: 1.35em;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
+/* A page of the product, shorter so a line fits below it */
+.reveal .screenshot.page img { max-height: 400px; }
+.reveal .screenshot.page p { margin: 0.2em 0; }
+
 /* Figure on the demo slide */
 .reveal .figure-wide img { width: 100%; max-height: 13.5em; object-fit: contain; }
+
+/* Code blocks: tall enough for the prompt, which the default 400px cut off */
+.reveal pre code { max-height: 520px; }
 
 /* Section dividers */
 .reveal .slides section.divider h1 { color: var(--violet); }
