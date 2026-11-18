@@ -240,31 +240,6 @@ $code-color: $ink;
 .reveal svg.dg .arrow { fill: none; stroke: $ink; stroke-width: 1.8; }
 .reveal svg.dg .arrow.cut { stroke: $hairline; stroke-dasharray: 4 5; }
 
-/* What was asked: a prompt card in the site's code style, with a mono label */
-.reveal .prompt {
-  font-family: $font-family-monospace;
-  font-size: 0.48em;
-  line-height: 1.5;
-  background: $code-paper;
-  border: 1px solid rgba(44, 58, 47, 0.18);
-  padding: 0.6em 0.9em 0.7em 0.9em;
-  margin: 0.2em 0 0.6em 0;
-  color: $ink;
-}
-.reveal .prompt p { margin: 0.15em 0; }
-.reveal .prompt::before {
-  content: "PROMPT";
-  display: block;
-  font-size: 0.85em;
-  letter-spacing: 0.14em;
-  color: $ink-soft;
-  margin-bottom: 0.4em;
-}
-.reveal .prompt.system::before { content: "SYSTEM PROMPT, ABRIDGED"; }
-.reveal .prompt.skillmd::before { content: "SKILL.MD, ABRIDGED"; }
-.reveal .prompt.vendor::before { content: "REVIEWER 2, STAGE 1 OF 30+"; }
-.reveal .prompt .att { color: $ink-soft; }
-
 /* Services: a ruled grid of names with a mono tag each */
 .reveal .svc {
   display: grid;

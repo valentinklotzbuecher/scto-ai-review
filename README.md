@@ -122,15 +122,16 @@ Images on the demo deck's slides:
   isolated cloud VM, not on your machine; counts toward the plan's usage, no separate
   charge); quoted in `material/README.md`
 - Reviewer 2's licence (Apache 2.0) and cost ("a few dollars in Gemini API usage"):
-  its README and LICENSE at github.com/isitcredible/reviewer2. The prompt quoted on
-  "Review services" is the start of its first stage, `src/reviewer2/prompts/01a_breaker.txt`
+  its README and LICENSE at github.com/isitcredible/reviewer2. The prompt quoted in the
+  notes of "Review services" is the start of its first stage,
+  `src/reviewer2/prompts/01a_breaker.txt`
 - The other services on "Review services" (Refine paid, up to $50; Reviewer3 commercial;
   paperreview.ai from Stanford and openaireview.org from Chicago free; coarse.ink open
   source): the Reviewer 2 paper, *Yell at It*, `paper/yellatit.pdf` in
   github.com/isitcredible/reviewer2, pp. 6–7; quoted in `material/README.md`
-- The prompts on the other slides are our own: the review prototype's system prompt
-  (abridged; full text on the demo deck's backup slide), the start of
-  `chat-skills/dkf-document-check/SKILL.md` in `stats_review` (abridged), and the agent
+- The chat prompt on "Paste it into the chat" and the prompts described in the notes are
+  our own: the review prototype's system prompt (full text on the demo deck's backup
+  slide), `chat-skills/dkf-document-check/SKILL.md` in `stats_review`, and the agent
   instruction from the `stats_review` README
 - "Since o1 pro" (December 2024) on the chat slide is the speaker's own experience, said
   as such in the notes

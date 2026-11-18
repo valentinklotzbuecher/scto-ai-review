@@ -102,8 +102,8 @@ services":
 > alternative is coarse.ink, by David Van Dijcke […]; it appears to have effectively
 > been reverse-engineered from refine.ink and is also open source.
 
-Reviewer 2 itself is Apache 2.0 (its `LICENSE`). The prompt on the slide is the start of
-its first stage, `src/reviewer2/prompts/01a_breaker.txt`: "You are **The Breaker**. You
+Reviewer 2 itself is Apache 2.0 (its `LICENSE`). The prompt in the notes of "Review
+services" is the start of its first stage, `src/reviewer2/prompts/01a_breaker.txt`: "You are **The Breaker**. You
 take a sledgehammer to academic texts, breaking them into pieces."
 
 ## Where it is used in the talk
