@@ -7,8 +7,9 @@ product it is built around.
 The talk aims to get statisticians using these tools for better research. It opens with
 new evidence that language models find errors human reviewers miss in trial reports,
 then puts one product on screen for the rest of the talk: a synthetic SSE with six
-planted issues. Each approach is shown on it: a reader (chat, or a single scripted API
-call, the review prototype) and the agent skills we use now
+planted issues. Each approach is shown on it: a reader (a chat, with or without the
+review's first stage as a chat skill; our earlier one-call prototype) and the agent
+skills we use now
 ([`stats_review`](https://github.com/valentinklotzbuecher/stats_review)), which can run
 the code. A scoreboard records what each found, one finding is traced to its evidence,
 and a slide gives concrete first steps. It closes with Sutton's bitter lesson: the tools
@@ -63,9 +64,7 @@ key and the slides name the planted issues.
    attach the PDF and the `.qmd` and ask for a document check of the sample size
    estimation with `dkf-document-check`. It is the agent's first stage without the code
    runs, so it separates knowing what to check from running the code.
-3. **One call.** Point the review prototype in `dkf-llm-explorations`
-   (`02-review-prototype.qmd`) at `demo/sse/DEMO-TKA_SSE.qmd` and `.pdf`.
-4. **Agent with skills.** In a clone of `stats_review`:
+3. **Agent with skills.** In a clone of `stats_review`:
 
    ```bash
    python3 .claude/skills/dkf-review/scripts/new_job.py jobs/2026-11_DEMO-TKA \
@@ -78,9 +77,11 @@ key and the slides name the planted issues.
    `dkf-review` and write the consistency review.
 
 Score each review against `demo/answer-key.md`, record it as `demo/runs/README.md`
-describes, and transfer the counts to the scoreboard slide. The chat, chat-with-skill
-and one-call runs are still to do; their rows on the scoreboard stay empty until they
-are scored. For the chat runs, record whether the chat ran code: a chat that does is no
+describes, and transfer the counts to the scoreboard slide. A lead counts like a
+finding, and each run also records how many issues it sizes (`demo/answer-key.md`,
+Scoring). The chat and chat-with-skill runs are still to do; their rows on the
+scoreboard stay empty until they are scored. The one-call prototype is no longer run
+on the demo. For the chat runs, record whether the chat ran code: a chat that does is no
 longer only a reader (the document skill runs its own arithmetic scripts, never the
 product's code).
 

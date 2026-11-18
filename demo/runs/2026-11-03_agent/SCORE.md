@@ -40,6 +40,15 @@ estimand Minor; it rates the dropout allowance Major.
   point (key, exact: 64.2%); one-sided power at 55 of 74.2% (key, exact: 75.3%); the
   one-sided test first reaching 80% at 65 per group on the grid of 5 (key: 63 needed).
 
+## Sizing: 5 of 5
+
+Scored on 18 November 2026 under the sizing rule then added to the answer key
+(Scoring), from the review's own numbers: issue 1, 52.8 evaluable from 66 randomised
+and 69 per group for 55 evaluable; 3, 80 evaluable per group under the stated
+two-sided test, and 63.6% power at 55 by simulation; 4, 106, 80 and 55 per group at
+correlations 0, 0.5 and 0.7, and 0.696 for 55; 5, 74.2% power at 55 under the
+one-sided test, by simulation; 6, 105 per group for the *t*-test.
+
 ## Further findings (draft judgement)
 
 | Review issue | Proposed | Reason |

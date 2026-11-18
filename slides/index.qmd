@@ -197,7 +197,7 @@ about 62% power. No amount of reading gets you these numbers; you have to run
 something.
 :::
 
-## A reader: chat, or one scripted call
+## A reader: chat, a review skill in chat, or one call
 
 :::: {.columns}
 ::: {.column width="48%"}
@@ -206,17 +206,18 @@ something.
   <div><span class="node">.qmd source</span> <span class="node">rendered PDF</span>
   <span class="node">reviewer's questions</span></div>
   <div class="down">↓</div>
-  <div class="node model" style="font-size:0.75em">one prompt, one model call</div>
+  <div class="node model" style="font-size:0.75em">one model reads both</div>
   <div class="down">↓</div>
-  <div class="node out" style="font-size:0.75em">review in the DKF form</div>
+  <div class="node out" style="font-size:0.75em">review</div>
 </div>
 ```
 
 ::: {.tight .compact}
 - **Chat**: paste both files and ask
-- **Our prototype**: the same as a script, with a senior reviewer's checklist as the
-  prompt and every run logged
-- Minutes per review, under $1.50
+- **A review skill in chat**: the document check, the agent's first stage; it
+  recomputes printed numbers, never runs the product's code
+- **Our prototype**: one scripted call with a reviewer's checklist; minutes, under
+  $1.50
 :::
 :::
 
@@ -224,10 +225,9 @@ something.
 **What a reader cannot do**
 
 ::: {.tight .compact}
-- run the code
-- recompute a printed number
+- run the product's code
 - re-run the simulation behind a figure
-- show what it checked and what it only found plausible
+- check a number that only the code computes
 :::
 
 ::: quote-small
@@ -243,13 +243,16 @@ Reading is a strong start. Checking needs the code.
 
 ::: notes
 [5:15–6:30] The first approach is a reader. In a chat you paste the PDF and the
-source and ask for a consistency review. Our prototype did the same as one scripted
-call: a senior reviewer's checklist as the prompt, the form we already use as the
-output, every run logged, minutes and under a dollar fifty. It reads attentively: on
-trial reports a single call beat the human reviewers. But it can only read. The
-preprint's authors say so themselves: their errors were all visible in the text.
-Everything a reading model says about a number is a guess about that number. (A chat
-that can run code is no longer only a reader; that comes back at the scoreboard.)
+source and ask for a consistency review. A review skill in chat goes one step
+further: the document check is the agent's first stage, packaged as a skill for a
+normal chat. Same checklist as the agent, and it recomputes printed numbers with its
+own scripts, but it never runs the product's code. Our earlier prototype did the
+reading as one scripted call: a reviewer's checklist as the prompt, minutes and under
+a dollar fifty. Readers read attentively: on trial reports a single call beat the
+human reviewers. But they stop at the print. The preprint's authors say so
+themselves: their errors were all visible in the text. Anything a reader says about a
+number only the code computes is a guess about that number. (A chat that runs the
+product's code is no longer only a reader; that comes back at the scoreboard.)
 :::
 
 ## What changed: an agent with skills
@@ -332,15 +335,16 @@ review skills under an MIT licence, and ours are adapted from them.
 |:---|:-:|:-:|:-:|:-:|:-:|:-:|
 | Chat | · | · | · | · | · | · |
 | Chat + document skill | · | · | · | · | · | · |
-| One call (prototype) | · | · | · | · | · | · |
 | Agent, standard | 2 | 2 | 2 | 3 / 0 | 3.4 h | $72 |
 | Agent, quick | 2 | 2 | 2 | 2 / 0 | 0.5 h | $10 |
 :::
 
 ::: {.small .muted}
 Scored against the answer key: an issue counts when the review names the problem and
-where it is. Same PDF and source for every run; · not yet run. Time: model time. Cost:
-at API list prices; the agent runs were on a subscription.
+where it is, as a finding or a lead. Same PDF and source for every run; · not yet run.
+Time: model time. Cost: at API list prices; the agent runs were on a subscription. We
+wrote the skills and this SSE in the same week: the demo shows the checklist at work,
+not a blind test.
 :::
 
 ::: {.fragment .punchline}
@@ -360,12 +364,21 @@ form a third the length. From the first run: at the code's correlation the state
 test needs 80 evaluable per group, not 55; the first-crossing rule picks a sample
 size below 80% true power in 39% of runs. It added three points a reviewer would
 accept: where the SD and the loss come from, missing at random, clustering by
-physiotherapist. Chat, chat with the document skill (the agent's first stage as a chat
-skill: the same checklist, no product code run) and one call: fill from
-demo/runs/scoreboard.csv. If reading
-finds the code issues but cannot size the computation ones, close with: the question
-is not which model is smarter, but which approach can run the code. If the chat ran
-code itself, say so: a chat with a code tool is a small agent, and its row shows it.
+physiotherapist.
+
+(Before the talk: fill the two chat rows from demo/runs/scoreboard.csv; its `sized`
+column says how many issues each review gave in participants or power, 5 of 5 for the
+agent runs. If the readers find the issues but cannot size them, close with: the
+question is not which model is smarter, but which approach can run the code. If the
+document check finds and sizes most of them: the checklist carries most of the value,
+and running the code adds the simulation and the exact N. If a chat ran the product's
+code: a chat with a code tool is a small agent, and its row shows it.)
+
+(If asked whether the skills were tuned to the demo: we wrote both in the same week,
+and the skills, finished the day before the SSE, already describe the dropout rule
+and, from a trial on a real SSE, the noisy first crossing. So this shows the checklist
+at work; a blind test needs a case written by someone else, which is the proposal at
+the end.)
 :::
 
 ## What the reviewer gets

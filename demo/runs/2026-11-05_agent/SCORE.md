@@ -40,6 +40,16 @@ problems a colleague fixes in one go; each is named with its location and fix.
   and 94 matching an SD of about 85 m; the plotted against simulated values at 60 and
   65 per group.
 
+## Sizing: 5 of 5
+
+Scored on 18 November 2026 under the sizing rule then added to the answer key
+(Scoring), from the review's own numbers: issue 1, 52.8 expected evaluable per group
+(62.3% power) and 100 randomised per group; 3, 64.2% power at 55 and 80 evaluable per
+group under the stated two-sided test; 4, 96, 80 and 55 per group at correlations 0.3,
+0.5 and 0.7; 5, 75.3% power at 55 under the code's one-sided test, 63 per group, and
+the printed 81.5% as 163 of 200 trials (95% interval 76.1% to 86.9%); 6, 105 per group
+for the *t*-test.
+
 ## Further findings (draft judgement)
 
 | Review issue | Proposed | Reason |

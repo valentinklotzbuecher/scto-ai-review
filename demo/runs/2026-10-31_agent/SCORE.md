@@ -38,6 +38,15 @@ requirement"; the answer key reads ICH E9(R1) as requiring them.
   79, 80.3% at 80) agreed with the review, and `answer-key.R`, the answer key, the
   figure and the slides were corrected.
 
+## Sizing: 5 of 5
+
+Scored on 18 November 2026 under the sizing rule then added to the answer key
+(Scoring), from the review's own numbers: issue 1, 52.8 evaluable left by 66
+randomised and 69 per group for 55 evaluable; 3, 64.2% power at 55 under the stated
+two-sided test and 80 evaluable per group; 4, 55 per group suffices only from a
+correlation of 0.696; 5, 75.3% power at 55 under the code's one-sided test and 63 per
+group; 6, 105 per group for the *t*-test.
+
 ## Further findings (draft judgement)
 
 | Review issue | Proposed | Reason |

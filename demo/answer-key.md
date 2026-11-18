@@ -112,5 +112,19 @@ correlation is unstated or unsourced; for issue 5 the running maximum, or the se
 of the first crossing on Monte Carlo noise, or the power at 55 being below 80% when
 re-estimated; for issue 6 that 94 disagrees with the code or with the planning values.
 Record **partly** when the review points at the right place without stating the problem,
-and **missed** otherwise. Other findings are scored valid or invalid by the human
-reviewer.
+and **missed** otherwise. A problem the review lists as a lead, a question or a point
+for a later code review counts like a finding. Other findings are scored valid or
+invalid by the human reviewer.
+
+An issue found is also **sized** when the review states its consequence in participants
+or power, within 3 per group or 3 percentage points of this key (exact values, or
+simulated values with their Monte Carlo error). Sized counts are out of 5:
+
+| # | Sized when the review states |
+|---|---|
+| 1 | the evaluable number the planned randomisation leaves (52.8 per group), or the correctly inflated number randomised (69 per group for 55 evaluable, 100 for 80) |
+| 2 | not sized: the estimand has no number |
+| 3 | the power of the stated two-sided test at 55 per group (64%), or the evaluable number it needs (80 per group) |
+| 4 | the number needed at another correlation (106, 96, 80 or 55 per group at 0, 0.3, 0.5 or 0.7), or the correlation that 55 per group needs (0.70) |
+| 5 | the power at 55 per group under the code's own one-sided test (75%), the number that test needs (63 per group), or the Monte Carlo error of a 200-trial estimate (2.8 points) |
+| 6 | the number per group the planning values give for the *t*-test (105) |
