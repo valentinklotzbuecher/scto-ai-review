@@ -442,7 +442,7 @@
   <meta name="generator" content="quarto-1.10.19">
 
   <meta name="author" content="Valentin Klotzbücher · DKF Basel">
-  <meta name="dcterms.date" content="2026-11-05">
+  <meta name="dcterms.date" content="2026-11-18">
   <title>AI-assisted review of statistical products</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -1002,7 +1002,7 @@ Valentin Klotzbücher · DKF Basel
 </div>
 </div>
 
-  <p class="date">2026-11-05</p>
+  <p class="date">2026-11-18</p>
 </section>
 <section class="slide level2">
 <h2>Should journals ban AI in peer review?</h2>
@@ -1536,6 +1536,15 @@ display:block!important;
 <td style="text-align: center;">·</td>
 </tr>
 <tr class="even">
+<td style="text-align: left;">Chat + document skill</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+</tr>
+<tr class="odd">
 <td style="text-align: left;">One call (prototype)</td>
 <td style="text-align: center;">·</td>
 <td style="text-align: center;">·</td>
@@ -1544,7 +1553,7 @@ display:block!important;
 <td style="text-align: center;">·</td>
 <td style="text-align: center;">·</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Agent, standard</td>
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">2</td>
@@ -1553,7 +1562,7 @@ display:block!important;
 <td style="text-align: center;">3.4 h</td>
 <td style="text-align: center;">$72</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: left;">Agent, no modules</td>
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">2</td>
@@ -1562,7 +1571,7 @@ display:block!important;
 <td style="text-align: center;">1.6 h</td>
 <td style="text-align: center;">$27</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: left;">Agent, quick</td>
 <td style="text-align: center;">2</td>
 <td style="text-align: center;">2</td>
@@ -1584,7 +1593,7 @@ display:block!important;
 <p>At quick depth: all six in 34 minutes, start to finished form, for about $10.</p>
 </div>
 <aside class="notes">
-<p>[12:15–13:30] Three agent runs, all six planted issues found every time, two at each level, each one sized. The first two, at standard depth, took one and a half to three and a half hours of model time, and days of waiting for usage limits. So we cut the skills down to size: at quick depth the same review took 34 minutes and about $10, with a form a third the length. From the first run: at the code’s correlation the stated test needs 80 evaluable per group, not 55; the first-crossing rule picks a sample size below 80% true power in 39% of runs. It added three points a reviewer would accept: where the SD and the loss come from, missing at random, clustering by physiotherapist. And it caught a slip in our own key: we had treated the baseline as fixed. Chat and one call: fill from demo/runs/scoreboard.csv. If reading finds the code issues but cannot size the computation ones, close with: the question is not which model is smarter, but which approach can run the code.</p>
+<p>[12:15–13:30] Three agent runs, all six planted issues found every time, two at each level, each one sized. The first two, at standard depth, took one and a half to three and a half hours of model time, and days of waiting for usage limits. So we cut the skills down to size: at quick depth the same review took 34 minutes and about $10, with a form a third the length. From the first run: at the code’s correlation the stated test needs 80 evaluable per group, not 55; the first-crossing rule picks a sample size below 80% true power in 39% of runs. It added three points a reviewer would accept: where the SD and the loss come from, missing at random, clustering by physiotherapist. And it caught a slip in our own key: we had treated the baseline as fixed. Chat, chat with the document skill (the agent’s first stage as a chat skill: the same checklist, no code run) and one call: fill from demo/runs/scoreboard.csv. If reading finds the code issues but cannot size the computation ones, close with: the question is not which model is smarter, but which approach can run the code.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1636,7 +1645,7 @@ display:block!important;
 <div class="tight">
 <ol type="1">
 <li><strong>Chat, on non-sensitive material.</strong> Explain unfamiliar code, check a paragraph against its table, draft questions for a SAP.</li>
-<li><strong>One call before review.</strong> The PDF and its source with a reviewer’s checklist: minutes, and cents to a few dollars.</li>
+<li><strong>A review skill in chat, on a non-sensitive document.</strong> Upload the document check as a skill: you read what the agent is told to do, and get tables and a check log, not free text.</li>
 <li><strong>An agent with review skills for a full pre-review.</strong> It runs the code, recomputes and leaves a record; no patient data by default.</li>
 <li><strong>A few test cases with known answers.</strong> Plant errors in your own kind of document and see which approach finds them.</li>
 </ol>
@@ -1645,7 +1654,7 @@ display:block!important;
 <p>Errors found while they are still cheap to fix: before the protocol, not after the trial.</p>
 </div>
 <aside class="notes">
-<p>[14:15–15:15] What you can do on Monday. Each step is useful on its own; start with the first and move on as your data rules allow. The aim is better research: errors found while they are still cheap to fix.</p>
+<p>[14:15–15:15] What you can do on Monday. Each step is useful on its own; start with the first and move on as your data rules allow. The skill in chat is the agent’s first stage on its own: the easiest way to see what the agents do before running one. The aim is better research: errors found while they are still cheap to fix.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1735,7 +1744,7 @@ display:block!important;
 </div><div class="column" style="width:45%;">
 <p>Questions, and offers of test cases, welcome.</p>
 <div class="small muted">
-<p>The demo SSE, its answer key and these slides are available on request.</p>
+<p>The demo SSE and its answer key, the document check for chat and these slides are available on request.</p>
 </div>
 </div></div>
 <aside class="notes">

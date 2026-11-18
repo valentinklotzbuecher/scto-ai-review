@@ -52,9 +52,14 @@ key and the slides name the planted issues.
 
 1. **Chat.** Paste the PDF and the `.qmd` into a new chat and ask for a consistency
    review of the sample size estimation.
-2. **One call.** Point the review prototype in `dkf-llm-explorations`
+2. **Chat with the document skill.** Upload `chat-skills/dkf-document-check.zip` from
+   `stats_review` as a skill (Customize, Skills; code execution on), then in a new chat
+   attach the PDF and the `.qmd` and ask for a document check of the sample size
+   estimation with `dkf-document-check`. It is the agent's first stage without the code
+   runs, so it separates knowing what to check from running the code.
+3. **One call.** Point the review prototype in `dkf-llm-explorations`
    (`02-review-prototype.qmd`) at `demo/sse/DEMO-TKA_SSE.qmd` and `.pdf`.
-3. **Agent with skills.** In a clone of `stats_review`:
+4. **Agent with skills.** In a clone of `stats_review`:
 
    ```bash
    python3 .claude/skills/dkf-review/scripts/new_job.py jobs/2026-11_DEMO-TKA \
@@ -69,10 +74,9 @@ key and the slides name the planted issues.
 Score each review against `demo/answer-key.md`, record it as `demo/runs/README.md`
 describes, and transfer the counts to the scoreboard slide.
 
-The agent's run of 31 October 2026 is in `demo/runs/2026-10-31_agent/`, with its score.
-"What the reviewer gets" shows its `CONSISTENCY_REVIEW.html`
-(`slides/assets/consistency-review.png`: Chromium at 900 px wide, light colour scheme,
-twice the pixel density, cropped from Decision to the first major issue).
+The agent runs are in `demo/runs/`, each with its score. "What the reviewer gets"
+shows an excerpt of the quick run's form, `demo/runs/2026-11-05_agent/CONSISTENCY_REVIEW.html`,
+as `slides/assets/consistency-review.png`.
 
 ## Sources for the slides
 

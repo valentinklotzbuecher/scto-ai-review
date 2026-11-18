@@ -4,6 +4,8 @@ One folder per run, named `<date>_<approach>` (for example `2026-11-05_agent`), 
 what the approach returned, unchanged:
 
 - chat: the exported conversation or the copied answer
+- chat with the document skill: the exported conversation and the files the skill
+  returned (consistency table, check log)
 - one call: the prototype's `.md` and `.json`
 - agent: the job's `CONSISTENCY_REVIEW.md`, `.html` and `.org`, `ISSUES.md`,
   `SYNTHESIS.md` and the annotated source (`work/annotated/*.REVIEW.qmd`)
@@ -15,8 +17,8 @@ run to `scoreboard.csv`:
 
 | Column | Content |
 |---|---|
-| `approach` | `chat`, `one_call` or `agent` |
-| `model`, `date`, `depth` | as run (`depth` for the agent only) |
+| `approach` | `chat`, `chat_skill`, `one_call` or `agent` |
+| `model`, `date`, `depth` | as run (`depth`: the agent's depth, or the chat skill's version) |
 | `text_found`, `code_found`, `computation_found` | planted issues found, 0–2 each; note any "partly" in `notes` |
 | `other_valid`, `other_invalid` | further findings, judged by a statistician |
 | `minutes`, `cost_usd` | wall-clock time, or model time for a run that waited for usage limits (elapsed time in `notes`); API cost, or `subscription` |
