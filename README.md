@@ -1,32 +1,27 @@
 # AI-assisted review of statistical products: SCTO talk
 
-A 20-minute talk for statisticians, *AI-assisted review of statistical products: from a
-single prompt to an agent that checks the numbers*, and the synthetic demonstration
-product it is built around.
+A 20-minute talk for statisticians, *AI review of statistical products*: a personal
+exploration, not a DKF service, of five ways to get an AI review.
 
-The talk aims to get statisticians using these tools for better research. It opens with
-new evidence that language models find errors human reviewers miss in trial reports,
-then puts one product on screen for the rest of the talk: a synthetic SSE with six
-planted issues. Each approach is shown on it: a reader (a chat, with or without the
-review's first stage as a chat skill; our earlier one-call prototype) and the agent
-skills we use now
-([`stats_review`](https://github.com/valentinklotzbuecher/stats_review)), which can run
-the code. A scoreboard records what each found, one finding is traced to its evidence,
-and a slide gives concrete first steps. It closes with Sutton's bitter lesson: the tools
-turn over in months, so invest in what carries over (test cases with known answers,
-review standards, data rules, the statistician who signs), and every new model makes the
-same checklist more powerful.
+The deck (`slides/index.qmd`) has ten slides and a short appendix, with little text on
+the slides and the rest in the speaker notes. It walks through the five tools in order:
+a chat at the highest reasoning setting; the same through the API, from a script (the
+review prototype, the Unjournal project); review services (Refine, isitcredible); a
+skill; and an agent with skills in the product's repository
+([`stats_review`](https://github.com/valentinklotzbuecher/stats_review)). One table
+compares them. It closes on result-oriented review, Sutton's bitter lesson, and a
+discussion of what the human reviewer is for. The content takes about 13 minutes, which
+leaves the rest of the slot for the discussion.
 
-The main part is 14 slides and about 14½ minutes, which leaves the rest of the slot for
-questions. How we got here (the timeline, what the prototype taught us, the review
-pipelines and services others built: Reviewer 2, Refine) is in the backup slides, with
-the Unjournal comparison, all recorded runs and the answer key in numbers.
+The earlier, longer deck (`slides/demo-deck.qmd`) is built around a synthetic SSE with
+six planted issues (`demo/`) and a scoreboard of recorded runs; it is kept for the demo.
 
 ## Contents
 
 ```
 slides/index.qmd        the deck (Quarto reveal.js, lilac theme), with speaker notes
 slides/index.html       the rendered deck, self-contained
+slides/demo-deck.qmd    the earlier deck built around the demo SSE (.html rendered)
 slides/talk.scss        talk-specific styles on top of reveal_lilac.scss
 slides/assets/          the demo figure, the script that draws it, the SSE page excerpt,
                         the review-form screenshot
@@ -41,6 +36,7 @@ material/               sources: the trial-report preprint, tweet screenshots, n
 
 ```bash
 quarto render slides/index.qmd             # the deck; no R needed
+quarto render slides/demo-deck.qmd         # the earlier demo deck
 Rscript slides/assets/make-figures.R       # redraws the demo figure (base R)
 quarto render demo/sse/DEMO-TKA_SSE.qmd    # the SSE as PDF via Typst; needs R and knitr
 Rscript demo/answer-key.R                  # about a minute
@@ -86,11 +82,11 @@ longer only a reader (the document skill runs its own arithmetic scripts, never 
 product's code).
 
 Three agent runs are recorded in `demo/runs/`, each with its score: 31 October 2026
-(depth `standard`), 3 November (interim) and 5 November (depth `quick`). The scoreboard
-slide shows the first and the last; the backup slide "All recorded runs of the demo"
-shows all three. "One finding, traced" follows the 31 October run.
+(depth `standard`), 3 November (interim) and 5 November (depth `quick`). In the demo
+deck, the scoreboard slide shows the first and the last; the backup slide "All recorded
+runs of the demo" shows all three. "One finding, traced" follows the 31 October run.
 
-Images on the slides:
+Images on the demo deck's slides:
 
 - "The product" shows page 2 of `demo/sse/DEMO-TKA_SSE.pdf`
   (`slides/assets/demo-sse-page2.png`: `pdftoppm -r 220 -f 2 -l 2 -png`, cropped from
@@ -117,6 +113,11 @@ Images on the slides:
 - Unjournal comparison: llm-uj-research-eval.netlify.app (80% coverage of curated
   human consensus issues, range 50–100%, 52% overlap, 12 papers)
 - Claude Science's built-in reviewer: claude.com/docs/claude-science/the-reviewer
+- Claude Agent SDK: code.claude.com/docs/en/agent-sdk/overview (Claude Code as a
+  library; skills load from `.claude/`; API-key authentication for agents built on it);
+  quoted in `material/README.md`
+- "Since o1 pro" (December 2024) on the chat slide is the speaker's own experience, said
+  as such in the notes
 - Costs and model versions: run logs in `stats_review/archive/2026_api_prototype/`
   and the decks in `dkf-llm-explorations`; for the demo's agent run, the session record
   summarised in `demo/runs/2026-10-31_agent/SCORE.md`

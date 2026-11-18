@@ -177,6 +177,34 @@ $presentation-h2-font-size: 1.35em;
 /* Code blocks: tall enough for the prompt, which the default 400px cut off */
 .reveal pre code { max-height: 520px; }
 
+/* Minimal deck: where we are among the five tools, and one big statement */
+.reveal .ladder { display: flex; gap: 0.35em; margin: -0.1em 0 0.9em 0; }
+.reveal .ladder span {
+  font-size: 0.5em;
+  padding: 0.15em 0.7em;
+  border-radius: 1em;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.reveal .ladder span.on {
+  background: var(--violet);
+  border-color: var(--violet);
+  color: white;
+  font-weight: 600;
+}
+.reveal .big {
+  font-size: 1.45em;
+  font-weight: 600;
+  color: var(--violet);
+  line-height: 1.2;
+  margin: 0.3em 0 0.6em 0;
+}
+.reveal .glance table { font-size: 0.9em; margin-top: 0.6em; }
+.reveal .tree pre { width: calc(100% - 12px); box-sizing: border-box; margin: 0.4em 0 0 0; font-size: 0.8em; }
+.reveal .tree pre code { font-size: 1em; line-height: 1.6; max-height: none; }
+.reveal .steps ol { font-size: 1.1em; }
+.reveal .steps li { margin: 0.35em 0; }
+
 /* Section dividers */
 .reveal .slides section.divider h1 { color: var(--violet); }
 

@@ -1,6 +1,6 @@
 ---
-title: "AI-assisted review of statistical products"
-subtitle: "From a single prompt to an agent that checks the numbers"
+title: "AI review of statistical products"
+subtitle: "A personal exploration: what I tried, and what each tool can do"
 author: "Valentin Klotzbücher · DKF Basel"
 date: today
 format:
@@ -18,851 +18,281 @@ format:
     code-line-numbers: false
 ---
 
-## Should journals ban AI in peer review?
+## Five ways to an AI review
 
-:::: {.columns}
-::: {.column width="58%"}
-::: compact
-Fourteen known errors inserted into reports of randomised trials; every review scored
-against the same answer key:
-:::
-
-::: {.tight .compact}
-- **Human peer reviewers: 27%** of the major errors
-- **Each of 15 language models, text only: 53–96%**
-- On 58 trials published in 2026: 58–99%
-- the models also flagged 14–29% of the error types on unmodified reports
-:::
-
-::: {.fragment}
-::: {.bigquote .quote-mid}
-"For clinical trials, I'd even call human-only review dangerous."
-:::
-
-::: attribution
-Ruslan Rust, last author, on X
-:::
-:::
-:::
-
-::: {.column width="42%" .fig-tall .fig-motivation}
-![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
-:::
-::::
-
-::: {.tiny .muted}
-Brian et al., medRxiv, 28 October 2026, not peer reviewed. Humans: 2004 study, 607 reviewers.
-Two LLM judges. Fig. 1b, CC BY 4.0.
-:::
-
-::: notes
-[0:00–1:15] This week's debate: should journals ban AI in peer review? A new preprint
-repeated the classic BMJ experiment: errors inserted into trial reports, one answer
-key. Human reviewers in 2004 found about a quarter of the major errors; every one of
-15 current models, reading only the text, found more, the best almost all. Caveats:
-a preprint, a historical human comparison, LLM judges, and models that also flag
-concerns on clean reports. The last author's conclusion: for clinical trials,
-human-only review is dangerous. Today: how we put this to work on our own statistical
-products, before they go out.
-:::
-
-## The job: the consistency review
-
-:::: {.columns}
-::: {.column width="54%"}
-Every DKF statistical product gets a second statistician's review before it goes out:
-sample size estimations, protocol statistics sections, analysis plans, reports,
-manuscripts.
-
-The review ends in a form:
-
-::: tight
-- **Decision**: minor or major changes to text or code; clarification needed
-- **General comments**, **major** and **minor issues**
-- **Answers** to the questions in the assignment
-:::
-:::
-
-::: {.column width="46%"}
-**Where errors hide**
-
-::: levels
-<div><span class="chip text">Text</span> what the PDF says: a wrong formula, a missing
-estimand component</div>
-<div><span class="chip code">Code</span> what only the source shows: a one-sided test,
-a value that never reaches the text</div>
-<div><span class="chip comp">Computation</span> what the code actually computes: a stale
-number, a figure built on noise</div>
-:::
-:::
-::::
-
-::: notes
-[1:15–2:15] The second statistician reads the rendered document against its Quarto
-source and the protocol or SAP. Keep the three levels in mind; they come back with
-the product on the next slide. A reader finds the first, a careful reader of the code
-the second, and only someone who runs things finds the third.
-:::
-
-## The product: a sample size estimation
-
-:::: {.columns}
-::: {.column width="38%"}
-**DEMO-TKA** (invented)
-
-::: {.tight .compact}
-App-guided home exercise versus supervised physiotherapy after knee replacement.
-Six-minute walk distance at 6 months; ANCOVA; power by simulation. Two pages of
-Quarto and R.
-
-**It concludes**
-
-- 55 evaluable per group, estimated power 81.5%
-- 66 randomised per group, 132 in total
-:::
-:::
-
-::: {.column width="62%" .screenshot .page}
-![](assets/demo-sse-page2.png){fig-alt="Page 2 of the demonstration sample size estimation: Figure 1, estimated power by evaluable participants per group, crossing 80% at 55; the text states 55 evaluable participants per group with estimated power 81.5%, 94 per group for an unadjusted t-test, and 55 × 1.2 = 66 randomised per group, 132 in total."}
-
-::: {.tiny .muted}
-Page 2 of the PDF, excerpt. Every approach gets this PDF and its Quarto source,
-nothing else.
-:::
-:::
-::::
-
-::: {.fragment .punchline}
-It reads like a finished SSE. We planted six errors in it.
-:::
-
-::: notes
-[2:15–3:15] This is the product for the rest of the talk: a two-page sample size
-estimation we wrote for an invented trial. It looks like the ones we sign off:
-planning values with their sources, a simulation, a power curve, a sample size, a
-dropout allowance. Every approach gets the same two files, the PDF and its Quarto
-source. And we planted six errors in it, of the kind we see in real products, with
-invented numbers.
-:::
-
-## Six planted issues, two at each level
-
-::: demo-table
-| Level | Planted issue |
-|:--|:------------------------------------|
-| [Text]{.chip .text} | dropout inflation: 55 × 1.2 instead of 55 / 0.8 |
-| [Text]{.chip .text} | estimand without intercurrent events |
-| [Code]{.chip .code} | the simulation tests one-sided; the text says two-sided |
-| [Code]{.chip .code} | the baseline correlation exists only in the code |
-| [Computation]{.chip .comp} | Figure 1 is a running maximum; n chosen on noise |
-| [Computation]{.chip .comp} | typed *t*-test number (94) is not what the code computes (105) |
+::: steps
+1. **Chat**: paste the document, ask
+2. **API**: the same, as a script
+3. **Review services**: Refine, isitcredible
+4. **Skill**: a checklist the model loads
+5. **Agent**: works in the repository, runs the code
 :::
 
 ::: {.small .muted}
-The design of the trial-report benchmark (inserted errors, one answer key), extended
-to code and computation.
+My own experiments: not a DKF service or recommendation.
+:::
+
+::: notes
+[0:30–1:30] Five ways to get an AI review of a statistical product, from the simplest to
+the most capable. Everything today is my own exploration, not something DKF runs or
+recommends. For each I'll say what it is, what it is good for, and where it stops.
+:::
+
+## Paste it into the chat
+
+::: ladder
+<span class="on">Chat</span><span>API</span><span>Services</span><span>Skill</span><span>Agent</span>
+:::
+
+::: big
+Strongest model, highest reasoning setting
+:::
+
+::: {.tight .compact}
+- GPT Pro models; Claude Fable or Opus at maximum effort
+- Trial reports with inserted errors: every one of 15 models found more than human
+  reviewers (53–96% against 27%)
+:::
+
+::: {.small .muted}
+No record, answers vary between runs, your plan's data terms. Brian et al., medRxiv 2026.
+:::
+
+::: notes
+[1:30–3:00] The simplest way works surprisingly well: paste the PDF and the source into
+a chat, take the strongest model and its highest reasoning setting. In my experience
+this has worked well since OpenAI's o1 pro, in December 2024. A preprint from October
+confirms it on trial reports: errors inserted into the reports, and every one of 15
+models, reading only the text, found more of the major errors than human reviewers
+did. What you don't get: a record of what was checked, the same answer twice, or
+better data terms than your plan's.
+:::
+
+## The same, as a script
+
+::: ladder
+<span>Chat</span><span class="on">API</span><span>Services</span><span>Skill</span><span>Agent</span>
+:::
+
+::: {.tight}
+- Same prompt every time; every run logged
+- Many documents; answers in a fixed structure
+- Models compared on the same cases
+- Commercial data terms
+:::
+
+::: {.small .muted}
+My review prototype: one call per SSE, under $1.50. The Unjournal project: the model found
+80% of the issues expert evaluators agreed on (12 economics papers).
+:::
+
+::: notes
+[3:00–4:45] The same idea through the API, from a script: R or Python calls the model.
+What you gain is control: the same prompt every time, a log of every run with model and
+cost, many documents in one go, answers in a fixed structure you can analyse, and the
+API's commercial data terms. I built a review prototype this way for our SSEs: one
+call, under a dollar fifty. And in the Unjournal project we compared model reviews of
+economics papers with expert evaluations: the model found 80% of the issues the
+experts agreed on. The price is code that talks to one provider at one point in time.
+:::
+
+## Review services
+
+::: ladder
+<span>Chat</span><span>API</span><span class="on">Services</span><span>Skill</span><span>Agent</span>
+:::
+
+::: {.tight}
+- **Refine** (refine.ink): referee-style reports, about $50 per paper
+- **isitcredible** (Reviewer 2): 30+ chained model calls, a few dollars
+- Built for research papers; you upload to a third party
 :::
 
 ::: {.fragment .punchline}
-Two a reader can see, two only the source shows, two that need a calculation or a
-re-run.
+October: its author retired the pipeline ("obsolete") and released his skills.
 :::
 
 ::: notes
-[3:15–4:00] Two at each of the three levels. Text: the dropout allowance multiplies
-where it should divide, and the estimand names no intercurrent events. Code: the
-simulation tests one-sided although the text says two-sided, and the correlation the
-ANCOVA gain depends on exists only in the code. Computation: the figure is a running
-maximum, and one typed number is not what the code computes. It is the design of the
-benchmark on the first slide, extended to code and computation.
+[4:45–6:00] Others built whole review pipelines and offer them as services. Refine
+writes referee-style reports for about fifty dollars a paper. isitcredible, also known
+as Reviewer 2, chains more than thirty model calls for a few dollars. Both are built
+for research papers, and you upload to a third party. Then, in October, Reviewer 2's
+author retired his pipeline: he decided it was obsolete, and released the skills he now
+uses instead. Which brings us to skills.
 :::
 
-## One figure, two stories
+## A skill
 
-::: figure-wide
-![](assets/power-figure.svg){fig-alt="Power by evaluable participants per group. The SSE's plotted curve, a running maximum of 200-trial estimates, crosses 80% at 55 per group. The true power of the two-sided test the SSE states is 64% at 55; 80% needs 80 per group."}
+::: ladder
+<span>Chat</span><span>API</span><span>Services</span><span class="on">Skill</span><span>Agent</span>
 :::
-
-::: {.small}
-The SSE reports **81.5% at 55** per group. The true power there is **75%** with the
-code's one-sided test and **64%** with the two-sided test the text states. The planning
-values support 80 evaluable per group: **200 randomised, not 132**.
-:::
-
-::: notes
-[4:00–5:15] What the six errors add up to. Wine: what the SSE plotted, a running
-maximum of noisy estimates. Grey circles: what was actually simulated where it
-differs. Mint: the power of the test the text promises. The design as written has
-about 62% power. No amount of reading gets you these numbers; you have to run
-something.
-:::
-
-## A reader: chat, a review skill in chat, or one call
 
 :::: {.columns}
 ::: {.column width="48%"}
-```{=html}
-<div class="trio-col" style="margin-top:0.3em">
-  <div><span class="node">.qmd source</span> <span class="node">rendered PDF</span>
-  <span class="node">reviewer's questions</span></div>
-  <div class="down">↓</div>
-  <div class="node model" style="font-size:0.75em">one model reads both</div>
-  <div class="down">↓</div>
-  <div class="node out" style="font-size:0.75em">review</div>
-</div>
+::: {.tight}
+- A folder of plain text and scripts
+- The model loads it when the task matches
+- Works in a chat or in an agent
+:::
+:::
+
+::: {.column width="52%" .tree}
+```text
+dkf-document-check/
+├── SKILL.md     what to check
+├── references/  guidelines
+└── scripts/     recomputation
 ```
-
-::: {.tight .compact}
-- **Chat**: paste both files and ask
-- **A review skill in chat**: the document check, the agent's first stage; it
-  recomputes printed numbers, never runs the product's code
-- **Our prototype**: one scripted call with a reviewer's checklist; minutes, under
-  $1.50
-:::
-:::
-
-::: {.column width="52%"}
-**What a reader cannot do**
-
-::: {.tight .compact}
-- run the product's code
-- re-run the simulation behind a figure
-- check a number that only the code computes
-:::
-
-::: quote-small
-"Every error tested here is visible in the text, whereas errors in data handling or
-analysis code […] are not." Brian et al. 2026
-:::
 :::
 ::::
 
-::: {.fragment .punchline}
-Reading is a strong start. Checking needs the code.
+::: {.small .muted}
+Mine: what a second statistician checks, written down; adapted from research_skills (MIT).
 :::
 
 ::: notes
-[5:15–6:30] The first approach is a reader. In a chat you paste the PDF and the
-source and ask for a consistency review. A review skill in chat goes one step
-further: the document check is the agent's first stage, packaged as a skill for a
-normal chat. Same checklist as the agent, and it recomputes printed numbers with its
-own scripts, but it never runs the product's code. Our earlier prototype did the
-reading as one scripted call: a reviewer's checklist as the prompt, minutes and under
-a dollar fifty. Readers read attentively: on trial reports a single call beat the
-human reviewers. But they stop at the print. The preprint's authors say so
-themselves: their errors were all visible in the text. Anything a reader says about a
-number only the code computes is a guess about that number. (A chat that runs the
-product's code is no longer only a reader; that comes back at the scoreboard.)
+[6:00–7:15] A skill is just a folder: instructions in plain text, reference material and
+small scripts. The model reads its description and loads it when a task matches. You
+can upload one to a normal chat, or give it to an agent. Mine write down what a second
+statistician checks in a consistency review, adapted from the skills Reviewer 2's
+author released. The document check, shown here, is the first stage on its own: it
+checks the document and recomputes its printed numbers, but runs no product code.
 :::
 
-## What changed: an agent with skills
+## An agent in the repository
 
-```{=html}
-<div class="trio duo">
-  <div class="trio-col">
-    <div class="trio-title">One call</div>
-    <div class="node">PDF + source</div><div class="down">↓</div>
-    <div class="node model">model</div><div class="down">↓</div>
-    <div class="node out">review</div>
-    <div class="trio-note">reads once</div>
-  </div>
-  <div class="trio-col">
-    <div class="trio-title">Agent with skills</div>
-    <div class="node">job folder + skill</div><div class="down">↓</div>
-    <div class="loop"><span class="node model">model</span><span class="sep">⇄</span><span class="node tool">read files · run R · search</span></div>
-    <div class="down">↓</div>
-    <div class="node out">review + record of every check</div>
-    <div class="trio-note">decides its next step; runs the code</div>
-  </div>
-</div>
-```
-
-::: tight
-- **Agent**: a general model that uses tools in a loop and chooses its own next step
-  (here Claude Code; other coding agents work similarly)
-- **Skill**: a folder of plain-text instructions, references and scripts that the
-  agent loads when a task matches
+::: ladder
+<span>Chat</span><span>API</span><span>Services</span><span>Skill</span><span class="on">Agent</span>
 :::
 
-::: {.fragment .punchline}
-The general part does the work. The skill holds what we know about reviewing.
-:::
-
-::: notes
-[6:30–7:30] The difference that matters for statisticians is the right-hand column:
-the agent can run the code. It reads the source, runs it, recomputes the numbers and
-checks them against the text. The skill is text: what to check and how to report it,
-not how to talk to an API.
-:::
-
-## The DKF review skills
-
-```{=html}
-<div class="flow">
-  <div class="step"><div class="step-title">Document</div><div class="step-text">versions; protocol, SAP and registry; printed numbers and their arithmetic; design and estimand</div></div>
-  <div class="step"><div class="step-title">Code and data</div><div class="step-text">code against text; Quarto and R mechanics; runs the code; 12 clinical modules</div></div>
-  <div class="step"><div class="step-title">Statements</div><div class="step-text">what the product claims, one row each, and whether it holds</div></div>
-  <div class="step fresh"><div class="step-title">Challenge</div><div class="step-text">a fresh agent tests every finding, in both directions</div></div>
-  <div class="step fresh"><div class="step-title">Verdict</div><div class="step-text">a fresh agent writes the result and answers the assignment</div></div>
-  <div class="step optional"><div class="step-title">Audit</div><div class="step-text">depth "full": coverage and re-runs, mechanically</div></div>
-  <div class="step form"><div class="step-title">Form</div><div class="step-text">the DKF consistency review, Decision boxes computed</div></div>
-</div>
-```
-
-::: {.small}
-**Modules** fire by product: for an SSE, sample size, simulation, RCT and missing data.
-**Depth**: quick (no challenge), standard, full (with audit).
+::: {.tight}
+- Reads the PDF, the source and the protocol
+- Runs the R code, recomputes, simulates
+- Fresh agents challenge every finding
+- Drafts the review form, with a log behind every number
 :::
 
 ::: {.small .muted}
-Adapted from Joseph Francis's research_skills (MIT licence), written for economics papers
-with replication packages; the clinical modules, the data rules and the form are ours.
+Claude Code with my review skills. A short SSE: about 30 minutes, about $10 at API prices.
 :::
 
 ::: notes
-[7:30–8:30] Five stages and two optional ones. The fresh agents matter: the challenge
-and the verdict are written by agents that did not produce the findings, so they have
-no stake in them. The modules fire depending on the product; for an SSE, sample size,
-simulation, RCT and a light missing-data check. We did not start from nothing: in
-October the author of Reviewer 2, a review pipeline for research papers, released his
-review skills under an MIT licence, and ours are adapted from them.
+[7:15–9:15] The last step: an agent opened in the product's repository, here Claude Code
+with my review skills. It reads the PDF, the Quarto source and the protocol, and then
+does what no reader can: it runs the R code, recomputes the numbers and re-runs the
+simulations. Agents that did not write a finding challenge it. The output is a draft of
+the consistency-review form, and behind every number a script and its log. On a short
+SSE that took about half an hour, about ten dollars at API prices, on a subscription.
+The same agent can also be driven from code, the Agent SDK; for one review you don't
+need that (appendix).
 :::
 
-## Scoreboard
+## At a glance
 
-::: score
-| Approach | [Text]{.chip .text} of 2 | [Code]{.chip .code} of 2 | [Computation]{.chip .comp} of 2 | Other findings, valid / not | Time | Cost |
-|:---|:-:|:-:|:-:|:-:|:-:|:-:|
-| Chat | · | · | · | · | · | · |
-| Chat + document skill | · | · | · | · | · | · |
-| Agent, standard | 2 | 2 | 2 | 3 / 0 | 3.4 h | $72 |
-| Agent, quick | 2 | 2 | 2 | 2 / 0 | 0.5 h | $10 |
-:::
-
-::: {.small .muted}
-Scored against the answer key: an issue counts when the review names the problem and
-where it is, as a finding or a lead. Same PDF and source for every run; · not yet run.
-Time: model time. Cost: at API list prices; the agent runs were on a subscription. We
-wrote the skills and this SSE in the same week: the demo shows the checklist at work,
-not a blind test.
-:::
-
-::: {.fragment .punchline}
-The agent found all six, and showed what each one costs in participants.
-:::
-
-::: {.fragment .small}
-At quick depth: all six in 34 minutes, start to finished form, for about $10.
+::: {.score .glance}
+| | Sees | Runs the code | Record | Cost per review |
+|:--|:--|:-:|:-:|:-:|
+| Chat | what you paste | no | no | subscription |
+| API script | what you send | no | log | under $1.50 |
+| Review service | the PDF | no | report | a few $ to $50 |
+| Skill in chat | what you attach | arithmetic | check log | subscription |
+| Agent + skills | the repository | yes | every check | about $10 |
 :::
 
 ::: notes
-[8:30–9:45] Two agent runs here, a third in the backup; all six planted issues found
-every time, two at each level, each one sized. At standard depth: 3.4 hours of model
-time, 35 hours on the clock with two waits for usage limits. So we cut the skills
-down to size: at quick depth the same review took 34 minutes and about $10, with a
-form a third the length. From the first run: at the code's correlation the stated
-test needs 80 evaluable per group, not 55; the first-crossing rule picks a sample
-size below 80% true power in 39% of runs. It added three points a reviewer would
-accept: where the SD and the loss come from, missing at random, clustering by
-physiotherapist.
-
-(Before the talk: fill the two chat rows from demo/runs/scoreboard.csv; its `sized`
-column says how many issues each review gave in participants or power, 5 of 5 for the
-agent runs. If the readers find the issues but cannot size them, close with: the
-question is not which model is smarter, but which approach can run the code. If the
-document check finds and sizes most of them: the checklist carries most of the value,
-and running the code adds the simulation and the exact N. If a chat ran the product's
-code: a chat with a code tool is a small agent, and its row shows it.)
-
-(If asked whether the skills were tuned to the demo: we wrote both in the same week,
-and the skills, finished the day before the SSE, already describe the dropout rule
-and, from a trial on a real SSE, the noisy first crossing. So this shows the checklist
-at work; a blind test needs a case written by someone else, which is the proposal at
-the end.)
+[9:15–10:15] The five side by side. Two questions separate them: what does it see, and
+can it run the code? Only the agent sees the whole repository and runs the code; only
+the API script and the agent leave a record you can rerun. (A chat that has a code tool
+can run some code too, but not your R project.)
 :::
 
-## What the reviewer gets
+## Result-oriented review
 
-:::: {.columns}
-::: {.column width="40%"}
-::: {.tight .compact}
-- the DKF form, with the Decision boxes computed from the issues
-- each issue with where it is (page, file and line), its numbers and a fix
-- answers to the questions in the assignment
-- what the review could not check, and why
-- `REVIEW` comments in a copy of the `.qmd`
-- behind it, the script and log for every number
-:::
+::: big
+Does the result hold?
 :::
 
-::: {.column width="60%" .screenshot}
-![](assets/consistency-review.png){fig-alt="Excerpt of the quick demo run's consistency review: all five Decision boxes ticked; general comments saying the planned 55 evaluable and 66 randomised participants per group do not give the stated 80% power, and that the ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the one-sided rejection rule, the noisy choice of N and the dropout allowance, with code lines and fixes."}
-
-::: {.tiny .muted}
-The quick run's form, excerpt: 3 major and 3 minor issues, about 1,100 words.
-:::
-:::
-::::
-
-::: notes
-[9:45–10:30] The deliverable is a draft of the form the second statistician fills in
-anyway. Here every Decision box is ticked, and the general comments lead with the
-sample size the document does not establish. They read it, check what they doubt,
-edit, and sign.
-:::
-
-## One finding, traced: 80 per group, not 79
-
-:::: {.columns}
-::: {.column width="56%"}
-**The review says**
-
-::: quote-small
-"At a correlation of 0.5 the planned ANCOVA needs 80 evaluable and 100 randomised
-participants per group (200 in total) under the stated two-sided test"
-:::
-
-**Its evidence**
-
-::: {.tight .small}
-- exact power with a random baseline: 79.83% at 79, 80.34% at 80
-  (`work/logs/ss_exact_ancova.log`)
-- rebuilt by the challenge agent (`work/challenge/s1_N_exact.log`)
-- the SSE's own simulation, made two-sided, 10,000 trials per point: 80% crossed at
-  78.5 and 79.2 (`work/challenge/s5_N_sim.log`)
-:::
-:::
-
-::: {.column width="44%"}
-**Our answer key said 79**
-
-::: {.tight .small}
-- it treated the baseline as fixed; the SSE draws it at random
-- the chance baseline difference between the arms costs about half a participant per
-  group
-- recomputed with a random baseline: 79.8% at 79, 80.3% at 80
-:::
-
-::: {.fragment .punchline}
-The agent was right; we corrected the key.
-:::
-:::
-::::
-
-::: {.tiny .muted}
-From the standard run of 31 October 2026.
+::: {.tight}
+- Not comments on the text: a verdict on each key result
+- The N, the estimate, the conclusion: holds, holds more narrowly, or not established
+- With the evidence: a recomputation, a re-run, a log
 :::
 
 ::: notes
-[10:30–11:30] One finding, followed to its evidence. The review says 80 per group.
-Behind that sentence is the log of an exact power calculation, the same calculation
-rebuilt by the challenge agent, which did not write the finding, and the SSE's own
-simulation made two-sided with 10,000 trials per point. Our answer key said 79: we
-had treated the baseline as fixed, and the SSE draws it at random. The agent was
-right, and we corrected the key. That is what checkable means: you can disagree with
-the review and settle it by opening a log.
+[10:15–11:30] What I aim for is a result-oriented review. The question is not whether
+the text reads well, but whether the results hold: the sample size, the estimate, the
+conclusion. For each, the review says holds, holds more narrowly, or not established,
+and shows the evidence. That is what running the code makes possible.
 :::
 
-## Safe by default
-
-| Data mode | The agent reads | What the review can establish |
-|:--|:--|:--|
-| `none` (default) | documents and code | everything that needs no patient data: sample size and simulation code, arithmetic on printed numbers, code against text |
-| `synthetic` | + dummy data, built from the code or from a codebook made locally | that the code runs and does what the text says; never a printed result |
-| `shared` | + patient-level data, only with a recorded clearance | reproduction of printed results |
-
-::: {.tight .compact}
-- a scan stops the run when data sits where the mode does not allow it
-- no zero-data-retention agreement yet: what is sent is kept under the provider's terms
-:::
-
-::: {.fragment .punchline}
-No patient data unless someone decided otherwise before the run, and recorded it.
-:::
-
-::: notes
-[11:30–12:15] What makes this usable in a CTU: the data mode is set before the run.
-The default is none: documents and code only, which is all an SSE needs. Synthetic
-data lets the code run without patient data. Shared needs a recorded clearance. A
-scan stops the run when data sits where the mode does not allow it. And plainly: we
-have no zero-data-retention agreement yet, so what is sent is kept under the
-provider's terms.
-:::
-
-## Where to start
-
-::: tight
-1. **Chat, on non-sensitive material.** Explain unfamiliar code, check a paragraph
-   against its table, draft questions for a SAP.
-2. **A review skill in chat, on a non-sensitive document.** Upload the document check
-   as a skill: you read what the agent is told to do, and get tables and a check log,
-   not free text.
-3. **An agent with review skills for a full pre-review.** It runs the code, recomputes
-   and leaves a record; no patient data by default.
-4. **A few test cases with known answers.** Plant errors in your own kind of document
-   and see which approach finds them.
-:::
-
-::: {.fragment .punchline}
-Errors found while they are still cheap to fix: before the protocol, not after the
-trial.
-:::
-
-::: notes
-[12:15–13:15] What you can do on Monday. Each step is useful on its own; start with
-the first and move on as your data rules allow. The skill in chat is the agent's
-first stage on its own: the easiest way to see what the agents do before running one.
-The aim is better research: errors
-found while they are still cheap to fix.
-:::
-
-## What carries over
+## The bitter lesson
 
 ::: {.bigquote .quote-mid}
-The biggest lesson that can be read from 70 years of AI research is that general
-methods that leverage computation are ultimately the most effective, and by a large
-margin.
+"… general methods that leverage computation are ultimately the most effective, and by
+a large margin."
 :::
 
 ::: attribution
-Rich Sutton, *The Bitter Lesson*, 13 March 2019
+Rich Sutton, *The Bitter Lesson*, 2019
 :::
 
 ::: {.fragment}
-Review tools turn over in months. Invest in what carries over:
-
-::: {.tight .compact}
-1. **Test cases with known answers**: which tool works for us, and when a new one
-   works better
-2. **Standards for the review**: traceable numbers, a status for every check, the form
-3. **Rules for data**: what may be sent where, decided before the run
-4. **The statistician who signs**: the output is a draft
+::: {.tight}
+- Tools built today go obsolete in months: Reviewer 2, my prototype
+- What carries over: test cases with known answers, review standards, data rules
 :::
-:::
-
-::: {.fragment .punchline}
-Proposal: a shared set of planted-issue SSEs and SAPs across Swiss CTUs.
 :::
 
 ::: notes
-[13:15–14:30] Sutton wrote about AI research, but the lesson fits our small story:
-hand-built machinery keeps losing to general methods that use more computation. Our
-prototype went that way. The author of Reviewer 2 retired his pipeline in October:
-"I decided it was obsolete". Our skills will turn over too; they are plain text,
-cheap to change. So invest in what carries over. Test cases are the most useful: we
-can each write two or three, and every new tool gets scored on the same set. That is
-something the SCTO platforms could host. And the good news: every new model makes
-the same checklist more powerful.
+[11:30–13:00] Sutton's lesson from 70 years of AI research: hand-built machinery keeps
+losing to general methods that use more computation. Review tools are no exception.
+Reviewer 2 went obsolete; my own prototype did too, and my skills will. So I would not
+invest in building tools. I would invest in what carries over to every new model: test
+cases with known answers, standards for what a review must check, and rules for what
+data may go where.
 :::
 
-## Thank you
+## What is the human reviewer for?
 
-:::: {.columns}
-::: {.column width="55%"}
+::: {.tight}
+- Deciding what to check?
+- Judging what matters clinically?
+- Signing, and being responsible?
+- Writing the test cases?
+:::
+
+::: {.small .muted}
+Thank you. Sources and details in the appendix.
+:::
+
+::: notes
+[13:00–20:00] Discussion. If the models read better than we do and the agents check the
+numbers, what is left for us? My guesses: choosing what to check, judging what matters
+for the trial, taking responsibility with a signature, and writing the test cases the
+tools are measured on.
+:::
+
+# Appendix {.divider}
+
+## The Agent SDK
+
+- Claude Code as a library (Python, TypeScript): the same tools, agent loop and skills
+- Worth it for evals over many test cases, batch runs, and hard guardrails in code
+- Not needed for one review; it does not fine-tune the model
+- Runs on an API key, billed per token
+
+::: {.small .muted}
+From R, the command-line `claude -p` does the same. code.claude.com/docs/en/agent-sdk
+:::
+
+## Sources
+
 ::: {.small .tight}
-- Brian et al. 2026: doi.org/10.64898/2026.10.25.26366455
-- *The Bitter Lesson*: incompleteideas.net/IncIdeas/BitterLesson.html
+- Brian et al., medRxiv, 28 October 2026: doi.org/10.64898/2026.10.25.26366455
+- Unjournal project: llm-uj-research-eval.netlify.app
+- Refine: refine.ink; Reviewer 2: github.com/isitcredible/reviewer2
 - research_skills: github.com/isitcredible/research_skills
-:::
-:::
-
-::: {.column width="45%"}
-Questions, and offers of test cases, welcome.
-
-::: {.small .muted}
-The demo SSE and its answer key, the document check for chat and these slides are
-available on request.
-:::
-:::
-::::
-
-::: notes
-[14:30–] Questions. The backup has: how we got here (the timeline, the prototype,
-other people's pipelines), how well one call reads, what makes the review checkable,
-all recorded runs, the prompt, the job folder, running on a subscription, and the
-answer key in numbers.
-:::
-
-# Backup {.divider}
-
-## Ten months, four approaches
-
-```{=html}
-<div class="timeline">
-  <div class="tl">
-    <div class="tl-date">Early 2026</div><div class="tl-dot"></div>
-    <div class="tl-title">First prompts</div>
-    <div class="tl-text">One SSE, four models: Claude Opus 4, GPT-4o, GPT-5 Pro, GPT-5.2 Pro.
-    $0.03 to $1.36 per review.</div>
-  </div>
-  <div class="tl">
-    <div class="tl-date">May 2026</div><div class="tl-dot"></div>
-    <div class="tl-title">Review prototype</div>
-    <div class="tl-text">Quarto document calling two Python SDKs from R: Claude Opus 4.7
-    streaming, GPT-5.5 Pro as a background job. Output in the DKF form.</div>
-  </div>
-  <div class="tl">
-    <div class="tl-date">August 2026</div><div class="tl-dot"></div>
-    <div class="tl-title">R-first notes</div>
-    <div class="tl-text">ellmer and the Anthropic SDK; the prototype as a teaching example.
-    Opus 5: $0.68 for a full SSE and its source.</div>
-  </div>
-  <div class="tl now">
-    <div class="tl-date">October 2026</div><div class="tl-dot"></div>
-    <div class="tl-title">Agent skills</div>
-    <div class="tl-text">Claude Code with four DKF review skills, adapted from open-source
-    research skills.</div>
-  </div>
-</div>
-```
-
-::: {.punchline}
-Each step was useful; the last one can finally run the code.
-:::
-
-::: notes
-What we tried, in order. Every step was useful to us, and each model generation read
-more carefully than the last. The costs are from our own run logs.
-:::
-
-## What we learned building the prototype
-
-:::: {.columns}
-::: {.column width="50%"}
-**What took the effort**
-
-::: {.tight .compact}
-- background jobs, polling and streaming
-- uploading PDFs; two Python SDKs driven from R
-- proving the model read the source to the end
-- token counts and cost estimates
-:::
-:::
-
-::: {.column width="50%"}
-**What carried over**
-
-::: {.tight .compact}
-- the checklist: what a second statistician checks
-- the DKF form as the output
-- a record of every run
-:::
-
-::: {.small .muted}
-Meanwhile, six frontier models came out in ten months: Claude Opus 4, 4.7, 5;
-GPT-5 Pro, 5.2 Pro, 5.5 Pro.
-:::
-:::
-::::
-
-::: {.punchline}
-The models improve every few months, and what we know about reviewing carries over.
-:::
-
-::: notes
-Most of our effort went into code that talks to one provider's interface at one point
-in time: background jobs, uploads, two SDKs. (One example: our May code set
-temperature to zero; by August current models rejected that setting outright.) What
-carried over to every new model was the knowledge of what to check and the form we
-want back.
-:::
-
-## Others built review pipelines; we built on open skills
-
-::: cards
-<div class="card"><div class="card-title">Reviewer 2 (isitcredible.com)</div>
-More than 30 chained model calls: aggressive prompting, then a verification cascade
-to remove what the aggression invents. 15–45 minutes and a few dollars per paper.</div>
-<div class="card"><div class="card-title">Refine (refine.ink)</div>
-Referee-style reports on research papers, checking logic, clarity and internal
-consistency. About $50 per paper.</div>
-:::
-
-::: accent-box
-In October, Reviewer 2's author released "the three skills that I use to begin my
-reviews, now freely available for anyone to use". Our DKF skills build on them.
-:::
-
-::: attribution
-Joseph Francis on X, 26 October 2026; github.com/isitcredible/research_skills (MIT);
-github.com/isitcredible/reviewer2
-:::
-
-::: {.small}
-Review tools turn over in months: Reviewer 2's author retired his pipeline in October
-("I decided it was obsolete"), and Claude Science now has a built-in reviewer that
-checks claims against what actually ran.
-:::
-
-::: notes
-Dedicated review pipelines and services appeared, and some are very good. We didn't
-build one. Instead we built on the open skills that Reviewer 2's author released this
-October: free, readable, and easy to adapt to our products and our form.
-:::
-
-## One call, pipeline, agent
-
-```{=html}
-<div class="trio">
-  <div class="trio-col">
-    <div class="trio-title">One call</div>
-    <div class="node">PDF + source</div><div class="down">↓</div>
-    <div class="node model">model</div><div class="down">↓</div>
-    <div class="node out">review</div>
-    <div class="trio-note">reads once</div>
-  </div>
-  <div class="trio-col">
-    <div class="trio-title">Pipeline</div>
-    <div class="node">PDF</div><div class="down">↓</div>
-    <div class="chain"><span class="node model">call 1</span><span class="sep">→</span><span class="node model">call 2</span><span class="sep">→ … →</span><span class="node model">call 30+</span></div>
-    <div class="down">↓</div>
-    <div class="node out">review</div>
-    <div class="trio-note">fixed steps, written by hand</div>
-  </div>
-  <div class="trio-col">
-    <div class="trio-title">Agent with skills</div>
-    <div class="node">job folder + skill</div><div class="down">↓</div>
-    <div class="loop"><span class="node model">model</span><span class="sep">⇄</span><span class="node tool">read files · run R · search</span></div>
-    <div class="down">↓</div>
-    <div class="node out">review + record of every check</div>
-    <div class="trio-note">decides its next step; runs the code</div>
-  </div>
-</div>
-```
-
-## How well one call reads
-
-::: tight
-- Trial reports: every one of 15 models, reading only the text, found more of the
-  inserted major errors than the human reviewers: 53–96% against 27%
-  (Brian et al. 2026)
-- Our Unjournal comparison: one call per paper found **80%** of the issues the expert
-  evaluators agreed on, across 12 economics and policy papers
-:::
-
-::: {.small .muted}
-LLM versus human evaluations: llm-uj-research-eval.netlify.app
-:::
-
-::: notes
-Both studies say a single call reads attentively: on trial reports it beats human
-reviewers, on economics papers it finds most of what experts agree on. The preprint's
-authors add that the next gains need access to code, protocols and registry entries.
-:::
-
-## Checkable by design
-
-::: tight
-- every number traced to a file and line, or to a script and its log
-- coverage as a list: every table, figure and code chunk
-- a status for every check: settled, untested, unverifiable, not checked here
-- the burden is on the product: a planning value with no source is a finding
-- a stage is done only when its check script passes
-:::
-
-::: notes
-The output can be checked: nothing is asserted without a trace.
-:::
-
-## All recorded runs of the demo
-
-::: score
-| Run | Depth | Planted issues found | Other findings, valid / not | Model time | Elapsed | Cost |
-|:---|:-:|:-:|:-:|:-:|:-:|:-:|
-| 31 October | standard | 6 of 6 | 3 / 0 | 3.4 h | 35 h | $72 |
-| 3 November (interim) | standard, modules skipped | 6 of 6 | 1 / 0 | 1.3 h | 4 days | $27 |
-| 5 November | quick | 6 of 6 | 2 / 0 | 0.5 h | 34 min | $10 |
-:::
-
-::: {.small .muted}
-All three: agent with skills, Claude Opus 5.5, on a subscription; cost at API list
-prices. The elapsed times of the first two include waits for usage limits.
-:::
-
-## Early runs on one SSE, January–February 2026
-
-| Model | Runs | Cost per review |
-|:------|:----:|:---------------:|
-| Claude Opus 4 | 5 | $0.49 |
-| GPT-4o | 1 | $0.03 |
-| GPT-5.2 Pro | 1 | $0.76 |
-| GPT-5 Pro | 1 | $1.36 |
-
-::: {.small .muted}
-Same document and reviewer question; costs from the run logs.
-:::
-
-## The prototype's prompt (abridged)
-
-```text
-You are a senior biostatistics reviewer performing pre-human quality review
-for a clinical research document. Review the available material: PDF, Quarto
-source, or both.
-
-Check:
-1. Statistical validity: design, estimand, endpoint, model, assumptions,
-   missing data, multiplicity, sensitivities.
-2. Numerical consistency: Ns, denominators, percentages, p-values, CIs,
-   tables, figures, and text.
-3. Code/reproducibility: filters, joins, grouping, NA handling, seeds,
-   hard-coded paths, package/version fragility.
-4. Interpretation: overclaiming, unsupported causal language.
-
-Anchor each issue to a page, section, table, figure, chunk label, or code
-fragment. Mark what is verified vs suspected.
-Output: Decision · General Comments · Major Issues · Minor Issues · Answers
-```
-
-## Inside a review job
-
-```text
-jobs/2026-11_DEMO-TKA/
-├── 00_ASSIGNMENT.md     product type, questions, data mode, depth, clearances
-├── 00_INTAKE.md         what was received; requests for the operator
-├── PROGRESS.md          done, running, next: a stopped run resumes here
-├── 01_product/          the .qmd and the rendered PDF
-├── 02_governing/        protocol, SAP, registry entry
-├── review/              stage reports, extracts, intake scan
-├── analysis/            consistency matrix, spec map, statement ledger, results
-├── work/                scripts and logs of every re-run
-├── SYNTHESIS.md         the verdict
-├── ISSUES.md            the issue ledger the form is built from
-└── CONSISTENCY_REVIEW.html   the draft form
-```
-
-::: {.small .muted}
-Job folders are never committed. A stage counts as done only when its check script
-passes.
-:::
-
-## Running on a subscription
-
-::: tight
-- The skills run inside Claude Code, so a review counts against a subscription's
-  usage limits rather than API credits, as long as no API key is set in the
-  environment (check `/status`)
-- The demo review at standard depth: about 15 agents, 3.4 hours of model time, about
-  $72 at API list prices, two waits for the 5-hour limit
-- At depth `quick` (skills 0.2): 3 agents, 34 minutes start to finished form, about
-  $10 at API list prices
-- Depth `quick` for routine SSEs; a stopped run resumes from its progress file
-- Data terms depend on the plan: on personal plans, model training on your sessions
-  is a privacy setting; commercial plans and the API are not covered by it
-:::
-
-## The answer key in numbers
-
-| | As written | Correct |
-|:--|:--:|:--:|
-| Test in the simulation | one-sided 5% | two-sided 5% |
-| Power at 55 per group | 81.5% (200 trials, running max) | 64% (exact 64.2%; 64.3% in 20,000 trials) |
-| Evaluable per group for 80% | 55 | 80 |
-| Dropout inflation | 55 × 1.2 = 66 | 80 / 0.8 = 100 |
-| Randomised in total | 132 | 200 |
-| Unadjusted *t*-test, per group | 94 (typed) | 105 |
-| Baseline correlation | 0.5, code only | stated and sourced |
-
-::: {.small .muted}
-All values from `demo/answer-key.R`; exact power with the baseline random, as the SSE
-simulates it.
+- Agent SDK: code.claude.com/docs/en/agent-sdk/overview
+- Rich Sutton, *The Bitter Lesson*: incompleteideas.net/IncIdeas/BitterLesson.html
+- The earlier deck, with the demo SSE and scoreboard: `slides/demo-deck.html`
 :::
