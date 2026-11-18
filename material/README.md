@@ -87,6 +87,25 @@ code.claude.com/docs/en/claude-code-on-the-web, quoted for "An agent in the repo
   network access disabled, Claude Code can still communicate with the Anthropic API,
   which may allow data to exit the VM."
 
+## Review services (the Reviewer 2 paper)
+
+Joseph Francis, *Yell at It: Prompt Engineering for Automated Peer Review*,
+`paper/yellatit.pdf` in github.com/isitcredible/reviewer2, pp. 6–7, quoted for "Review
+services":
+
+> refine.ink, the oldest of the five, was founded by Benjamin Golub, a professor of
+> economics at Northwestern, and Yann Calvó López […]; it is commonly seen as the gold
+> standard and is expensive, costing up to $50 per review. reviewer3.com, founded by
+> Natalie Khalil, is another commercial alternative. paperreview.ai, the Stanford
+> Agentic Reviewer by Yixing Jiang and Andrew Ng, is a free system, as is
+> openaireview.org, from the Chicago Human+AI Lab under Chenhao Tan. The most recent
+> alternative is coarse.ink, by David Van Dijcke […]; it appears to have effectively
+> been reverse-engineered from refine.ink and is also open source.
+
+Reviewer 2 itself is Apache 2.0 (its `LICENSE`). The prompt on the slide is the start of
+its first stage, `src/reviewer2/prompts/01a_breaker.txt`: "You are **The Breaker**. You
+take a sledgehammer to academic texts, breaking them into pieces."
+
 ## Where it is used in the talk
 
 In the deck (`slides/index.qmd`):

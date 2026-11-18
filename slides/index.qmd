@@ -20,6 +20,10 @@ format:
 
 ## Five ways to an AI review
 
+::: scope
+Reviewing a statistical product: its **methods**, its **numbers** and its **code**.
+:::
+
 ```{=html}
 <svg class="dg" viewBox="0 0 1100 410" role="img" aria-label="Five steps, rising from left to right: chat, API, review services, skill, agent. From reading what you give it to running the code in the repository.">
   <defs><marker id="m0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
@@ -34,7 +38,7 @@ format:
   <rect class="box" x="440" y="140" width="196" height="200"/>
   <text class="mono" x="456" y="172" font-size="16">03</text>
   <text class="strong" x="456" y="206" font-size="27">Services</text>
-  <text class="soft" x="456" y="238" font-size="18">Refine, Reviewer 2</text>
+  <text class="soft" x="456" y="238" font-size="18">many, paid or open</text>
   <rect class="box" x="650" y="105" width="196" height="235"/>
   <text class="mono" x="666" y="137" font-size="16">04</text>
   <text class="strong" x="666" y="171" font-size="27">Skill</text>
@@ -56,9 +60,11 @@ My own experiments: not a DKF service or recommendation.
 ::: notes
 [0:30–1:30] Five ways to get an AI review of a statistical product, from the simplest
 to the most capable: from a model that reads what you give it, to an agent that works
-in the repository and runs the code. Everything today is my own exploration, not
-something DKF runs or recommends. For each I'll say what it is, what it is good for,
-and where it stops.
+in the repository and runs the code. Review here means the whole product: the
+statistical methods, the design, the estimand, the sample size and the analysis, the
+printed numbers, and the code. Everything today is my own exploration, not something
+DKF runs or recommends. For each tool I'll show what you ask, what it does, and where
+it stops.
 :::
 
 ## Paste it into the chat
@@ -71,6 +77,12 @@ and where it stops.
 ::: {.column width="57%"}
 ::: big
 Strongest model, maximum effort
+:::
+
+::: prompt
+Please check whether this sample size estimation is consistent.
+
+[+ SSE.pdf, SSE.qmd]{.att}
 :::
 
 ```{=html}
@@ -91,9 +103,8 @@ Strongest model, maximum effort
 </svg>
 ```
 
-::: {.tight .compact}
-- GPT Pro models; Claude Fable or Opus
-- No record; answers vary; your plan's data terms
+::: {.small .muted}
+GPT Pro models; Claude Fable or Opus. No record; answers vary; your plan's data terms.
 :::
 :::
 
@@ -109,12 +120,12 @@ major errors against 27%. Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0).
 
 ::: notes
 [1:30–3:00] The simplest way works surprisingly well: paste the PDF and the source into
-a chat, take the strongest model and set its effort to maximum. In my experience this
-has worked well since OpenAI's o1 pro, in December 2024. A preprint from October shows
-it on trial reports: errors inserted into the reports, and every one of 15 models,
-reading only the text, found more of the major errors than the human reviewers did.
-What you don't get: a record of what was checked, the same answer twice, or better data
-terms than your plan's.
+a chat, ask it to check whether the document is consistent, take the strongest model
+and set its effort to maximum. In my experience this has worked well since OpenAI's o1
+pro, in December 2024. A preprint from October shows it on trial reports: errors
+inserted into the reports, and every one of 15 models, reading only the text, found
+more of the major errors than the human reviewers did. What you don't get: a record of
+what was checked, the same answer twice, or better data terms than your plan's.
 :::
 
 ## The same, as a script
@@ -123,6 +134,8 @@ terms than your plan's.
 <span>Chat</span><span class="on">API</span><span>Services</span><span>Skill</span><span>Agent</span>
 :::
 
+:::: {.columns}
+::: {.column width="56%"}
 ```{=html}
 <svg class="dg" viewBox="0 0 700 220" role="img" aria-label="A script in R or Python sends each of many documents to the model with the same prompt and collects a table with one row per document, plus a log of every run.">
   <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
@@ -147,6 +160,19 @@ terms than your plan's.
   <text x="619" y="130" font-size="15" text-anchor="middle">document</text>
 </svg>
 ```
+:::
+
+::: {.column width="44%"}
+::: {.prompt .system}
+You are a senior biostatistics reviewer.
+
+Check: statistical validity (design, estimand, model, missing data), numerical
+consistency, code, interpretation.
+
+Output: Decision · Major issues · Minor issues
+:::
+:::
+::::
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -171,13 +197,15 @@ the model found 80% of the issues expert evaluators agreed on (12 papers).
 
 ::: notes
 [3:00–4:45] The same idea through the API, from a script: R or Python sends the
-documents to the model. What you gain is control: the same prompt every time, a log of
-every run with model and cost, many documents in one go, answers in a fixed format you
-can analyse, and the API's commercial data terms; you pay per use. I built a review
-prototype this way for our SSEs: one call, under a dollar fifty. And in the Unjournal
-project we compared model reviews of economics papers with expert evaluations: the
-model found 80% of the issues the experts agreed on. The price is code that talks to
-one provider at one point in time.
+documents to the model, each with the same system prompt. Mine reads like a senior
+reviewer's checklist: the statistical methods first, then the numbers, the code and
+the interpretation, and it asks for the answer in our form. What you gain is control:
+the same prompt every time, a log of every run with model and cost, many documents in
+one go, and the API's commercial data terms; you pay per use. My review prototype did
+this for our SSEs for under a dollar fifty. In the Unjournal project we compared model
+reviews of economics papers with expert evaluations: the model found 80% of the issues
+the experts agreed on. The price is code that talks to one provider at one point in
+time.
 :::
 
 ## Review services
@@ -186,40 +214,58 @@ one provider at one point in time.
 <span>Chat</span><span>API</span><span class="on">Services</span><span>Skill</span><span>Agent</span>
 :::
 
+:::: {.columns}
+::: {.column width="57%"}
 ```{=html}
 <svg class="dg" viewBox="0 0 760 200" role="img" aria-label="You upload the PDF to a third-party service, which runs a fixed chain of 30 or more model calls written by the vendor and returns a report.">
   <defs><marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
-  <path class="doc" d="M10 62 h46 l16 16 v62 h-62 z"/><path class="fold" d="M56 62 v16 h16"/>
-  <text class="mono" x="41" y="118" font-size="13" text-anchor="middle">PDF</text>
-  <line class="arrow" x1="80" y1="101" x2="128" y2="101" marker-end="url(#m3)"/>
-  <text class="mono" x="104" y="88" font-size="12" text-anchor="middle">UPLOAD</text>
+  <path class="doc" d="M0 62 h46 l16 16 v62 h-62 z"/><path class="fold" d="M46 62 v16 h16"/>
+  <text class="mono" x="31" y="118" font-size="15" text-anchor="middle">PDF</text>
+  <line class="arrow" x1="72" y1="101" x2="128" y2="101" marker-end="url(#m3)"/>
+  <text class="mono" x="100" y="86" font-size="14" text-anchor="middle">UPLOAD</text>
   <rect class="frame-ink" x="135" y="28" width="470" height="148"/>
-  <text class="mono" x="150" y="50" font-size="12">THE SERVICE · THIRD PARTY</text>
+  <text class="mono" x="150" y="52" font-size="14">THE SERVICE · THIRD PARTY</text>
   <rect class="model" x="152" y="76" width="82" height="50"/>
-  <text x="193" y="108" font-size="17" text-anchor="middle">call 1</text>
+  <text x="193" y="108" font-size="19" text-anchor="middle">call 1</text>
   <line class="arrow" x1="234" y1="101" x2="258" y2="101" marker-end="url(#m3)"/>
   <rect class="model" x="264" y="76" width="82" height="50"/>
-  <text x="305" y="108" font-size="17" text-anchor="middle">call 2</text>
+  <text x="305" y="108" font-size="19" text-anchor="middle">call 2</text>
   <line class="arrow" x1="346" y1="101" x2="370" y2="101" marker-end="url(#m3)"/>
   <text x="398" y="108" font-size="22" text-anchor="middle">…</text>
   <line class="arrow" x1="424" y1="101" x2="448" y2="101" marker-end="url(#m3)"/>
   <rect class="model" x="454" y="76" width="96" height="50"/>
-  <text x="502" y="108" font-size="17" text-anchor="middle">call 30+</text>
-  <text class="soft" x="370" y="158" font-size="15" text-anchor="middle">fixed steps, written by the vendor</text>
+  <text x="502" y="108" font-size="19" text-anchor="middle">call 30+</text>
+  <text class="soft" x="370" y="160" font-size="17" text-anchor="middle">fixed steps and prompts, written by the vendor</text>
   <line class="arrow" x1="605" y1="101" x2="642" y2="101" marker-end="url(#m3)"/>
   <rect class="out" x="648" y="71" width="104" height="60"/>
-  <text x="700" y="108" font-size="20" text-anchor="middle">report</text>
+  <text x="700" y="108" font-size="22" text-anchor="middle">report</text>
 </svg>
 ```
-
-::: {.tight .compact}
-- **Refine** ([refine.ink](https://refine.ink)): a paid service, about $50 per paper
-- **Reviewer 2**, by Joe Francis ([isitcredible.com](https://isitcredible.com)): open
-  source, runs on your own Gemini key for a few dollars
 :::
 
+::: {.column width="43%"}
+::: {.prompt .vendor}
+You are The Breaker.
+
+You take a sledgehammer to academic texts, breaking them into pieces.
+:::
+:::
+::::
+
+```{=html}
+<div class="svc">
+  <div><div class="n"><a href="https://refine.ink">refine.ink</a></div><div class="t">paid, up to $50</div></div>
+  <div><div class="n"><a href="https://reviewer3.com">reviewer3.com</a></div><div class="t">paid</div></div>
+  <div><div class="n"><a href="https://paperreview.ai">paperreview.ai</a></div><div class="t">free · Stanford</div></div>
+  <div><div class="n"><a href="https://openaireview.org">openaireview.org</a></div><div class="t">free · Chicago</div></div>
+  <div><div class="n"><a href="https://isitcredible.com">Reviewer 2</a></div><div class="t open">open source · Joe Francis</div></div>
+  <div><div class="n"><a href="https://coarse.ink">coarse.ink</a></div><div class="t open">open source</div></div>
+  <div class="more"><div class="n">…</div><div class="t">more every month</div></div>
+</div>
+```
+
 ::: {.fragment .punchline}
-October: he retired it as "obsolete", and open-sourced his review skills.
+October: Joe Francis retired Reviewer 2 as "obsolete", and open-sourced his review skills.
 :::
 
 ::: {.small .muted}
@@ -228,12 +274,16 @@ October: he retired it as "obsolete", and open-sourced his review skills.
 :::
 
 ::: notes
-[4:45–6:00] Others built whole review pipelines. Refine is a paid service: referee-style
-reports for about fifty dollars a paper. Reviewer 2, by Joe Francis, chains more than
-thirty model calls; he published it as open source, and you run it with your own Gemini
-key for a few dollars. Both are built for research papers. Of the two, only Joe Francis
-made his work open. Then, in October, he retired Reviewer 2: he decided it was
-obsolete, and released the skills he now uses instead. Which brings us to skills.
+[4:45–6:00] Others built whole review pipelines, and there are more every month. You
+upload the PDF; behind it run fixed chains of model calls with prompts the vendor
+wrote. Refine and Reviewer3 are paid services, Refine up to fifty dollars a paper.
+paperreview.ai from Stanford and openaireview from Chicago are free. Joe Francis's
+Reviewer 2 is open source, and so is coarse.ink. Reviewer 2's prompts are public: its
+first stage, The Breaker, takes a sledgehammer to the text, and later stages filter
+out what the aggression invents. All of these are built for research papers, and you
+upload to a third party. Then, in October, Joe Francis retired Reviewer 2: he decided
+it was obsolete, and released the skills he now uses instead. Which brings us to
+skills.
 :::
 
 ## A skill
@@ -242,31 +292,48 @@ obsolete, and released the skills he now uses instead. Which brings us to skills
 <span>Chat</span><span>API</span><span>Services</span><span class="on">Skill</span><span>Agent</span>
 :::
 
+:::: {.columns}
+::: {.column width="58%"}
 ```{=html}
 <svg class="dg" viewBox="0 0 760 250" role="img" aria-label="A skill is a folder with SKILL.md, references and scripts. The model in a chat loads it when the task matches, reads your documents, and returns findings with a check log.">
   <defs><marker id="m4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
-  <text class="mono" x="10" y="14" font-size="12">A SKILL: A FOLDER</text>
+  <text class="mono" x="10" y="14" font-size="15">A SKILL: A FOLDER</text>
   <path class="tool" d="M10 22 h70 l12 14 h128 v102 h-210 z"/>
-  <text class="file" x="26" y="68" font-size="15">SKILL.md</text>
-  <text class="file" x="26" y="94" font-size="15">references/</text>
-  <text class="file" x="26" y="120" font-size="15">scripts/</text>
+  <text class="file" x="26" y="68" font-size="17">SKILL.md</text>
+  <text class="file" x="26" y="95" font-size="17">references/</text>
+  <text class="file" x="26" y="122" font-size="17">scripts/</text>
   <path class="doc" d="M40 160 h40 l16 16 v54 h-56 z"/><path class="fold" d="M80 160 v16 h16"/>
-  <text class="mono" x="68" y="206" font-size="12" text-anchor="middle">PDF</text>
+  <text class="mono" x="68" y="206" font-size="14" text-anchor="middle">PDF</text>
   <path class="doc" d="M110 160 h40 l16 16 v54 h-56 z"/><path class="fold" d="M150 160 v16 h16"/>
-  <text class="mono" x="138" y="206" font-size="12" text-anchor="middle">.QMD</text>
-  <text class="mono" x="103" y="246" font-size="12" text-anchor="middle">YOUR DOCUMENTS</text>
+  <text class="mono" x="138" y="206" font-size="14" text-anchor="middle">.QMD</text>
+  <text class="mono" x="103" y="248" font-size="15" text-anchor="middle">YOUR DOCUMENTS</text>
   <path class="arrow" d="M222 80 C 280 80, 292 110, 330 112" marker-end="url(#m4)"/>
-  <text class="mono" x="232" y="62" font-size="12">LOADED WHEN THE TASK MATCHES</text>
+  <text class="mono" x="232" y="62" font-size="15">LOADED WHEN THE TASK MATCHES</text>
   <path class="arrow" d="M170 195 C 260 195, 282 150, 330 140" marker-end="url(#m4)"/>
   <rect class="model" x="335" y="85" width="170" height="80"/>
-  <text class="strong" x="420" y="120" font-size="22" text-anchor="middle">model</text>
-  <text x="420" y="147" font-size="16" text-anchor="middle">in a chat</text>
+  <text class="strong" x="420" y="120" font-size="24" text-anchor="middle">model</text>
+  <text x="420" y="149" font-size="18" text-anchor="middle">in a chat</text>
   <line class="arrow" x1="505" y1="125" x2="556" y2="125" marker-end="url(#m4)"/>
   <rect class="out" x="562" y="80" width="188" height="90"/>
-  <text class="strong" x="656" y="116" font-size="20" text-anchor="middle">findings</text>
-  <text x="656" y="143" font-size="15" text-anchor="middle">check log, tables</text>
+  <text class="strong" x="656" y="116" font-size="22" text-anchor="middle">findings</text>
+  <text x="656" y="145" font-size="17" text-anchor="middle">check log, tables</text>
 </svg>
 ```
+:::
+
+::: {.column width="42%"}
+::: {.prompt .skillmd}
+name: dkf-document-check
+
+description: Document check of a statistical product … before a second
+statistician reviews it.
+
+Name the design … and the estimand the product targets, attribute by attribute.
+
+Recompute every derivable printed number … and log each in a check log.
+:::
+:::
+::::
 
 ::: {.tight .compact}
 - Plain-text instructions, references and small scripts
@@ -280,11 +347,12 @@ Mine: what a second statistician checks, written down; adapted from Joe Francis'
 
 ::: notes
 [6:00–7:15] A skill is just a folder: instructions in plain text, reference material and
-small scripts. The model reads its description and loads it when a task matches. You
-can upload one to a normal chat, or give it to an agent. Mine write down what a second
-statistician checks in a consistency review, adapted from the skills Joe Francis
-released. The document check, the first stage on its own, runs in a chat: it checks the
-document and recomputes its printed numbers, but runs no product code.
+small scripts. The model reads its name and description, and loads the rest when a task
+matches. Here is the start of mine: it names the design and the estimand attribute by
+attribute, then recomputes every printed number and logs each check. So it reviews
+the methods as well as the numbers. You can upload a skill to a normal chat, or give it
+to an agent. Mine write down what a second statistician checks in a consistency review,
+adapted from the skills Joe Francis released.
 :::
 
 ## An agent in the repository
@@ -296,8 +364,11 @@ document and recomputes its printed numbers, but runs no product code.
 :::: {.columns}
 ::: {.column width="62%"}
 ```{=html}
-<svg class="dg" viewBox="0 0 700 420" role="img" aria-label="Inside an isolated cloud VM: a copy of the repository with the skills, and tools that read files, run R and write logs. Claude, outside the VM, decides the next step; the tools run it and send back the result, in a loop. The draft form and logs are pushed to a branch. Your computer is not connected.">
-  <defs><marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
+<svg class="dg" viewBox="0 0 770 420" role="img" aria-label="Inside an isolated cloud VM: a copy of the repository with the skills, and tools that read files, run R and write logs. Claude, outside the VM, decides the next step; the tools run it and send back the result, in a loop until done. The draft form and logs are pushed to a branch. Your computer is not connected.">
+  <defs>
+    <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker>
+    <marker id="m5s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E"/></marker>
+  </defs>
   <rect class="box" x="0" y="150" width="110" height="72"/>
   <text x="55" y="181" font-size="17" text-anchor="middle">your</text>
   <text x="55" y="204" font-size="17" text-anchor="middle">computer</text>
@@ -311,18 +382,20 @@ document and recomputes its printed numbers, but runs no product code.
   <text x="260" y="137" font-size="18" text-anchor="middle">repository</text>
   <text class="file" x="260" y="163" font-size="14" text-anchor="middle">.qmd · PDF · R</text>
   <text class="file" x="260" y="184" font-size="14" text-anchor="middle">.claude/skills/</text>
-  <rect class="tool" x="345" y="225" width="165" height="100"/>
-  <text class="strong" x="427" y="259" font-size="21" text-anchor="middle">tools</text>
-  <text x="427" y="285" font-size="16" text-anchor="middle">read files, run R,</text>
-  <text x="427" y="307" font-size="16" text-anchor="middle">write logs</text>
-  <line class="arrow" x1="318" y1="199" x2="358" y2="221" marker-start="url(#m5)" marker-end="url(#m5)"/>
-  <rect class="model" x="575" y="175" width="125" height="130"/>
-  <text class="strong" x="637" y="214" font-size="21" text-anchor="middle">Claude</text>
-  <text x="637" y="242" font-size="16" text-anchor="middle">decides the</text>
-  <text x="637" y="264" font-size="16" text-anchor="middle">next step</text>
-  <text class="mono" x="637" y="328" font-size="12" text-anchor="middle">THE MODEL</text>
-  <line class="arrow" x1="573" y1="246" x2="514" y2="246" marker-end="url(#m5)"/>
-  <line class="arrow" x1="512" y1="296" x2="571" y2="296" marker-end="url(#m5)"/>
+  <rect class="tool" x="345" y="215" width="165" height="110"/>
+  <text class="strong" x="427" y="251" font-size="21" text-anchor="middle">tools</text>
+  <text x="427" y="277" font-size="16" text-anchor="middle">read files, run R,</text>
+  <text x="427" y="299" font-size="16" text-anchor="middle">write logs</text>
+  <line class="arrow" x1="318" y1="199" x2="358" y2="212" marker-start="url(#m5)" marker-end="url(#m5)"/>
+  <rect class="model" x="635" y="165" width="130" height="160"/>
+  <text class="strong" x="700" y="208" font-size="21" text-anchor="middle">Claude</text>
+  <text x="700" y="236" font-size="16" text-anchor="middle">decides the</text>
+  <text x="700" y="258" font-size="16" text-anchor="middle">next step</text>
+  <text class="mono" x="700" y="346" font-size="12" text-anchor="middle">THE MODEL</text>
+  <line class="arrow" x1="633" y1="232" x2="514" y2="232" marker-end="url(#m5)"/>
+  <line class="arrow" x1="512" y1="312" x2="631" y2="312" marker-end="url(#m5)"/>
+  <path class="arrow loop" d="M 602 262 A 14 14 0 1 1 588 248" marker-end="url(#m5s)"/>
+  <text class="mono" x="588" y="296" font-size="11" text-anchor="middle">UNTIL DONE</text>
   <line class="arrow" x1="210" y1="197" x2="210" y2="364" marker-end="url(#m5)"/>
   <rect class="out" x="125" y="368" width="170" height="50"/>
   <text x="210" y="392" font-size="17" text-anchor="middle">draft form + logs</text>
@@ -332,9 +405,13 @@ document and recomputes its printed numbers, but runs no product code.
 :::
 
 ::: {.column width="38%"}
+::: prompt
+Review the product in review/2026-11-12_quick with dkf-review, then write the
+consistency review.
+:::
+
 ::: {.tight .compact}
-- **Runs the R code**, recomputes, simulates
-- Fresh agents challenge every finding
+- **Runs the R code**, recomputes, simulates; fresh agents challenge findings
 - **Your subscription**: no API credits
 - **Isolated cloud VM**: no access to your computer
 :::
@@ -343,21 +420,22 @@ document and recomputes its printed numbers, but runs no product code.
 
 ::: {.small .muted}
 Claude Code on the web, with my review skills. What it reads goes to the model
-provider, under your plan's terms. A short SSE: about 30 minutes.
+provider, under your plan's terms.
 :::
 
 ::: notes
 [7:15–9:15] The last step: an agent working in the product's repository, here Claude
-Code on the web with my review skills. The agent is a loop: the model decides the next
-step, the tools carry it out, reading a file, running the R code, writing a log, and
-the result comes back to the model, again and again. So it does what no reader can: it
-runs the code, recomputes the numbers and re-runs the simulations, and agents that did
-not write a finding challenge it. The output is a draft of the consistency-review form
-with a log behind every number, pushed to a branch. Two things matter in practice. It
-runs on your Claude subscription, no API credits. And it runs in an isolated cloud
-machine with a copy of the repository: it never touches your computer. What it reads
-still goes to the provider, under your plan's terms. The same agent can be driven from
-code with the Agent SDK; for one review you don't need that (appendix).
+Code on the web with my review skills. What you type is one sentence; the skills hold
+the rest. The agent is a loop: the model decides the next step, the tools carry it
+out, reading a file, running the R code, writing a log, and the result comes back to
+the model, until it is done. So it does what no reader can: it runs the code,
+recomputes the numbers and re-runs the simulations, and agents that did not write a
+finding challenge it. The output is a draft of the consistency-review form with a log
+behind every number, pushed to a branch. Two things matter in practice. It runs on
+your Claude subscription, no API credits. And it runs in an isolated cloud machine with
+a copy of the repository: it never touches your computer. What it reads still goes to
+the provider, under your plan's terms. The same agent can be driven from code with the
+Agent SDK; for one review you don't need that (appendix).
 :::
 
 ## At a glance
@@ -366,7 +444,7 @@ code with the Agent SDK; for one review you don't need that (appendix).
 |:--|:--|:-:|:-:|:--|
 | Chat | what you paste | no | none | subscription |
 | API script | what you send | no | log | per use |
-| Review service | the PDF | no | report | Refine $50; Reviewer 2 your own key |
+| Review service | the PDF | no | report | paid, free or open source |
 | Skill in chat | what you attach | arithmetic | check log | subscription |
 | Agent + skills | the repository | yes | every check | subscription |
 
@@ -381,22 +459,39 @@ not your R project.)
 ## Result-oriented review
 
 ::: big
-Does the result hold?
+What the human reviewer checks
 :::
 
-::: {.tight}
-- Not comments on the text: a verdict on each key result
-- The N, the estimate, the conclusion
-- With the evidence: a recomputation, a re-run, a log
-:::
+```{=html}
+<svg class="dg" viewBox="0 0 1000 310" role="img" aria-label="Three layers. The AI checks every line of code, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section and preparation step does what it says, and judges the approach and the interpretation.">
+  <defs><marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
+  <rect class="model" x="300" y="14" width="400" height="66"/>
+  <text class="strong" x="500" y="55" font-size="22" text-anchor="middle">approach and interpretation</text>
+  <rect class="model" x="200" y="110" width="600" height="82"/>
+  <text x="500" y="145" font-size="20" text-anchor="middle">each chunk, section, preparation step:</text>
+  <text class="strong" x="500" y="174" font-size="20" text-anchor="middle">does it do what it says?</text>
+  <rect class="tool" x="100" y="226" width="800" height="70"/>
+  <text x="500" y="268" font-size="20" text-anchor="middle">every line of code, every number, every re-run</text>
+  <text class="mono" x="280" y="52" font-size="14" text-anchor="end">HUMAN</text>
+  <text class="mono" x="180" y="156" font-size="14" text-anchor="end">HUMAN</text>
+  <text class="mono" x="80" y="266" font-size="14" text-anchor="end">AI</text>
+  <path class="arrow" d="M 902 261 C 968 261, 968 151, 806 151" marker-end="url(#m6)"/>
+  <text class="mono" x="852" y="215" font-size="12" text-anchor="middle">TESTED ENOUGH?</text>
+</svg>
+```
 
-[holds]{.verdict} [holds more narrowly]{.verdict .narrow} [not established]{.verdict .no}
+::: {.small .muted}
+Not every line: whether the AI tested enough, whether each step does what it says, and
+whether the approach and its interpretation hold.
+:::
 
 ::: notes
-[10:15–11:30] What I aim for is a result-oriented review. The question is not whether
-the text reads well, but whether the results hold: the sample size, the estimate, the
-conclusion. For each, the review says holds, holds more narrowly, or not established,
-and shows the evidence. That is what running the code makes possible.
+[10:15–11:30] What I aim for is a result-oriented review, and this is where the human
+reviewer comes in. The AI goes through every line, every number and every re-run, and
+keeps its tests and logs. The human does not read every line of code. They check that
+the AI tested enough, that each chunk, each section, each preparation step and each
+analysis does what it says, and, at the top, whether the approach is right and the
+interpretation holds.
 :::
 
 ## The bitter lesson
@@ -465,9 +560,8 @@ From R, the command-line `claude -p` does the same.
 ::: {.small .tight}
 - Brian et al., medRxiv 2026: [doi.org/10.64898/2026.10.25.26366455](https://doi.org/10.64898/2026.10.25.26366455)
 - Unjournal project: [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app)
-- Refine: [refine.ink](https://refine.ink)
-- Reviewer 2: [isitcredible.com](https://isitcredible.com), [github.com/isitcredible/reviewer2](https://github.com/isitcredible/reviewer2)
-- research_skills: [github.com/isitcredible/research_skills](https://github.com/isitcredible/research_skills)
+- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), [isitcredible.com](https://isitcredible.com)
+- Reviewer 2: [github.com/isitcredible/reviewer2](https://github.com/isitcredible/reviewer2); research_skills: [github.com/isitcredible/research_skills](https://github.com/isitcredible/research_skills)
 - Claude Code on the web: [code.claude.com/docs/en/claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web)
 - Agent SDK: [code.claude.com/docs/en/agent-sdk](https://code.claude.com/docs/en/agent-sdk/overview)
 - Rich Sutton, The Bitter Lesson: [incompleteideas.net/IncIdeas/BitterLesson.html](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)

@@ -240,6 +240,58 @@ $code-color: $ink;
 .reveal svg.dg .arrow { fill: none; stroke: $ink; stroke-width: 1.8; }
 .reveal svg.dg .arrow.cut { stroke: $hairline; stroke-dasharray: 4 5; }
 
+/* What was asked: a prompt card in the site's code style, with a mono label */
+.reveal .prompt {
+  font-family: $font-family-monospace;
+  font-size: 0.48em;
+  line-height: 1.5;
+  background: $code-paper;
+  border: 1px solid rgba(44, 58, 47, 0.18);
+  padding: 0.6em 0.9em 0.7em 0.9em;
+  margin: 0.2em 0 0.6em 0;
+  color: $ink;
+}
+.reveal .prompt p { margin: 0.15em 0; }
+.reveal .prompt::before {
+  content: "PROMPT";
+  display: block;
+  font-size: 0.85em;
+  letter-spacing: 0.14em;
+  color: $ink-soft;
+  margin-bottom: 0.4em;
+}
+.reveal .prompt.system::before { content: "SYSTEM PROMPT, ABRIDGED"; }
+.reveal .prompt.skillmd::before { content: "SKILL.MD, ABRIDGED"; }
+.reveal .prompt.vendor::before { content: "REVIEWER 2, STAGE 1 OF 30+"; }
+.reveal .prompt .att { color: $ink-soft; }
+
+/* Services: a ruled grid of names with a mono tag each */
+.reveal .svc {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.45em 0.8em;
+  margin: 0.3em 0 0.4em 0;
+}
+.reveal .svc > div { border-top: 1px solid $hairline; padding-top: 0.25em; }
+.reveal .svc .n { font-size: 0.62em; font-weight: 700; }
+.reveal .svc .n a { text-decoration-color: rgba(44, 58, 47, 0.25); }
+.reveal .svc .t {
+  font-family: $font-family-monospace;
+  font-size: 0.42em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-soft;
+}
+.reveal .svc .t.open { color: $mauve; font-weight: 500; }
+.reveal .svc .more { font-size: 0.9em; color: $ink-soft; border-top-style: dashed; }
+
+/* Scope line under the first heading */
+.reveal .scope { font-size: 0.8em; color: $ink-soft; margin: -0.1em 0 0.4em 0; }
+.reveal .scope strong { color: $ink; }
+
+/* The agent's loop arrow */
+.reveal svg.dg .arrow.loop { stroke: $mauve; stroke-width: 2; }
+
 /* Appendix divider: the site's fleuron */
 .reveal .slides section.divider h1::after {
   content: "\2766";
