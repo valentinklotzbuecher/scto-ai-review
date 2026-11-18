@@ -6,15 +6,20 @@ product it is built around.
 
 The talk aims to get statisticians using these tools for better research. It opens with
 new evidence that language models find errors human reviewers miss in trial reports,
-then follows the DKF's approaches in order: chat, a single scripted API call (the review
-prototype), the review pipelines and services others built (Reviewer 2, Refine), and the
-agent skills we use now
+then puts one product on screen for the rest of the talk: a synthetic SSE with six
+planted issues. Each approach is shown on it: a reader (chat, or a single scripted API
+call, the review prototype) and the agent skills we use now
 ([`stats_review`](https://github.com/valentinklotzbuecher/stats_review)), which can run
-the code. A synthetic SSE shows what each approach finds, and a slide gives concrete
-first steps. It closes with Sutton's bitter lesson: the tools turn over in months, so
-invest in what carries over (test cases with known answers, review standards, data
-rules, the statistician who signs), and every new model makes the same checklist more
-powerful.
+the code. A scoreboard records what each found, one finding is traced to its evidence,
+and a slide gives concrete first steps. It closes with Sutton's bitter lesson: the tools
+turn over in months, so invest in what carries over (test cases with known answers,
+review standards, data rules, the statistician who signs), and every new model makes the
+same checklist more powerful.
+
+The main part is 14 slides and about 14½ minutes, which leaves the rest of the slot for
+questions. How we got here (the timeline, what the prototype taught us, the review
+pipelines and services others built: Reviewer 2, Refine) is in the backup slides, with
+the Unjournal comparison, all recorded runs and the answer key in numbers.
 
 ## Contents
 
@@ -22,7 +27,8 @@ powerful.
 slides/index.qmd        the deck (Quarto reveal.js, lilac theme), with speaker notes
 slides/index.html       the rendered deck, self-contained
 slides/talk.scss        talk-specific styles on top of reveal_lilac.scss
-slides/assets/          the demo figure, the script that draws it, the review-form screenshot
+slides/assets/          the demo figure, the script that draws it, the SSE page excerpt,
+                        the review-form screenshot
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
 demo/answer-key.md      the six planted issues, with their consequences
 demo/answer-key.R       recomputes every number in the answer key and on the slides
@@ -67,16 +73,30 @@ key and the slides name the planted issues.
    ```
 
    Fill in `jobs/2026-11_DEMO-TKA/00_ASSIGNMENT.md` (product type `sse`, data mode
-   `none`, depth `standard`, one question such as "Is the sample size adequate for the
-   stated design?"), then ask Claude Code to review it with `dkf-review` and write the
-   consistency review.
+   `none`, depth `quick` or `standard`, one question such as "Is the sample size
+   adequate for the stated design?"), then ask Claude Code to review it with
+   `dkf-review` and write the consistency review.
 
 Score each review against `demo/answer-key.md`, record it as `demo/runs/README.md`
-describes, and transfer the counts to the scoreboard slide.
+describes, and transfer the counts to the scoreboard slide. The chat, chat-with-skill
+and one-call runs are still to do; their rows on the scoreboard stay empty until they
+are scored. For the chat runs, record whether the chat ran code: a chat that does is no
+longer only a reader (the document skill runs its own arithmetic scripts, never the
+product's code).
 
-The agent runs are in `demo/runs/`, each with its score. "What the reviewer gets"
-shows an excerpt of the quick run's form, `demo/runs/2026-11-05_agent/CONSISTENCY_REVIEW.html`,
-as `slides/assets/consistency-review.png`.
+Three agent runs are recorded in `demo/runs/`, each with its score: 31 October 2026
+(depth `standard`), 3 November (interim) and 5 November (depth `quick`). The scoreboard
+slide shows the first and the last; the backup slide "All recorded runs of the demo"
+shows all three. "One finding, traced" follows the 31 October run.
+
+Images on the slides:
+
+- "The product" shows page 2 of `demo/sse/DEMO-TKA_SSE.pdf`
+  (`slides/assets/demo-sse-page2.png`: `pdftoppm -r 220 -f 2 -l 2 -png`, cropped from
+  the top of the page to "132 in total"). Re-render the SSE, and redo the crop.
+- "What the reviewer gets" shows the 5 November run's `CONSISTENCY_REVIEW.html`
+  (`slides/assets/consistency-review.png`: Chromium at 900 px wide, light colour scheme,
+  twice the pixel density, cropped from Decision to the first major issue).
 
 ## Sources for the slides
 
