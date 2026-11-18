@@ -71,6 +71,22 @@ to trial findings cannot be excluded.
 Foundation, whose platform is implementing AI-assisted review. The experiment itself
 was run in Claude Code (p. 16).
 
+## Claude Code on the web (documentation, read 18 November 2026)
+
+code.claude.com/docs/en/claude-code-on-the-web, quoted for "An agent in the repository":
+
+- "A cloud session is a Claude Code session that runs on cloud infrastructure instead of
+  on your machine."
+- "It counts toward your plan's usage limits alongside the rest of your Claude and
+  Claude Code usage, and there's no separate charge for the cloud VM."
+- "Cloud sessions are available on Pro, Max, Ultra, and Team plans, and for Enterprise
+  users with premium seats or Chat + Claude Code seats."
+- Security and isolation: "each session runs in an isolated, Anthropic-managed VM";
+  network access "is limited by default and can be disabled"; git credentials "stay
+  outside the sandbox". The caveat behind the slide's footnote: "When running with
+  network access disabled, Claude Code can still communicate with the Anthropic API,
+  which may allow data to exit the VM."
+
 ## Where it is used in the talk
 
 In the deck (`slides/index.qmd`):

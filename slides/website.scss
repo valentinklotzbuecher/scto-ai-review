@@ -1,0 +1,260 @@
+/* The deck in the style of valentinklotzbuecher.github.io (theme-light.scss there):
+   ivory paper, spruce-green ink, mauve accent; Zen Kaku Gothic New with IBM Plex
+   Mono labels; hairline rules and square corners. Only the Latin subsets of the
+   fonts are loaded, so the self-contained HTML stays small. */
+
+/*-- scss:defaults --*/
+
+$paper: #FCFAF4;
+$paper-raised: #FFFFFC;
+$ink: #2C3A2F;
+$ink-soft: #626C62;      // the site's ink at 74% on paper
+$hairline: #7F877E;      // the site's ink at 60% on paper
+$faint: #DBDBD5;         // the site's ink at 16% on paper
+$mauve: #5A317E;
+$mauve-tint: #EEE6F2;
+$code-paper: #F5F2E8;
+
+$font-family-sans-serif: "Zen Kaku Gothic New", -apple-system, "Hiragino Sans", "Helvetica Neue", sans-serif;
+$font-family-monospace: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+$body-bg: $paper;
+$body-color: $ink;
+$link-color: $ink;
+$selection-bg: rgba(90, 49, 126, 0.18);
+
+$presentation-font-size-root: 32px;
+$presentation-line-height: 1.45;
+$presentation-heading-font: $font-family-sans-serif;
+$presentation-heading-font-weight: 700;
+$presentation-heading-color: $ink;
+$presentation-heading-letter-spacing: -0.01em;
+$presentation-heading-text-transform: none;
+$presentation-h2-font-size: 1.25em;
+$presentation-title-slide-text-align: left;
+
+$code-block-bg: $code-paper;
+$code-block-border-color: rgba(44, 58, 47, 0.18);
+$code-color: $ink;
+
+/*-- scss:rules --*/
+
+/* Fonts: Latin subsets from Google Fonts (SIL Open Font License) */
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://fonts.gstatic.com/s/ibmplexmono/v23/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'IBM Plex Mono'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("https://fonts.gstatic.com/s/ibmplexmono/v23/-F6qfjptAgt5VM-kVkqdyU8n3twJwlBFgg.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Zen Kaku Gothic New'; font-style: normal; font-weight: 400; font-display: swap;
+  src: url("https://fonts.gstatic.com/s/zenkakugothicnew/v19/gNMYW2drQpDw0GjzrVNFf_valaDBcznOojxoTA.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Zen Kaku Gothic New'; font-style: normal; font-weight: 500; font-display: swap;
+  src: url("https://fonts.gstatic.com/s/zenkakugothicnew/v19/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqs9LWWPYTQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+@font-face { font-family: 'Zen Kaku Gothic New'; font-style: normal; font-weight: 700; font-display: swap;
+  src: url("https://fonts.gstatic.com/s/zenkakugothicnew/v19/gNMVW2drQpDw0GjzrVNFf_valaDBcznOqodNWWPYTQ.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD; }
+
+.reveal-viewport { background: $paper; }
+.reveal { font-kerning: normal; -webkit-font-smoothing: antialiased; }
+
+/* Title slide: set left, a short mauve rule under the title, mono date */
+.reveal .slides section.quarto-title-block .title {
+  font-size: 1.9em;
+  line-height: 1.15;
+  color: $ink;
+}
+.reveal .slides section.quarto-title-block .title::after {
+  content: "";
+  display: block;
+  width: 3em;
+  border-top: 2px solid rgba(90, 49, 126, 0.65);
+  margin-top: 0.45em;
+}
+.reveal .slides section.quarto-title-block .subtitle {
+  font-size: 0.85em;
+  font-weight: 400;
+  color: $ink-soft;
+  margin-top: 0.6em;
+}
+.reveal .slides section.quarto-title-block .quarto-title-author-name { font-size: 0.75em; }
+.reveal .slides section.quarto-title-block .date {
+  font-family: $font-family-monospace;
+  font-size: 0.48em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-soft;
+}
+
+/* Slide headings run a hairline out to the right margin */
+.reveal .slides section > h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
+}
+.reveal .slides section > h2::after {
+  content: "";
+  flex: 1;
+  border-top: 1px solid $hairline;
+  transform: translateY(0.12em);
+}
+
+/* Where we are among the five tools: mono labels, the current one in mauve */
+.reveal .crumbs {
+  font-family: $font-family-monospace;
+  font-size: 0.5em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  margin: -0.5em 0 1.1em 0;
+}
+.reveal .crumbs span { margin-right: 1.6em; padding-bottom: 0.2em; }
+.reveal .crumbs span.on {
+  color: $mauve;
+  font-weight: 500;
+  border-bottom: 2px solid $mauve;
+}
+
+/* Text */
+.reveal .muted { color: $ink-soft; }
+.reveal .small { font-size: 0.62em; }
+.reveal .tiny { font-size: 0.5em; }
+.reveal .label {
+  font-family: $font-family-monospace;
+  font-size: 0.45em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-soft;
+}
+.reveal .big {
+  font-size: 1.35em;
+  font-weight: 700;
+  color: $mauve;
+  line-height: 1.2;
+  margin: 0.2em 0 0.5em 0;
+}
+.reveal .punchline {
+  font-weight: 700;
+  color: $mauve;
+  margin-top: 0.6em;
+}
+.reveal ul li::marker { color: $mauve; }
+.reveal .tight li { margin: 0.18em 0; }
+.reveal .compact { font-size: 0.85em; }
+
+/* Links: in the ink, marked by a faint rule; mauve on hover */
+.reveal a {
+  color: $ink;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(44, 58, 47, 0.3);
+}
+.reveal a:hover { color: $mauve; text-decoration-color: $mauve; }
+
+/* Quotation: a mauve hairline, mono attribution */
+.reveal .quote {
+  font-size: 1.05em;
+  line-height: 1.4;
+  border-left: 2px solid $mauve;
+  padding: 0.1em 0 0.1em 0.8em;
+  margin: 0.4em 0 0.3em 0;
+}
+.reveal .attribution {
+  font-family: $font-family-monospace;
+  font-size: 0.45em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  margin-left: 1.8em;
+}
+
+/* Tables: ruled rows, mono column labels */
+.reveal table {
+  border-collapse: collapse;
+  font-size: 0.7em;
+  margin-top: 0.5em;
+}
+.reveal table th {
+  font-family: $font-family-monospace;
+  font-weight: 500;
+  font-size: 0.78em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  border-bottom: 1px solid $hairline !important;
+  padding: 0.5em 0.9em;
+}
+.reveal table td {
+  border-bottom: 1px solid $faint !important;
+  padding: 0.55em 0.9em;
+}
+.reveal table td:first-child { font-weight: 700; }
+
+/* Code: paper-tinted, square */
+.reveal pre, .reveal pre code { border-radius: 0; }
+.reveal pre { border: 1px solid rgba(44, 58, 47, 0.18); box-shadow: none; }
+
+/* A figure mounted like a plate photograph */
+.reveal .plate img {
+  border: 1px solid $hairline;
+  background: $paper-raised;
+  padding: 0.3rem;
+  max-height: 470px;
+  width: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Verdict labels on the result-oriented slide */
+.reveal .verdict {
+  display: inline-block;
+  font-family: $font-family-monospace;
+  font-size: 0.6em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid $ink;
+  padding: 0.35em 0.8em;
+  margin-right: 0.5em;
+}
+.reveal .verdict.narrow { border-color: $mauve; color: $mauve; }
+.reveal .verdict.no { border-color: $mauve; background: $mauve; color: $paper-raised; }
+
+/* Diagrams: inline SVG in the same ink, paper and mauve */
+.reveal svg.dg { width: 100%; height: auto; display: block; overflow: visible; }
+.reveal svg.dg text { font-family: $font-family-sans-serif; fill: $ink; }
+.reveal svg.dg .mono { font-family: $font-family-monospace; fill: $ink-soft; letter-spacing: 0.08em; }
+.reveal svg.dg .file { font-family: $font-family-monospace; fill: $ink; }
+.reveal svg.dg .soft { fill: $ink-soft; }
+.reveal svg.dg .strong { font-weight: 700; }
+.reveal svg.dg .accent { fill: $mauve; font-weight: 700; }
+.reveal svg.dg .box { fill: $paper-raised; stroke: $ink; stroke-width: 1.4; }
+.reveal svg.dg .doc, .reveal svg.dg .tool { fill: $code-paper; stroke: $ink; stroke-width: 1.3; }
+.reveal svg.dg .fold { fill: none; stroke: $ink; stroke-width: 1.3; }
+.reveal svg.dg .model { fill: $mauve-tint; stroke: $mauve; stroke-width: 1.8; }
+.reveal svg.dg .out { fill: $paper-raised; stroke: $mauve; stroke-width: 2.4; }
+.reveal svg.dg .frame { fill: none; stroke: $mauve; stroke-width: 1.6; stroke-dasharray: 8 6; }
+.reveal svg.dg .frame-ink { fill: none; stroke: $hairline; stroke-width: 1.2; }
+.reveal svg.dg .arrow { fill: none; stroke: $ink; stroke-width: 1.8; }
+.reveal svg.dg .arrow.cut { stroke: $hairline; stroke-dasharray: 4 5; }
+
+/* Appendix divider: the site's fleuron */
+.reveal .slides section.divider h1::after {
+  content: "\2766";
+  display: block;
+  font-size: 0.45em;
+  color: rgba(90, 49, 126, 0.55);
+  margin-top: 0.4em;
+}
+
+/* Chrome */
+.reveal .slide-number {
+  font-family: $font-family-monospace;
+  color: $ink-soft;
+  background: transparent;
+  font-size: 0.45em;
+}
+.reveal .progress span { background: $mauve; }
+.reveal .controls { color: $mauve; }

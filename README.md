@@ -19,10 +19,12 @@ six planted issues (`demo/`) and a scoreboard of recorded runs; it is kept for t
 ## Contents
 
 ```
-slides/index.qmd        the deck (Quarto reveal.js, lilac theme), with speaker notes
-slides/index.html       the rendered deck, self-contained
+slides/index.qmd        the deck (Quarto reveal.js), with speaker notes and inline SVG diagrams
+slides/index.html       the rendered deck, self-contained (fonts embedded)
+slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: ivory,
+                        spruce-green ink, mauve; Zen Kaku Gothic New and IBM Plex Mono
 slides/demo-deck.qmd    the earlier deck built around the demo SSE (.html rendered)
-slides/talk.scss        talk-specific styles on top of reveal_lilac.scss
+slides/talk.scss        the demo deck's styles, on top of reveal_lilac.scss
 slides/assets/          the demo figure, the script that draws it, the SSE page excerpt,
                         the review-form screenshot
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
@@ -116,6 +118,11 @@ Images on the demo deck's slides:
 - Claude Agent SDK: code.claude.com/docs/en/agent-sdk/overview (Claude Code as a
   library; skills load from `.claude/`; API-key authentication for agents built on it);
   quoted in `material/README.md`
+- Claude Code on the web: code.claude.com/docs/en/claude-code-on-the-web (runs in an
+  isolated cloud VM, not on your machine; counts toward the plan's usage, no separate
+  charge); quoted in `material/README.md`
+- Reviewer 2's licence (Apache 2.0) and cost ("a few dollars in Gemini API usage"):
+  its README and LICENSE at github.com/isitcredible/reviewer2
 - "Since o1 pro" (December 2024) on the chat slide is the speaker's own experience, said
   as such in the notes
 - Costs and model versions: run logs in `stats_review/archive/2026_api_prototype/`
