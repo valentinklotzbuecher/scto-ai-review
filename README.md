@@ -33,7 +33,8 @@ slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: 
 slides/demo-deck.qmd    the earlier deck built around the demo SSE (.html rendered)
 slides/talk.scss        the demo deck's styles, on top of reveal_lilac.scss
 slides/assets/          the demo figure, the script that draws it, the SSE page excerpt,
-                        the review-form screenshot
+                        the review-form screenshot, and shot-*.png: the screenshot cards,
+                        cut from the posts in material/ (see material/README.md)
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
 demo/answer-key.md      the six planted issues, with their consequences
 demo/answer-key.R       recomputes every number in the answer key and on the slides

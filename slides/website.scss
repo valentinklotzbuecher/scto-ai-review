@@ -162,7 +162,6 @@ $code-color: $ink;
   padding: 0.1em 0 0.1em 0.8em;
   margin: 0.4em 0 0.3em 0;
 }
-.reveal .quote.sm { font-size: 0.72em; }
 .reveal .attribution {
   font-family: $font-family-monospace;
   font-size: 0.45em;
@@ -281,6 +280,31 @@ $code-color: $ink;
   margin-top: 0.35em;
 }
 .reveal .label { display: block; margin-top: 1.2em; }
+
+/* Screenshot cards: a post pops up over the slide on a click, mounted like the site's plates */
+.reveal .pop {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 76px;
+  height: 620px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 16px;
+  background: rgba(252, 250, 244, 0.9);
+  z-index: 20;
+}
+.reveal .pop img, .reveal .shot img {
+  display: block;
+  height: auto;
+  max-height: 560px;
+  border: 1px solid $hairline;
+  background: #fff;
+  padding: 0.35rem;
+}
+.reveal .pop img { max-width: none; box-shadow: 0 14px 40px rgba(44, 58, 47, 0.22); }
+.reveal .shot { margin: 0.2em 0 0.4em 0; }
 
 /* Appendix divider: the site's fleuron */
 .reveal .slides section.divider h1::after {

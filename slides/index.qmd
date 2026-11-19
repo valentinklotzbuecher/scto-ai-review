@@ -27,15 +27,6 @@ format:
 <div class="stat"><div class="num">27%</div><div class="lbl">human peer reviewers</div></div>
 <div class="stat fragment" data-fragment-index="1"><div class="num accent">53–96%</div><div class="lbl">each of 15 models, text only</div></div>
 ```
-
-::: {.quote .sm .fragment fragment-index=2}
-"AI-generated article reviews are now better, by every measure we could construct, than
-reviews written by well-compensated human experts."
-:::
-
-::: {.attribution .fragment fragment-index=2}
-King and Worthington, working paper, October 2026
-:::
 :::
 
 ::: {.column width="50%" .plate .fragment fragment-index=1}
@@ -46,6 +37,10 @@ Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
 :::
 :::
 ::::
+
+```{=html}
+<div class="pop fragment" data-fragment-index="2"><img src="assets/shot-king-worthington.png" style="width: 760px" alt="Rex Douglass on X, 23 October: LoL. I can't believe anyone is surprised by this. It's been true for a year at least. More with some work. Quoting the abstract of King and Worthington: We show that AI-generated article reviews are now better, by every measure we could construct, than reviews written by well-compensated human experts and judged to be of unusually high quality by journal editors and authors. And Gary King's post: New paper, AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices."></div>
+```
 
 ::: notes
 [0:30–1:45] A preprint from October repeated the classic BMJ experiment: known errors
@@ -261,16 +256,16 @@ by hand; the Agent SDK packages it (appendix).
   <div><div class="n"><a href="https://reviewer3.com">reviewer3.com</a></div><div class="t">paid</div></div>
   <div><div class="n"><a href="https://paperreview.ai">paperreview.ai</a></div><div class="t">free · Stanford</div></div>
   <div><div class="n"><a href="https://openaireview.org">openaireview.org</a></div><div class="t">free · Chicago</div></div>
-  <div><div class="n"><a href="https://isitcredible.com">Reviewer 2</a></div><div class="t open">open source · Joe Francis</div></div>
+  <div><div class="n"><a href="https://github.com/isitcredible/reviewer2">Reviewer 2</a></div><div class="t open">open source · Joe Francis</div></div>
   <div><div class="n"><a href="https://coarse.ink">coarse.ink</a></div><div class="t open">open source</div></div>
   <div><div class="n"><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a></div><div class="t">free, 2 a week · Google</div></div>
   <div class="more"><div class="n">…</div><div class="t">more every month</div></div>
 </div>
 ```
 
-::: {.fragment .punchline fragment-index=4}
-October: Joe Francis retired Reviewer 2 as "obsolete", and open-sourced his review skills.
-:::
+```{=html}
+<div class="pop fragment" data-fragment-index="4"><img src="assets/shot-reviewer2-retired.png" style="width: 600px" alt="Joseph Francis on X, 26 October 2026: Reviewer 2, he dead. The final version of the Reviewer 2 system is no longer available at isitcredible.com but is open source here: github.com/isitcredible/r... I will also be open sourcing a better system shortly. A reply asks: No more paid product? Now free but no longer updated? He answers: Yes, I decided it was obsolete. Something better and free coming shortly."></div>
+```
 
 ::: notes
 [5:00–6:15] Others built whole review pipelines. You upload the PDF. [click] Behind it run
@@ -436,18 +431,11 @@ a large margin."
 Rich Sutton, The Bitter Lesson, 2019
 :::
 
-::: {.fragment}
-::: {.quote .sm}
-"I keep not [building it] because it's token expensive, hard to monetize, and easy to
-enter. And then of course one of the big three does it and it's over."
-:::
+```{=html}
+<div class="pop fragment fade-in-then-out" data-fragment-index="1"><img src="assets/shot-deep-review.png" style="width: 940px" alt="Rex Douglass on X, 15 October: For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over. Quoting News from Google, 14 October: Today Google Research is launching Deep Review, an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication."></div>
+```
 
-::: attribution
-Rex Douglass on X, 15 October 2026, on Google's Deep Review
-:::
-:::
-
-::: {.fragment}
+::: {.fragment fragment-index=2}
 ::: {.tight}
 - What carries over: test cases with known answers, review standards, data rules
 :::
@@ -472,7 +460,7 @@ What the human reviewer checks
 :::
 
 ```{=html}
-<svg class="dg" style="max-height: 300px" viewBox="0 0 1000 310" role="img" aria-label="Three layers. The AI checks every line of code, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section and preparation step does what it says, and judges the approach and the interpretation.">
+<svg class="dg" style="max-height: 360px" viewBox="0 0 1000 310" role="img" aria-label="Three layers. The AI checks every line of code, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section and preparation step does what it says, and judges the approach and the interpretation.">
   <defs><marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <rect class="tool" x="100" y="226" width="800" height="70"/>
   <text x="500" y="268" font-size="20" text-anchor="middle">every line of code, every number, every re-run</text>
@@ -493,13 +481,9 @@ What the human reviewer checks
 </svg>
 ```
 
-::: {.quote .sm .fragment fragment-index=3}
-"… the results have been produced by robots and should be verified by humans."
-:::
-
-::: {.attribution .fragment fragment-index=3}
-Joe Francis, releasing his review skills, 26 October 2026
-:::
+```{=html}
+<div class="pop fragment fade-in-then-out" data-fragment-index="3"><img src="assets/shot-francis-verify.png" style="width: 860px" alt="Joseph Francis on X, 26 October, excerpt: These are the three skills that I use to begin my reviews, now freely available for anyone to use. When using them, you should remember that the results have been produced by robots and should be verified by humans. That said, verification steps are included in the skills, and the results tend to be reliable. Finally, I should stress that this is only how I begin my reviews. Quite a lot of human labour can go into them subsequently."></div>
+```
 
 ::: {.fragment .punchline fragment-index=4}
 Build checklists and test cases, not tools. Review results, not lines.
@@ -519,14 +503,9 @@ checklists and test cases, not tools; review results, not lines.
 
 ## And in five years?
 
-::: quote
-"From now on I won't do any peer review without AI. For clinical trials, I'd even call
-human-only review dangerous."
-:::
-
-::: attribution
-Ruslan Rust, last author of the preprint, on X, 28 October 2026
-:::
+```{=html}
+<div class="shot"><img src="assets/shot-rust.png" style="width: 780px" alt="Ruslan Rust on X, 28 October 2026: Lots of debate this week on whether journals should ban AI in peer review. We actually tested this in our new preprint, and the results were pretty clear to me. For context, I've reviewed for most of the big journals and evaluated 1,000 human reviews as an editor. I love to read and evaluate science. TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous."></div>
+```
 
 ::: {.fragment}
 ::: punchline

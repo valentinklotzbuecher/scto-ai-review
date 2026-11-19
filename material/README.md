@@ -5,10 +5,10 @@
 | `brian-2026-llm-peer-review-medrxiv-v2.pdf` | Brian D, Pereira Hernández XI, Yin H, Koury J, Rust R. *Large language models detect methodological errors that human peer review misses in clinical trials.* medRxiv, version 2 posted 28 October 2026. doi:10.64898/2026.10.25.26366455 | CC BY 4.0: reuse with attribution. `slides/assets/brian2026-fig1b.png` is cropped from its Fig. 1b. Not peer reviewed. |
 | `rust-2026-10-tweet.png` | Ruslan Rust (last author) on X announcing the preprint; the date is not visible in the screenshot | Source of the quote on the discussion slide, "And in five years?" (on the opening slide of the demo deck) |
 | `francis-2026-10-26-tweet.jpeg` | Joseph Francis on X, 26 October 2026, retiring Reviewer 2 | Source of "obsolete" on "Review services" and in the notes of "The bitter lesson"; in the demo deck, of the quotes in the notes of "What carries over" and on the backup slide "Others built review pipelines" |
-| `francis-2026-10-26-skills-tweet.png` | Joseph Francis on X, 26 October 2026, releasing his review skills (/review, /audit-review, /review-digest): "When using them, you should remember that the results have been produced by robots and should be verified by humans." … "this is only how I begin my reviews. Quite a lot of human labour can go into them subsequently." | Source of the quote on "Result-oriented review" |
-| `rust-2026-10-28-tweet.png` | Ruslan Rust on X, 28 October 2026, with the date visible: "TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous" | Source of the quote on "And in five years?"; supersedes the undated `rust-2026-10-tweet.png` |
-| `douglass-2026-10-15-deep-review-tweet.png` | Rex Douglass on X, 15 October 2026, quoting News from Google (14 October): "Today @GoogleResearch is launching Deep Review — an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication. After pilot partnerships analyzing over 15,000 research papers, we're making Deep Review globally" [available]. His comment: "For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over." | Source of the quote on "The bitter lesson" and of Deep Review on "Review services" |
-| `douglass-2026-10-23-king-worthington-tweet.png` | Rex Douglass on X, 23 October 2026, quoting Gary King's post on King and Worthington, "AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices" (GaryKing.org/peerless; the paper is noted below), with the abstract: "We show that AI-generated article reviews are now better, by every measure we could construct, than reviews written by well-compensated human experts and judged to be of unusually high quality by journal editors and authors." His comment: "It's been true for a year at least. More with some work." | Source of the quote on the intro slide and of the comment in its notes |
+| `francis-2026-10-26-skills-tweet.png` | Joseph Francis on X, 26 October 2026, releasing his review skills (/review, /audit-review, /review-digest): "When using them, you should remember that the results have been produced by robots and should be verified by humans." … "this is only how I begin my reviews. Quite a lot of human labour can go into them subsequently." | Source of the card on "Result-oriented review" |
+| `rust-2026-10-28-tweet.png` | Ruslan Rust on X, 28 October 2026, with the date visible: "TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous" | Source of the screenshot on "And in five years?"; supersedes the undated `rust-2026-10-tweet.png` |
+| `douglass-2026-10-15-deep-review-tweet.png` | Rex Douglass on X, 15 October 2026, quoting News from Google (14 October): "Today @GoogleResearch is launching Deep Review — an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication. After pilot partnerships analyzing over 15,000 research papers, we're making Deep Review globally" [available]. His comment: "For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over." | Source of the card on "The bitter lesson" and of Deep Review on "Review services" |
+| `douglass-2026-10-23-king-worthington-tweet.png` | Rex Douglass on X, 23 October 2026, quoting Gary King's post on King and Worthington, "AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices" (GaryKing.org/peerless; the paper is noted below), with the abstract: "We show that AI-generated article reviews are now better, by every measure we could construct, than reviews written by well-compensated human experts and judged to be of unusually high quality by journal editors and authors." His comment: "It's been true for a year at least. More with some work." | Source of the card on the intro slide |
 
 ## Claude Agent SDK (documentation, read 18 November 2026)
 
@@ -150,9 +150,21 @@ In the deck (`slides/index.qmd`):
   every one of 15 models above the human reviewers, and Fig. 1b. The caveats (preprint,
   2004 human reviewers, LLM judges, flags on unmodified reports) are in its notes.
 - The discussion slide, "And in five years?": Rust's quote, as the bookend.
-- The intro slide also quotes King and Worthington's abstract; "Review services" lists
-  Google's Deep Review; "The bitter lesson" quotes Rex Douglass; "Result-oriented
-  review" quotes Joe Francis (screenshots listed above).
+- The posts are shown as screenshots, cut from the files above into
+  `slides/assets/shot-*.png`; where a card leaves text out, a dashed rule marks the gap:
+  - intro slide, card on the last click: `shot-king-worthington.png`, the whole of
+    `douglass-2026-10-23-king-worthington-tweet.png`;
+  - "Review services", card on the last click: `shot-reviewer2-retired.png`, from
+    `francis-2026-10-26-tweet.jpeg`: the post retiring Reviewer 2, then a reply's
+    question and his answer ("Yes, I decided it was obsolete");
+  - "The bitter lesson", card for one click: `shot-deep-review.png`, the whole of
+    `douglass-2026-10-15-deep-review-tweet.png`; "Review services" also lists Deep
+    Review;
+  - "Result-oriented review", card for one click: `shot-francis-verify.png`, from
+    `francis-2026-10-26-skills-tweet.png`: the opening, the "verified by humans"
+    paragraph and the closing paragraph;
+  - "And in five years?": `shot-rust.png`, the text of `rust-2026-10-28-tweet.png`
+    without its figure.
 
 In the demo deck (`slides/demo-deck.qmd`):
 
