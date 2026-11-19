@@ -27,6 +27,15 @@ format:
 <div class="stat"><div class="num">27%</div><div class="lbl">human peer reviewers</div></div>
 <div class="stat fragment" data-fragment-index="1"><div class="num accent">53–96%</div><div class="lbl">each of 15 models, text only</div></div>
 ```
+
+::: {.quote .sm .fragment fragment-index=2}
+"AI-generated article reviews are now better, by every measure we could construct, than
+reviews written by well-compensated human experts."
+:::
+
+::: {.attribution .fragment fragment-index=2}
+King and Worthington, working paper, October 2026
+:::
 :::
 
 ::: {.column width="50%" .plate .fragment fragment-index=1}
@@ -44,9 +53,12 @@ inserted into reports of randomised trials, every review scored against the same
 key. Human peer reviewers, in the 2004 study, found about a quarter of the major
 errors. [click] Every one of 15 current models, reading only the text, found more: 53 to
 96%. Caveats: a preprint, a historical human comparison, language models as judges,
-and models that also flag concerns on clean reports. The last author's conclusion: for
-clinical trials, human-only review is dangerous. So the question is less whether to use
-these tools than how.
+and models that also flag concerns on clean reports. [click] A second study, from
+Harvard, the same week: King and Worthington compared AI reviews with paid human
+reviews that editors and authors had rated unusually good, and the AI reviews were
+better by every measure they could construct. Also a working paper. Or as one
+researcher put it: "It's been true for a year at least." So the question is less
+whether to use these tools than how.
 :::
 
 ## Five ways to an AI review
@@ -246,6 +258,7 @@ by hand; the Agent SDK packages it (appendix).
   <div><div class="n"><a href="https://openaireview.org">openaireview.org</a></div><div class="t">free · Chicago</div></div>
   <div><div class="n"><a href="https://isitcredible.com">Reviewer 2</a></div><div class="t open">open source · Joe Francis</div></div>
   <div><div class="n"><a href="https://coarse.ink">coarse.ink</a></div><div class="t open">open source</div></div>
+  <div><div class="n"><a href="https://x.com/NewsFromGoogle/status/2110480263994126504">Deep Review</a></div><div class="t">free, 2 a week · Google</div></div>
   <div class="more"><div class="n">…</div><div class="t">more every month</div></div>
 </div>
 ```
@@ -261,8 +274,8 @@ The Breaker, takes a sledgehammer to the text, and later stages filter out what 
 aggression invents. [click] You get a report. [click] And there are more every month:
 Refine and Reviewer3 are paid, Refine up to fifty dollars a paper; paperreview.ai from
 Stanford and openaireview from Chicago are free; Joe Francis's Reviewer 2 and
-coarse.ink are open source. All built for research papers, and you upload to a third
-party. [click] Then, in October, Joe Francis retired Reviewer 2: he decided it was
+coarse.ink are open source. And in October Google launched Deep Review, free for two
+reviews a week. All built for research papers, and you upload to a third party. [click] Then, in October, Joe Francis retired Reviewer 2: he decided it was
 obsolete, and released the skills he now uses instead. Which brings us to skills.
 :::
 
@@ -382,8 +395,10 @@ code, recomputes the numbers and re-runs the simulations, and agents that did no
 a finding challenge it. [click] The output is a draft of the consistency-review form
 with a log behind every number, pushed to a branch. [click] And it never touches your
 computer. It runs on your Claude subscription, no API credits. What it reads still goes
-to the provider, under your plan's terms. The same agent can be driven from code with
-the Agent SDK; for one review you don't need that (appendix).
+to the provider, under your plan's terms. Others go the same way: Harvard's
+IQSS built Certify, which has your own agent, Claude Code or Codex, re-run a replication
+package and certify its estimates. The same agent can be driven from code with the
+Agent SDK; for one review you don't need that (appendix).
 :::
 
 ## At a glance
@@ -416,18 +431,30 @@ Rich Sutton, The Bitter Lesson, 2019
 :::
 
 ::: {.fragment}
+::: {.quote .sm}
+"I keep not [building it] because it's token expensive, hard to monetize, and easy to
+enter. And then of course one of the big three does it and it's over."
+:::
+
+::: attribution
+Rex Douglass on X, 15 October 2026, on Google's Deep Review
+:::
+:::
+
+::: {.fragment}
 ::: {.tight}
-- Tools built today go obsolete in months: Reviewer 2, my prototype
 - What carries over: test cases with known answers, review standards, data rules
 :::
 :::
 
 ::: notes
 [9:45–11:00] Sutton's lesson from 70 years of AI research: hand-built machinery keeps
-losing to general methods that use more computation. [click] Review tools are no exception.
-Reviewer 2 went obsolete; my own prototype did too, and my skills will. That is the
-danger in building tools: they are obsolete before they are finished. So I would not
-invest in building tools. I would invest in what carries over to every new model: test
+losing to general methods that use more computation. Review tools are no exception.
+[click] Rex Douglass, on the day Google launched Deep Review: he had thought about
+building a review tool twice a day for three years, and didn't, because "one of the
+big three does it and it's over". Reviewer 2 went obsolete; my own prototype did too,
+and my skills will. That is the danger in building tools: they are obsolete before they
+are finished. [click] So I would invest in what carries over to every new model: test
 cases with known answers, standards for what a review must check, and rules for what
 data may go where. And every new model makes the same checklist more powerful.
 :::
@@ -439,7 +466,7 @@ What the human reviewer checks
 :::
 
 ```{=html}
-<svg class="dg" style="max-height: 360px" viewBox="0 0 1000 310" role="img" aria-label="Three layers. The AI checks every line of code, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section and preparation step does what it says, and judges the approach and the interpretation.">
+<svg class="dg" style="max-height: 300px" viewBox="0 0 1000 310" role="img" aria-label="Three layers. The AI checks every line of code, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section and preparation step does what it says, and judges the approach and the interpretation.">
   <defs><marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <rect class="tool" x="100" y="226" width="800" height="70"/>
   <text x="500" y="268" font-size="20" text-anchor="middle">every line of code, every number, every re-run</text>
@@ -460,7 +487,15 @@ What the human reviewer checks
 </svg>
 ```
 
-::: {.fragment .punchline fragment-index=3}
+::: {.quote .sm .fragment fragment-index=3}
+"… the results have been produced by robots and should be verified by humans."
+:::
+
+::: {.attribution .fragment fragment-index=3}
+Joe Francis, releasing his review skills, 26 October 2026
+:::
+
+::: {.fragment .punchline fragment-index=4}
 Build checklists and test cases, not tools. Review results, not lines.
 :::
 
@@ -470,18 +505,21 @@ it changes too. What I aim for is a result-oriented review. The AI goes through 
 line, every number and every re-run, and keeps its tests and logs. [click] The human
 does not read every line of code. They check that the AI tested enough, and that each
 chunk, each section, each preparation step and each analysis does what it says.
-[click] And at the top: is the approach right, does the interpretation hold? [click] In
-one line: build checklists and test cases, not tools; review results, not lines.
+[click] And at the top: is the approach right, does the interpretation hold? [click] Even
+the author of the skills I build on says it: the results come from robots and should be
+verified by humans; his reviews only begin with them. [click] In one line: build
+checklists and test cases, not tools; review results, not lines.
 :::
 
 ## And in five years?
 
 ::: quote
-"For clinical trials, I'd even call human-only review dangerous."
+"From now on I won't do any peer review without AI. For clinical trials, I'd even call
+human-only review dangerous."
 :::
 
 ::: attribution
-Ruslan Rust, last author of the preprint, on X
+Ruslan Rust, last author of the preprint, on X, 28 October 2026
 :::
 
 ::: {.fragment}
@@ -498,8 +536,8 @@ And AI-only review?
 :::
 
 ::: notes
-[12:15–20:00] Back to the start. The preprint's last author says that for clinical
-trials, human-only review is dangerous. [click] Is AI-only review dangerous too? Three
+[12:15–20:00] Back to the start. The preprint's last author won't review without AI any
+more, and says that for clinical trials, human-only review is dangerous. [click] Is AI-only review dangerous too? Three
 questions to discuss. What would you need to see before you sign a product an AI
 reviewed? Which checks would you never hand over, the choice of estimand, the clinical
 relevance, the design? And how will junior statisticians learn to review, if the AI
@@ -520,8 +558,10 @@ does the line-by-line work? Thank you; the links are in the appendix.
 
 ::: {.small .tight}
 - Brian et al., medRxiv 2026: [doi.org/10.64898/2026.10.25.26366455](https://doi.org/10.64898/2026.10.25.26366455)
+- King and Worthington, working paper 2026: [gking.harvard.edu/peerless](https://gking.harvard.edu/peerless/)
 - Unjournal project: [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app)
-- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), [isitcredible.com](https://isitcredible.com)
+- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), [isitcredible.com](https://isitcredible.com), Google's [Deep Review](https://x.com/NewsFromGoogle/status/2110480263994126504)
+- Certify, replication certification with your own agent (Harvard IQSS): [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
 - Reviewer 2: [github.com/isitcredible/reviewer2](https://github.com/isitcredible/reviewer2); research_skills: [github.com/isitcredible/research_skills](https://github.com/isitcredible/research_skills)
 - Claude Code on the web: [code.claude.com/docs/en/claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web)
 - Agent SDK: [code.claude.com/docs/en/agent-sdk](https://code.claude.com/docs/en/agent-sdk/overview)

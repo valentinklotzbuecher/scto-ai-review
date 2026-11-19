@@ -5,7 +5,8 @@ exploration, not a DKF service, of five ways to get an AI review.
 
 The deck (`slides/index.qmd`) has eleven slides and a short appendix, with little text
 on the slides and the rest in the speaker notes. It opens with the preprint result that
-models find more inserted errors in trial reports than human reviewers did, then walks
+models find more inserted errors in trial reports than human reviewers did, and King
+and Worthington's finding that AI reviews beat paid expert reviews, then walks
 through five ways to get an AI review, each drawn as a diagram: a chat at maximum
 effort; the same through the API, from a script in R (ellmer) or Python (the SDKs),
 which with tools in a loop becomes an agent (the review prototype, the Unjournal
@@ -108,13 +109,26 @@ Images on the demo deck's slides:
 - Brian, Pereira Hernández, Yin, Koury, Rust, *Large language models detect
   methodological errors that human peer review misses in clinical trials*, medRxiv,
   28 October 2026, doi:10.64898/2026.10.25.26366455 (CC BY 4.0; in `material/`, with
-  notes); Ruslan Rust on X ("For clinical trials, I'd even call human-only review
-  dangerous")
+  notes); Ruslan Rust on X, 28 October 2026 ("From now on I won't do any peer review
+  without AI. For clinical trials, I'd even call human-only review dangerous";
+  screenshot in `material/`)
+- King and Worthington, *AI Article Reviews Dominate Human Peer Reviews at Their Best:
+  Evidence and Policy Choices*, working paper, Harvard IQSS, October 2026,
+  gking.harvard.edu/peerless; the abstract sentence on the intro slide is from Rex
+  Douglass's post of 23 October quoting it (screenshot in `material/`)
+- Google's Deep Review: News from Google on X, 14 October 2026 (agentic; manuscripts,
+  design docs, proposals; pilots on over 15,000 papers), quoted in Rex Douglass's post
+  of 15 October (screenshot in `material/`, the source of the quote on "The bitter
+  lesson"); "free, 2 a week" from the coverage noted in `material/README.md`
+- Certify (Harvard IQSS), replication certification run by your own agent:
+  certify.iq.harvard.edu, in the agent slide's notes; noted in `material/README.md`
 - Rich Sutton, *The Bitter Lesson*, 13 March 2019,
   incompleteideas.net/IncIdeas/BitterLesson.html
 - Reviewer 2: github.com/isitcredible/reviewer2 (README: 30+ chained calls, 15–45
   minutes, a few dollars); Joseph Francis on X, 26 October 2026 ("Reviewer 2—he
-  dead", "Yes, I decided it was obsolete"; screenshot in `material/`)
+  dead", "Yes, I decided it was obsolete"; screenshot in `material/`), and the same
+  day releasing his skills ("… the results have been produced by robots and should be
+  verified by humans"; screenshot in `material/`)
 - research_skills: github.com/isitcredible/research_skills (MIT, 0.9 first public
   release)
 - Refine: refine.ink (referee-style reports; about $50 per paper in 2026)
