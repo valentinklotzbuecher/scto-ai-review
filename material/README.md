@@ -8,7 +8,7 @@
 | `francis-2026-10-26-skills-tweet.png` | Joseph Francis on X, 26 October 2026, releasing his review skills (/review, /audit-review, /review-digest): "When using them, you should remember that the results have been produced by robots and should be verified by humans." … "this is only how I begin my reviews. Quite a lot of human labour can go into them subsequently." | Source of the quote on "Result-oriented review" |
 | `rust-2026-10-28-tweet.png` | Ruslan Rust on X, 28 October 2026, with the date visible: "TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous" | Source of the quote on "And in five years?"; supersedes the undated `rust-2026-10-tweet.png` |
 | `douglass-2026-10-15-deep-review-tweet.png` | Rex Douglass on X, 15 October 2026, quoting News from Google (14 October): "Today @GoogleResearch is launching Deep Review — an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication. After pilot partnerships analyzing over 15,000 research papers, we're making Deep Review globally" [available]. His comment: "For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over." | Source of the quote on "The bitter lesson" and of Deep Review on "Review services" |
-| `douglass-2026-10-23-king-worthington-tweet.png` | Rex Douglass on X, 23 October 2026, quoting Gary King's post on King and Worthington, "AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices" (GaryKing.org/peerless), with the abstract: "We show that AI-generated article reviews are now better, by every measure we could construct, than reviews written by well-compensated human experts and judged to be of unusually high quality by journal editors and authors." His comment: "It's been true for a year at least. More with some work." | Source of the quote on the intro slide and of the comment in its notes |
+| `douglass-2026-10-23-king-worthington-tweet.png` | Rex Douglass on X, 23 October 2026, quoting Gary King's post on King and Worthington, "AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices" (GaryKing.org/peerless; the paper is noted below), with the abstract: "We show that AI-generated article reviews are now better, by every measure we could construct, than reviews written by well-compensated human experts and judged to be of unusually high quality by journal editors and authors." His comment: "It's been true for a year at least. More with some work." | Source of the quote on the intro slide and of the comment in its notes |
 
 ## Claude Agent SDK (documentation, read 18 November 2026)
 
@@ -110,26 +110,37 @@ Reviewer 2 itself is Apache 2.0 (its `LICENSE`). The prompt in the notes of "Rev
 services" is the start of its first stage, `src/reviewer2/prompts/01a_breaker.txt`: "You are **The Breaker**. You
 take a sledgehammer to academic texts, breaking them into pieces."
 
-## Read through search only (hosts not reachable from the cloud session)
+## King and Worthington, Deep Review and Certify (read 19 November 2026)
 
-garyking.org, gking.harvard.edu and certify.iq.harvard.edu were outside the session's
-network allowlist on 19 November 2026; these points come from web search results, to
-check against the pages before the talk:
+Read with `curl` through the session's proxy (the WebFetch tool cannot resolve these
+hosts, but they are allowed):
 
-- King and Worthington's working paper is at gking.harvard.edu/peerless (PDF:
-  gking.harvard.edu/files/peerless.pdf), dated 22 October 2026. Secondary write-ups
-  describe 124 submissions and 134 paid human reviews from IQSS's rapidPeer service,
-  2019–2026. Only the abstract sentence (from the screenshot) is on a slide.
-- Google's Deep Review is free for two reviews a week, with higher limits through a
-  Gemini API key: Gigazine, 15 October 2026, "Google has made 'Deep Review,' an
-  AI-powered tool for verifying errors in academic papers and technical documents,
-  publicly available for free use up to twice a week"
-  (gigazine.net/gsc_news/en/20261015-google-deep-review/). This is the "free, 2 a week"
-  tag on "Review services".
-- Certify, "Software for Replication Certification", from Harvard's IQSS: an AI
-  assistant on your own machine, such as Claude Code or Codex, with R or Python, reads a
-  replication dataset from Dataverse (code, data, README) and produces a certificate of
-  the estimates; only in the notes of "An agent in the repository" and in the links.
+- King and Worthington, *AI Article Reviews Dominate Human Peer Reviews at Their Best:
+  Evidence and Policy Choices*, working paper, version of 28 October 2026,
+  gking.harvard.edu/files/peerless.pdf. Abstract (p. 1): "We show that AI-generated
+  article reviews are now better, by every measure we could construct, than reviews
+  written by well-compensated human experts and judged to be of unusually high quality
+  by journal editors and authors." The corpus (p. 4): "124 scholarly paper submissions
+  and 134 human reviews" from rapidPeer, IQSS's paid review service. The AI reviews (p.
+  4): "a single AI review with Claude Opus 4.8 (Anthropic, 2026) at its maximum
+  reasoning setting", given the manuscript and the verbatim rapidPeer reviewer
+  guidelines. The judges: GPT-5.5, blinded (p. 5), and three former journal editors,
+  who "preferred the AI review in 26 of 30 judgments (87%)" (p. 10).
+- Google Research, *Analyzing technical documents with Deep Review*, 14 October 2026,
+  research.google/blog/analyzing-technical-documents-with-deep-review/: "Every user
+  receives two complimentary document reviews per week. Users with high-volume workflows
+  can connect their Gemini API key for higher usage limits"; documents "are never used
+  to train, fine-tune, or improve Google models" and are stored for one year. Deep
+  Review grew out of the Paper Assistant Tool, piloted with STOC 2026, ICML 2026,
+  NeurIPS 2026 and ICLR 2027. This is the "free, 2 a week" tag on "Review services".
+- Certify, "Software for Replication Certification", certify.iq.harvard.edu, a beta:
+  "A replication certificate adds to a replication dataset evidence that rerunning the
+  code produces the results to be published." You open "an AI assistant that can run
+  commands on your computer, such as Claude Code or Codex"; it reruns the replication
+  package on your computer, and the certificate is sealed in a Dataverse archive.
+  Details: Gary King, Yiqing Xu and Leo Y. Yang, 2026, "Replication Certification at
+  Publication: Checkable by Anyone, Anywhere, in Seconds, Forever." In the notes of "An
+  agent in the repository" and in the links.
 
 ## Where it is used in the talk
 

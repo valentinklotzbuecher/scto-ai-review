@@ -113,15 +113,19 @@ Images on the demo deck's slides:
   without AI. For clinical trials, I'd even call human-only review dangerous";
   screenshot in `material/`)
 - King and Worthington, *AI Article Reviews Dominate Human Peer Reviews at Their Best:
-  Evidence and Policy Choices*, working paper, Harvard IQSS, October 2026,
-  gking.harvard.edu/peerless; the abstract sentence on the intro slide is from Rex
-  Douglass's post of 23 October quoting it (screenshot in `material/`)
+  Evidence and Policy Choices*, working paper, version of 28 October 2026,
+  gking.harvard.edu/files/peerless.pdf: the abstract on the intro slide (p. 1) and the
+  details in its notes (pp. 4, 5, 10), quoted in `material/README.md`; Rex Douglass's
+  comment is from his post of 23 October (screenshot in `material/`)
 - Google's Deep Review: News from Google on X, 14 October 2026 (agentic; manuscripts,
   design docs, proposals; pilots on over 15,000 papers), quoted in Rex Douglass's post
   of 15 October (screenshot in `material/`, the source of the quote on "The bitter
-  lesson"); "free, 2 a week" from the coverage noted in `material/README.md`
-- Certify (Harvard IQSS), replication certification run by your own agent:
-  certify.iq.harvard.edu, in the agent slide's notes; noted in `material/README.md`
+  lesson"); "free, 2 a week" from Google Research's post of 14 October 2026,
+  research.google/blog/analyzing-technical-documents-with-deep-review/, quoted in
+  `material/README.md`
+- Certify (Gary King, Yiqing Xu and Leo Yang, Harvard), replication certificates run by
+  your own AI assistant: certify.iq.harvard.edu, in the agent slide's notes; quoted in
+  `material/README.md`
 - Rich Sutton, *The Bitter Lesson*, 13 March 2019,
   incompleteideas.net/IncIdeas/BitterLesson.html
 - Reviewer 2: github.com/isitcredible/reviewer2 (README: 30+ chained calls, 15–45

@@ -56,7 +56,10 @@ errors. [click] Every one of 15 current models, reading only the text, found mor
 and models that also flag concerns on clean reports. [click] A second study, from
 Harvard, the same week: King and Worthington compared AI reviews with paid human
 reviews that editors and authors had rated unusually good, and the AI reviews were
-better by every measure they could construct. Also a working paper. Or as one
+better by every measure they could construct: 124 papers, one review each from Claude
+Opus 4.8 at its maximum reasoning setting, judged by another model and by three former
+journal editors, who preferred the AI review in 26 of 30 judgments. Also a working
+paper. Or as one
 researcher put it: "It's been true for a year at least." So the question is less
 whether to use these tools than how.
 :::
@@ -151,7 +154,9 @@ Strongest model, maximum effort
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
-OpenAI's o1 pro, in December 2024. What you don't get: a record of what was checked,
+OpenAI's o1 pro, in December 2024. King and Worthington's AI reviews were made exactly
+this way: one model at its maximum reasoning setting, given the paper and the
+reviewer guidelines. What you don't get: a record of what was checked,
 the same answer twice, or better data terms than your plan's.
 :::
 
@@ -258,7 +263,7 @@ by hand; the Agent SDK packages it (appendix).
   <div><div class="n"><a href="https://openaireview.org">openaireview.org</a></div><div class="t">free · Chicago</div></div>
   <div><div class="n"><a href="https://isitcredible.com">Reviewer 2</a></div><div class="t open">open source · Joe Francis</div></div>
   <div><div class="n"><a href="https://coarse.ink">coarse.ink</a></div><div class="t open">open source</div></div>
-  <div><div class="n"><a href="https://x.com/NewsFromGoogle/status/2110480263994126504">Deep Review</a></div><div class="t">free, 2 a week · Google</div></div>
+  <div><div class="n"><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a></div><div class="t">free, 2 a week · Google</div></div>
   <div class="more"><div class="n">…</div><div class="t">more every month</div></div>
 </div>
 ```
@@ -395,9 +400,10 @@ code, recomputes the numbers and re-runs the simulations, and agents that did no
 a finding challenge it. [click] The output is a draft of the consistency-review form
 with a log behind every number, pushed to a branch. [click] And it never touches your
 computer. It runs on your Claude subscription, no API credits. What it reads still goes
-to the provider, under your plan's terms. Others go the same way: Harvard's
-IQSS built Certify, which has your own agent, Claude Code or Codex, re-run a replication
-package and certify its estimates. The same agent can be driven from code with the
+to the provider, under your plan's terms. Others go the same way: Certify, from
+Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or
+Codex, rerun a replication package on your computer, and certifies that rerunning the
+code produces the results to be published. The same agent can be driven from code with the
 Agent SDK; for one review you don't need that (appendix).
 :::
 
@@ -560,8 +566,8 @@ does the line-by-line work? Thank you; the links are in the appendix.
 - Brian et al., medRxiv 2026: [doi.org/10.64898/2026.10.25.26366455](https://doi.org/10.64898/2026.10.25.26366455)
 - King and Worthington, working paper 2026: [gking.harvard.edu/peerless](https://gking.harvard.edu/peerless/)
 - Unjournal project: [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app)
-- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), [isitcredible.com](https://isitcredible.com), Google's [Deep Review](https://x.com/NewsFromGoogle/status/2110480263994126504)
-- Certify, replication certification with your own agent (Harvard IQSS): [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
+- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), [isitcredible.com](https://isitcredible.com), Google's [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/)
+- Certify, replication certificates run by your own AI assistant (King, Xu and Yang, Harvard): [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
 - Reviewer 2: [github.com/isitcredible/reviewer2](https://github.com/isitcredible/reviewer2); research_skills: [github.com/isitcredible/research_skills](https://github.com/isitcredible/research_skills)
 - Claude Code on the web: [code.claude.com/docs/en/claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web)
 - Agent SDK: [code.claude.com/docs/en/agent-sdk](https://code.claude.com/docs/en/agent-sdk/overview)

@@ -1024,7 +1024,7 @@ Valentin Klotzbücher · DKF Basel
 </div>
 </div></div>
 <aside class="notes">
-<p>[0:30–1:45] A preprint from October repeated the classic BMJ experiment: known errors inserted into reports of randomised trials, every review scored against the same answer key. Human peer reviewers, in the 2004 study, found about a quarter of the major errors. [click] Every one of 15 current models, reading only the text, found more: 53 to 96%. Caveats: a preprint, a historical human comparison, language models as judges, and models that also flag concerns on clean reports. [click] A second study, from Harvard, the same week: King and Worthington compared AI reviews with paid human reviews that editors and authors had rated unusually good, and the AI reviews were better by every measure they could construct. Also a working paper. Or as one researcher put it: “It’s been true for a year at least.” So the question is less whether to use these tools than how.</p>
+<p>[0:30–1:45] A preprint from October repeated the classic BMJ experiment: known errors inserted into reports of randomised trials, every review scored against the same answer key. Human peer reviewers, in the 2004 study, found about a quarter of the major errors. [click] Every one of 15 current models, reading only the text, found more: 53 to 96%. Caveats: a preprint, a historical human comparison, language models as judges, and models that also flag concerns on clean reports. [click] A second study, from Harvard, the same week: King and Worthington compared AI reviews with paid human reviews that editors and authors had rated unusually good, and the AI reviews were better by every measure they could construct: 124 papers, one review each from Claude Opus 4.8 at its maximum reasoning setting, judged by another model and by three former journal editors, who preferred the AI review in 26 of 30 judgments. Also a working paper. Or as one researcher put it: “It’s been true for a year at least.” So the question is less whether to use these tools than how.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1119,7 +1119,7 @@ display:block!important;
   </g>
 </svg>
 <aside class="notes">
-<p>[2:30–3:30] The simplest way is what the preprint tested. Paste the PDF and the source into a chat and ask it to check whether the document is consistent. [click] Take the strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum. [click] You get an answer, and it works surprisingly well; in my experience since OpenAI’s o1 pro, in December 2024. What you don’t get: a record of what was checked, the same answer twice, or better data terms than your plan’s.</p>
+<p>[2:30–3:30] The simplest way is what the preprint tested. Paste the PDF and the source into a chat and ask it to check whether the document is consistent. [click] Take the strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum. [click] You get an answer, and it works surprisingly well; in my experience since OpenAI’s o1 pro, in December 2024. King and Worthington’s AI reviews were made exactly this way: one model at its maximum reasoning setting, given the paper and the reviewer guidelines. What you don’t get: a record of what was checked, the same answer twice, or better data terms than your plan’s.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1224,7 +1224,7 @@ display:block!important;
   <div><div class="n"><a href="https://openaireview.org">openaireview.org</a></div><div class="t">free · Chicago</div></div>
   <div><div class="n"><a href="https://isitcredible.com">Reviewer 2</a></div><div class="t open">open source · Joe Francis</div></div>
   <div><div class="n"><a href="https://coarse.ink">coarse.ink</a></div><div class="t open">open source</div></div>
-  <div><div class="n"><a href="https://x.com/NewsFromGoogle/status/2110480263994126504">Deep Review</a></div><div class="t">free, 2 a week · Google</div></div>
+  <div><div class="n"><a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a></div><div class="t">free, 2 a week · Google</div></div>
   <div class="more"><div class="n">…</div><div class="t">more every month</div></div>
 </div>
 <div class="fragment punchline" data-fragment-index="4">
@@ -1344,7 +1344,7 @@ display:block!important;
   </g>
 </svg>
 <aside class="notes">
-<p>[7:15–9:00] The last step: an agent working in the product’s repository, here Claude Code on the web with my review skills. What you type is one sentence, “review the product with dkf-review, then write the consistency review”; the skills hold the rest. It runs in an isolated cloud machine, with a copy of the repository and the skills. [click] It has tools: read files, run the R code, write logs. [click] Claude, the model, decides the next step; the tools carry it out, and the result comes back. [click] Again and again, until it is done. So it does what no reader can: it runs the code, recomputes the numbers and re-runs the simulations, and agents that did not write a finding challenge it. [click] The output is a draft of the consistency-review form with a log behind every number, pushed to a branch. [click] And it never touches your computer. It runs on your Claude subscription, no API credits. What it reads still goes to the provider, under your plan’s terms. Others go the same way: Harvard’s IQSS built Certify, which has your own agent, Claude Code or Codex, re-run a replication package and certify its estimates. The same agent can be driven from code with the Agent SDK; for one review you don’t need that (appendix).</p>
+<p>[7:15–9:00] The last step: an agent working in the product’s repository, here Claude Code on the web with my review skills. What you type is one sentence, “review the product with dkf-review, then write the consistency review”; the skills hold the rest. It runs in an isolated cloud machine, with a copy of the repository and the skills. [click] It has tools: read files, run the R code, write logs. [click] Claude, the model, decides the next step; the tools carry it out, and the result comes back. [click] Again and again, until it is done. So it does what no reader can: it runs the code, recomputes the numbers and re-runs the simulations, and agents that did not write a finding challenge it. [click] The output is a draft of the consistency-review form with a log behind every number, pushed to a branch. [click] And it never touches your computer. It runs on your Claude subscription, no API credits. What it reads still goes to the provider, under your plan’s terms. Others go the same way: Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun a replication package on your computer, and certifies that rerunning the code produces the results to be published. The same agent can be driven from code with the Agent SDK; for one review you don’t need that (appendix).</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1568,8 +1568,8 @@ display:block!important;
 <li>Brian et al., medRxiv 2026: <a href="https://doi.org/10.64898/2026.10.25.26366455">doi.org/10.64898/2026.10.25.26366455</a></li>
 <li>King and Worthington, working paper 2026: <a href="https://gking.harvard.edu/peerless/">gking.harvard.edu/peerless</a></li>
 <li>Unjournal project: <a href="https://llm-uj-research-eval.netlify.app">llm-uj-research-eval.netlify.app</a></li>
-<li>Services: <a href="https://refine.ink">refine.ink</a>, <a href="https://reviewer3.com">reviewer3.com</a>, <a href="https://paperreview.ai">paperreview.ai</a>, <a href="https://openaireview.org">openaireview.org</a>, <a href="https://coarse.ink">coarse.ink</a>, <a href="https://isitcredible.com">isitcredible.com</a>, Google’s <a href="https://x.com/NewsFromGoogle/status/2110480263994126504">Deep Review</a></li>
-<li>Certify, replication certification with your own agent (Harvard IQSS): <a href="https://certify.iq.harvard.edu/">certify.iq.harvard.edu</a></li>
+<li>Services: <a href="https://refine.ink">refine.ink</a>, <a href="https://reviewer3.com">reviewer3.com</a>, <a href="https://paperreview.ai">paperreview.ai</a>, <a href="https://openaireview.org">openaireview.org</a>, <a href="https://coarse.ink">coarse.ink</a>, <a href="https://isitcredible.com">isitcredible.com</a>, Google’s <a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a></li>
+<li>Certify, replication certificates run by your own AI assistant (King, Xu and Yang, Harvard): <a href="https://certify.iq.harvard.edu/">certify.iq.harvard.edu</a></li>
 <li>Reviewer 2: <a href="https://github.com/isitcredible/reviewer2">github.com/isitcredible/reviewer2</a>; research_skills: <a href="https://github.com/isitcredible/research_skills">github.com/isitcredible/research_skills</a></li>
 <li>Claude Code on the web: <a href="https://code.claude.com/docs/en/claude-code-on-the-web">code.claude.com/docs/en/claude-code-on-the-web</a></li>
 <li>Agent SDK: <a href="https://code.claude.com/docs/en/agent-sdk/overview">code.claude.com/docs/en/agent-sdk</a></li>
