@@ -21,15 +21,13 @@ format:
 ## Models find more errors than reviewers did
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="56%"}
 ```{=html}
-<div class="label">Major errors found in trial reports, inserted on purpose</div>
-<div class="stat"><div class="num">27%</div><div class="lbl">human peer reviewers</div></div>
-<div class="stat fragment" data-fragment-index="1"><div class="num accent">53–96%</div><div class="lbl">each of 15 models, text only</div></div>
+<div class="shot"><img src="assets/shot-rust-full.png" style="width: 100%" alt="Ruslan Rust on X, 28 October 2026: Lots of debate this week on whether journals should ban AI in peer review. We actually tested this in our new preprint, and the results were pretty clear to me. For context, I've reviewed for most of the big journals and evaluated 1,000 human reviews as an editor. TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous. Below, the preprint's figure: Human peer reviewers found 27% of the major errors. Every one of 15 AI models found more (53-96%), on the same three trial reports with the same answer key."></div>
 ```
 :::
 
-::: {.column width="50%" .plate .fragment fragment-index=1}
+::: {.column width="44%" .plate .fragment fragment-index=1}
 ![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
 
 ::: {.tiny .muted}
@@ -43,20 +41,22 @@ Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
 ```
 
 ::: notes
-[0:30–1:45] A preprint from October repeated the classic BMJ experiment: known errors
-inserted into reports of randomised trials, every review scored against the same answer
-key. Human peer reviewers, in the 2004 study, found about a quarter of the major
-errors. [click] Every one of 15 current models, reading only the text, found more: 53 to
-96%. Caveats: a preprint, a historical human comparison, language models as judges,
-and models that also flag concerns on clean reports. [click] A second study, from
-Harvard, the same week: King and Worthington compared AI reviews with paid human
-reviews that editors and authors had rated unusually good, and the AI reviews were
-better by every measure they could construct: 124 papers, one review each from Claude
-Opus 4.8 at its maximum reasoning setting, judged by another model and by three former
-journal editors, who preferred the AI review in 26 of 30 judgments. Also a working
-paper. Or as one
-researcher put it: "It's been true for a year at least." So the question is less
-whether to use these tools than how.
+[0:30–1:45] The debate this autumn: should journals ban AI in peer review? Ruslan Rust's
+group tested it. They repeated the classic BMJ experiment: known errors inserted into
+reports of randomised trials, every review scored against the same answer key. His
+conclusion: from now on he won't review without AI, and for clinical trials he calls
+human-only review dangerous. [click] The forest plot: human peer reviewers, in the 2004
+study, found about a quarter of the major errors. Every one of 15 current models,
+reading only the text, found more: 53 to 96%. Caveats: a preprint, a historical human
+comparison, language models as judges, and models that also flag concerns on clean
+reports. [click] A second study, from Harvard, the same week: King and Worthington
+compared AI reviews with paid human reviews that editors and authors had rated
+unusually good, and the AI reviews were better by every measure they could construct:
+124 papers, one review each from Claude Opus 4.8 at its maximum reasoning setting,
+judged by another model and by three former journal editors, who preferred the AI
+review in 26 of 30 judgments. Also a working paper. Or as one researcher put it: "It's
+been true for a year at least." So the question is less whether to use these tools
+than how.
 :::
 
 ## Five ways to an AI review

@@ -267,20 +267,6 @@ $code-color: $ink;
 /* The agent's loop arrow */
 .reveal svg.dg .arrow.loop { stroke: $mauve; stroke-width: 2; }
 
-/* Big numbers on the intro slide */
-.reveal .stat { margin: 0.5em 0 0.9em 0; }
-.reveal .stat .num { font-size: 2.6em; font-weight: 700; line-height: 1; color: $ink; }
-.reveal .stat .num.accent { color: $mauve; }
-.reveal .stat .lbl {
-  font-family: $font-family-monospace;
-  font-size: 0.5em;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: $ink-soft;
-  margin-top: 0.35em;
-}
-.reveal .label { display: block; margin-top: 1.2em; }
-
 /* Screenshot cards: a post pops up over the slide on a click, mounted like the site's plates */
 .reveal .pop {
   position: absolute;
