@@ -370,6 +370,34 @@ subscription you may already have. (A chat with a code tool can run some code to
 not your R project.)
 :::
 
+## The bitter lesson
+
+::: quote
+"… general methods that leverage computation are ultimately the most effective, and by
+a large margin."
+:::
+
+::: attribution
+Rich Sutton, The Bitter Lesson, 2019
+:::
+
+::: {.fragment}
+::: {.tight}
+- Tools built today go obsolete in months: Reviewer 2, my prototype
+- What carries over: test cases with known answers, review standards, data rules
+:::
+:::
+
+::: notes
+[9:45–11:00] Sutton's lesson from 70 years of AI research: hand-built machinery keeps
+losing to general methods that use more computation. Review tools are no exception.
+Reviewer 2 went obsolete; my own prototype did too, and my skills will. That is the
+danger in building tools: they are obsolete before they are finished. So I would not
+invest in building tools. I would invest in what carries over to every new model: test
+cases with known answers, standards for what a review must check, and rules for what
+data may go where. And every new model makes the same checklist more powerful.
+:::
+
 ## Result-oriented review
 
 ::: big
@@ -394,56 +422,50 @@ What the human reviewer checks
 </svg>
 ```
 
-::: notes
-[9:45–11:00] What I aim for is a result-oriented review, and this is where the human
-reviewer comes in. The AI goes through every line, every number and every re-run, and
-keeps its tests and logs. The human does not read every line of code. They check that
-the AI tested enough, that each chunk, each section, each preparation step and each
-analysis does what it says, and, at the top, whether the approach is right and the
-interpretation holds.
+::: {.fragment .punchline}
+Build checklists and test cases, not tools. Review results, not lines.
 :::
 
-## The bitter lesson
+::: notes
+[11:00–12:15] If the tools keep changing, what stays with us is the review itself, and
+it changes too. What I aim for is a result-oriented review. The AI goes through every
+line, every number and every re-run, and keeps its tests and logs. The human does not
+read every line of code. They check that the AI tested enough, that each chunk, each
+section, each preparation step and each analysis does what it says, and, at the top,
+whether the approach is right and the interpretation holds. In one line: build
+checklists and test cases, not tools; review results, not lines.
+:::
+
+## And in five years?
 
 ::: quote
-"… general methods that leverage computation are ultimately the most effective, and by
-a large margin."
+"For clinical trials, I'd even call human-only review dangerous."
 :::
 
 ::: attribution
-Rich Sutton, The Bitter Lesson, 2019
+Ruslan Rust, last author of the preprint, on X
 :::
 
 ::: {.fragment}
+::: punchline
+And AI-only review?
+:::
+
 ::: {.tight}
-- Tools built today go obsolete in months: Reviewer 2, my prototype
-- What carries over: test cases with known answers, review standards, data rules
+1. What would you need to see before you sign a product an AI reviewed?
+2. Which checks would you never hand over: the estimand, clinical relevance, the
+   design?
+3. How will junior statisticians learn to review, if the AI does the line work?
 :::
 :::
 
 ::: notes
-[11:00–12:15] Sutton's lesson from 70 years of AI research: hand-built machinery keeps
-losing to general methods that use more computation. Review tools are no exception.
-Reviewer 2 went obsolete; my own prototype did too, and my skills will. So I would not
-invest in building tools. I would invest in what carries over to every new model: test
-cases with known answers, standards for what a review must check, and rules for what
-data may go where.
-:::
-
-## What is the human reviewer for?
-
-::: {.tight}
-- Deciding what to check?
-- Judging what matters clinically?
-- Signing, and being responsible?
-- Writing the test cases?
-:::
-
-::: notes
-[12:15–20:00] Discussion. If the models read better than we do and the agents check the
-numbers, what is left for us? My guesses: choosing what to check, judging what matters
-for the trial, taking responsibility with a signature, and writing the test cases the
-tools are measured on. Thank you; the links are in the appendix.
+[12:15–20:00] Back to the start. The preprint's last author says that for clinical
+trials, human-only review is dangerous. Is AI-only review dangerous too? Three
+questions to discuss. What would you need to see before you sign a product an AI
+reviewed? Which checks would you never hand over, the choice of estimand, the clinical
+relevance, the design? And how will junior statisticians learn to review, if the AI
+does the line-by-line work? Thank you; the links are in the appendix.
 :::
 
 # Appendix {.divider}

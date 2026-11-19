@@ -3,15 +3,21 @@
 A 20-minute talk for statisticians, *AI review of statistical products*: a personal
 exploration, not a DKF service, of five ways to get an AI review.
 
-The deck (`slides/index.qmd`) has ten slides and a short appendix, with little text on
-the slides and the rest in the speaker notes. It walks through the five tools in order:
-a chat at the highest reasoning setting; the same through the API, from a script (the
-review prototype, the Unjournal project); review services (Refine, isitcredible); a
-skill; and an agent with skills in the product's repository
+The deck (`slides/index.qmd`) has eleven slides and a short appendix, with little text
+on the slides and the rest in the speaker notes. It opens with the preprint result that
+models find more inserted errors in trial reports than human reviewers did, then walks
+through five ways to get an AI review, each drawn as a diagram: a chat at maximum
+effort; the same through the API, from a script in R (ellmer) or Python (the SDKs),
+which with tools in a loop becomes an agent (the review prototype, the Unjournal
+project); review services, paid, free and open source; a skill; and an agent with
+skills in the product's repository
 ([`stats_review`](https://github.com/valentinklotzbuecher/stats_review)). One table
-compares them. It closes on result-oriented review, Sutton's bitter lesson, and a
-discussion of what the human reviewer is for. The content takes about 13 minutes, which
-leaves the rest of the slot for the discussion.
+compares them. It closes with Sutton's bitter lesson (don't build tools that go
+obsolete; keep checklists, test cases and data rules), result-oriented review (what the
+human reviewer checks: that the AI tested enough, that each step does what it says, the
+approach and the interpretation), and a discussion that brings back the preprint's last
+author: human-only review is dangerous; is AI-only review? The content takes about 12
+minutes, which leaves the rest of the slot for the discussion.
 
 The earlier, longer deck (`slides/demo-deck.qmd`) is built around a synthetic SSE with
 six planted issues (`demo/`) and a scoreboard of recorded runs; it is kept for the demo.

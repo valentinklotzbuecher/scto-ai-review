@@ -3,7 +3,7 @@
 | File | What it is | Use |
 |---|---|---|
 | `brian-2026-llm-peer-review-medrxiv-v2.pdf` | Brian D, Pereira Hernández XI, Yin H, Koury J, Rust R. *Large language models detect methodological errors that human peer review misses in clinical trials.* medRxiv, version 2 posted 28 October 2026. doi:10.64898/2026.10.25.26366455 | CC BY 4.0: reuse with attribution. `slides/assets/brian2026-fig1b.png` is cropped from its Fig. 1b. Not peer reviewed. |
-| `rust-2026-10-tweet.png` | Ruslan Rust (last author) on X announcing the preprint; the date is not visible in the screenshot | Source of the quote on the opening slide |
+| `rust-2026-10-tweet.png` | Ruslan Rust (last author) on X announcing the preprint; the date is not visible in the screenshot | Source of the quote on the discussion slide, "And in five years?" (on the opening slide of the demo deck) |
 | `francis-2026-10-26-tweet.jpeg` | Joseph Francis on X, 26 October 2026, retiring Reviewer 2 | Source of "obsolete" on "Review services" and in the notes of "The bitter lesson"; in the demo deck, of the quotes in the notes of "What carries over" and on the backup slide "Others built review pipelines" |
 
 ## Claude Agent SDK (documentation, read 18 November 2026)
@@ -110,8 +110,10 @@ take a sledgehammer to academic texts, breaking them into pieces."
 
 In the deck (`slides/index.qmd`):
 
-- "Paste it into the chat": the 53–96% against 27%, every one of 15 models above the
-  human reviewers.
+- The intro slide, "Models find more errors than reviewers did": the 27% against 53–96%,
+  every one of 15 models above the human reviewers, and Fig. 1b. The caveats (preprint,
+  2004 human reviewers, LLM judges, flags on unmodified reports) are in its notes.
+- The discussion slide, "And in five years?": Rust's quote, as the bookend.
 
 In the demo deck (`slides/demo-deck.qmd`):
 

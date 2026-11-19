@@ -1384,6 +1384,36 @@ display:block!important;
 }</style></aside>
 </section>
 <section class="slide level2">
+<h2>The bitter lesson</h2>
+<div class="quote">
+<p>“… general methods that leverage computation are ultimately the most effective, and by a large margin.”</p>
+</div>
+<div class="attribution">
+<p>Rich Sutton, The Bitter Lesson, 2019</p>
+</div>
+<div class="fragment">
+<div class="tight">
+<ul>
+<li>Tools built today go obsolete in months: Reviewer 2, my prototype</li>
+<li>What carries over: test cases with known answers, review standards, data rules</li>
+</ul>
+</div>
+</div>
+<aside class="notes">
+<p>[9:45–11:00] Sutton’s lesson from 70 years of AI research: hand-built machinery keeps losing to general methods that use more computation. Review tools are no exception. Reviewer 2 went obsolete; my own prototype did too, and my skills will. That is the danger in building tools: they are obsolete before they are finished. So I would not invest in building tools. I would invest in what carries over to every new model: test cases with known answers, standards for what a review must check, and rules for what data may go where. And every new model makes the same checklist more powerful.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section class="slide level2">
 <h2>Result-oriented review</h2>
 <div class="big">
 <p>What the human reviewer checks</p>
@@ -1403,8 +1433,11 @@ display:block!important;
   <path class="arrow" d="M 902 261 C 968 261, 968 151, 806 151" marker-end="url(#m6)" />
   <text class="mono" x="852" y="215" font-size="12" text-anchor="middle">TESTED ENOUGH?</text>
 </svg>
+<div class="fragment punchline">
+<p>Build checklists and test cases, not tools. Review results, not lines.</p>
+</div>
 <aside class="notes">
-<p>[9:45–11:00] What I aim for is a result-oriented review, and this is where the human reviewer comes in. The AI goes through every line, every number and every re-run, and keeps its tests and logs. The human does not read every line of code. They check that the AI tested enough, that each chunk, each section, each preparation step and each analysis does what it says, and, at the top, whether the approach is right and the interpretation holds.</p>
+<p>[11:00–12:15] If the tools keep changing, what stays with us is the review itself, and it changes too. What I aim for is a result-oriented review. The AI goes through every line, every number and every re-run, and keeps its tests and logs. The human does not read every line of code. They check that the AI tested enough, that each chunk, each section, each preparation step and each analysis does what it says, and, at the top, whether the approach is right and the interpretation holds. In one line: build checklists and test cases, not tools; review results, not lines.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1418,47 +1451,27 @@ display:block!important;
 }</style></aside>
 </section>
 <section class="slide level2">
-<h2>The bitter lesson</h2>
+<h2>And in five years?</h2>
 <div class="quote">
-<p>“… general methods that leverage computation are ultimately the most effective, and by a large margin.”</p>
+<p>“For clinical trials, I’d even call human-only review dangerous.”</p>
 </div>
 <div class="attribution">
-<p>Rich Sutton, The Bitter Lesson, 2019</p>
+<p>Ruslan Rust, last author of the preprint, on X</p>
 </div>
 <div class="fragment">
+<div class="punchline">
+<p>And AI-only review?</p>
+</div>
 <div class="tight">
-<ul>
-<li>Tools built today go obsolete in months: Reviewer 2, my prototype</li>
-<li>What carries over: test cases with known answers, review standards, data rules</li>
-</ul>
+<ol type="1">
+<li>What would you need to see before you sign a product an AI reviewed?</li>
+<li>Which checks would you never hand over: the estimand, clinical relevance, the design?</li>
+<li>How will junior statisticians learn to review, if the AI does the line work?</li>
+</ol>
 </div>
 </div>
 <aside class="notes">
-<p>[11:00–12:15] Sutton’s lesson from 70 years of AI research: hand-built machinery keeps losing to general methods that use more computation. Review tools are no exception. Reviewer 2 went obsolete; my own prototype did too, and my skills will. So I would not invest in building tools. I would invest in what carries over to every new model: test cases with known answers, standards for what a review must check, and rules for what data may go where.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
-<section class="slide level2">
-<h2>What is the human reviewer for?</h2>
-<div class="tight">
-<ul>
-<li>Deciding what to check?</li>
-<li>Judging what matters clinically?</li>
-<li>Signing, and being responsible?</li>
-<li>Writing the test cases?</li>
-</ul>
-</div>
-<aside class="notes">
-<p>[12:15–20:00] Discussion. If the models read better than we do and the agents check the numbers, what is left for us? My guesses: choosing what to check, judging what matters for the trial, taking responsibility with a signature, and writing the test cases the tools are measured on. Thank you; the links are in the appendix.</p>
+<p>[12:15–20:00] Back to the start. The preprint’s last author says that for clinical trials, human-only review is dangerous. Is AI-only review dangerous too? Three questions to discuss. What would you need to see before you sign a product an AI reviewed? Which checks would you never hand over, the choice of estimand, the clinical relevance, the design? And how will junior statisticians learn to review, if the AI does the line-by-line work? Thank you; the links are in the appendix.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
