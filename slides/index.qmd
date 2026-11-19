@@ -25,11 +25,11 @@ format:
 ```{=html}
 <div class="label">Major errors found in trial reports, inserted on purpose</div>
 <div class="stat"><div class="num">27%</div><div class="lbl">human peer reviewers</div></div>
-<div class="stat"><div class="num accent">53–96%</div><div class="lbl">each of 15 models, text only</div></div>
+<div class="stat fragment" data-fragment-index="1"><div class="num accent">53–96%</div><div class="lbl">each of 15 models, text only</div></div>
 ```
 :::
 
-::: {.column width="50%" .plate}
+::: {.column width="50%" .plate .fragment fragment-index=1}
 ![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
 
 ::: {.tiny .muted}
@@ -42,11 +42,11 @@ Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
 [0:30–1:45] A preprint from October repeated the classic BMJ experiment: known errors
 inserted into reports of randomised trials, every review scored against the same answer
 key. Human peer reviewers, in the 2004 study, found about a quarter of the major
-errors. Every one of 15 current models, reading only the text, found more: 53 to 96%.
-Caveats: a preprint, a historical human comparison, language models as judges, and
-models that also flag concerns on clean reports. The last author's conclusion: for
-clinical trials, human-only review is dangerous. So the question is less whether to
-use these tools than how.
+errors. [click] Every one of 15 current models, reading only the text, found more: 53 to
+96%. Caveats: a preprint, a historical human comparison, language models as judges,
+and models that also flag concerns on clean reports. The last author's conclusion: for
+clinical trials, human-only review is dangerous. So the question is less whether to use
+these tools than how.
 :::
 
 ## Five ways to an AI review
@@ -62,22 +62,30 @@ Reviewing a statistical product: its **methods**, its **numbers** and its **code
   <text class="mono" x="36" y="242" font-size="16">01</text>
   <text class="strong" x="36" y="276" font-size="27">Chat</text>
   <text class="soft" x="36" y="308" font-size="18">paste and ask</text>
+  <g class="fragment" data-fragment-index="1">
   <rect class="box" x="230" y="175" width="196" height="165"/>
   <text class="mono" x="246" y="207" font-size="16">02</text>
   <text class="strong" x="246" y="241" font-size="27">API</text>
   <text class="soft" x="246" y="273" font-size="18">same, scripted</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
   <rect class="box" x="440" y="140" width="196" height="200"/>
   <text class="mono" x="456" y="172" font-size="16">03</text>
   <text class="strong" x="456" y="206" font-size="27">Services</text>
   <text class="soft" x="456" y="238" font-size="18">many, paid or open</text>
+  </g>
+  <g class="fragment" data-fragment-index="3">
   <rect class="box" x="650" y="105" width="196" height="235"/>
   <text class="mono" x="666" y="137" font-size="16">04</text>
   <text class="strong" x="666" y="171" font-size="27">Skill</text>
   <text class="soft" x="666" y="203" font-size="18">loads a checklist</text>
+  </g>
+  <g class="fragment" data-fragment-index="4">
   <rect class="model" x="860" y="70" width="196" height="270"/>
   <text class="mono" x="876" y="102" font-size="16">05</text>
   <text class="strong" x="876" y="136" font-size="27">Agent</text>
   <text class="soft" x="876" y="168" font-size="18">runs the code</text>
+  </g>
   <line class="arrow" x1="20" y1="368" x2="1078" y2="368" marker-end="url(#m0)"/>
   <text class="mono" x="20" y="400" font-size="15">READS WHAT YOU GIVE IT</text>
   <text class="mono" x="1080" y="400" font-size="15" text-anchor="end">RUNS THE CODE IN THE REPOSITORY</text>
@@ -85,13 +93,12 @@ Reviewing a statistical product: its **methods**, its **numbers** and its **code
 ```
 
 ::: notes
-[1:45–2:30] Five ways to get an AI review of a statistical product, from the simplest
-to the most capable: from a model that reads what you give it, to an agent that works
-in the repository and runs the code. Review here means the whole product: the
-statistical methods, the design, the estimand, the sample size and the analysis, the
-printed numbers, and the code. Everything today is my own exploration, not something
-DKF runs or recommends. For each tool I'll show what you ask, what it does, and where
-it stops.
+[1:45–2:30] Five ways to get an AI review of a statistical product, from a model that
+reads what you give it to an agent that runs the code. The chat, [click] the same
+through the API, [click] review services, [click] a skill, [click] and an agent working
+in the repository. Review here means the whole product: the statistical methods, the
+design, the estimand, the sample size and the analysis, the printed numbers, and the
+code. Everything today is my own exploration, not something DKF runs or recommends.
 :::
 
 ## Paste it into the chat
@@ -112,24 +119,28 @@ Strongest model, maximum effort
   <text class="mono" x="45" y="130" font-size="15" text-anchor="middle">PDF</text>
   <path class="doc" d="M95 70 h52 l18 18 v68 h-70 z"/><path class="fold" d="M147 70 v18 h18"/>
   <text class="mono" x="130" y="130" font-size="15" text-anchor="middle">.QMD</text>
+  <g class="fragment" data-fragment-index="1">
   <line class="arrow" x1="180" y1="113" x2="240" y2="113" marker-end="url(#m1)"/>
   <text class="mono" x="210" y="100" font-size="13" text-anchor="middle">PASTE</text>
   <rect class="model" x="248" y="73" width="190" height="80"/>
   <text class="strong" x="343" y="108" font-size="23" text-anchor="middle">model</text>
   <text x="343" y="136" font-size="17" text-anchor="middle">maximum effort</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
   <line class="arrow" x1="438" y1="113" x2="498" y2="113" marker-end="url(#m1)"/>
   <rect class="out" x="505" y="83" width="125" height="60"/>
   <text x="567" y="120" font-size="21" text-anchor="middle">answer</text>
+  </g>
 </svg>
 ```
 
 ::: notes
-[2:30–3:30] The simplest way is what the preprint tested, and it works surprisingly
-well: paste the PDF and the source into a chat, ask it to check whether the document is
-consistent, take the strongest model, GPT Pro or Claude Fable or Opus, and set its
-effort to maximum. In my experience this has worked well since OpenAI's o1 pro, in
-December 2024. What you don't get: a record of what was checked, the same answer twice,
-or better data terms than your plan's.
+[2:30–3:30] The simplest way is what the preprint tested. Paste the PDF and the source
+into a chat and ask it to check whether the document is consistent. [click] Take the
+strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
+[click] You get an answer, and it works surprisingly well; in my experience since
+OpenAI's o1 pro, in December 2024. What you don't get: a record of what was checked,
+the same answer twice, or better data terms than your plan's.
 :::
 
 ## The same, as a script
@@ -146,6 +157,7 @@ or better data terms than your plan's.
   <path class="doc" d="M38 58 h46 l16 16 v62 h-62 z"/><path class="fold" d="M84 58 v16 h16"/>
   <text class="mono" x="69" y="112" font-size="13" text-anchor="middle">DOC N</text>
   <text class="mono" x="58" y="170" font-size="13" text-anchor="middle">MANY DOCUMENTS</text>
+  <g class="fragment" data-fragment-index="1">
   <line class="arrow" x1="110" y1="97" x2="160" y2="97" marker-end="url(#m2)"/>
   <rect class="tool" x="166" y="52" width="160" height="92"/>
   <text class="strong" x="246" y="84" font-size="22" text-anchor="middle">script</text>
@@ -153,37 +165,41 @@ or better data terms than your plan's.
   <text x="246" y="132" font-size="16" text-anchor="middle">Python: SDKs</text>
   <path class="arrow" d="M205 52 C 205 18, 287 18, 287 48" marker-end="url(#m2)"/>
   <text class="mono" x="246" y="14" font-size="12" text-anchor="middle">SAME PROMPT, EACH DOCUMENT</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
   <line class="arrow" x1="326" y1="97" x2="372" y2="97" marker-end="url(#m2)"/>
   <rect class="model" x="378" y="57" width="120" height="80"/>
   <text class="strong" x="438" y="104" font-size="22" text-anchor="middle">model</text>
   <text class="mono" x="438" y="46" font-size="12" text-anchor="middle">PAY PER USE</text>
+  </g>
+  <g class="fragment" data-fragment-index="3">
   <line class="arrow" x1="498" y1="97" x2="548" y2="97" marker-end="url(#m2)"/>
   <rect class="out" x="554" y="47" width="140" height="100"/>
   <text class="strong" x="624" y="84" font-size="19" text-anchor="middle">table + log</text>
   <text x="624" y="110" font-size="15" text-anchor="middle">one row per</text>
   <text x="624" y="130" font-size="15" text-anchor="middle">document</text>
+  </g>
+  <g class="fragment" data-fragment-index="4">
   <path class="arrow cut" d="M438 140 C 438 196, 246 200, 246 150" marker-end="url(#m2)"/>
   <text class="mono" x="342" y="222" font-size="12" text-anchor="middle">WITH TOOLS IN A LOOP: AN AGENT</text>
+  </g>
 </svg>
 ```
 
 ::: notes
-[3:30–5:00] The same idea through the API, from a script: in R with the ellmer
-package, in Python with the providers' SDK libraries; my prototype called the Anthropic
-Python SDK from R. The script sends the documents to the model, each with the same
-system prompt. Mine reads like a senior
-reviewer's checklist: the statistical methods first, then the numbers, the code and
-the interpretation, and it asks for the answer in our form. What you gain is control:
-the same prompt every time, a log of every run with model and cost, many documents in
-one go, answers in a fixed format, and the API's commercial data terms; you pay per
-use. My review prototype did this for our SSEs for under a dollar fifty. In the
-Unjournal project we compared model reviews of economics papers with expert
-evaluations: the model found 80% of the issues the experts agreed on, across 12
-papers. The price is code that talks to one provider at one point in time. And the same
-libraries can run an agent: give the model tools, for example "run this R code", and
-let ellmer or the SDK run the loop, the model asks, your code runs R, the result goes
-back. That is the agent of the last step, built by hand; the Agent SDK packages it
-(appendix).
+[3:30–5:00] The same idea through the API, from a script, for many documents. [click] The
+script, in R with the ellmer package or in Python with the providers' SDK libraries,
+sends each document with the same system prompt; mine reads like a senior reviewer's
+checklist, the statistical methods first, then the numbers, the code and the
+interpretation. [click] The model answers, and you pay per use. [click] You collect a
+table, one row per document, with a log of every run: model, tokens, cost. My review
+prototype did this for our SSEs for under a dollar fifty; in the Unjournal project the
+model found 80% of the issues the expert evaluators agreed on, across 12 papers. You
+also get the API's commercial data terms. The price is code that talks to one provider
+at one point in time. [click] And the same libraries can run an agent: give the model
+tools, for example "run this R code", and let ellmer or the SDK run the loop, the model
+asks, your code runs R, the result goes back. That is the agent of the last step, built
+by hand; the Agent SDK packages it (appendix).
 :::
 
 ## Review services
@@ -197,6 +213,7 @@ back. That is the agent of the last step, built by hand; the Agent SDK packages 
   <defs><marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <path class="doc" d="M0 62 h46 l16 16 v62 h-62 z"/><path class="fold" d="M46 62 v16 h16"/>
   <text class="mono" x="31" y="118" font-size="15" text-anchor="middle">PDF</text>
+  <g class="fragment" data-fragment-index="1">
   <line class="arrow" x1="72" y1="101" x2="128" y2="101" marker-end="url(#m3)"/>
   <text class="mono" x="100" y="86" font-size="14" text-anchor="middle">UPLOAD</text>
   <rect class="frame-ink" x="135" y="28" width="470" height="148"/>
@@ -212,14 +229,17 @@ back. That is the agent of the last step, built by hand; the Agent SDK packages 
   <rect class="model" x="454" y="76" width="96" height="50"/>
   <text x="502" y="108" font-size="19" text-anchor="middle">call 30+</text>
   <text class="soft" x="370" y="160" font-size="17" text-anchor="middle">fixed steps and prompts, written by the vendor</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
   <line class="arrow" x1="605" y1="101" x2="642" y2="101" marker-end="url(#m3)"/>
   <rect class="out" x="648" y="71" width="104" height="60"/>
   <text x="700" y="108" font-size="22" text-anchor="middle">report</text>
+  </g>
 </svg>
 ```
 
 ```{=html}
-<div class="svc">
+<div class="svc fragment" data-fragment-index="3">
   <div><div class="n"><a href="https://refine.ink">refine.ink</a></div><div class="t">paid, up to $50</div></div>
   <div><div class="n"><a href="https://reviewer3.com">reviewer3.com</a></div><div class="t">paid</div></div>
   <div><div class="n"><a href="https://paperreview.ai">paperreview.ai</a></div><div class="t">free · Stanford</div></div>
@@ -230,21 +250,20 @@ back. That is the agent of the last step, built by hand; the Agent SDK packages 
 </div>
 ```
 
-::: {.fragment .punchline}
+::: {.fragment .punchline fragment-index=4}
 October: Joe Francis retired Reviewer 2 as "obsolete", and open-sourced his review skills.
 :::
 
 ::: notes
-[5:00–6:15] Others built whole review pipelines, and there are more every month. You
-upload the PDF; behind it run fixed chains of model calls with prompts the vendor
-wrote. Refine and Reviewer3 are paid services, Refine up to fifty dollars a paper.
-paperreview.ai from Stanford and openaireview from Chicago are free. Joe Francis's
-Reviewer 2 is open source, and so is coarse.ink. Reviewer 2's prompts are public: its
-first stage, The Breaker, takes a sledgehammer to the text, and later stages filter
-out what the aggression invents. All of these are built for research papers, and you
-upload to a third party. Then, in October, Joe Francis retired Reviewer 2: he decided
-it was obsolete, and released the skills he now uses instead. Which brings us to
-skills.
+[5:00–6:15] Others built whole review pipelines. You upload the PDF. [click] Behind it run
+fixed chains of model calls, with prompts the vendor wrote; Reviewer 2's first stage,
+The Breaker, takes a sledgehammer to the text, and later stages filter out what the
+aggression invents. [click] You get a report. [click] And there are more every month:
+Refine and Reviewer3 are paid, Refine up to fifty dollars a paper; paperreview.ai from
+Stanford and openaireview from Chicago are free; Joe Francis's Reviewer 2 and
+coarse.ink are open source. All built for research papers, and you upload to a third
+party. [click] Then, in October, Joe Francis retired Reviewer 2: he decided it was
+obsolete, and released the skills he now uses instead. Which brings us to skills.
 :::
 
 ## A skill
@@ -261,6 +280,7 @@ skills.
   <text class="file" x="26" y="68" font-size="16">SKILL.md</text>
   <text class="file" x="26" y="95" font-size="16">references/</text>
   <text class="file" x="26" y="122" font-size="16">scripts/</text>
+  <g class="fragment" data-fragment-index="1">
   <path class="doc" d="M40 160 h40 l16 16 v54 h-56 z"/><path class="fold" d="M80 160 v16 h16"/>
   <text class="mono" x="68" y="206" font-size="13" text-anchor="middle">PDF</text>
   <path class="doc" d="M110 160 h40 l16 16 v54 h-56 z"/><path class="fold" d="M150 160 v16 h16"/>
@@ -272,21 +292,25 @@ skills.
   <rect class="model" x="335" y="85" width="170" height="80"/>
   <text class="strong" x="420" y="120" font-size="23" text-anchor="middle">model</text>
   <text x="420" y="148" font-size="17" text-anchor="middle">in a chat</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
   <line class="arrow" x1="505" y1="125" x2="556" y2="125" marker-end="url(#m4)"/>
   <rect class="out" x="562" y="80" width="188" height="90"/>
   <text class="strong" x="656" y="116" font-size="21" text-anchor="middle">findings</text>
   <text x="656" y="144" font-size="16" text-anchor="middle">check log, tables</text>
+  </g>
 </svg>
 ```
 
 ::: notes
 [6:15–7:15] A skill is just a folder: instructions in plain text, reference material and
-small scripts. The model reads its name and description, and loads the rest when a task
-matches. Mine starts with the methods: it names the design and the estimand attribute
-by attribute, then recomputes every printed number and logs each check. You can upload
-a skill to a normal chat, or give it to an agent. Mine write down what a second
-statistician checks in a consistency review, adapted from the skills Joe Francis
-released (research_skills, MIT licence).
+small scripts. [click] The model, here in a normal chat, reads its name and
+description and loads the rest when a task matches, then reads your documents with it.
+[click] You get findings with a check log. Mine starts with the methods: it names the
+design and the estimand attribute by attribute, then recomputes every printed number
+and logs each check. Mine write down what a second statistician checks in a
+consistency review, adapted from the skills Joe Francis released (research_skills, MIT
+licence).
 :::
 
 ## An agent in the repository
@@ -301,12 +325,14 @@ released (research_skills, MIT licence).
     <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker>
     <marker id="m5s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E"/></marker>
   </defs>
+  <g class="fragment" data-fragment-index="5">
   <rect class="box" x="0" y="150" width="110" height="72"/>
   <text x="55" y="181" font-size="17" text-anchor="middle">your</text>
   <text x="55" y="204" font-size="17" text-anchor="middle">computer</text>
   <line class="arrow cut" x1="110" y1="186" x2="140" y2="186"/>
   <text class="accent" x="125" y="193" font-size="22" text-anchor="middle">×</text>
   <text class="mono" x="55" y="246" font-size="12" text-anchor="middle">NO ACCESS</text>
+  </g>
   <rect class="frame" x="140" y="20" width="390" height="330"/>
   <text class="mono" x="156" y="46" font-size="13">ISOLATED CLOUD VM</text>
   <path class="tool" d="M160 70 h62 l11 13 h127 v112 h-200 z"/>
@@ -314,11 +340,14 @@ released (research_skills, MIT licence).
   <text x="260" y="137" font-size="18" text-anchor="middle">repository</text>
   <text class="file" x="260" y="163" font-size="14" text-anchor="middle">.qmd · PDF · R</text>
   <text class="file" x="260" y="184" font-size="14" text-anchor="middle">.claude/skills/</text>
+  <g class="fragment" data-fragment-index="1">
   <rect class="tool" x="345" y="215" width="165" height="110"/>
   <text class="strong" x="427" y="251" font-size="21" text-anchor="middle">tools</text>
   <text x="427" y="277" font-size="16" text-anchor="middle">read files, run R,</text>
   <text x="427" y="299" font-size="16" text-anchor="middle">write logs</text>
   <line class="arrow" x1="318" y1="199" x2="358" y2="212" marker-start="url(#m5)" marker-end="url(#m5)"/>
+  </g>
+  <g class="fragment" data-fragment-index="2">
   <rect class="model" x="635" y="165" width="130" height="160"/>
   <text class="strong" x="700" y="208" font-size="21" text-anchor="middle">Claude</text>
   <text x="700" y="236" font-size="16" text-anchor="middle">decides the</text>
@@ -327,12 +356,17 @@ released (research_skills, MIT licence).
   <text class="mono" x="700" y="364" font-size="12" text-anchor="middle">ON YOUR SUBSCRIPTION</text>
   <line class="arrow" x1="633" y1="232" x2="514" y2="232" marker-end="url(#m5)"/>
   <line class="arrow" x1="512" y1="312" x2="631" y2="312" marker-end="url(#m5)"/>
+  </g>
+  <g class="fragment" data-fragment-index="3">
   <path class="arrow loop" d="M 602 262 A 14 14 0 1 1 588 248" marker-end="url(#m5s)"/>
   <text class="mono" x="588" y="296" font-size="11" text-anchor="middle">UNTIL DONE</text>
+  </g>
+  <g class="fragment" data-fragment-index="4">
   <line class="arrow" x1="210" y1="197" x2="210" y2="364" marker-end="url(#m5)"/>
   <rect class="out" x="125" y="368" width="170" height="50"/>
   <text x="210" y="392" font-size="17" text-anchor="middle">draft form + logs</text>
   <text class="mono" x="210" y="410" font-size="11" text-anchor="middle">PUSHED TO A BRANCH</text>
+  </g>
 </svg>
 ```
 
@@ -340,16 +374,16 @@ released (research_skills, MIT licence).
 [7:15–9:00] The last step: an agent working in the product's repository, here Claude
 Code on the web with my review skills. What you type is one sentence, "review the
 product with dkf-review, then write the consistency review"; the skills hold the rest.
-The agent is a loop: the model decides the next step, the tools carry it out, reading a
-file, running the R code, writing a log, and the result comes back to the model, until
-it is done. So it does what no reader can: it runs the code, recomputes the numbers and
-re-runs the simulations, and agents that did not write a finding challenge it. The
-output is a draft of the consistency-review form with a log behind every number, pushed
-to a branch. Two things matter in practice. It runs on your Claude subscription, no API
-credits. And it runs in an isolated cloud machine with a copy of the repository: it
-never touches your computer. What it reads still goes to the provider, under your
-plan's terms. The same agent can be driven from code with the Agent SDK; for one review
-you don't need that (appendix).
+It runs in an isolated cloud machine, with a copy of the repository and the skills.
+[click] It has tools: read files, run the R code, write logs. [click] Claude, the
+model, decides the next step; the tools carry it out, and the result comes back.
+[click] Again and again, until it is done. So it does what no reader can: it runs the
+code, recomputes the numbers and re-runs the simulations, and agents that did not write
+a finding challenge it. [click] The output is a draft of the consistency-review form
+with a log behind every number, pushed to a branch. [click] And it never touches your
+computer. It runs on your Claude subscription, no API credits. What it reads still goes
+to the provider, under your plan's terms. The same agent can be driven from code with
+the Agent SDK; for one review you don't need that (appendix).
 :::
 
 ## At a glance
@@ -390,7 +424,7 @@ Rich Sutton, The Bitter Lesson, 2019
 
 ::: notes
 [9:45–11:00] Sutton's lesson from 70 years of AI research: hand-built machinery keeps
-losing to general methods that use more computation. Review tools are no exception.
+losing to general methods that use more computation. [click] Review tools are no exception.
 Reviewer 2 went obsolete; my own prototype did too, and my skills will. That is the
 danger in building tools: they are obsolete before they are finished. So I would not
 invest in building tools. I would invest in what carries over to every new model: test
@@ -407,33 +441,37 @@ What the human reviewer checks
 ```{=html}
 <svg class="dg" style="max-height: 360px" viewBox="0 0 1000 310" role="img" aria-label="Three layers. The AI checks every line of code, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section and preparation step does what it says, and judges the approach and the interpretation.">
   <defs><marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
-  <rect class="model" x="300" y="14" width="400" height="66"/>
-  <text class="strong" x="500" y="55" font-size="22" text-anchor="middle">approach and interpretation</text>
+  <rect class="tool" x="100" y="226" width="800" height="70"/>
+<svg class="dg" style="max-height: 360px" viewBox="0 0 1000 310" role="img" aria-label="Three layers. The AI checks every line of code, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section and preparation step does what it says, and judges the approach and the interpretation.">
+  <text class="mono" x="80" y="266" font-size="14" text-anchor="end">AI</text>
+  <g class="fragment" data-fragment-index="1">
+  <path class="arrow" d="M 902 261 C 968 261, 968 151, 806 151" marker-end="url(#m6)"/>
+  <text class="mono" x="852" y="215" font-size="12" text-anchor="middle">TESTED ENOUGH?</text>
   <rect class="model" x="200" y="110" width="600" height="82"/>
   <text x="500" y="145" font-size="20" text-anchor="middle">each chunk, section, preparation step:</text>
   <text class="strong" x="500" y="174" font-size="20" text-anchor="middle">does it do what it says?</text>
-  <rect class="tool" x="100" y="226" width="800" height="70"/>
-  <text x="500" y="268" font-size="20" text-anchor="middle">every line of code, every number, every re-run</text>
-  <text class="mono" x="280" y="52" font-size="14" text-anchor="end">HUMAN</text>
   <text class="mono" x="180" y="156" font-size="14" text-anchor="end">HUMAN</text>
-  <text class="mono" x="80" y="266" font-size="14" text-anchor="end">AI</text>
-  <path class="arrow" d="M 902 261 C 968 261, 968 151, 806 151" marker-end="url(#m6)"/>
-  <text class="mono" x="852" y="215" font-size="12" text-anchor="middle">TESTED ENOUGH?</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
+  <rect class="model" x="300" y="14" width="400" height="66"/>
+  <text class="strong" x="500" y="55" font-size="22" text-anchor="middle">approach and interpretation</text>
+  <text class="mono" x="280" y="52" font-size="14" text-anchor="end">HUMAN</text>
+  </g>
 </svg>
 ```
 
-::: {.fragment .punchline}
+::: {.fragment .punchline fragment-index=3}
 Build checklists and test cases, not tools. Review results, not lines.
 :::
 
 ::: notes
 [11:00–12:15] If the tools keep changing, what stays with us is the review itself, and
 it changes too. What I aim for is a result-oriented review. The AI goes through every
-line, every number and every re-run, and keeps its tests and logs. The human does not
-read every line of code. They check that the AI tested enough, that each chunk, each
-section, each preparation step and each analysis does what it says, and, at the top,
-whether the approach is right and the interpretation holds. In one line: build
-checklists and test cases, not tools; review results, not lines.
+line, every number and every re-run, and keeps its tests and logs. [click] The human
+does not read every line of code. They check that the AI tested enough, and that each
+chunk, each section, each preparation step and each analysis does what it says.
+[click] And at the top: is the approach right, does the interpretation hold? [click] In
+one line: build checklists and test cases, not tools; review results, not lines.
 :::
 
 ## And in five years?
@@ -461,7 +499,7 @@ And AI-only review?
 
 ::: notes
 [12:15–20:00] Back to the start. The preprint's last author says that for clinical
-trials, human-only review is dangerous. Is AI-only review dangerous too? Three
+trials, human-only review is dangerous. [click] Is AI-only review dangerous too? Three
 questions to discuss. What would you need to see before you sign a product an AI
 reviewed? Which checks would you never hand over, the choice of estimand, the clinical
 relevance, the design? And how will junior statisticians learn to review, if the AI
