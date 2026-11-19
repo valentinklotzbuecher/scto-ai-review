@@ -1,5 +1,5 @@
 # Builds the slide figure power-figure.svg from the demo SSE's own simulation.
-# Run from the repository root:  Rscript slides/assets/make-figures.R
+# Run from the repository root:  Rscript archive/assets/make-figures.R
 # Base R only; colours validated for contrast and colour-vision deficiency
 # (USB wine #9B233C, UniBas mint #1EA5A5, neutral greys).
 

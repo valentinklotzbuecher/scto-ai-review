@@ -1,111 +1,83 @@
-# AI-assisted review of statistical products: SCTO talk
+# A Third Pair of Eyes? AI-Assisted Review of Statistical Reports and Code
 
-A 20-minute talk for statisticians, *AI review of statistical products*: a personal
-exploration, not a DKF service, of five ways to get an AI review.
+The kit for a 20-minute SCTO talk: the slides, a handout to read later, a starter for
+each of five ways to get an AI review of a statistical product (a sample size
+estimation, an analysis plan, a report: its methods, its numbers and its code), and a
+synthetic test case with a known answer. My own exploration, not a DKF service or
+recommendation.
 
-The deck (`slides/index.qmd`) has eleven slides and a short appendix, with little text
-on the slides and the rest in the speaker notes. It opens with the preprint result that
-models find more inserted errors in trial reports than human reviewers did, and King
-and Worthington's finding that AI reviews beat paid expert reviews, then walks
-through five ways to get an AI review, each drawn as a diagram: a chat at maximum
-effort; the same through the API, from a script in R (ellmer) or Python (the SDKs),
-which with tools in a loop becomes an agent (the review prototype, the Unjournal
-project); review services, paid, free and open source; a skill; and an agent with
-skills in the product's repository
-([`stats_review`](https://github.com/valentinklotzbuecher/stats_review)). One table
-compares them. It closes with Sutton's bitter lesson (don't build tools that go
-obsolete; keep checklists, test cases and data rules), result-oriented review (what the
-human reviewer checks: that the AI tested enough, that each step does what it says, the
-approach and the interpretation), and a discussion that brings back the preprint's last
-author: human-only review is dangerous; is AI-only review? The content takes about 12
-minutes, which leaves the rest of the slot for the discussion.
+## Start here
 
-The earlier, longer deck (`slides/demo-deck.qmd`) is built around a synthetic SSE with
-six planted issues (`demo/`) and a scoreboard of recorded runs; it is kept for the demo.
+- **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
+  with every link. Download it and open it in a browser; it is self-contained.
+- **The slides**, [`slides/index.html`](slides/index.html): eleven slides and an
+  appendix; press S for the speaker notes.
+- **A starter for each way**, in [`tools/`](tools/):
+
+| | Way | Starter |
+|---|---|---|
+| 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, the data rules |
+| 2 | [The same, as a script](tools/2-api/README.md) | `review.R` (ellmer) and `review.py` (Anthropic SDK), with the prompt and the answer format |
+| 3 | [Review services](tools/3-services/README.md) | the list, paid, free and open source, with sources |
+| 4 | [A skill](tools/4-skill/README.md) | `dkf-document-check`, the review's first stage for Claude chat |
+| 5 | [An agent in the repository](tools/5-agent/README.md) | Claude Code on the web with the DKF review skills |
+
+- **The demo**, [`demo/`](demo/README.md): a two-page synthetic SSE with six planted
+  issues, its answer key and the recorded runs. Give a tool only `demo/sse/`; the rest
+  of this kit names the issues.
+
+The review skills live in their own repository,
+[stats_review](https://github.com/valentinklotzbuecher/stats_review); this kit links to
+version 0.3.1 (tag `skills-v0.3.1`).
+
+## The talk
+
+It opens with a preprint in which every one of 15 language models found more of the
+errors inserted into trial reports than human peer reviewers had, and with King and
+Worthington's finding that AI reviews beat paid expert reviews. It then walks through
+the five ways, each drawn as a diagram, from a model that reads what you give it to an
+agent that runs the code, and compares them in one table. It closes with Sutton's
+bitter lesson (tools go obsolete; checklists, test cases and data rules carry over),
+result-oriented review (the human checks that the AI tested enough, that each step does
+what it says, the approach and the interpretation), and a discussion that brings back
+the preprint's last author: human-only review is dangerous; is AI-only review? The
+content takes about 12 minutes, which leaves the rest of the slot for the discussion.
 
 ## Contents
 
 ```
-slides/index.qmd        the deck (Quarto reveal.js), with speaker notes and inline SVG diagrams
-slides/index.html       the rendered deck, self-contained (fonts embedded)
+slides/index.qmd        the deck (Quarto reveal.js), with speaker notes; index.html rendered
+slides/handout.qmd      the handout (Quarto HTML); handout.html rendered
+slides/diagrams/        the seven diagrams as inline SVG, included by the deck and the handout
 slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: ivory,
                         spruce-green ink, mauve; Zen Kaku Gothic New and IBM Plex Mono
-slides/demo-deck.qmd    the earlier deck built around the demo SSE (.html rendered)
-slides/talk.scss        the demo deck's styles, on top of reveal_lilac.scss
-slides/assets/          the demo figure, the script that draws it, the SSE page excerpt,
-                        the review-form screenshot, and shot-*.png: the screenshot cards,
+slides/handout.scss     the same style for the handout
+slides/assets/          the preprint's forest plot, and shot-*.png: the screenshot cards,
                         cut from the posts in material/ (see material/README.md)
+tools/                  one folder per way, each with a README; tools/2-api has the scripts
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
-demo/answer-key.md      the six planted issues, with their consequences
-demo/answer-key.R       recomputes every number in the answer key and on the slides
-demo/runs/              each approach's review of the demo, and the scoreboard
-material/               sources: the trial-report preprint, tweet screenshots, notes
+demo/answer-key.md      the six planted issues, their consequences, the scoring rules
+demo/answer-key.R       recomputes every number in the answer key
+demo/runs/              each recorded review of the demo, scored, and the scoreboard
+material/               sources: the preprint, post screenshots, quotes with pages
+archive/                the earlier, longer deck built around the demo
 ```
 
 ## Rendering
 
 ```bash
 quarto render slides/index.qmd             # the deck; no R needed
-quarto render slides/demo-deck.qmd         # the earlier demo deck
-Rscript slides/assets/make-figures.R       # redraws the demo figure (base R)
+quarto render slides/handout.qmd           # the handout; no R needed
+quarto render archive/demo-deck.qmd        # the earlier deck
 quarto render demo/sse/DEMO-TKA_SSE.qmd    # the SSE as PDF via Typst; needs R and knitr
 Rscript demo/answer-key.R                  # about a minute
+Rscript archive/assets/make-figures.R      # the earlier deck's power figure (base R)
 ```
 
-The rendered PDF in `demo/sse/` is the one every approach reviews. If you re-render it,
-re-run every approach on the new PDF.
+The rendered PDF in `demo/sse/` is the one every tool reviews. If you re-render it,
+re-run every tool on the new PDF.
 
-The committed figure was drawn with Liberation Sans as the default sans-serif font;
-another default font changes its look, not its numbers.
-
-## Running the demo
-
-Give each approach only the two files in `demo/sse/`, never this repository: the answer
-key and the slides name the planted issues.
-
-1. **Chat.** Paste the PDF and the `.qmd` into a new chat and ask for a consistency
-   review of the sample size estimation.
-2. **Chat with the document skill.** Upload `chat-skills/dkf-document-check.zip` from
-   `stats_review` as a skill (Customize, Skills; code execution on), then in a new chat
-   attach the PDF and the `.qmd` and ask for a document check of the sample size
-   estimation with `dkf-document-check`. It is the agent's first stage without the code
-   runs, so it separates knowing what to check from running the code.
-3. **Agent with skills.** In a clone of `stats_review`:
-
-   ```bash
-   python3 .claude/skills/dkf-review/scripts/new_job.py jobs/2026-11_DEMO-TKA \
-     --product /path/to/scto-ai-review/demo/sse/
-   ```
-
-   Fill in `jobs/2026-11_DEMO-TKA/00_ASSIGNMENT.md` (product type `sse`, data mode
-   `none`, depth `quick` or `standard`, one question such as "Is the sample size
-   adequate for the stated design?"), then ask Claude Code to review it with
-   `dkf-review` and write the consistency review.
-
-Score each review against `demo/answer-key.md`, record it as `demo/runs/README.md`
-describes, and transfer the counts to the scoreboard slide. A lead counts like a
-finding, and each run also records how many issues it sizes (`demo/answer-key.md`,
-Scoring). The chat and chat-with-skill runs are still to do; their rows on the
-scoreboard stay empty until they are scored. The one-call prototype is no longer run
-on the demo. For the chat runs, record whether the chat ran code: a chat that does is no
-longer only a reader (the document skill runs its own arithmetic scripts, never the
-product's code).
-
-Three agent runs are recorded in `demo/runs/`, each with its score: 31 October 2026
-(depth `standard`), 3 November (interim) and 5 November (depth `quick`). In the demo
-deck, the scoreboard slide shows the first and the last; the backup slide "All recorded
-runs of the demo" shows all three. "One finding, traced" follows the 31 October run.
-
-Images on the demo deck's slides:
-
-- "The product" shows page 2 of `demo/sse/DEMO-TKA_SSE.pdf`
-  (`slides/assets/demo-sse-page2.png`: `pdftoppm -r 220 -f 2 -l 2 -png`, cropped from
-  the top of the page to "132 in total"). Re-render the SSE, and redo the crop.
-- "What the reviewer gets" shows the 5 November run's `CONSISTENCY_REVIEW.html`
-  (`slides/assets/consistency-review.png`: Chromium at 900 px wide, light colour scheme,
-  twice the pixel density, cropped from Decision to the first major issue).
-
-## Sources for the slides
+## Sources
 
 - Brian, Pereira Hernández, Yin, Koury, Rust, *Large language models detect
   methodological errors that human peer review misses in clinical trials*, medRxiv,
@@ -115,51 +87,51 @@ Images on the demo deck's slides:
   screenshot in `material/`)
 - King and Worthington, *AI Article Reviews Dominate Human Peer Reviews at Their Best:
   Evidence and Policy Choices*, working paper, version of 28 October 2026,
-  gking.harvard.edu/files/peerless.pdf: the abstract on the intro slide (p. 1) and the
-  details in its notes (pp. 4, 5, 10), quoted in `material/README.md`; Rex Douglass's
-  comment is from his post of 23 October (screenshot in `material/`)
+  gking.harvard.edu/files/peerless.pdf: the abstract (p. 1) and the details (pp. 4, 5,
+  10), quoted in `material/README.md`; Rex Douglass's comment is from his post of
+  23 October (screenshot in `material/`)
 - Google's Deep Review: News from Google on X, 14 October 2026 (agentic; manuscripts,
   design docs, proposals; pilots on over 15,000 papers), quoted in Rex Douglass's post
-  of 15 October (screenshot in `material/`, the source of the quote on "The bitter
-  lesson"); "free, 2 a week" from Google Research's post of 14 October 2026,
+  of 15 October (screenshot in `material/`, the source of the card on "The bitter
+  lesson"); "free, 2 a week", its storage and training terms from Google Research's
+  post of 14 October 2026,
   research.google/blog/analyzing-technical-documents-with-deep-review/, quoted in
   `material/README.md`
 - Certify (Gary King, Yiqing Xu and Leo Yang, Harvard), replication certificates run by
-  your own AI assistant: certify.iq.harvard.edu, in the agent slide's notes; quoted in
-  `material/README.md`
+  your own AI assistant: certify.iq.harvard.edu, quoted in `material/README.md`
 - Rich Sutton, *The Bitter Lesson*, 13 March 2019,
   incompleteideas.net/IncIdeas/BitterLesson.html
 - Reviewer 2: github.com/isitcredible/reviewer2 (README: 30+ chained calls, 15–45
-  minutes, a few dollars); Joseph Francis on X, 26 October 2026 ("Reviewer 2—he
-  dead", "Yes, I decided it was obsolete"; screenshot in `material/`), and the same
-  day releasing his skills ("… the results have been produced by robots and should be
-  verified by humans"; screenshot in `material/`)
+  minutes, a few dollars; aggressive prompting, then a verification cascade; Apache
+  2.0); Joseph Francis on X, 26 October 2026 ("Reviewer 2—he dead", "Yes, I decided it
+  was obsolete"; screenshot in `material/`), and the same day releasing his skills
+  ("… the results have been produced by robots and should be verified by humans";
+  screenshot in `material/`). The prompt quoted for its first stage is
+  `src/reviewer2/prompts/01a_breaker.txt`
 - research_skills: github.com/isitcredible/research_skills (MIT, 0.9 first public
   release)
-- Refine: refine.ink (referee-style reports; about $50 per paper in 2026)
+- The other services (Refine paid, up to $50; Reviewer3 commercial; paperreview.ai from
+  Stanford and openaireview.org from Chicago free; coarse.ink open source): the
+  Reviewer 2 paper, *Yell at It*, `paper/yellatit.pdf` in
+  github.com/isitcredible/reviewer2, pp. 6–7; quoted in `material/README.md`
 - Unjournal comparison: llm-uj-research-eval.netlify.app (80% coverage of curated
   human consensus issues, range 50–100%, 52% overlap, 12 papers)
-- Claude Science's built-in reviewer: claude.com/docs/claude-science/the-reviewer
+- Claude Science's built-in reviewer, in the archived deck's notes:
+  claude.com/docs/claude-science/the-reviewer
 - Claude Agent SDK: code.claude.com/docs/en/agent-sdk/overview (Claude Code as a
-  library; skills load from `.claude/`; API-key authentication for agents built on it);
-  quoted in `material/README.md`
+  library; skills load from `.claude/`; API-key authentication for agents built on it;
+  the CLI with `-p` from other languages); quoted in `material/README.md`
 - Claude Code on the web: code.claude.com/docs/en/claude-code-on-the-web (runs in an
   isolated cloud VM, not on your machine; counts toward the plan's usage, no separate
-  charge); quoted in `material/README.md`
-- Reviewer 2's licence (Apache 2.0) and cost ("a few dollars in Gemini API usage"):
-  its README and LICENSE at github.com/isitcredible/reviewer2. The prompt quoted in the
-  notes of "Review services" is the start of its first stage,
-  `src/reviewer2/prompts/01a_breaker.txt`
-- The other services on "Review services" (Refine paid, up to $50; Reviewer3 commercial;
-  paperreview.ai from Stanford and openaireview.org from Chicago free; coarse.ink open
-  source): the Reviewer 2 paper, *Yell at It*, `paper/yellatit.pdf` in
-  github.com/isitcredible/reviewer2, pp. 6–7; quoted in `material/README.md`
-- The chat prompt on "Paste it into the chat" and the prompts described in the notes are
-  our own: the review prototype's system prompt (full text on the demo deck's backup
-  slide), `chat-skills/dkf-document-check/SKILL.md` in `stats_review`, and the agent
-  instruction from the `stats_review` README
-- "Since o1 pro" (December 2024) on the chat slide is the speaker's own experience, said
-  as such in the notes
-- Costs and model versions: run logs in `stats_review/archive/2026_api_prototype/`
-  and the decks in `dkf-llm-explorations`; for the demo's agent run, the session record
-  summarised in `demo/runs/2026-10-31_agent/SCORE.md`
+  charge; the plans it is on); quoted in `material/README.md`
+- The API starters' settings (model `claude-opus-5-5`, effort, structured output,
+  server-side fallbacks, US$4 and US$20 per million input and output tokens): Anthropic's
+  API documentation, November 2026; ellmer 0.5.2's `chat_anthropic()` and
+  `type_from_schema()`
+- The prompts are our own: "Please check if this is consistent." on the chat slide;
+  `tools/2-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
+  instruction in `stats_review`; the earlier prototype's prompt on the archived deck's
+  backup slide
+- "Since o1 pro" (December 2024) is the speaker's own experience, said as such
+- Costs and times of the demo runs: `demo/runs/`, each with the session record
+  summarised in its `SCORE.md`

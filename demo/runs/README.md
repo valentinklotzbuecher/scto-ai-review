@@ -6,7 +6,8 @@ what the approach returned, unchanged:
 - chat: the exported conversation or the copied answer
 - chat with the document skill: the exported conversation and the files the skill
   returned (consistency table, check log)
-- one call: the prototype's `.md` and `.json`
+- API script (`tools/2-api`): its `review-results/` folder: `<name>.review.json`,
+  `issues.csv`, `runs.csv`
 - agent: the job's `CONSISTENCY_REVIEW.md`, `.html` and `.org`, `ISSUES.md`,
   `SYNTHESIS.md` and the annotated source (`work/annotated/*.REVIEW.qmd`)
 
@@ -18,7 +19,7 @@ run to `scoreboard.csv`:
 
 | Column | Content |
 |---|---|
-| `approach` | `chat`, `chat_skill`, `one_call` or `agent` |
+| `approach` | `chat`, `chat_skill`, `api` or `agent` |
 | `model`, `date`, `depth` | as run (`depth`: the agent's depth, or the chat skill's version) |
 | `text_found`, `code_found`, `computation_found` | planted issues found, 0–2 each, a lead counting like a finding; note any "partly" in `notes` |
 | `sized` | found issues whose consequence the review states in participants or power, 0–5 (the answer key's Scoring says what counts) |

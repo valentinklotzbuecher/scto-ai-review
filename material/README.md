@@ -166,7 +166,19 @@ In the deck (`slides/index.qmd`):
   - "And in five years?": `shot-rust.png`, the text of `rust-2026-10-28-tweet.png`
     without its figure.
 
-In the demo deck (`slides/demo-deck.qmd`):
+In the handout (`slides/handout.qmd`) and the tool READMEs (`tools/`), as text, not
+screenshots:
+
+- Brian et al.: the design, the results on the original and the 2026 trials, the
+  caveats and the boundary sentence above; Rust's quote.
+- King and Worthington: the corpus, the AI reviews and the editors' judgments (pp. 4,
+  5, 10).
+- Francis's "verified by humans" sentence and the retirement of Reviewer 2; Douglass's
+  comment of 15 October; the services from the Reviewer 2 paper; Deep Review's terms;
+  Certify.
+- The quotes on Claude Code on the web (`tools/5-agent`) and on the Agent SDK.
+
+In the earlier demo deck (`archive/demo-deck.qmd`):
 
 - Opening slide, "Should journals ban AI in peer review?": the 27% against 53–96%,
   the specificity caveat, Fig. 1b and Rust's quote.

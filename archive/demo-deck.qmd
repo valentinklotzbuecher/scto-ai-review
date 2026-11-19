@@ -46,7 +46,7 @@ Ruslan Rust, last author, on X
 :::
 
 ::: {.column width="42%" .fig-tall .fig-motivation}
-![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
+![](../slides/assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
 :::
 ::::
 
