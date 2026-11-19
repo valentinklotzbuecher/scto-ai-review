@@ -1,19 +1,19 @@
 ```{=html}
-<svg class="dg" style="margin-top: 56px" viewBox="0 0 1100 250" role="img" aria-label="Four ways to an AI review, in the order of the talk: a chat, where you paste and ask; an API script, the same scripted; a review service, someone else's script; and, after a dividing line, an agent that runs the code in the repository.">
+<svg class="dg" style="margin-top: 56px" viewBox="0 0 1100 250" role="img" aria-label="Four ways to an AI review, in the order of the talk: a chat, where you paste and ask; a review service, someone else's pipeline; an API script, your own pipeline; and, after a dividing line, an agent that runs the code in the repository.">
   <rect class="box" x="45" y="30" width="230" height="190"/>
   <text class="strong" x="67" y="102" font-size="36">Chat</text>
   <text class="soft" x="67" y="146" font-size="22">paste and ask</text>
   <g class="fragment" data-fragment-index="1">
   <rect class="box" x="295" y="30" width="230" height="190"/>
-  <text class="strong" x="317" y="102" font-size="36">API script</text>
-  <text class="soft" x="317" y="146" font-size="22">the same,</text>
-  <text class="soft" x="317" y="174" font-size="22">scripted</text>
+  <text class="strong" x="317" y="102" font-size="36">Service</text>
+  <text class="soft" x="317" y="146" font-size="22">someone else's</text>
+  <text class="soft" x="317" y="174" font-size="22">pipeline</text>
   </g>
   <g class="fragment" data-fragment-index="2">
   <rect class="box" x="545" y="30" width="230" height="190"/>
-  <text class="strong" x="567" y="102" font-size="36">Service</text>
-  <text class="soft" x="567" y="146" font-size="22">someone else's</text>
-  <text class="soft" x="567" y="174" font-size="22">script</text>
+  <text class="strong" x="567" y="102" font-size="36">API script</text>
+  <text class="soft" x="567" y="146" font-size="22">your own</text>
+  <text class="soft" x="567" y="174" font-size="22">pipeline</text>
   </g>
   <g class="fragment" data-fragment-index="3">
   <line class="arrow cut" x1="810" y1="20" x2="810" y2="230"/>

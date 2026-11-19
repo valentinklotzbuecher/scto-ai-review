@@ -2173,16 +2173,15 @@ vertical-align: -.125em;
   <li><a href="#four-ways-to-an-ai-review" id="toc-four-ways-to-an-ai-review" class="nav-link" data-scroll-target="#four-ways-to-an-ai-review">Four ways to an AI review</a>
   <ul class="collapse">
   <li><a href="#paste-it-into-the-chat" id="toc-paste-it-into-the-chat" class="nav-link" data-scroll-target="#paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</a></li>
-  <li><a href="#the-same-as-a-script" id="toc-the-same-as-a-script" class="nav-link" data-scroll-target="#the-same-as-a-script"><span class="num">02</span>The same, as a script</a></li>
-  <li><a href="#review-services" id="toc-review-services" class="nav-link" data-scroll-target="#review-services"><span class="num">03</span>Review services</a></li>
-  <li><a href="#the-bitter-lesson" id="toc-the-bitter-lesson" class="nav-link" data-scroll-target="#the-bitter-lesson">The bitter lesson</a></li>
+  <li><a href="#review-services" id="toc-review-services" class="nav-link" data-scroll-target="#review-services"><span class="num">02</span>Review services</a></li>
+  <li><a href="#your-own-script" id="toc-your-own-script" class="nav-link" data-scroll-target="#your-own-script"><span class="num">03</span>Your own script</a></li>
   <li><a href="#an-agent-in-the-repository" id="toc-an-agent-in-the-repository" class="nav-link" data-scroll-target="#an-agent-in-the-repository"><span class="num">04</span>An agent in the repository</a></li>
   <li><a href="#at-a-glance" id="toc-at-a-glance" class="nav-link" data-scroll-target="#at-a-glance">At a glance</a></li>
   </ul></li>
-  <li><a href="#what-the-human-reviewer-checks" id="toc-what-the-human-reviewer-checks" class="nav-link" data-scroll-target="#what-the-human-reviewer-checks">What the human reviewer checks</a></li>
+  <li><a href="#the-bitter-lesson" id="toc-the-bitter-lesson" class="nav-link" data-scroll-target="#the-bitter-lesson">The bitter lesson</a></li>
+  <li><a href="#questions-to-discuss" id="toc-questions-to-discuss" class="nav-link" data-scroll-target="#questions-to-discuss">Questions to discuss</a></li>
   <li><a href="#the-demo" id="toc-the-demo" class="nav-link" data-scroll-target="#the-demo">The demo</a></li>
   <li><a href="#data-rules" id="toc-data-rules" class="nav-link" data-scroll-target="#data-rules">Data rules</a></li>
-  <li><a href="#questions-to-discuss" id="toc-questions-to-discuss" class="nav-link" data-scroll-target="#questions-to-discuss">Questions to discuss</a></li>
   <li><a href="#links-and-sources" id="toc-links-and-sources" class="nav-link" data-scroll-target="#links-and-sources">Links and sources</a></li>
   </ul>
 </nav>
@@ -2221,8 +2220,8 @@ vertical-align: -.125em;
 </header>
 
 
-<p>The handout to the talk, to read later: what two studies found this autumn, five ways to get an AI review of a statistical product, what the human reviewer then checks, and a test case to try them on. A statistical product here is a sample size estimation, an analysis plan or a report, and the review covers all of it: the statistical methods, the numbers and the code.</p>
-<p>Each of the five ways has a starter in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>: a prompt to paste, R and Python scripts for the API, a list of services, a skill for the chat, and the review skills for the agent. It is my own exploration, not a DKF service or recommendation.</p>
+<p>The handout to the talk, to read later: what two studies found this autumn, four ways to get an AI review of a statistical product, why building more tools may not pay, the questions for the discussion, and a test case to try the tools on. A statistical product here is a sample size estimation, an analysis plan or a report, and the review covers all of it: the statistical methods, the numbers and the code.</p>
+<p>Each of the four ways has a starter in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>: a prompt to paste and a skill for the chat, a list of services, R and Python scripts for the API, and the review skills for the agent. It is my own exploration, not a DKF service or recommendation.</p>
 <section id="models-find-more-errors-than-reviewers-did" class="level2">
 <h2 data-anchor-id="models-find-more-errors-than-reviewers-did">Models find more errors than reviewers did</h2>
 <p>In the largest experiment of its kind, Schroter and colleagues gave 607 reviewers of a general medical journal three reports of randomised trials with 9 major and 5 minor errors inserted (BMJ 2004; J R Soc Med 2008). This autumn, Brian et al. gave the same three reports to 15 language models, without tools or web access, and scored every review against the same answer key. The human reviewers had found 27% of the major errors. Every model found more: 53% (Haiku 4.5) to 96% (Opus 5.5). On 58 trials published in 2026, with the same kinds of error inserted, the models found 46% to 93%.</p>
@@ -2248,21 +2247,21 @@ vertical-align: -.125em;
 <section id="four-ways-to-an-ai-review" class="level2">
 <h2 data-anchor-id="four-ways-to-an-ai-review">Four ways to an AI review</h2>
 <div class="dg-wrap">
-<svg class="dg" style="margin-top: 56px" viewbox="0 0 1100 250" role="img" aria-label="Four ways to an AI review, in the order of the talk: a chat, where you paste and ask; an API script, the same scripted; a review service, someone else&#39;s script; and, after a dividing line, an agent that runs the code in the repository.">
+<svg class="dg" style="margin-top: 56px" viewbox="0 0 1100 250" role="img" aria-label="Four ways to an AI review, in the order of the talk: a chat, where you paste and ask; a review service, someone else&#39;s pipeline; an API script, your own pipeline; and, after a dividing line, an agent that runs the code in the repository.">
   <rect class="box" x="45" y="30" width="230" height="190" />
   <text class="strong" x="67" y="102" font-size="36">Chat</text>
   <text class="soft" x="67" y="146" font-size="22">paste and ask</text>
   <g class="fragment" data-fragment-index="1">
   <rect class="box" x="295" y="30" width="230" height="190" />
-  <text class="strong" x="317" y="102" font-size="36">API script</text>
-  <text class="soft" x="317" y="146" font-size="22">the same,</text>
-  <text class="soft" x="317" y="174" font-size="22">scripted</text>
+  <text class="strong" x="317" y="102" font-size="36">Service</text>
+  <text class="soft" x="317" y="146" font-size="22">someone else&#39;s</text>
+  <text class="soft" x="317" y="174" font-size="22">pipeline</text>
   </g>
   <g class="fragment" data-fragment-index="2">
   <rect class="box" x="545" y="30" width="230" height="190" />
-  <text class="strong" x="567" y="102" font-size="36">Service</text>
-  <text class="soft" x="567" y="146" font-size="22">someone else&#39;s</text>
-  <text class="soft" x="567" y="174" font-size="22">script</text>
+  <text class="strong" x="567" y="102" font-size="36">API script</text>
+  <text class="soft" x="567" y="146" font-size="22">your own</text>
+  <text class="soft" x="567" y="174" font-size="22">pipeline</text>
   </g>
   <g class="fragment" data-fragment-index="3">
   <line class="arrow cut" x1="810" y1="20" x2="810" y2="230"></line>
@@ -2273,7 +2272,7 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>The chat; the same through the API, as a script; review services, which are someone else’s script; and, after a dividing line, an agent that runs the code in the repository. Skills, your checklist as a folder, come up twice: in the chat, and as the agent’s instructions. Between the services and the agent comes the bitter lesson.</p>
+<p>The chat; review services, which are someone else’s pipeline; your own pipeline, a script through the API; and, after a dividing line, an agent that runs the code in the repository. Skills, your checklist as a folder, come up twice: in the chat, and as the agent’s instructions.</p>
 <section id="paste-it-into-the-chat" class="level3">
 <h3 data-anchor-id="paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</h3>
 <div class="dg-wrap">
@@ -2339,8 +2338,44 @@ vertical-align: -.125em;
 <p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat">tools/1-chat</a>: the prompt, the settings, the skill, the data rules</p>
 </div>
 </section>
-<section id="the-same-as-a-script" class="level3">
-<h3 data-anchor-id="the-same-as-a-script"><span class="num">02</span>The same, as a script</h3>
+<section id="review-services" class="level3">
+<h3 data-anchor-id="review-services"><span class="num">02</span>Review services</h3>
+<div class="dg-wrap">
+<svg class="dg" style="max-height: 230px" viewbox="0 0 760 200" role="img" aria-label="You upload the PDF to a third-party service, which runs a fixed chain of 30 or more model calls with prompts written by the vendor and returns a report.">
+  <defs><marker id="m3" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
+  <path class="doc" d="M0 62 h46 l16 16 v62 h-62 z" /><path class="fold" d="M46 62 v16 h16" />
+  <text class="mono" x="31" y="118" font-size="15" text-anchor="middle">PDF</text>
+  <g class="fragment" data-fragment-index="1">
+  <line class="arrow" x1="72" y1="101" x2="128" y2="101" marker-end="url(#m3)"></line>
+  <text class="mono" x="100" y="86" font-size="14" text-anchor="middle">UPLOAD</text>
+  <rect class="frame-ink" x="135" y="28" width="470" height="148" />
+  <text class="mono" x="150" y="52" font-size="14">THE SERVICE · THIRD PARTY</text>
+  <rect class="model" x="152" y="76" width="82" height="50" />
+  <text x="193" y="108" font-size="19" text-anchor="middle">call 1</text>
+  <line class="arrow" x1="234" y1="101" x2="258" y2="101" marker-end="url(#m3)"></line>
+  <rect class="model" x="264" y="76" width="82" height="50" />
+  <text x="305" y="108" font-size="19" text-anchor="middle">call 2</text>
+  <line class="arrow" x1="346" y1="101" x2="370" y2="101" marker-end="url(#m3)"></line>
+  <text x="398" y="108" font-size="22" text-anchor="middle">…</text>
+  <line class="arrow" x1="424" y1="101" x2="448" y2="101" marker-end="url(#m3)"></line>
+  <rect class="model" x="454" y="76" width="96" height="50" />
+  <text x="502" y="108" font-size="19" text-anchor="middle">call 30+</text>
+  <text class="soft" x="370" y="160" font-size="17" text-anchor="middle">fixed steps and prompts, written by the vendor</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
+  <line class="arrow" x1="605" y1="101" x2="642" y2="101" marker-end="url(#m3)"></line>
+  <rect class="out" x="648" y="71" width="104" height="60" />
+  <text x="700" y="108" font-size="22" text-anchor="middle">report</text>
+  </g>
+</svg>
+</div>
+<p>Others have built whole review pipelines and offer them as services. You upload the PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you get a report. Some are paid (refine.ink, up to $50 a review; reviewer3.com), some free (paperreview.ai from Stanford, openaireview.org from Chicago, Google’s Deep Review for two reviews a week), and two are open source (Joe Francis’s Reviewer 2, coarse.ink). All are built for research papers, and all but the open-source ones mean uploading to a third party. Or you build your own.</p>
+<div class="starter">
+<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-services">tools/2-services</a>: the list, with links and sources</p>
+</div>
+</section>
+<section id="your-own-script" class="level3">
+<h3 data-anchor-id="your-own-script"><span class="num">03</span>Your own script</h3>
 <div class="dg-wrap">
 <svg class="dg" style="max-height: 340px" viewbox="0 0 700 232" role="img" aria-label="A script, in R with ellmer or in Python with the providers&#39; SDK libraries, sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run. With tools in a loop, the same libraries run an agent.">
   <defs><marker id="m2" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
@@ -2377,65 +2412,11 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>The same review sent from a script through the API, for many documents: the same prompt and answer format each time, one table of issues, and a log of every run with model, tokens and cost. In R with ellmer, in Python with the provider’s SDK; paid per use with an API key, under the API’s terms. The price is code that talks to one provider at one point in time.</p>
-<p>Give the model tools, such as “run this R code”, and let the library run the loop: the model asks, your code runs R, the result goes back. That is an agent, built by hand; we come back to it.</p>
+<p>Your own pipeline: a script sends each document through the API with the same prompt and answer format, collects one table of issues, and logs every run with model, tokens and cost. In R with ellmer, in Python with the provider’s SDK; paid per use with an API key, under the API’s terms. The price is code that talks to one provider at one point in time.</p>
+<p>Give the model tools, such as “run this R code”, and let the library run the loop: the model asks, your code runs R, the result goes back. That is an agent, built by hand, which is the last step.</p>
 <div class="starter">
-<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api">tools/2-api</a>: <code>review.R</code> (ellmer) and <code>review.py</code> (Anthropic SDK), the prompt and the answer format</p>
+<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api">tools/3-api</a>: <code>review.R</code> (ellmer) and <code>review.py</code> (Anthropic SDK), the prompt and the answer format</p>
 </div>
-</section>
-<section id="review-services" class="level3">
-<h3 data-anchor-id="review-services"><span class="num">03</span>Review services</h3>
-<div class="dg-wrap">
-<svg class="dg" style="max-height: 230px" viewbox="0 0 760 200" role="img" aria-label="You upload the PDF to a third-party service, which runs a fixed chain of 30 or more model calls with prompts written by the vendor and returns a report.">
-  <defs><marker id="m3" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
-  <path class="doc" d="M0 62 h46 l16 16 v62 h-62 z" /><path class="fold" d="M46 62 v16 h16" />
-  <text class="mono" x="31" y="118" font-size="15" text-anchor="middle">PDF</text>
-  <g class="fragment" data-fragment-index="1">
-  <line class="arrow" x1="72" y1="101" x2="128" y2="101" marker-end="url(#m3)"></line>
-  <text class="mono" x="100" y="86" font-size="14" text-anchor="middle">UPLOAD</text>
-  <rect class="frame-ink" x="135" y="28" width="470" height="148" />
-  <text class="mono" x="150" y="52" font-size="14">THE SERVICE · THIRD PARTY</text>
-  <rect class="model" x="152" y="76" width="82" height="50" />
-  <text x="193" y="108" font-size="19" text-anchor="middle">call 1</text>
-  <line class="arrow" x1="234" y1="101" x2="258" y2="101" marker-end="url(#m3)"></line>
-  <rect class="model" x="264" y="76" width="82" height="50" />
-  <text x="305" y="108" font-size="19" text-anchor="middle">call 2</text>
-  <line class="arrow" x1="346" y1="101" x2="370" y2="101" marker-end="url(#m3)"></line>
-  <text x="398" y="108" font-size="22" text-anchor="middle">…</text>
-  <line class="arrow" x1="424" y1="101" x2="448" y2="101" marker-end="url(#m3)"></line>
-  <rect class="model" x="454" y="76" width="96" height="50" />
-  <text x="502" y="108" font-size="19" text-anchor="middle">call 30+</text>
-  <text class="soft" x="370" y="160" font-size="17" text-anchor="middle">fixed steps and prompts, written by the vendor</text>
-  </g>
-  <g class="fragment" data-fragment-index="2">
-  <line class="arrow" x1="605" y1="101" x2="642" y2="101" marker-end="url(#m3)"></line>
-  <rect class="out" x="648" y="71" width="104" height="60" />
-  <text x="700" y="108" font-size="22" text-anchor="middle">report</text>
-  </g>
-</svg>
-</div>
-<p>A review service is just that: a script like the one above, built by someone else. You upload the PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you get a report. Some are paid (refine.ink, up to $50 a review; reviewer3.com), some free (paperreview.ai from Stanford, openaireview.org from Chicago, Google’s Deep Review for two reviews a week), and two are open source (Joe Francis’s Reviewer 2, coarse.ink). All are built for research papers, and all but the open-source ones mean uploading to a third party.</p>
-<p>Or just ask the model. Our Unjournal working paper, <a href="https://llm-uj-research-eval.netlify.app"><em>Just Ask the Model</em></a>, tests the simplest setup: one prompt to a frontier model, no pipeline. On 30 papers, a one-shot Claude Opus 5.5 report raised 61% of an individual evaluator’s issues by a GPT judge and 35% by a stricter Claude judge; a second evaluator raised 36% and 22% of the same issues. The two judges disagree on the level, and no human has checked the matches yet.</p>
-<div class="starter">
-<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-services">tools/3-services</a>: the list, with links and sources</p>
-</div>
-</section>
-<section id="the-bitter-lesson" class="level3">
-<h3 data-anchor-id="the-bitter-lesson">The bitter lesson</h3>
-<blockquote class="blockquote">
-<p>… general methods that leverage computation are ultimately the most effective, and by a large margin.</p>
-</blockquote>
-<div class="attribution">
-<p>Rich Sutton, The Bitter Lesson, 2019</p>
-</div>
-<p>Hand-built machinery keeps losing to general methods that use more computation, and review tools are no exception. On the day Google launched Deep Review, Rex Douglass wrote that for about three years he had thought about building such a tool at least twice a day, and didn’t, because “one of the big three does it and it’s over”. Later that month Joe Francis retired the hosted Reviewer 2, which he had decided was obsolete; he now begins his reviews with skills. My own prototype went the same way, and my skills will too.</p>
-<p>What carries over to every new model:</p>
-<ul>
-<li>test cases with known answers, to see what a tool finds and what it misses;</li>
-<li>standards for what a review must check;</li>
-<li>rules for what data may go where.</li>
-</ul>
-<p>A shared set of test cases, written by different people and kept out of every review, would let anyone measure any tool, and every new model; the demo below is a first one. And the general method is already here: an agent.</p>
 </section>
 <section id="an-agent-in-the-repository" class="level3">
 <h3 data-anchor-id="an-agent-in-the-repository"><span class="num">04</span>An agent in the repository</h3>
@@ -2489,8 +2470,8 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>The general method, with the skills as its instructions. Claude Code on the web works in an isolated cloud VM, with a copy of the product’s repository and the review skills. You type one sentence. The model decides the next step, its tools read files, run R and write logs, and the result goes back, until it is done. So it does what no reader can: it runs the code, recomputes the numbers, re-runs the simulations, and has agents that did not write a finding challenge it. The output is a draft of the consistency-review form with a log behind every number, pushed to a branch.</p>
-<p>It never touches your computer, and it runs on your Claude plan, without API credits; what it reads still goes to the provider. Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, goes the same way: your own AI assistant reruns a replication package on your computer and certifies that the code produces the results to be published. The same agent can be driven from code with the Agent SDK, for evals over many test cases, batch runs or guardrails in code; it runs on an API key, billed per token, and one review does not need it.</p>
+<p>The last step, with the skills as its instructions. Claude Code on the web works in an isolated cloud VM, with a copy of the product’s repository and the review skills. You type one sentence. The model decides the next step, its tools read files, run R and write logs, and the result goes back, until it is done. So it does what no reader can: it runs the code, recomputes the numbers, re-runs the simulations, and has agents that did not write a finding challenge it. The output is a draft of the consistency-review form with a log behind every number, pushed to a branch.</p>
+<p>It never touches your computer, and it runs on your Claude plan, without API credits; what it reads still goes to the provider. The same agent can be driven from code with the Agent SDK, for evals over many test cases, batch runs or guardrails in code; it runs on an API key, billed per token, and one review does not need it.</p>
 <div class="starter">
 <p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent">tools/4-agent</a>: the set-up, the one sentence, the data modes; the skills are in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, version 0.3.1</p>
 </div>
@@ -2524,18 +2505,18 @@ vertical-align: -.125em;
 <td style="text-align: left;">subscription</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">API script</td>
-<td style="text-align: left;">what you send</td>
-<td style="text-align: left;">no</td>
-<td style="text-align: left;">log</td>
-<td style="text-align: left;">per use</td>
-</tr>
-<tr class="odd">
 <td style="text-align: left;">Review service</td>
 <td style="text-align: left;">the PDF</td>
 <td style="text-align: left;">no</td>
 <td style="text-align: left;">report</td>
 <td style="text-align: left;">paid, free or open source</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">API script</td>
+<td style="text-align: left;">what you send</td>
+<td style="text-align: left;">no</td>
+<td style="text-align: left;">log</td>
+<td style="text-align: left;">per use</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Agent + skills</td>
@@ -2549,40 +2530,34 @@ vertical-align: -.125em;
 </div>
 </section>
 </section>
-<section id="what-the-human-reviewer-checks" class="level2">
-<h2 data-anchor-id="what-the-human-reviewer-checks">What the human reviewer checks</h2>
-<div class="dg-wrap">
-<svg class="dg" style="max-height: 360px" viewbox="0 0 1000 310" role="img" aria-label="Three layers. The AI checks every line of code, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section and preparation step does what it says, and judges the approach and the interpretation.">
-  <defs><marker id="m6" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
-  <rect class="tool" x="100" y="226" width="800" height="70" />
-  <text x="500" y="268" font-size="20" text-anchor="middle">every line of code, every number, every re-run</text>
-  <text class="mono" x="80" y="266" font-size="14" text-anchor="end">AI</text>
-  <g class="fragment" data-fragment-index="1">
-  <path class="arrow" d="M 902 261 C 968 261, 968 151, 806 151" marker-end="url(#m6)" />
-  <text class="mono" x="852" y="215" font-size="12" text-anchor="middle">TESTED ENOUGH?</text>
-  <rect class="model" x="200" y="110" width="600" height="82" />
-  <text x="500" y="145" font-size="20" text-anchor="middle">each chunk, section, preparation step:</text>
-  <text class="strong" x="500" y="174" font-size="20" text-anchor="middle">does it do what it says?</text>
-  <text class="mono" x="180" y="156" font-size="14" text-anchor="end">HUMAN</text>
-  </g>
-  <g class="fragment" data-fragment-index="2">
-  <rect class="model" x="300" y="14" width="400" height="66" />
-  <text class="strong" x="500" y="55" font-size="22" text-anchor="middle">approach and interpretation</text>
-  <text class="mono" x="280" y="52" font-size="14" text-anchor="end">HUMAN</text>
-  </g>
-</svg>
-</div>
-<p>With an agent doing the line work, the review itself changes. In a result-oriented review the AI goes through every line, every number and every re-run, and keeps its tests and logs. The human does not read every line of code. They check that the AI tested enough; that each chunk, section, preparation step and analysis does what it says; and, at the top, that the approach is right and the interpretation holds.</p>
-<p>Even the author of the skills mine build on says so:</p>
+<section id="the-bitter-lesson" class="level2">
+<h2 data-anchor-id="the-bitter-lesson">The bitter lesson</h2>
 <blockquote class="blockquote">
-<p>When using them, you should remember that the results have been produced by robots and should be verified by humans.</p>
+<p>… general methods that leverage computation are ultimately the most effective, and by a large margin.</p>
 </blockquote>
 <div class="attribution">
-<p>Joe Francis on X, 26 October 2026</p>
+<p>Rich Sutton, The Bitter Lesson, 2019</p>
 </div>
-<div class="punchline">
-<p>Review results, not lines.</p>
-</div>
+<p>Hand-built machinery keeps losing to general methods that use more computation, and review tools are no exception. On the day Google launched Deep Review, Rex Douglass wrote that for about three years he had thought about building such a tool at least twice a day, and didn’t, because “one of the big three does it and it’s over”. Later that month Joe Francis retired the hosted Reviewer 2, which he had decided was obsolete; he now begins his reviews with skills. My own prototype went the same way, and my skills will too.</p>
+<p>What carries over to every new model:</p>
+<ul>
+<li>test cases with known answers, to see what a tool finds and what it misses;</li>
+<li>standards for what a review must check;</li>
+<li>rules for what data may go where.</li>
+</ul>
+<p>A shared set of test cases, written by different people and kept out of every review, would let anyone measure any tool, and every new model; the demo below is a first one.</p>
+</section>
+<section id="questions-to-discuss" class="level2">
+<h2 data-anchor-id="questions-to-discuss">Questions to discuss</h2>
+<p>The preprint’s last author won’t review without AI any more, and calls human-only review dangerous for clinical trials. And AI-only review?</p>
+<ol type="1">
+<li><strong>What would you need to see before you sign a product an AI reviewed?</strong></li>
+<li><strong>Review results, not lines?</strong> In a result-oriented review the AI goes through every line, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section, preparation step and analysis does what it says, and that the approach and the interpretation hold. Even the author of the skills mine build on says: “When using them, you should remember that the results have been produced by robots and should be verified by humans” (Joe Francis on X, 26 October 2026).</li>
+<li><strong>Which checks would you never hand over?</strong> The estimand, the clinical relevance, the design?</li>
+<li><strong>How should we write our products, if an AI reads them first?</strong> The estimand in full, every assumption in the text and not only in the code, every number traceable to the code that makes it?</li>
+<li><strong>A replication certificate with every product?</strong> Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard (a beta), has your own AI assistant, such as Claude Code or Codex, rerun a replication package on your computer; the certificate adds “evidence that rerunning the code produces the results to be published.”</li>
+<li><strong>How will junior statisticians learn to review,</strong> if the AI does the line work?</li>
+</ol>
 </section>
 <section id="the-demo" class="level2">
 <h2 data-anchor-id="the-demo">The demo</h2>
@@ -2709,21 +2684,12 @@ vertical-align: -.125em;
 <li>Check your institution’s rules first.</li>
 </ul>
 </section>
-<section id="questions-to-discuss" class="level2">
-<h2 data-anchor-id="questions-to-discuss">Questions to discuss</h2>
-<ol type="1">
-<li>What would you need to see before you sign a product an AI reviewed?</li>
-<li>Which checks would you never hand over: the estimand, clinical relevance, the design?</li>
-<li>How will junior statisticians learn to review, if the AI does the line work?</li>
-</ol>
-</section>
 <section id="links-and-sources" class="level2">
 <h2 data-anchor-id="links-and-sources">Links and sources</h2>
 <ul>
 <li>Brian, Pereira Hernández, Yin, Koury and Rust, <em>Large language models detect methodological errors that human peer review misses in clinical trials</em>, medRxiv, 28 October 2026: <a href="https://doi.org/10.64898/2026.10.25.26366455">doi.org/10.64898/2026.10.25.26366455</a></li>
 <li>King and Worthington, <em>AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices</em>, working paper, version of 28 October 2026: <a href="https://gking.harvard.edu/peerless/">gking.harvard.edu/peerless</a></li>
 <li>Rich Sutton, <em>The Bitter Lesson</em>, 2019: <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">incompleteideas.net/IncIdeas/BitterLesson.html</a></li>
-<li>Klotzbücher, Reinstein, Pacchiardi and Zhang, <em>Just Ask the Model: One-Shot LLM Research Evaluation and Structured Expert Review</em>, Unjournal working paper, 2026: <a href="https://llm-uj-research-eval.netlify.app">llm-uj-research-eval.netlify.app</a></li>
 <li>Services: <a href="https://refine.ink">refine.ink</a>, <a href="https://reviewer3.com">reviewer3.com</a>, <a href="https://paperreview.ai">paperreview.ai</a>, <a href="https://openaireview.org">openaireview.org</a>, <a href="https://coarse.ink">coarse.ink</a>, Google’s <a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a></li>
 <li>Joe Francis: <a href="https://github.com/isitcredible/reviewer2">Reviewer 2</a> and its paper <em>Yell at It</em> (<code>paper/yellatit.pdf</code> there); <a href="https://github.com/isitcredible/research_skills">research_skills</a></li>
 <li>Certify, replication certificates (King, Xu and Yang, Harvard): <a href="https://certify.iq.harvard.edu/">certify.iq.harvard.edu</a></li>

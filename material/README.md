@@ -162,9 +162,9 @@ model find the issues experts find?":
 > when any criticism of the same result counts.
 
 Its introduction calls the design "the simplest possible setup—a single prompt to a
-frontier model, with no bespoke pipeline". The kit used the earlier 80% until
-19 November 2026; it now uses the 30-paper figures, on "Review services" (notes), in
-the handout and in `tools/3-services`.
+frontier model, with no bespoke pipeline". The talk cited the earlier 80% until
+19 November 2026 and has not cited the working paper since; the quote stays here
+because the archived deck still carries the superseded figure.
 
 ## Where it is used in the talk
 
@@ -178,17 +178,15 @@ In the deck (`slides/index.qmd`):
   `slides/assets/shot-*.png`; where a card leaves text out, a dashed rule marks the gap:
   - intro slide, card on the last click: `shot-king-worthington.png`, the whole of
     `douglass-2026-10-23-king-worthington-tweet.png`;
-  - "The bitter lesson", between the script and the agent, two cards for one click
-    each: `shot-deep-review.png`, the whole of
+  - "The bitter lesson", after the agent, two cards for one click each: `shot-deep-review.png`, the whole of
     `douglass-2026-10-15-deep-review-tweet.png` ("Review services" also lists Deep
     Review); then `shot-reviewer2-retired.png`, from `francis-2026-10-26-tweet.jpeg`:
     the post retiring Reviewer 2, then a reply's question and his answer ("Yes, I
     decided it was obsolete");
-  - "Result-oriented review", card for one click: `shot-francis-verify.png`, from
-    `francis-2026-10-26-skills-tweet.png`: the opening, the "verified by humans"
-    paragraph and the closing paragraph;
   - "And in five years?": `shot-rust.png`, the text of `rust-2026-10-28-tweet.png`
-    without its figure.
+    without its figure, until the click that brings up the questions.
+- The discussion slide's notes quote Francis's "verified by humans" sentence (from
+  `francis-2026-10-26-skills-tweet.png`) as text, and describe Certify.
 
 In the handout (`slides/handout.qmd`) and the tool READMEs (`tools/`), as text, not
 screenshots:
