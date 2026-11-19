@@ -1,36 +1,37 @@
 ```{=html}
-<svg class="dg" viewBox="0 0 1100 410" role="img" aria-label="Five steps, rising from left to right: chat, API, review services, skill, agent. From reading what you give it to running the code in the repository.">
-  <defs><marker id="m0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
-  <rect class="box" x="20" y="210" width="196" height="130"/>
-  <text class="mono" x="36" y="242" font-size="16">01</text>
-  <text class="strong" x="36" y="276" font-size="27">Chat</text>
-  <text class="soft" x="36" y="308" font-size="18">paste and ask</text>
+<svg class="dg" viewBox="0 0 1100 420" role="img" aria-label="Five ways to an AI review, in a grid of two columns and three rows. Columns: in the app, one product at a time; or a pipeline, every product the same. First row, the document only: 01 chat, paste and ask; 02 review service, upload and get a report. Second row, plus your checklist: 03 skill, in the chat; 04 script, through the API. Third row, plus running the code: 05 agent, in the repository; and the Agent SDK, the agent driven from code, in the appendix.">
+  <text class="mono" x="220" y="24" font-size="16">IN THE APP, ONE PRODUCT AT A TIME</text>
+  <text class="mono" x="660" y="24" font-size="16">A PIPELINE, EVERY PRODUCT THE SAME</text>
+  <text class="mono" x="198" y="106" font-size="15" text-anchor="end">THE DOCUMENT</text>
+  <rect class="box" x="220" y="44" width="420" height="112"/>
+  <text class="mono" x="238" y="76" font-size="16">01</text>
+  <text class="strong" x="238" y="114" font-size="30">Chat</text>
+  <text class="soft" x="238" y="142" font-size="19">paste and ask</text>
+  <rect class="box" x="660" y="44" width="420" height="112"/>
+  <text class="mono" x="678" y="76" font-size="16">02</text>
+  <text class="strong" x="678" y="114" font-size="30">Review service</text>
+  <text class="soft" x="678" y="142" font-size="19">upload, get a report</text>
   <g class="fragment" data-fragment-index="1">
-  <rect class="box" x="230" y="175" width="196" height="165"/>
-  <text class="mono" x="246" y="207" font-size="16">02</text>
-  <text class="strong" x="246" y="241" font-size="27">API</text>
-  <text class="soft" x="246" y="273" font-size="18">same, scripted</text>
+  <text class="mono" x="198" y="234" font-size="15" text-anchor="end">+ YOUR CHECKLIST</text>
+  <rect class="box" x="220" y="172" width="420" height="112"/>
+  <text class="mono" x="238" y="204" font-size="16">03</text>
+  <text class="strong" x="238" y="242" font-size="30">Skill</text>
+  <text class="soft" x="238" y="270" font-size="19">in the chat</text>
+  <rect class="box" x="660" y="172" width="420" height="112"/>
+  <text class="mono" x="678" y="204" font-size="16">04</text>
+  <text class="strong" x="678" y="242" font-size="30">Script</text>
+  <text class="soft" x="678" y="270" font-size="19">through the API: ellmer, SDKs</text>
   </g>
   <g class="fragment" data-fragment-index="2">
-  <rect class="box" x="440" y="140" width="196" height="200"/>
-  <text class="mono" x="456" y="172" font-size="16">03</text>
-  <text class="strong" x="456" y="206" font-size="27">Services</text>
-  <text class="soft" x="456" y="238" font-size="18">many, paid or open</text>
+  <text class="mono" x="198" y="362" font-size="15" text-anchor="end">+ RUNS THE CODE</text>
+  <rect class="model" x="220" y="300" width="420" height="112"/>
+  <text class="mono" x="238" y="332" font-size="16">05</text>
+  <text class="strong" x="238" y="370" font-size="30">Agent</text>
+  <text class="soft" x="238" y="398" font-size="19">in the repository</text>
+  <rect class="ghost" x="660" y="300" width="420" height="112"/>
+  <text class="mono" x="678" y="332" font-size="16">APPENDIX</text>
+  <text class="strong soft" x="678" y="370" font-size="30">Agent SDK</text>
+  <text class="soft" x="678" y="398" font-size="19">the agent, driven from code</text>
   </g>
-  <g class="fragment" data-fragment-index="3">
-  <rect class="box" x="650" y="105" width="196" height="235"/>
-  <text class="mono" x="666" y="137" font-size="16">04</text>
-  <text class="strong" x="666" y="171" font-size="27">Skill</text>
-  <text class="soft" x="666" y="203" font-size="18">loads a checklist</text>
-  </g>
-  <g class="fragment" data-fragment-index="4">
-  <rect class="model" x="860" y="70" width="196" height="270"/>
-  <text class="mono" x="876" y="102" font-size="16">05</text>
-  <text class="strong" x="876" y="136" font-size="27">Agent</text>
-  <text class="soft" x="876" y="168" font-size="18">runs the code</text>
-  </g>
-  <line class="arrow" x1="20" y1="368" x2="1078" y2="368" marker-end="url(#m0)"/>
-  <text class="mono" x="20" y="400" font-size="15">READS WHAT YOU GIVE IT</text>
-  <text class="mono" x="1080" y="400" font-size="15" text-anchor="end">RUNS THE CODE IN THE REPOSITORY</text>
 </svg>
 ```

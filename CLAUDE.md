@@ -10,7 +10,7 @@ page.
 - Only `demo/sse/` is reviewable. Never let an agent or a chat review the demo from
   inside this repository (the `dkf-review` skill, a chat, Claude Code), and never copy
   `demo/answer-key.*`, `slides/`, `archive/` or this file into a review job or a prompt.
-  The API starters in `tools/2-api/` send only the files named on their command line,
+  The API starters in `tools/4-api/` send only the files named on their command line,
   so they may run on `demo/sse/` from here.
 - Review the demo with the agent from a clone of `stats_review`, with `new_job.py
   --product <this repo>/demo/sse/`.
@@ -36,7 +36,7 @@ page.
 - The deck and the handout include the same diagrams from `slides/diagrams/`; change
   one there, and re-render both.
 - The kit links to the review skills at a fixed version, tag `skills-v0.3.1` in
-  `stats_review`. For a newer version, update the links in `tools/4-skill`,
+  `stats_review`. For a newer version, update the links in `tools/3-skill`,
   `tools/5-agent`, the handout and the deck's Links slide.
 - The two API starters send the same prompt, answer format, model and effort, and write
   the same files; keep them in step, and check both with `--dry-run`, which sends

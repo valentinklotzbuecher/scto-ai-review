@@ -74,9 +74,11 @@ So the question is less whether to use these tools than how.
 {{< include diagrams/_five-ways.qmd >}}
 :::
 
-From a model that reads what you give it to an agent that runs the code. Each step adds
-one thing: a script makes the review repeatable, a service adds a pipeline someone else
-built, a skill brings the checklist along, and an agent runs the code.
+Two questions place every tool. What do you add: only the document, your own checklist,
+or running the code? And do you run it by hand in an app, one product at a time, or as
+a pipeline that treats every product the same? The left column runs on a subscription;
+the right one is paid per use or per review, apart from the free services. The talk goes
+row by row, and stops for the bitter lesson before the agent.
 
 ### [01]{.num}Paste it into the chat
 
@@ -94,125 +96,64 @@ answer twice, or any code run.
 Starter: [tools/1-chat](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat): the prompt, the settings, the data rules
 :::
 
-### [02]{.num}The same, as a script
-
-::: dg-wrap
-{{< include diagrams/_api.qmd >}}
-:::
-
-The same review sent from a script through the API, for many documents: the same
-prompt and answer format each time, one table of issues, and a log of every run with
-model, tokens and cost. In R with ellmer, in Python with the provider's SDK; paid per
-use with an API key, under the API's terms. In the Unjournal project, a model's reviews
-of 12 research papers covered 80% of the issues the human evaluators agreed on (50–100%
-per paper). The price is code that talks to one provider at one point in time.
-
-Give the model tools, such as "run this R code", and let the library run the loop: the
-model asks, your code runs R, the result goes back. That is an agent, built by hand.
-
-::: starter
-Starter: [tools/2-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.R` (ellmer) and `review.py` (Anthropic SDK), the prompt and the answer format
-:::
-
-### [03]{.num}Review services
+### [02]{.num}Review services
 
 ::: dg-wrap
 {{< include diagrams/_services.qmd >}}
 :::
 
-You upload the PDF, a fixed chain of model calls with prompts the vendor wrote runs
-behind it, and you get a report. Some are paid (refine.ink, up to $50 a review;
-reviewer3.com), some free (paperreview.ai from Stanford, openaireview.org from Chicago,
-Google's Deep Review for two reviews a week), and two are open source (Joe Francis's
-Reviewer 2, coarse.ink). All are built for research papers, and all but the open-source
-ones mean uploading to a third party. In October, Joe Francis retired the hosted
-Reviewer 2, which he had decided was obsolete, and released the skills he now begins
-his reviews with.
+The chat's pipeline twin. You upload the PDF, a fixed chain of model calls with prompts
+the vendor wrote runs behind it, and you get a report. Some are paid (refine.ink, up to
+$50 a review; reviewer3.com), some free (paperreview.ai from Stanford, openaireview.org
+from Chicago, Google's Deep Review for two reviews a week), and two are open source (Joe
+Francis's Reviewer 2, coarse.ink). All are built for research papers, all but the
+open-source ones mean uploading to a third party, and what they check is the vendor's
+choice.
 
 ::: starter
-Starter: [tools/3-services](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-services): the list, with links and sources
+Starter: [tools/2-services](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-services): the list, with links and sources
 :::
 
-### [04]{.num}A skill
+### [03]{.num}A skill
 
 ::: dg-wrap
 {{< include diagrams/_skill.qmd >}}
 :::
 
-A skill is a folder of instructions, reference files and small scripts. The model loads
-it when a task matches, so the checklist comes along and no prompt is pasted.
-`dkf-document-check` is the first stage of my review skills on its own, for Claude chat:
-it names the design and the estimand attribute by attribute, recomputes every printed
-number with scripts and logs each check. It runs no product code.
+Your own checklist, first in the chat. A skill is a folder of instructions, reference
+files and small scripts. The model loads it when a task matches, so the checklist comes
+along and no prompt is pasted. `dkf-document-check` is the first stage of my review
+skills on its own, for Claude chat: it names the design and the estimand attribute by
+attribute, recomputes every printed number with scripts and logs each check. It runs no
+product code. My skills are adapted from research_skills, released by Joe Francis, who
+built Reviewer 2.
 
 ::: starter
-Starter: [tools/4-skill](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-skill): the skill and how to upload it
+Starter: [tools/3-skill](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-skill): the skill and how to upload it
 :::
 
-### [05]{.num}An agent in the repository
+### [04]{.num}The checklist, as a script
 
 ::: dg-wrap
-{{< include diagrams/_agent.qmd >}}
+{{< include diagrams/_api.qmd >}}
 :::
 
-Claude Code on the web works in an isolated cloud VM, with a copy of the product's
-repository and the review skills. You type one sentence. The model decides the next
-step, its tools read files, run R and write logs, and the result goes back, until it is
-done. So it does what no reader can: it runs the code, recomputes the numbers, re-runs
-the simulations, and has agents that did not write a finding challenge it. The output
-is a draft of the consistency-review form with a log behind every number, pushed to a
-branch.
+The same kind of checklist as a pipeline: a script sends each document through the API
+with the same prompt and answer format, collects one table of issues, and logs every run
+with model, tokens and cost. In R with ellmer, in Python with the provider's SDK; paid
+per use with an API key, under the API's terms. In the Unjournal project, a model's
+reviews of 12 research papers covered 80% of the issues the human evaluators agreed on
+(50–100% per paper). The price is code that talks to one provider at one point in time.
 
-It never touches your computer, and it runs on your Claude plan, without API credits;
-what it reads still goes to the provider. Certify, from Gary King, Yiqing Xu and Leo
-Yang at Harvard, goes the same way: your own AI assistant reruns a replication package
-on your computer and certifies that the code produces the results to be published. The
-same agent can be driven from code with the Agent SDK, for evals over many test cases,
-batch runs or guardrails in code; it runs on an API key, billed per token, and one review
-does not need it.
+Give the model tools, such as "run this R code", and let the library run the loop: the
+model asks, your code runs R, the result goes back. That is an agent, built by hand.
+Should we build that loop ourselves?
 
 ::: starter
-Starter: [tools/5-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/5-agent): the set-up, the one sentence, the data modes; the skills are in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), version 0.3.1
+Starter: [tools/4-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-api): `review.R` (ellmer) and `review.py` (Anthropic SDK), the prompt and the answer format
 :::
 
-### At a glance
-
-::: glance
-| | Sees | Runs the code | Record | Pays with |
-|:--|:--|:--|:--|:--|
-| Chat | what you paste | no | none | subscription |
-| API script | what you send | no | log | per use |
-| Review service | the PDF | no | report | paid, free or open source |
-| Skill in chat | what you attach | its own arithmetic | check log | subscription |
-| Agent + skills | the repository | yes | every check | subscription |
-:::
-
-## What the human reviewer checks
-
-::: dg-wrap
-{{< include diagrams/_result.qmd >}}
-:::
-
-If the tools keep changing, what stays is the review itself, and it changes too. In a
-result-oriented review the AI goes through every line, every number and every re-run,
-and keeps its tests and logs. The human does not read every line of code. They check
-that the AI tested enough; that each chunk, section, preparation step and analysis does
-what it says; and, at the top, that the approach is right and the interpretation holds.
-
-Even the author of the skills mine build on says so:
-
-> When using them, you should remember that the results have been produced by robots
-> and should be verified by humans.
-
-::: attribution
-Joe Francis on X, 26 October 2026
-:::
-
-::: punchline
-Build checklists and test cases, not tools. Review results, not lines.
-:::
-
-## What carries over
+### The bitter lesson
 
 > … general methods that leverage computation are ultimately the most effective, and by
 > a large margin.
@@ -224,8 +165,14 @@ Rich Sutton, The Bitter Lesson, 2019
 Hand-built machinery keeps losing to general methods that use more computation, and
 review tools are no exception. On the day Google launched Deep Review, Rex Douglass
 wrote that for about three years he had thought about building such a tool at least
-twice a day, and didn't, because "one of the big three does it and it's over". Reviewer 2 went obsolete;
-my own prototype did too, and my skills will.
+twice a day, and didn't, because "one of the big three does it and it's over". Later
+that month Joe Francis retired the hosted Reviewer 2, which he had decided was
+obsolete; he now begins his reviews with skills. My own prototype went the same way,
+and my skills will too.
+
+::: punchline
+Build checklists and test cases, not tools.
+:::
 
 What carries over to every new model:
 
@@ -234,7 +181,71 @@ What carries over to every new model:
 - rules for what data may go where.
 
 A shared set of test cases, written by different people and kept out of every review,
-would let anyone measure any tool, and every new model. The demo is a first one.
+would let anyone measure any tool, and every new model; the demo below is a first one.
+And the general method is already here: an agent.
+
+### [05]{.num}An agent in the repository
+
+::: dg-wrap
+{{< include diagrams/_agent.qmd >}}
+:::
+
+The general method, with your checklist. Claude Code on the web works in an isolated
+cloud VM, with a copy of the product's repository and the review skills. You type one
+sentence. The model decides the next step, its tools read files, run R and write logs,
+and the result goes back, until it is done. So it does what no reader can: it runs the
+code, recomputes the numbers, re-runs the simulations, and has agents that did not
+write a finding challenge it. The output is a draft of the consistency-review form with
+a log behind every number, pushed to a branch.
+
+It never touches your computer, and it runs on your Claude plan, without API credits;
+what it reads still goes to the provider. Certify, from Gary King, Yiqing Xu and Leo
+Yang at Harvard, goes the same way: your own AI assistant reruns a replication package
+on your computer and certifies that the code produces the results to be published. The
+same agent can be driven from code with the Agent SDK, the last cell of the grid, for
+evals over many test cases, batch runs or guardrails in code; it runs on an API key,
+billed per token, and one review does not need it.
+
+::: starter
+Starter: [tools/5-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/5-agent): the set-up, the one sentence, the data modes; the skills are in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), version 0.3.1
+:::
+
+### At a glance
+
+::: glance
+| | Sees | Runs the code | Record | Pays with |
+|:--|:--|:--|:--|:--|
+| Chat | what you paste | no | none | subscription |
+| Review service | the PDF | no | report | paid, free or open source |
+| Skill in chat | what you attach | its own arithmetic | check log | subscription |
+| API script | what you send | no | log | per use |
+| Agent + skills | the repository | yes | every check | subscription |
+:::
+
+## What the human reviewer checks
+
+::: dg-wrap
+{{< include diagrams/_result.qmd >}}
+:::
+
+With an agent doing the line work, the review itself changes. In a result-oriented
+review the AI goes through every line, every number and every re-run, and keeps its
+tests and logs. The human does not read every line of code. They check that the AI
+tested enough; that each chunk, section, preparation step and analysis does what it
+says; and, at the top, that the approach is right and the interpretation holds.
+
+Even the author of the skills mine build on says so:
+
+> When using them, you should remember that the results have been produced by robots
+> and should be verified by humans.
+
+::: attribution
+Joe Francis on X, 26 October 2026
+:::
+
+::: punchline
+Review results, not lines.
+:::
 
 ## The demo
 

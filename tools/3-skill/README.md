@@ -1,4 +1,4 @@
-# 4 · A skill
+# 3 · A skill
 
 A skill is a folder: a `SKILL.md` with instructions, reference files and small scripts.
 The model reads each skill's name and description, and loads the rest when a task

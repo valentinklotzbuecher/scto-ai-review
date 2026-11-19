@@ -23,9 +23,9 @@ Give the tool only the two files in `sse/`. A chat or an agent opened on this ki
 read the answer key, and then finds the issues without doing the review.
 
 - Chat, skill: attach the two files ([`../tools/1-chat`](../tools/1-chat/README.md),
-  [`../tools/4-skill`](../tools/4-skill/README.md)).
+  [`../tools/3-skill`](../tools/3-skill/README.md)).
 - API script: `review.R` or `review.py` send only the files named on the command line
-  ([`../tools/2-api`](../tools/2-api/README.md)).
+  ([`../tools/4-api`](../tools/4-api/README.md)).
 - Agent: from a clone of stats_review, never from this kit
   ([`../tools/5-agent`](../tools/5-agent/README.md)):
 

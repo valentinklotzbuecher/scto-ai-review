@@ -154,12 +154,12 @@ In the deck (`slides/index.qmd`):
   `slides/assets/shot-*.png`; where a card leaves text out, a dashed rule marks the gap:
   - intro slide, card on the last click: `shot-king-worthington.png`, the whole of
     `douglass-2026-10-23-king-worthington-tweet.png`;
-  - "Review services", card on the last click: `shot-reviewer2-retired.png`, from
-    `francis-2026-10-26-tweet.jpeg`: the post retiring Reviewer 2, then a reply's
-    question and his answer ("Yes, I decided it was obsolete");
-  - "The bitter lesson", card for one click: `shot-deep-review.png`, the whole of
-    `douglass-2026-10-15-deep-review-tweet.png`; "Review services" also lists Deep
-    Review;
+  - "The bitter lesson", between the script and the agent, two cards for one click
+    each: `shot-deep-review.png`, the whole of
+    `douglass-2026-10-15-deep-review-tweet.png` ("Review services" also lists Deep
+    Review); then `shot-reviewer2-retired.png`, from `francis-2026-10-26-tweet.jpeg`:
+    the post retiring Reviewer 2, then a reply's question and his answer ("Yes, I
+    decided it was obsolete");
   - "Result-oriented review", card for one click: `shot-francis-verify.png`, from
     `francis-2026-10-26-skills-tweet.png`: the opening, the "verified by humans"
     paragraph and the closing paragraph;

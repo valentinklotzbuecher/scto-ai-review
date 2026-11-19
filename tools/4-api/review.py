@@ -6,8 +6,8 @@ log of every run with tokens and cost (runs.csv).
 
     pip install anthropic
     export ANTHROPIC_API_KEY=...     # an API key: billed per use, not your subscription
-    python tools/2-api/review.py demo/sse/DEMO-TKA_SSE.pdf
-    python tools/2-api/review.py --dry-run demo/sse/DEMO-TKA_SSE.pdf   # shows the request, sends nothing
+    python tools/4-api/review.py demo/sse/DEMO-TKA_SSE.pdf
+    python tools/4-api/review.py --dry-run demo/sse/DEMO-TKA_SSE.pdf   # shows the request, sends nothing
 
 Each PDF is reviewed together with the Quarto source of the same name beside it, if
 there is one. Only send documents your data rules allow; never patient-level data.

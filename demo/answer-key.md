@@ -3,7 +3,7 @@
 **Never copy this file, `answer-key.R` or anything else outside `demo/sse/` into a review
 job, a chat or a prompt, and never let an agent or a chat review the demo from inside this
 repository.** A reviewer that can read this file can find the planted issues without
-doing the review. (The API starters in `tools/2-api/` send only the files named on their
+doing the review. (The API starters in `tools/4-api/` send only the files named on their
 command line.)
 
 The demo SSE (`demo/sse/DEMO-TKA_SSE.qmd` and its rendered PDF) contains six planted

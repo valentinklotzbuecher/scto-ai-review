@@ -239,6 +239,7 @@ $code-color: $ink;
 .reveal svg.dg .frame-ink { fill: none; stroke: $hairline; stroke-width: 1.2; }
 .reveal svg.dg .arrow { fill: none; stroke: $ink; stroke-width: 1.8; }
 .reveal svg.dg .arrow.cut { stroke: $hairline; stroke-dasharray: 4 5; }
+.reveal svg.dg .ghost { fill: none; stroke: $hairline; stroke-width: 1.4; stroke-dasharray: 7 6; }
 
 /* Services: a ruled grid of names with a mono tag each */
 .reveal .svc {
