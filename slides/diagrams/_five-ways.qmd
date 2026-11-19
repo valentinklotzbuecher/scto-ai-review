@@ -1,0 +1,36 @@
+```{=html}
+<svg class="dg" viewBox="0 0 1100 410" role="img" aria-label="Five steps, rising from left to right: chat, API, review services, skill, agent. From reading what you give it to running the code in the repository.">
+  <defs><marker id="m0" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
+  <rect class="box" x="20" y="210" width="196" height="130"/>
+  <text class="mono" x="36" y="242" font-size="16">01</text>
+  <text class="strong" x="36" y="276" font-size="27">Chat</text>
+  <text class="soft" x="36" y="308" font-size="18">paste and ask</text>
+  <g class="fragment" data-fragment-index="1">
+  <rect class="box" x="230" y="175" width="196" height="165"/>
+  <text class="mono" x="246" y="207" font-size="16">02</text>
+  <text class="strong" x="246" y="241" font-size="27">API</text>
+  <text class="soft" x="246" y="273" font-size="18">same, scripted</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
+  <rect class="box" x="440" y="140" width="196" height="200"/>
+  <text class="mono" x="456" y="172" font-size="16">03</text>
+  <text class="strong" x="456" y="206" font-size="27">Services</text>
+  <text class="soft" x="456" y="238" font-size="18">many, paid or open</text>
+  </g>
+  <g class="fragment" data-fragment-index="3">
+  <rect class="box" x="650" y="105" width="196" height="235"/>
+  <text class="mono" x="666" y="137" font-size="16">04</text>
+  <text class="strong" x="666" y="171" font-size="27">Skill</text>
+  <text class="soft" x="666" y="203" font-size="18">loads a checklist</text>
+  </g>
+  <g class="fragment" data-fragment-index="4">
+  <rect class="model" x="860" y="70" width="196" height="270"/>
+  <text class="mono" x="876" y="102" font-size="16">05</text>
+  <text class="strong" x="876" y="136" font-size="27">Agent</text>
+  <text class="soft" x="876" y="168" font-size="18">runs the code</text>
+  </g>
+  <line class="arrow" x1="20" y1="368" x2="1078" y2="368" marker-end="url(#m0)"/>
+  <text class="mono" x="20" y="400" font-size="15">READS WHAT YOU GIVE IT</text>
+  <text class="mono" x="1080" y="400" font-size="15" text-anchor="end">RUNS THE CODE IN THE REPOSITORY</text>
+</svg>
+```

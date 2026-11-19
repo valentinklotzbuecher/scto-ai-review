@@ -1,0 +1,29 @@
+```{=html}
+<svg class="dg" style="max-height: 380px" viewBox="0 0 760 250" role="img" aria-label="A skill is a folder with SKILL.md, references and scripts. The model in a chat loads it when the task matches, reads your documents, and returns findings with a check log.">
+  <defs><marker id="m4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
+  <text class="mono" x="10" y="14" font-size="13">A SKILL: A FOLDER</text>
+  <path class="tool" d="M10 22 h70 l12 14 h128 v102 h-210 z"/>
+  <text class="file" x="26" y="68" font-size="16">SKILL.md</text>
+  <text class="file" x="26" y="95" font-size="16">references/</text>
+  <text class="file" x="26" y="122" font-size="16">scripts/</text>
+  <g class="fragment" data-fragment-index="1">
+  <path class="doc" d="M40 160 h40 l16 16 v54 h-56 z"/><path class="fold" d="M80 160 v16 h16"/>
+  <text class="mono" x="68" y="206" font-size="13" text-anchor="middle">PDF</text>
+  <path class="doc" d="M110 160 h40 l16 16 v54 h-56 z"/><path class="fold" d="M150 160 v16 h16"/>
+  <text class="mono" x="138" y="206" font-size="13" text-anchor="middle">.QMD</text>
+  <text class="mono" x="103" y="248" font-size="13" text-anchor="middle">YOUR DOCUMENTS</text>
+  <path class="arrow" d="M222 80 C 280 80, 292 110, 330 112" marker-end="url(#m4)"/>
+  <text class="mono" x="232" y="62" font-size="13">LOADED WHEN THE TASK MATCHES</text>
+  <path class="arrow" d="M170 195 C 260 195, 282 150, 330 140" marker-end="url(#m4)"/>
+  <rect class="model" x="335" y="85" width="170" height="80"/>
+  <text class="strong" x="420" y="120" font-size="23" text-anchor="middle">model</text>
+  <text x="420" y="148" font-size="17" text-anchor="middle">in a chat</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
+  <line class="arrow" x1="505" y1="125" x2="556" y2="125" marker-end="url(#m4)"/>
+  <rect class="out" x="562" y="80" width="188" height="90"/>
+  <text class="strong" x="656" y="116" font-size="21" text-anchor="middle">findings</text>
+  <text x="656" y="144" font-size="16" text-anchor="middle">check log, tables</text>
+  </g>
+</svg>
+```

@@ -1,0 +1,330 @@
+---
+title: "A Third Pair of Eyes?"
+subtitle: "AI-Assisted Review of Statistical Reports and Code"
+author: "Valentin Klotzbücher · DKF Basel"
+date: 2026-11-19
+date-format: "D MMMM YYYY"
+lang: en-GB
+language:
+  title-block-published: "Updated"
+format:
+  html:
+    theme: [handout.scss]
+    embed-resources: true
+    toc: true
+    toc-depth: 3
+    toc-title: Contents
+    anchor-sections: false
+    smooth-scroll: true
+    link-external-newwindow: true
+---
+
+The handout to the talk, to read later: what two studies found this autumn, five ways
+to get an AI review of a statistical product, what the human reviewer then checks, and
+a test case to try them on. A statistical product here is a sample size estimation, an
+analysis plan or a report, and the review covers all of it: the statistical methods,
+the numbers and the code.
+
+Each of the five ways has a starter in the kit,
+[github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review):
+a prompt to paste, R and Python scripts for the API, a list of services, a skill for
+the chat, and the review skills for the agent. It is my own exploration, not a DKF
+service or recommendation.
+
+## Models find more errors than reviewers did
+
+In the largest experiment of its kind, Schroter and colleagues gave 607 reviewers of a
+general medical journal three reports of randomised trials with 9 major and 5 minor
+errors inserted (BMJ 2004; J R Soc Med 2008). This autumn, Brian et al. gave the same
+three reports to 15 language models, without tools or web access, and scored every
+review against the same answer key. The human reviewers had found 27% of the major
+errors. Every model found more: 53% (Haiku 4.5) to 96% (Opus 5.5). On 58 trials
+published in 2026, with the same kinds of error inserted, the models found 46% to 93%.
+
+::: {.plate}
+![Percentage of inserted errors found per review: human reviewers about 27% of the major errors, 15 language models between 53% and 96%. Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0).](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%." width="420"}
+:::
+
+The caveats, from the preprint: the human comparison is historical; language models
+judged the reviews; models that found more inserted errors also flagged more problems in
+unmodified reports (specificity 82% overall); four of the authors are affiliated with a
+foundation whose platform is implementing AI-assisted review. And the authors draw the
+boundary of the design themselves:
+
+> Every error tested here is visible in the text, whereas errors in data handling or
+> analysis code, undisclosed deviations from the registered protocol and fabricated
+> data are not.
+
+The same week, King and Worthington compared AI reviews with paid human reviews of 124
+submissions, reviews that editors and authors had rated unusually good. One review per
+paper from Claude Opus 4.8 at its maximum reasoning setting, given the manuscript and
+the reviewer guidelines, was better "by every measure we could construct"; three former
+journal editors preferred it in 26 of 30 judgments. It is a working paper, too.
+
+The preprint's last author, Ruslan Rust, on X:
+
+> From now on I won't do any peer review without AI. For clinical trials, I'd even call
+> human-only review dangerous.
+
+So the question is less whether to use these tools than how.
+
+## Five ways to an AI review
+
+::: dg-wrap
+{{< include diagrams/_five-ways.qmd >}}
+:::
+
+From a model that reads what you give it to an agent that runs the code. Each step adds
+one thing: a script makes the review repeatable, a service adds a pipeline someone else
+built, a skill brings the checklist along, and an agent runs the code.
+
+### [01]{.num}Paste it into the chat
+
+::: dg-wrap
+{{< include diagrams/_chat.qmd >}}
+:::
+
+Choose the strongest model your plan offers at its maximum reasoning setting, attach
+the PDF and the Quarto source, and ask whether it is consistent. In my experience this
+has worked well since OpenAI's o1 pro, in December 2024, and King and Worthington's AI
+reviews were made this way. What you don't get: a record of what was checked, the same
+answer twice, or any code run.
+
+::: starter
+Starter: [tools/1-chat](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat): the prompt, the settings, the data rules
+:::
+
+### [02]{.num}The same, as a script
+
+::: dg-wrap
+{{< include diagrams/_api.qmd >}}
+:::
+
+The same review sent from a script through the API, for many documents: the same
+prompt and answer format each time, one table of issues, and a log of every run with
+model, tokens and cost. In R with ellmer, in Python with the provider's SDK; paid per
+use with an API key, under the API's terms. In the Unjournal project, a model's reviews
+of 12 research papers covered 80% of the issues the human evaluators agreed on (50–100%
+per paper). The price is code that talks to one provider at one point in time.
+
+Give the model tools, such as "run this R code", and let the library run the loop: the
+model asks, your code runs R, the result goes back. That is an agent, built by hand.
+
+::: starter
+Starter: [tools/2-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.R` (ellmer) and `review.py` (Anthropic SDK), the prompt and the answer format
+:::
+
+### [03]{.num}Review services
+
+::: dg-wrap
+{{< include diagrams/_services.qmd >}}
+:::
+
+You upload the PDF, a fixed chain of model calls with prompts the vendor wrote runs
+behind it, and you get a report. Some are paid (refine.ink, up to $50 a review;
+reviewer3.com), some free (paperreview.ai from Stanford, openaireview.org from Chicago,
+Google's Deep Review for two reviews a week), and two are open source (Joe Francis's
+Reviewer 2, coarse.ink). All are built for research papers, and all but the open-source
+ones mean uploading to a third party. In October, Joe Francis retired the hosted
+Reviewer 2, which he had decided was obsolete, and released the skills he now begins
+his reviews with.
+
+::: starter
+Starter: [tools/3-services](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-services): the list, with links and sources
+:::
+
+### [04]{.num}A skill
+
+::: dg-wrap
+{{< include diagrams/_skill.qmd >}}
+:::
+
+A skill is a folder of instructions, reference files and small scripts. The model loads
+it when a task matches, so the checklist comes along and no prompt is pasted.
+`dkf-document-check` is the first stage of my review skills on its own, for Claude chat:
+it names the design and the estimand attribute by attribute, recomputes every printed
+number with scripts and logs each check. It runs no product code.
+
+::: starter
+Starter: [tools/4-skill](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-skill): the skill and how to upload it
+:::
+
+### [05]{.num}An agent in the repository
+
+::: dg-wrap
+{{< include diagrams/_agent.qmd >}}
+:::
+
+Claude Code on the web works in an isolated cloud VM, with a copy of the product's
+repository and the review skills. You type one sentence. The model decides the next
+step, its tools read files, run R and write logs, and the result goes back, until it is
+done. So it does what no reader can: it runs the code, recomputes the numbers, re-runs
+the simulations, and has agents that did not write a finding challenge it. The output
+is a draft of the consistency-review form with a log behind every number, pushed to a
+branch.
+
+It never touches your computer, and it runs on your Claude plan, without API credits;
+what it reads still goes to the provider. Certify, from Gary King, Yiqing Xu and Leo
+Yang at Harvard, goes the same way: your own AI assistant reruns a replication package
+on your computer and certifies that the code produces the results to be published. The
+same agent can be driven from code with the Agent SDK, for evals over many test cases,
+batch runs or guardrails in code; it runs on an API key, billed per token, and one review
+does not need it.
+
+::: starter
+Starter: [tools/5-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/5-agent): the set-up, the one sentence, the data modes; the skills are in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), version 0.3.1
+:::
+
+### At a glance
+
+::: glance
+| | Sees | Runs the code | Record | Pays with |
+|:--|:--|:--|:--|:--|
+| Chat | what you paste | no | none | subscription |
+| API script | what you send | no | log | per use |
+| Review service | the PDF | no | report | paid, free or open source |
+| Skill in chat | what you attach | its own arithmetic | check log | subscription |
+| Agent + skills | the repository | yes | every check | subscription |
+:::
+
+## What the human reviewer checks
+
+::: dg-wrap
+{{< include diagrams/_result.qmd >}}
+:::
+
+If the tools keep changing, what stays is the review itself, and it changes too. In a
+result-oriented review the AI goes through every line, every number and every re-run,
+and keeps its tests and logs. The human does not read every line of code. They check
+that the AI tested enough; that each chunk, section, preparation step and analysis does
+what it says; and, at the top, that the approach is right and the interpretation holds.
+
+Even the author of the skills mine build on says so:
+
+> When using them, you should remember that the results have been produced by robots
+> and should be verified by humans.
+
+::: attribution
+Joe Francis on X, 26 October 2026
+:::
+
+::: punchline
+Build checklists and test cases, not tools. Review results, not lines.
+:::
+
+## What carries over
+
+> … general methods that leverage computation are ultimately the most effective, and by
+> a large margin.
+
+::: attribution
+Rich Sutton, The Bitter Lesson, 2019
+:::
+
+Hand-built machinery keeps losing to general methods that use more computation, and
+review tools are no exception. On the day Google launched Deep Review, Rex Douglass
+wrote that for about three years he had thought about building such a tool at least
+twice a day, and didn't, because "one of the big three does it and it's over". Reviewer 2 went obsolete;
+my own prototype did too, and my skills will.
+
+What carries over to every new model:
+
+- test cases with known answers, to see what a tool finds and what it misses;
+- standards for what a review must check, written as checklists a model can follow;
+- rules for what data may go where.
+
+A shared set of test cases, written by different people and kept out of every review,
+would let anyone measure any tool, and every new model. The demo is a first one.
+
+## The demo
+
+DEMO-TKA is a synthetic sample size estimation of two pages (app-guided home exercise
+versus supervised physiotherapy after total knee arthroplasty) with six planted issues:
+two visible in the text, two only in the source code, and two that need a calculation
+or a re-run. Try it yourself first, then with a tool, giving the tool only the two files
+in [`demo/sse/`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/demo/sse).
+
+The agent with the review skills, in three recorded runs:
+
+| Date | Depth | Planted issues found | Consequence stated | Time | Cost at API list prices |
+|:--|:--|:--|:--|:--|:--|
+| 31 Oct 2026 | `standard` | 6 of 6 | 5 of 5 | 202 min of model time | about $72 |
+| 3 Nov 2026 | `standard`, modules skipped, interim | 6 of 6 | 5 of 5 | 98 min of active time | $26.84 |
+| 5 Nov 2026 | `quick` | 6 of 6 | 5 of 5 | 34 min, start to final form | $9.72 |
+
+All three ran on a subscription; the costs are what the same tokens cost through the
+API. Five of the six issues have a consequence in participants or power. Not a blind
+test: the skills and the demo were written in the same week, and the skills already
+describe two of the planted issue types. Runs of the chat, the API script and the skill
+are still to do.
+
+::: {.callout-warning collapse="true" title="Spoilers: the six planted issues"}
+
+| # | Level | Issue |
+|:-|:---|:-------------------------|
+| 1 | Text | Dropout inflation multiplies by 1.2 instead of dividing by 0.8 |
+| 2 | Text | The estimand names no intercurrent events and no strategies for them |
+| 3 | Code | The simulation tests one-sided; the text and Table 1 state a two-sided 5% level |
+| 4 | Code | The baseline–outcome correlation that drives the ANCOVA gain appears only in the code, unstated and unsourced |
+| 5 | Computation | Figure 1 plots a running maximum of noisy estimates, and the sample size is the first grid point where that maximum crosses 80% |
+| 6 | Computation | The typed *t*-test comparison (94 per group) is not what the code computes (105) |
+
+What the planning values support: with the stated two-sided 5% level the ANCOVA needs
+80 evaluable participants per group, and with 20% loss to follow-up 100 per group, 200
+in total, against the SSE's 132. As planned, the trial has about 62% power for the
+two-sided test.
+
+One finding, traced: the first version of the key said 79 per group, treating the
+baseline as fixed. The agent's first review said 80: it computed the power with a random
+baseline, as the SSE simulates it, and the chance difference in baseline means costs
+about half a participant per group. The agent was right, and the key was corrected.
+:::
+
+## Data rules
+
+- Everything a tool reads goes to the provider: chat, API, service and agent alike. The
+  terms of your plan, the API or the service decide what happens to it.
+- On personal plans (Pro, Max), whether chats may be used for model training is a
+  privacy setting; commercial plans and the API are not covered by the
+  [consumer terms](https://www.anthropic.com/news/updates-to-our-consumer-terms).
+- A service is a third party: read its terms before you upload anything unpublished.
+- No patient-level data without a recorded clearance. The agent's data modes make this
+  explicit: `none` (documents and code), `synthetic` (dummy data built from the code)
+  and `shared` (patient-level data, with the clearance recorded before the run).
+- Check your institution's rules first.
+
+## Questions to discuss
+
+1. What would you need to see before you sign a product an AI reviewed?
+2. Which checks would you never hand over: the estimand, clinical relevance, the design?
+3. How will junior statisticians learn to review, if the AI does the line work?
+
+## Links and sources
+
+- Brian, Pereira Hernández, Yin, Koury and Rust, *Large language models detect
+  methodological errors that human peer review misses in clinical trials*, medRxiv,
+  28 October 2026: [doi.org/10.64898/2026.10.25.26366455](https://doi.org/10.64898/2026.10.25.26366455)
+- King and Worthington, *AI Article Reviews Dominate Human Peer Reviews at Their Best:
+  Evidence and Policy Choices*, working paper, version of 28 October 2026:
+  [gking.harvard.edu/peerless](https://gking.harvard.edu/peerless/)
+- Rich Sutton, *The Bitter Lesson*, 2019:
+  [incompleteideas.net/IncIdeas/BitterLesson.html](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+- The Unjournal project: [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app)
+- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com),
+  [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org),
+  [coarse.ink](https://coarse.ink), Google's
+  [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/)
+- Joe Francis: [Reviewer 2](https://github.com/isitcredible/reviewer2) and its paper
+  *Yell at It* (`paper/yellatit.pdf` there);
+  [research_skills](https://github.com/isitcredible/research_skills)
+- Certify, replication certificates (King, Xu and Yang, Harvard):
+  [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
+- [ellmer](https://ellmer.tidyverse.org), the
+  [Anthropic Python SDK](https://github.com/anthropics/anthropic-sdk-python),
+  [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web), the
+  [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
+- The kit: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review);
+  the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
+- The posts on X by Ruslan Rust (28 October), Rex Douglass (15 and 23 October) and Joe
+  Francis (26 October 2026): screenshots and transcriptions in the kit's
+  [`material/`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/material)
