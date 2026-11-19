@@ -18,6 +18,37 @@ format:
     code-line-numbers: false
 ---
 
+## Models find more errors than reviewers did
+
+:::: {.columns}
+::: {.column width="50%"}
+```{=html}
+<div class="label">Major errors found in trial reports, inserted on purpose</div>
+<div class="stat"><div class="num">27%</div><div class="lbl">human peer reviewers</div></div>
+<div class="stat"><div class="num accent">53–96%</div><div class="lbl">each of 15 models, text only</div></div>
+```
+:::
+
+::: {.column width="50%" .plate}
+![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
+
+::: {.tiny .muted}
+Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
+:::
+:::
+::::
+
+::: notes
+[0:30–1:45] A preprint from October repeated the classic BMJ experiment: known errors
+inserted into reports of randomised trials, every review scored against the same answer
+key. Human peer reviewers, in the 2004 study, found about a quarter of the major
+errors. Every one of 15 current models, reading only the text, found more: 53 to 96%.
+Caveats: a preprint, a historical human comparison, language models as judges, and
+models that also flag concerns on clean reports. The last author's conclusion: for
+clinical trials, human-only review is dangerous. So the question is less whether to
+use these tools than how.
+:::
+
 ## Five ways to an AI review
 
 ::: scope
@@ -54,7 +85,7 @@ Reviewing a statistical product: its **methods**, its **numbers** and its **code
 ```
 
 ::: notes
-[0:30–1:30] Five ways to get an AI review of a statistical product, from the simplest
+[1:45–2:30] Five ways to get an AI review of a statistical product, from the simplest
 to the most capable: from a model that reads what you give it, to an agent that works
 in the repository and runs the code. Review here means the whole product: the
 statistical methods, the design, the estimand, the sample size and the analysis, the
@@ -69,14 +100,12 @@ it stops.
 <span class="on">Chat</span><span>API</span><span>Services</span><span>Skill</span><span>Agent</span>
 :::
 
-:::: {.columns}
-::: {.column width="57%"}
 ::: big
 Strongest model, maximum effort
 :::
 
 ```{=html}
-<svg class="dg" viewBox="0 0 640 200" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; one model at maximum effort reads them and answers.">
+<svg class="dg" style="max-height: 320px" viewBox="0 0 640 200" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; one model at maximum effort reads them and answers.">
   <defs><marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>
   <path class="doc" d="M10 70 h52 l18 18 v68 h-70 z"/><path class="fold" d="M62 70 v18 h18"/>
@@ -93,26 +122,14 @@ Strongest model, maximum effort
   <text x="567" y="120" font-size="21" text-anchor="middle">answer</text>
 </svg>
 ```
-:::
-
-::: {.column width="43%" .plate}
-![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
-
-::: {.tiny .muted}
-Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
-:::
-:::
-::::
 
 ::: notes
-[1:30–3:00] The simplest way works surprisingly well: paste the PDF and the source into
-a chat, ask it to check whether the document is consistent, take the strongest model,
-GPT Pro or Claude Fable or Opus, and set its effort to maximum. In my experience this
-has worked well since OpenAI's o1 pro, in December 2024. A preprint from October shows
-it on trial reports: errors inserted into the reports, and every one of 15 models,
-reading only the text, found more of the major errors than the human reviewers did,
-53 to 96% against 27%. What you don't get: a record of what was checked, the same
-answer twice, or better data terms than your plan's.
+[2:30–3:30] The simplest way is what the preprint tested, and it works surprisingly
+well: paste the PDF and the source into a chat, ask it to check whether the document is
+consistent, take the strongest model, GPT Pro or Claude Fable or Opus, and set its
+effort to maximum. In my experience this has worked well since OpenAI's o1 pro, in
+December 2024. What you don't get: a record of what was checked, the same answer twice,
+or better data terms than your plan's.
 :::
 
 ## The same, as a script
@@ -122,7 +139,7 @@ answer twice, or better data terms than your plan's.
 :::
 
 ```{=html}
-<svg class="dg" style="max-height: 330px" viewBox="0 0 700 220" role="img" aria-label="A script in R or Python sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run.">
+<svg class="dg" style="max-height: 340px" viewBox="0 0 700 232" role="img" aria-label="A script, in R with ellmer or in Python with the providers' SDK libraries, sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run. With tools in a loop, the same libraries run an agent.">
   <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <path class="doc" d="M10 30 h46 l16 16 v62 h-62 z"/>
   <path class="doc" d="M24 44 h46 l16 16 v62 h-62 z"/>
@@ -130,26 +147,31 @@ answer twice, or better data terms than your plan's.
   <text class="mono" x="69" y="112" font-size="13" text-anchor="middle">DOC N</text>
   <text class="mono" x="58" y="170" font-size="13" text-anchor="middle">MANY DOCUMENTS</text>
   <line class="arrow" x1="110" y1="97" x2="160" y2="97" marker-end="url(#m2)"/>
-  <rect class="tool" x="166" y="57" width="150" height="80"/>
-  <text class="strong" x="241" y="92" font-size="22" text-anchor="middle">script</text>
-  <text x="241" y="118" font-size="16" text-anchor="middle">R or Python</text>
-  <path class="arrow" d="M200 57 C 200 22, 282 22, 282 53" marker-end="url(#m2)"/>
-  <text class="mono" x="241" y="16" font-size="12" text-anchor="middle">SAME PROMPT, EACH DOCUMENT</text>
-  <line class="arrow" x1="316" y1="97" x2="366" y2="97" marker-end="url(#m2)"/>
-  <rect class="model" x="372" y="57" width="120" height="80"/>
-  <text class="strong" x="432" y="104" font-size="22" text-anchor="middle">model</text>
-  <text class="mono" x="432" y="160" font-size="12" text-anchor="middle">PAY PER USE</text>
-  <line class="arrow" x1="492" y1="97" x2="542" y2="97" marker-end="url(#m2)"/>
-  <rect class="out" x="548" y="47" width="142" height="100"/>
-  <text class="strong" x="619" y="84" font-size="19" text-anchor="middle">table + log</text>
-  <text x="619" y="110" font-size="15" text-anchor="middle">one row per</text>
-  <text x="619" y="130" font-size="15" text-anchor="middle">document</text>
+  <rect class="tool" x="166" y="52" width="160" height="92"/>
+  <text class="strong" x="246" y="84" font-size="22" text-anchor="middle">script</text>
+  <text x="246" y="110" font-size="16" text-anchor="middle">R: ellmer</text>
+  <text x="246" y="132" font-size="16" text-anchor="middle">Python: SDKs</text>
+  <path class="arrow" d="M205 52 C 205 18, 287 18, 287 48" marker-end="url(#m2)"/>
+  <text class="mono" x="246" y="14" font-size="12" text-anchor="middle">SAME PROMPT, EACH DOCUMENT</text>
+  <line class="arrow" x1="326" y1="97" x2="372" y2="97" marker-end="url(#m2)"/>
+  <rect class="model" x="378" y="57" width="120" height="80"/>
+  <text class="strong" x="438" y="104" font-size="22" text-anchor="middle">model</text>
+  <text class="mono" x="438" y="46" font-size="12" text-anchor="middle">PAY PER USE</text>
+  <line class="arrow" x1="498" y1="97" x2="548" y2="97" marker-end="url(#m2)"/>
+  <rect class="out" x="554" y="47" width="140" height="100"/>
+  <text class="strong" x="624" y="84" font-size="19" text-anchor="middle">table + log</text>
+  <text x="624" y="110" font-size="15" text-anchor="middle">one row per</text>
+  <text x="624" y="130" font-size="15" text-anchor="middle">document</text>
+  <path class="arrow cut" d="M438 140 C 438 196, 246 200, 246 150" marker-end="url(#m2)"/>
+  <text class="mono" x="342" y="222" font-size="12" text-anchor="middle">WITH TOOLS IN A LOOP: AN AGENT</text>
 </svg>
 ```
 
 ::: notes
-[3:00–4:45] The same idea through the API, from a script: R or Python sends the
-documents to the model, each with the same system prompt. Mine reads like a senior
+[3:30–5:00] The same idea through the API, from a script: in R with the ellmer
+package, in Python with the providers' SDK libraries; my prototype called the Anthropic
+Python SDK from R. The script sends the documents to the model, each with the same
+system prompt. Mine reads like a senior
 reviewer's checklist: the statistical methods first, then the numbers, the code and
 the interpretation, and it asks for the answer in our form. What you gain is control:
 the same prompt every time, a log of every run with model and cost, many documents in
@@ -157,7 +179,11 @@ one go, answers in a fixed format, and the API's commercial data terms; you pay 
 use. My review prototype did this for our SSEs for under a dollar fifty. In the
 Unjournal project we compared model reviews of economics papers with expert
 evaluations: the model found 80% of the issues the experts agreed on, across 12
-papers. The price is code that talks to one provider at one point in time.
+papers. The price is code that talks to one provider at one point in time. And the same
+libraries can run an agent: give the model tools, for example "run this R code", and
+let ellmer or the SDK run the loop, the model asks, your code runs R, the result goes
+back. That is the agent of the last step, built by hand; the Agent SDK packages it
+(appendix).
 :::
 
 ## Review services
@@ -209,7 +235,7 @@ October: Joe Francis retired Reviewer 2 as "obsolete", and open-sourced his revi
 :::
 
 ::: notes
-[4:45–6:00] Others built whole review pipelines, and there are more every month. You
+[5:00–6:15] Others built whole review pipelines, and there are more every month. You
 upload the PDF; behind it run fixed chains of model calls with prompts the vendor
 wrote. Refine and Reviewer3 are paid services, Refine up to fifty dollars a paper.
 paperreview.ai from Stanford and openaireview from Chicago are free. Joe Francis's
@@ -254,7 +280,7 @@ skills.
 ```
 
 ::: notes
-[6:00–7:15] A skill is just a folder: instructions in plain text, reference material and
+[6:15–7:15] A skill is just a folder: instructions in plain text, reference material and
 small scripts. The model reads its name and description, and loads the rest when a task
 matches. Mine starts with the methods: it names the design and the estimand attribute
 by attribute, then recomputes every printed number and logs each check. You can upload
@@ -311,7 +337,7 @@ released (research_skills, MIT licence).
 ```
 
 ::: notes
-[7:15–9:15] The last step: an agent working in the product's repository, here Claude
+[7:15–9:00] The last step: an agent working in the product's repository, here Claude
 Code on the web with my review skills. What you type is one sentence, "review the
 product with dkf-review, then write the consistency review"; the skills hold the rest.
 The agent is a loop: the model decides the next step, the tools carry it out, reading a
@@ -337,7 +363,7 @@ you don't need that (appendix).
 | Agent + skills | the repository | yes | every check | subscription |
 
 ::: notes
-[9:15–10:15] The five side by side. Two questions separate them: what does it see, and
+[9:00–9:45] The five side by side. Two questions separate them: what does it see, and
 can it run the code? Only the agent sees the whole repository and runs the code; the
 API script and the agent leave a record you can check. And three of the five run on the
 subscription you may already have. (A chat with a code tool can run some code too, but
@@ -369,7 +395,7 @@ What the human reviewer checks
 ```
 
 ::: notes
-[10:15–11:30] What I aim for is a result-oriented review, and this is where the human
+[9:45–11:00] What I aim for is a result-oriented review, and this is where the human
 reviewer comes in. The AI goes through every line, every number and every re-run, and
 keeps its tests and logs. The human does not read every line of code. They check that
 the AI tested enough, that each chunk, each section, each preparation step and each
@@ -396,7 +422,7 @@ Rich Sutton, The Bitter Lesson, 2019
 :::
 
 ::: notes
-[11:30–13:00] Sutton's lesson from 70 years of AI research: hand-built machinery keeps
+[11:00–12:15] Sutton's lesson from 70 years of AI research: hand-built machinery keeps
 losing to general methods that use more computation. Review tools are no exception.
 Reviewer 2 went obsolete; my own prototype did too, and my skills will. So I would not
 invest in building tools. I would invest in what carries over to every new model: test
@@ -414,7 +440,7 @@ data may go where.
 :::
 
 ::: notes
-[13:00–20:00] Discussion. If the models read better than we do and the agents check the
+[12:15–20:00] Discussion. If the models read better than we do and the agents check the
 numbers, what is left for us? My guesses: choosing what to check, judging what matters
 for the trial, taking responsibility with a signature, and writing the test cases the
 tools are measured on. Thank you; the links are in the appendix.
