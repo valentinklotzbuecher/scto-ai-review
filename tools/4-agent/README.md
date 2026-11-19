@@ -1,11 +1,12 @@
-# 5 · An agent in the repository
+# 4 · An agent in the repository
 
 An agent works in a copy of the product's repository. It reads the files, runs the R
 code, recomputes the numbers, re-runs the simulations, has its findings challenged by
 agents that did not write them, and writes a draft of the consistency-review form with a
 log behind every number. Here: Claude Code on the web with the DKF review skills from
 [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
-(version 0.3.1).
+(version 0.3.1). The skills are its instructions, the same format as the skill for the
+chat in [`../1-chat`](../1-chat/README.md): you type one sentence, and they hold the rest.
 
 ## Why this way
 

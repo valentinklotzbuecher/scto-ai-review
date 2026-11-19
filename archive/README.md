@@ -21,6 +21,11 @@ Rscript archive/assets/make-figures.R
 
 The deck names the planted issues: like `../slides/`, it never goes into a review.
 
+Its figures are as of early November 2026. The Unjournal figure on its backup slide (one
+call per paper found 80% of the expert issues) was superseded on 10 November 2026: the
+working paper now reports that figure as self-judged and gives the 30-paper comparison
+quoted in `../material/README.md`.
+
 Images on its slides:
 
 - "The product" shows page 2 of `../demo/sse/DEMO-TKA_SSE.pdf`

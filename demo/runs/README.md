@@ -6,7 +6,7 @@ what the approach returned, unchanged:
 - chat: the exported conversation or the copied answer
 - chat with the document skill: the exported conversation and the files the skill
   returned (consistency table, check log)
-- API script (`tools/4-api`): its `review-results/` folder: `<name>.review.json`,
+- API script (`tools/2-api`): its `review-results/` folder: `<name>.review.json`,
   `issues.csv`, `runs.csv`
 - agent: the job's `CONSISTENCY_REVIEW.md`, `.html` and `.org`, `ISSUES.md`,
   `SYNTHESIS.md` and the annotated source (`work/annotated/*.REVIEW.qmd`)

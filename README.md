@@ -10,20 +10,16 @@ recommendation.
 
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
-- **The slides**, [`slides/index.html`](slides/index.html): eleven slides and an
+- **The slides**, [`slides/index.html`](slides/index.html): ten slides and an
   appendix; press S for the speaker notes.
 - **A starter for each way**, in [`tools/`](tools/):
 
 | | Way | Starter |
 |---|---|---|
-| 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, the data rules |
-| 2 | [Review services](tools/2-services/README.md) | the list, paid, free and open source, with sources |
-| 3 | [A skill](tools/3-skill/README.md) | `dkf-document-check`, the review's first stage for Claude chat |
-| 4 | [The checklist, as a script](tools/4-api/README.md) | `review.R` (ellmer) and `review.py` (Anthropic SDK), with the prompt and the answer format |
-| 5 | [An agent in the repository](tools/5-agent/README.md) | Claude Code on the web with the DKF review skills |
-
-The five form a grid: in the app or as a pipeline (the columns), with the document
-alone, with your checklist, or running the code (the rows).
+| 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `dkf-document-check`, a skill for Claude chat |
+| 2 | [The same, as a script](tools/2-api/README.md) | `review.R` (ellmer) and `review.py` (Anthropic SDK), with the prompt and the answer format |
+| 3 | [Review services](tools/3-services/README.md) | the list, paid, free and open source, with sources, and *Just Ask the Model* |
+| 4 | [An agent in the repository](tools/4-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions |
 
 - **The demo**, [`demo/`](demo/README.md): a two-page synthetic SSE with six planted
   issues, its answer key and the recorded runs. Give a tool only `demo/sse/`; the rest
@@ -37,31 +33,31 @@ version 0.3.1 (tag `skills-v0.3.1`).
 
 It opens with a preprint in which every one of 15 language models found more of the
 errors inserted into trial reports than human peer reviewers had, and with King and
-Worthington's finding that AI reviews beat paid expert reviews. It then lays out five
-ways to get an AI review as a grid, in the app or as a pipeline, with the document
-alone, your checklist, or running the code, each drawn as a diagram, and goes through it
-row by row: a chat and review services; a skill and a script through the API. Between
-these bespoke tools and the agent comes Sutton's bitter lesson: Google's Deep Review,
-Reviewer 2 retired as obsolete; what carries over is test cases, review standards and
-data rules. Then the general method: an agent with skills in the product's repository,
-and a table of all five. It closes with result-oriented review (the human checks that
-the AI tested enough, that each step does what it says, the approach and the
-interpretation) and a discussion that brings back the preprint's last author: human-only
-review is dangerous; is AI-only review? The content takes about 12 minutes, which leaves
-the rest of the slot for the discussion.
+Worthington's finding that AI reviews beat paid expert reviews. Then four ways to an AI
+review, each drawn as a diagram: a chat at maximum effort, where a skill can bring your
+checklist along; the same through the API, as a script in R (ellmer) or Python (the
+SDKs); review services, which are someone else's script, paid, free or open source,
+against our own Unjournal working paper, Just Ask the Model; and, after Sutton's bitter
+lesson (Google's Deep Review, Reviewer 2 retired as obsolete; what carries over is test
+cases, review standards and data rules), an agent in the product's repository, with the
+skills as its instructions. One table compares the four. It closes with result-oriented
+review (the human checks that the AI tested enough, that each step does what it says,
+the approach and the interpretation) and a discussion that brings back the preprint's
+last author: human-only review is dangerous; is AI-only review? The content takes about
+12 minutes, which leaves the rest of the slot for the discussion.
 
 ## Contents
 
 ```
 slides/index.qmd        the deck (Quarto reveal.js), with speaker notes; index.html rendered
 slides/handout.qmd      the handout (Quarto HTML); handout.html rendered
-slides/diagrams/        the seven diagrams as inline SVG, included by the deck and the handout
+slides/diagrams/        the diagrams as inline SVG, included by the deck and the handout
 slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: ivory,
                         spruce-green ink, mauve; Zen Kaku Gothic New and IBM Plex Mono
 slides/handout.scss     the same style for the handout
 slides/assets/          the preprint's forest plot, and shot-*.png: the screenshot cards,
                         cut from the posts in material/ (see material/README.md)
-tools/                  one folder per way, each with a README; tools/4-api has the scripts
+tools/                  one folder per way, each with a README; tools/2-api has the scripts
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
 demo/answer-key.md      the six planted issues, their consequences, the scoring rules
 demo/answer-key.R       recomputes every number in the answer key
@@ -121,8 +117,12 @@ re-run every tool on the new PDF.
   Stanford and openaireview.org from Chicago free; coarse.ink open source): the
   Reviewer 2 paper, *Yell at It*, `paper/yellatit.pdf` in
   github.com/isitcredible/reviewer2, pp. 6–7; quoted in `material/README.md`
-- Unjournal comparison: llm-uj-research-eval.netlify.app (80% coverage of curated
-  human consensus issues, range 50–100%, 52% overlap, 12 papers)
+- Klotzbücher, Reinstein, Pacchiardi and Zhang, *Just Ask the Model: One-Shot LLM Research
+  Evaluation and Structured Expert Review*, Unjournal working paper, version of
+  10 November 2026, llm-uj-research-eval.netlify.app: the issue-overlap headline on its
+  first page (30 papers; 61% and 35% of an individual evaluator's issues against a second
+  evaluator's 36% and 22%, by a GPT and a Claude judge); it supersedes the earlier,
+  self-judged 80% on 12 papers. Quoted in `material/README.md`
 - Claude Science's built-in reviewer, in the archived deck's notes:
   claude.com/docs/claude-science/the-reviewer
 - Claude Agent SDK: code.claude.com/docs/en/agent-sdk/overview (Claude Code as a
@@ -136,7 +136,7 @@ re-run every tool on the new PDF.
   API documentation, November 2026; ellmer 0.5.2's `chat_anthropic()` and
   `type_from_schema()`
 - The prompts are our own: "Please check if this is consistent." on the chat slide;
-  `tools/4-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
+  `tools/2-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
   instruction in `stats_review`; the earlier prototype's prompt on the archived deck's
   backup slide
 - "Since o1 pro" (December 2024) is the speaker's own experience, said as such

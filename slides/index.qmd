@@ -59,31 +59,27 @@ been true for a year at least." So the question is less whether to use these too
 than how.
 :::
 
-## Five ways to an AI review
+## Four ways to an AI review
 
 ::: scope
 Reviewing a statistical product: its **methods**, its **numbers** and its **code**.
 :::
 
-{{< include diagrams/_five-ways.qmd >}}
+{{< include diagrams/_overview.qmd >}}
 
 ::: notes
-[1:45–2:45] Five ways to get an AI review of a statistical product, on two axes. Across
-the top: in the app, one product at a time, on the subscription you may already have;
-or as a pipeline that treats every product the same, paid per use or per review. Down
-the side: what you add. First, only the document: you paste it into a chat, or upload
-it to a review service. [click] Then your own checklist: as a skill in the chat, or as
-a script through the API. [click] Then running the code: an agent in the repository.
-Its pipeline twin, the Agent SDK, is in the appendix. Review here means the whole
-product: the statistical methods, the design, the estimand, the sample size and the
-analysis, the printed numbers, and the code. Everything today is my own exploration,
-not something DKF runs or recommends.
+[1:45–2:30] Four ways to get an AI review of a statistical product. The chat: paste and
+ask. [click] The same through the API, as a script. [click] Review services, which are
+someone else's script. [click] And then something different: an agent that runs the code
+in the repository. Review here means the whole product: the statistical methods, the
+design, the estimand, the sample size and the analysis, the printed numbers, and the
+code. Everything today is my own exploration, not something DKF runs or recommends.
 :::
 
 ## Paste it into the chat
 
 ::: crumbs
-<span class="on">Chat</span><span>Services</span><span>Skill</span><span>Script</span><span>Agent</span>
+<span class="on">Chat</span><span>Script</span><span>Services</span><span>Agent</span>
 :::
 
 ::: big
@@ -93,20 +89,46 @@ Strongest model, maximum effort
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[2:45–3:45] The simplest way is what the preprint tested. Paste the PDF and the source
+[2:30–3:45] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
 OpenAI's o1 pro, in December 2024. King and Worthington's AI reviews were made exactly
 this way: one model at its maximum reasoning setting, given the paper and the
-reviewer guidelines. What you don't get: a record of what was checked,
-the same answer twice, or better data terms than your plan's.
+reviewer guidelines. What you don't get: a record of what was checked, the same answer
+twice, or better data terms than your plan's. [click] You can also give the chat your
+own checklist, as a skill: a folder with instructions and small scripts, which the
+model loads when the task matches. Mine, dkf-document-check, is the first stage of my
+review skills: it names the design and the estimand attribute by attribute, recomputes
+every printed number and logs each check. It is adapted from the skills released by Joe
+Francis (research_skills, MIT licence).
+:::
+
+## The same, as a script
+
+::: crumbs
+<span>Chat</span><span class="on">Script</span><span>Services</span><span>Agent</span>
+:::
+
+{{< include diagrams/_api.qmd >}}
+
+::: notes
+[3:45–5:00] The same through the API, from a script, for many documents. [click] The
+script, in R with the ellmer package or in Python with the providers' SDK libraries,
+sends each document with the same system prompt; mine reads like a senior reviewer's
+checklist, the statistical methods first, then the numbers, the code and the
+interpretation. [click] The model answers, and you pay per use. [click] You collect a
+table, one row per document, with a log of every run: model, tokens, cost. My review
+prototype did this for our SSEs for under a dollar fifty. You also get the API's
+commercial data terms. The price is code that talks to one provider at one point in
+time. [click] And the same libraries can run an agent: give the model tools, for
+example "run this R code", and let ellmer or the SDK run the loop. We come back to that.
 :::
 
 ## Review services
 
 ::: crumbs
-<span>Chat</span><span class="on">Services</span><span>Skill</span><span>Script</span><span>Agent</span>
+<span>Chat</span><span>Script</span><span class="on">Services</span><span>Agent</span>
 :::
 
 {{< include diagrams/_services.qmd >}}
@@ -124,58 +146,30 @@ the same answer twice, or better data terms than your plan's.
 </div>
 ```
 
-::: notes
-[3:45–4:45] Next to the chat, its pipeline twin: review services. You upload the PDF.
-[click] Behind it run fixed chains of model calls, with prompts the vendor wrote;
-Reviewer 2's first stage, The Breaker, takes a sledgehammer to the text, and later
-stages filter out what the aggression invents. [click] You get a report. [click] And
-there are more every month: Refine and Reviewer3 are paid, Refine up to fifty dollars a
-paper; paperreview.ai from Stanford and openaireview from Chicago are free; Joe
-Francis's Reviewer 2 and coarse.ink are open source; and in October Google launched
-Deep Review, free for two reviews a week. All built for research papers, and you upload
-to a third party. What they check is the vendor's choice; the next row brings your own.
+::: {.fragment fragment-index=4}
+::: punchline
+Or just ask the model.
 :::
 
-## A skill
-
-::: crumbs
-<span>Chat</span><span>Services</span><span class="on">Skill</span><span>Script</span><span>Agent</span>
+::: attribution
+Just Ask the Model, our Unjournal working paper, 2026
 :::
-
-{{< include diagrams/_skill.qmd >}}
+:::
 
 ::: notes
-[4:45–5:45] Your own checklist, first in the chat: a skill. A skill is just a folder:
-instructions in plain text, reference material and small scripts. [click] The model,
-here in a normal chat, reads its name and description and loads the rest when a task
-matches, then reads your documents with it. [click] You get findings with a check log.
-Mine starts with the methods: it names the design and the estimand attribute by
-attribute, then recomputes every printed number and logs each check. It writes down
-what a second statistician checks in a consistency review, adapted from the skills
-released by Joe Francis, who built Reviewer 2 (research_skills, MIT licence).
-:::
-
-## The checklist, as a script
-
-::: crumbs
-<span>Chat</span><span>Services</span><span>Skill</span><span class="on">Script</span><span>Agent</span>
-:::
-
-{{< include diagrams/_api.qmd >}}
-
-::: notes
-[5:45–7:00] The same kind of checklist as a pipeline: a script through the API, for many
-documents. [click] The script, in R with the ellmer package or in Python with the
-providers' SDK libraries, sends each document with the same system prompt; mine reads
-like a senior reviewer's checklist, the statistical methods first, then the numbers,
-the code and the interpretation. [click] The model answers, and you pay per use.
-[click] You collect a table, one row per document, with a log of every run: model,
-tokens, cost. My review prototype did this for our SSEs for under a dollar fifty; in
-the Unjournal project the model found 80% of the issues the expert evaluators agreed
-on, across 12 papers. You also get the API's commercial data terms. The price is code
-that talks to one provider at one point in time. [click] And the same libraries can run
-an agent: give the model tools, for example "run this R code", and let ellmer or the
-SDK run the loop. Should we build that loop ourselves?
+[5:00–6:30] And a review service is just that: a script like mine, built by someone
+else. You upload the PDF. [click] Behind it run fixed chains of model calls, with
+prompts the vendor wrote; Reviewer 2's first stage, The Breaker, takes a sledgehammer to
+the text, and later stages filter out what the aggression invents. [click] You get a
+report. [click] There are more every month: Refine and Reviewer3 are paid, Refine up to
+fifty dollars a paper; paperreview.ai from Stanford and openaireview from Chicago are
+free; Joe Francis's Reviewer 2 and coarse.ink are open source; and in October Google
+launched Deep Review, free for two reviews a week. All built for research papers, and
+you upload to a third party. [click] Or just ask the model: that is the title of our
+Unjournal working paper. One prompt to a frontier model, no pipeline. On 30 papers, its
+report raised more of an individual evaluator's issues than a second human evaluator
+did: 61 against 36% with one model as the judge, 35 against 22% with a stricter one. No
+human has checked those matches yet.
 :::
 
 ## The bitter lesson
@@ -201,8 +195,8 @@ Rich Sutton, The Bitter Lesson, 2019
 :::
 
 ::: notes
-[7:00–8:30] Before we build more: Sutton's lesson from 70 years of AI research.
-Hand-built machinery keeps losing to general methods that use more computation, and
+[6:30–8:00] So why build more of these? Sutton's lesson from 70 years of AI research:
+hand-built machinery keeps losing to general methods that use more computation, and
 review tools are no exception. [click] Rex Douglass, on the day Google launched Deep
 Review: he had thought about building a review tool twice a day for three years, and
 didn't, because "one of the big three does it and it's over". [click] Later that month
@@ -216,28 +210,28 @@ what data may go where. And the general method is already here: an agent.
 ## An agent in the repository
 
 ::: crumbs
-<span>Chat</span><span>Services</span><span>Skill</span><span>Script</span><span class="on">Agent</span>
+<span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span>
 :::
 
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[8:30–10:00] The general method: an agent working in the product's repository, here
-Claude Code on the web with my review skills. What you type is one sentence, "review the
-product with dkf-review, then write the consistency review"; the skills hold the rest.
-It runs in an isolated cloud machine, with a copy of the repository and the skills.
-[click] It has tools: read files, run the R code, write logs. [click] Claude, the
-model, decides the next step; the tools carry it out, and the result comes back.
-[click] Again and again, until it is done. So it does what no reader can: it runs the
-code, recomputes the numbers and re-runs the simulations, and agents that did not write
-a finding challenge it. [click] The output is a draft of the consistency-review form
-with a log behind every number, pushed to a branch. [click] And it never touches your
-computer. It runs on your Claude subscription, no API credits. What it reads still goes
-to the provider, under your plan's terms. Others go the same way: Certify, from
-Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or
-Codex, rerun a replication package on your computer, and certifies that rerunning the
-code produces the results to be published. The same agent can be driven from code with
-the Agent SDK, the last cell of the grid; for one review you don't need that
+[8:00–9:45] The general method: an agent working in the product's repository, here
+Claude Code on the web. The skills come back as its instructions: what you type is one
+sentence, "review the product with dkf-review, then write the consistency review"; the
+skills hold the rest. It runs in an isolated cloud machine, with a copy of the
+repository and the skills. [click] It has tools: read files, run the R code, write logs.
+[click] Claude, the model, decides the next step; the tools carry it out, and the result
+comes back. [click] Again and again, until it is done. So it does what no reader can: it
+runs the code, recomputes the numbers and re-runs the simulations, and agents that did
+not write a finding challenge it. [click] The output is a draft of the
+consistency-review form with a log behind every number, pushed to a branch. [click] And
+it never touches your computer. It runs on your Claude subscription, no API credits.
+What it reads still goes to the provider, under your plan's terms. Others go the same
+way: Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI
+assistant, Claude Code or Codex, rerun a replication package on your computer, and
+certifies that rerunning the code produces the results to be published. The same agent
+can be driven from code with the Agent SDK; for one review you don't need that
 (appendix).
 :::
 
@@ -246,18 +240,16 @@ the Agent SDK, the last cell of the grid; for one review you don't need that
 | | Sees | Runs the code | Record | Pays with |
 |:--|:--|:-:|:-:|:--|
 | Chat | what you paste | no | none | subscription |
-| Review service | the PDF | no | report | paid, free or open source |
-| Skill in chat | what you attach | arithmetic | check log | subscription |
 | API script | what you send | no | log | per use |
+| Review service | the PDF | no | report | paid, free or open source |
 | Agent + skills | the repository | yes | every check | subscription |
 
 ::: notes
-[10:00–10:45] The five side by side, in the order of the grid. Two questions separate
-them: what does it see, and can it run the code? Only the agent sees the whole
-repository and runs the code; the script and the agent leave a record you can check.
-And the left column of the grid, the chat, the skill and the agent, runs on the
-subscription you may already have. (A chat with a code tool can run some code too, but
-not your R project.)
+[9:45–10:30] The four side by side. Two questions separate them: what does it see, and
+can it run the code? Only the agent sees the whole repository and runs the code; the
+script and the agent leave a record you can check, and a skill adds a check log to the
+chat. The chat and the agent run on the subscription you may already have. (A chat with
+a code tool can run some code too, but not your R project.)
 :::
 
 ## Result-oriented review
@@ -277,7 +269,7 @@ Review results, not lines.
 :::
 
 ::: notes
-[10:45–12:00] With an agent doing the line work, the review itself changes. What I aim
+[10:30–11:45] With an agent doing the line work, the review itself changes. What I aim
 for is a result-oriented review. The AI goes through every line, every number and every
 re-run, and keeps its tests and logs. [click] The human does not read every line of
 code. They check that the AI tested enough, and that each chunk, each section, each
@@ -307,7 +299,7 @@ And AI-only review?
 :::
 
 ::: notes
-[12:00–20:00] Back to the start. The preprint's last author won't review without AI any
+[11:45–20:00] Back to the start. The preprint's last author won't review without AI any
 more, and says that for clinical trials, human-only review is dangerous. [click] Is
 AI-only review dangerous too? Three questions to discuss. What would you need to see
 before you sign a product an AI reviewed? Which checks would you never hand over, the
@@ -332,7 +324,7 @@ links are in the appendix.
 - This talk, with a handout, R and Python starters and the demo: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
 - Brian et al., medRxiv 2026: [doi.org/10.64898/2026.10.25.26366455](https://doi.org/10.64898/2026.10.25.26366455)
 - King and Worthington, working paper 2026: [gking.harvard.edu/peerless](https://gking.harvard.edu/peerless/)
-- Unjournal project: [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app)
+- Just Ask the Model, our Unjournal working paper (Klotzbücher, Reinstein, Pacchiardi and Zhang): [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app)
 - Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), Google's [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/)
 - Certify, replication certificates run by your own AI assistant (King, Xu and Yang, Harvard): [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
 - Reviewer 2: [github.com/isitcredible/reviewer2](https://github.com/isitcredible/reviewer2); research_skills: [github.com/isitcredible/research_skills](https://github.com/isitcredible/research_skills)

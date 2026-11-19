@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 320px" viewBox="0 0 640 200" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; one model at maximum effort reads them and answers.">
+<svg class="dg" style="max-height: 430px" viewBox="0 0 640 262" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; one model at maximum effort reads them and answers. A skill, a folder with your checklist, can go into the chat too.">
   <defs><marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>
   <path class="doc" d="M10 70 h52 l18 18 v68 h-70 z"/><path class="fold" d="M62 70 v18 h18"/>
@@ -17,6 +17,12 @@
   <line class="arrow" x1="438" y1="113" x2="498" y2="113" marker-end="url(#m1)"/>
   <rect class="out" x="505" y="83" width="125" height="60"/>
   <text x="567" y="120" font-size="21" text-anchor="middle">answer</text>
+  </g>
+  <g class="fragment" data-fragment-index="3">
+  <path class="tool" d="M60 190 h44 l9 11 h97 v54 h-150 z"/>
+  <text class="strong" x="135" y="234" font-size="21" text-anchor="middle">skill</text>
+  <path class="arrow" d="M212 222 C 300 222, 343 205, 343 160" marker-end="url(#m1)"/>
+  <text class="soft" x="366" y="230" font-size="20">your checklist</text>
   </g>
 </svg>
 ```

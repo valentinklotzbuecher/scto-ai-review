@@ -1,7 +1,7 @@
-# 4 · The checklist, as a script
+# 2 · The same, as a script
 
-Your checklist as a prompt, sent from a script through the API: the same prompt and the
-same answer format for every product, the issues collected in one table, and every run
+The chat's review, sent from a script through the API: the same prompt and the same
+answer format for every product, the issues collected in one table, and every run
 logged with its tokens and cost. Billed per use with an API key, not on a chat plan.
 
 | File | What it is |
@@ -20,11 +20,11 @@ install.packages(c("ellmer", "jsonlite"))
 ```
 
 ```bash
-Rscript tools/4-api/review.R --dry-run demo/sse/DEMO-TKA_SSE.pdf
+Rscript tools/2-api/review.R --dry-run demo/sse/DEMO-TKA_SSE.pdf
 ```
 
 ```bash
-ANTHROPIC_API_KEY=... Rscript tools/4-api/review.R demo/sse/DEMO-TKA_SSE.pdf
+ANTHROPIC_API_KEY=... Rscript tools/2-api/review.R demo/sse/DEMO-TKA_SSE.pdf
 ```
 
 Python:
@@ -34,11 +34,11 @@ pip install anthropic
 ```
 
 ```bash
-python tools/4-api/review.py --dry-run demo/sse/DEMO-TKA_SSE.pdf
+python tools/2-api/review.py --dry-run demo/sse/DEMO-TKA_SSE.pdf
 ```
 
 ```bash
-ANTHROPIC_API_KEY=... python tools/4-api/review.py demo/sse/DEMO-TKA_SSE.pdf
+ANTHROPIC_API_KEY=... python tools/2-api/review.py demo/sse/DEMO-TKA_SSE.pdf
 ```
 
 `--dry-run` shows the request and sends nothing. Each PDF is sent with the Quarto source
@@ -85,8 +85,8 @@ such as `chat_openai()`, and check its model names and effort setting.
 Give the model tools, such as "run this R code", and let the library run the loop: the
 model asks for a tool, your code runs it, the result goes back, until the model stops
 asking. In ellmer that is `tool()` and `chat$register_tool()`; in the Python SDK, the
-tool runner. That is the agent of step 5, built by hand; Claude Code
-([`../5-agent`](../5-agent/README.md)) is the ready-made one.
+tool runner. That is the agent of step 4, built by hand; Claude Code
+([`../4-agent`](../4-agent/README.md)) is the ready-made one.
 
 ## Data
 

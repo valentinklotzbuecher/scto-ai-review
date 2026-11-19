@@ -142,6 +142,30 @@ hosts, but they are allowed):
   Publication: Checkable by Anyone, Anywhere, in Seconds, Forever." In the notes of "An
   agent in the repository" and in the links.
 
+## Just Ask the Model, our Unjournal working paper (read 19 November 2026)
+
+Klotzbücher, Reinstein, Pacchiardi and Zhang, *Just Ask the Model: One-Shot LLM Research
+Evaluation and Structured Expert Review*, llm-uj-research-eval.netlify.app (also on
+GitHub Pages), the version deployed on 10 November 2026 (`gh-pages` of
+llm-uj-research-eval, deploy commit 0944f53). The headline on its first page, "Can the
+model find the issues experts find?":
+
+> On 30 papers, a one-shot Claude Opus 5.5 report raised 61% of an individual
+> evaluator's issues by a GPT judge and 35% by a stricter Claude judge; a second
+> evaluator raised 36% and 22% of the same issues. Both are far above a placebo that
+> pairs one paper's evaluations with the model's report on another paper (2% and 1%).
+> So the model overlaps with an individual evaluator more than a second evaluator does,
+> under both judges, though the two judges disagree on the level and no human has
+> checked the matches yet. An earlier analysis of 12 papers against a short curated
+> consensus list reported 80% coverage, but that judge was GPT-5.2 Pro grading its own
+> critiques; a blinded re-judging gives 44%–60% at the main level, and about 80% only
+> when any criticism of the same result counts.
+
+Its introduction calls the design "the simplest possible setup—a single prompt to a
+frontier model, with no bespoke pipeline". The kit used the earlier 80% until
+19 November 2026; it now uses the 30-paper figures, on "Review services" (notes), in
+the handout and in `tools/3-services`.
+
 ## Where it is used in the talk
 
 In the deck (`slides/index.qmd`):
@@ -176,7 +200,7 @@ screenshots:
 - Francis's "verified by humans" sentence and the retirement of Reviewer 2; Douglass's
   comment of 15 October; the services from the Reviewer 2 paper; Deep Review's terms;
   Certify.
-- The quotes on Claude Code on the web (`tools/5-agent`) and on the Agent SDK.
+- The quotes on Claude Code on the web (`tools/4-agent`) and on the Agent SDK.
 
 In the earlier demo deck (`archive/demo-deck.qmd`):
 
