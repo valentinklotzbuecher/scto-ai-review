@@ -195,10 +195,6 @@ Rich Sutton, The Bitter Lesson, 2019
 ```
 
 ::: {.fragment fragment-index=3}
-::: punchline
-Build checklists and test cases, not tools.
-:::
-
 ::: {.tight}
 - What carries over: test cases with known answers, review standards, data rules
 :::
@@ -212,11 +208,9 @@ Review: he had thought about building a review tool twice a day for three years,
 didn't, because "one of the big three does it and it's over". [click] Later that month
 Joe Francis retired Reviewer 2: he decided it was obsolete, and he now begins his
 reviews with skills. My own prototype went the same way, and my skills will too: tools
-are obsolete before they are finished. [click] So build checklists and test cases, not
-tools. What carries over to every new model: test cases with known answers, standards
-for what a review must check, and rules for what data may go where. Every new model
-makes the same checklist more powerful. And the general method is already here: an
-agent.
+are obsolete before they are finished. [click] What carries over to every new model:
+test cases with known answers, standards for what a review must check, and rules for
+what data may go where. And the general method is already here: an agent.
 :::
 
 ## An agent in the repository

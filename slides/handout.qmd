@@ -170,10 +170,6 @@ that month Joe Francis retired the hosted Reviewer 2, which he had decided was
 obsolete; he now begins his reviews with skills. My own prototype went the same way,
 and my skills will too.
 
-::: punchline
-Build checklists and test cases, not tools.
-:::
-
 What carries over to every new model:
 
 - test cases with known answers, to see what a tool finds and what it misses;

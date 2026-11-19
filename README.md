@@ -42,13 +42,13 @@ ways to get an AI review as a grid, in the app or as a pipeline, with the docume
 alone, your checklist, or running the code, each drawn as a diagram, and goes through it
 row by row: a chat and review services; a skill and a script through the API. Between
 these bespoke tools and the agent comes Sutton's bitter lesson: Google's Deep Review,
-Reviewer 2 retired as obsolete; build checklists and test cases, not tools. Then the
-general method: an agent with skills in the product's repository, and a table of all
-five. It closes with result-oriented review (the human checks that the AI tested enough,
-that each step does what it says, the approach and the interpretation) and a
-discussion that brings back the preprint's last author: human-only review is
-dangerous; is AI-only review? The content takes about 12 minutes, which leaves the rest
-of the slot for the discussion.
+Reviewer 2 retired as obsolete; what carries over is test cases, review standards and
+data rules. Then the general method: an agent with skills in the product's repository,
+and a table of all five. It closes with result-oriented review (the human checks that
+the AI tested enough, that each step does what it says, the approach and the
+interpretation) and a discussion that brings back the preprint's last author: human-only
+review is dangerous; is AI-only review? The content takes about 12 minutes, which leaves
+the rest of the slot for the discussion.
 
 ## Contents
 
