@@ -1,0 +1,30 @@
+element,product,protocol,sap,sse,registry,other,status,evidence
+identity / version,"Version 1.0, 15 September 2026 (p.1); title page date 2026-09-15; no status, no registry ID",,,(this product),,source YAML date 2026-09-15 (qmd:5),consistent,p.1; qmd:5
+design,"single-centre, randomised, controlled, parallel-group superiority (p.1 §1)",not in chat,not in chat,(this product),not in chat,params multicentre: false (qmd:23),not in chat,p.1 §1
+eligibility / population,"adults undergoing primary TKA, eligible for the trial (p.1 §1, §2); criteria not printed",not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §1–2
+intervention,app-guided home exercise over 12 weeks (p.1 §1),not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §1
+comparator,supervised outpatient physiotherapy over 12 weeks (p.1 §1),not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §1
+allocation ratio,1:1 (p.1 §1),not in chat,not in chat,(this product),not in chat,"1:1 (Table 1, p.1)",consistent,p.1 §1; Table 1
+randomisation,within 2 weeks after surgery; permuted blocks of variable size; no stratification stated (p.1 §1),not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §1
+blinding,outcome assessors blinded (p.1 §2),not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §2
+primary endpoint,"6MWD (m) at 6 months after surgery, standardised protocol; visit window not stated (p.1 §2)",not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §2
+baseline covariate,pre-operative 6MWD (p.1 §2),not in chat,not in chat,(this product),not in chat,ANCOVA covariate (p.1 §4),consistent,"p.1 §2, §4"
+estimand: population,adults undergoing primary TKA eligible for the trial (p.1 §2),not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §2
+estimand: treatment conditions,app-guided home exercise vs supervised physiotherapy (p.1 §2),not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §2
+estimand: variable,6MWD at 6 months (p.1 §2),not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §2
+estimand: intercurrent events and strategies,not stated,not in chat,not in chat,(this product),not in chat,,missing-in-product,p.1 §2; D7
+estimand: population-level summary,difference in means (p.1 §2),not in chat,not in chat,(this product),not in chat,,not in chat,p.1 §2
+target effect,"35 m, smallest difference of clinical interest; direction not stated (Table 1)",not in chat,not in chat,(this product),not in chat,steering committee 3 June 2026: not in chat,missing-in-product,Table 1; D9
+SD of 6MWD at 6 months,90 m (Table 1),not in chat,not in chat,(this product),not in chat,hospital TKA registry 2019–2021 internal report: not in chat,not in chat,Table 1
+correlation baseline–6 months,not printed,not in chat,not in chat,(this product),not in chat,"source rho <- 0.5, no source (qmd:45)",missing-in-product,§4 p.1; qmd:45; D2
+alpha and sidedness,"5%, two-sided (Table 1; §4 p.2 line 1)",not in chat,not in chat,(this product),not in chat,source rejection rule one-sided at 5% (qmd:65); printed curve fits one-sided (C06),differs,Table 1; §4; qmd:65; C04–C06; D1
+power,80% (Table 1; §4 p.2),not in chat,not in chat,(this product),not in chat,,consistent,Table 1; §4
+dropout allowance,20% loss to follow-up at 6 months (Table 1); applied as N × 1.2 (§4 p.2),not in chat,not in chat,(this product),not in chat,registry internal report: not in chat,consistent,Table 1; §4; D4 (formula)
+N evaluable per group,55 (§4 p.2),not in chat,not in chat,(this product),not in chat,"dotted line at 55 (Figure 1, C16)",consistent,"§4; Figure 1; recomputed 79 two-sided (C03, D1)"
+N randomised,"66 per group, 132 total (§4 p.2)",not in chat,not in chat,(this product),not in chat,,consistent,§4; C12–C15
+primary analysis,ANCOVA of 6-month 6MWD with treatment and baseline 6MWD (§4 p.1),not in chat,not in chat,(this product),not in chat,restated §5 p.2,consistent,§4; §5
+analysis set,"all randomised, as allocated (§2 p.1)",not in chat,not in chat,(this product),not in chat,§4 sizes on evaluable participants with 20% loss; §5 defers missing data,differs,§2 vs §4–5; D8
+missing data,deferred to the SAP (§5 p.2),not in chat,not in chat,(this product),not in chat,,not in chat,§5
+interim analyses / stopping,not stated,not in chat,not in chat,(this product),not in chat,,not in chat,—
+multiplicity / key secondary / subgroups / safety,not stated,not in chat,not in chat,(this product),not in chat,,not-applicable,outside SSE profile
+software,R version 4.3.3 (2024-02-29) (§6 p.2),,,(this product),,,consistent,§6

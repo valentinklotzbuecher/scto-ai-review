@@ -45,7 +45,8 @@ it on test cases with known answers) or Python (the SDKs); and an agent in the p
 repository, with the skills as its instructions and the Agent SDK to start it from a
 script, followed by what you choose for it: depth, data (none, synthetic, shared) and
 what you get, and by what it found on the demo, a test case with a known answer: all six
-planted issues, with the chat, the skill and the script still to run. One slide shows
+planted issues, as did the chat with the skill, with the chat on its own and the script
+still to run. One slide shows
 how to try the script and the agent from this kit. It ends
 on one slide of items to discuss: signing off an AI-reviewed product, reviewing results
 rather than lines, the checks that stay with us, writing for an AI reader, replication

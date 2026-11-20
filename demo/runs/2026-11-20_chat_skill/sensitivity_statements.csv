@@ -1,0 +1,6 @@
+claim,location,cited_exhibit,scenarios_covered,classification,evidence
+"Because adjustment for baseline increases precision, we estimated power by simulation",p.1 §4,none,general,QUALIFIED,"true for any nonzero correlation; the size of the gain depends on rho, which is not printed (C20, D2)"
+counted the trials in which the treatment effect was statistically significant at the two-sided 5% level,p.1–2 §4,Figure 1,13 grid points,CONTRADICTED (given rho 0.5 at qmd:45); UNRESOLVED from the print alone,curve fits one-sided 5% at 13/13 points and two-sided at 0/13 with rho 0.5 (C06); qmd:65 one-sided
+The smallest sample size with at least 80% power is 55 evaluable participants per group (estimated power 81.5%),p.2 §4,Figure 1,13 grid points,CONTRADICTED,"Figure 1 shows the first crossing at 55, but two-sided power at 55 is 64.5% (C04) and the requirement 79 (C03); even one-sided, the requirement is 63 and 55 is within MC noise (C09, C10)"
+an unadjusted two-sample t-test would require 94 participants per group,p.2 §4,none,one,CONTRADICTED,"105 two-sided, 83 one-sided (C01, C02)"
+"Allowing for 20% loss to follow-up, we will randomise 55 × 1.2 = 66 participants per group",p.2 §4,Table 1,one,CONTRADICTED,66 randomised leaves 52.8 evaluable (C14); N/(1 − d) = 69 (C13)
