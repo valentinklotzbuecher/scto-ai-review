@@ -24,6 +24,9 @@ recommendation.
 - **The demo**, [`demo/`](demo/README.md): a two-page synthetic SSE with six planted
   issues, its answer key and the recorded runs. Give a tool only `demo/sse/`; the rest
   of this kit names the issues.
+- **The second demo**, [`demo-crt/`](demo-crt/README.md): a cluster trial whose sample
+  size comes from saved simulation results, with four planted issues, three of which
+  only running its code sizes. Give a tool only `demo-crt/sse/`.
 
 The review skills live in their own repository,
 [stats_review](https://github.com/valentinklotzbuecher/stats_review); this kit links to
@@ -70,6 +73,8 @@ demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only revi
 demo/answer-key.md      the six planted issues, their consequences, the scoring rules
 demo/answer-key.R       recomputes every number in the answer key
 demo/runs/              each recorded review of the demo, scored, and the scoreboard
+demo-crt/               the second demo, laid out the same way: sse/ (with its R code
+                        and saved results), answer key and script, runs/
 material/               sources: the preprint, post screenshots, quotes with pages
 archive/                the earlier, longer deck built around the demo
 ```
@@ -82,11 +87,13 @@ quarto render slides/handout.qmd           # the handout; no R needed
 quarto render archive/demo-deck.qmd        # the earlier deck
 quarto render demo/sse/DEMO-TKA_SSE.qmd    # the SSE as PDF via Typst; needs R and knitr
 Rscript demo/answer-key.R                  # about a minute
+quarto render demo-crt/sse/DEMO-CRT_SSE.qmd  # reads the saved results; runs no simulation
+Rscript demo-crt/answer-key.R              # needs lme4; about an hour on four cores
 Rscript archive/assets/make-figures.R      # the earlier deck's power figure (base R)
 ```
 
-The rendered PDF in `demo/sse/` is the one every tool reviews. If you re-render it,
-re-run every tool on the new PDF.
+The rendered PDFs in `demo/sse/` and `demo-crt/sse/` are the ones every tool reviews.
+If you re-render one, re-run every tool on the new PDF.
 
 ## Sources
 

@@ -1,0 +1,142 @@
+---
+title: "Sample Size Estimation"
+subtitle: "DEMO-CRT: electronic decision support for antibiotic prescribing in general practice, a cluster-randomised trial"
+author: "DKF Statistics"
+date: 2026-10-20
+format:
+  typst:
+    papersize: a4
+    margin:
+      x: 2.4cm
+      y: 2.4cm
+    fontsize: 10.5pt
+    section-numbering: "1."
+    fig-format: svg
+params:
+  study-title: "DEMO-CRT: electronic decision support for antibiotic prescribing in general practice"
+  study-hra-category: "A"
+  internal-dkf-id: "DEMO-02"
+  file-name: "DEMO-CRT_SSE"
+  protocol-section: true
+  product-type: "SSE"
+  product-service: "Sample size estimation for the study protocol"
+  multicentre: true
+  repeating-product: false
+  usage-of-R: true
+  estimated-time-for-review: "3 hours"
+  influence-on-protocol: "high"
+  level-of-assumptions: "high"
+  type-of-review: "consistency review"
+  function-test-GitHub-issues: "not applicable"
+  risk-assessment-comment: "none"
+  final-product-risk: "medium"
+  reason-for-chosen-risk: "The sample size determines the number of practices to recruit."
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+#| label: setup
+#| include: false
+source("R/planning.R")
+power_res   <- readRDS("results/power.rds")
+k_chosen    <- power_res$k[which(power_res$power >= pv$power)[1]]
+power_at_k  <- power_res$power[power_res$k == k_chosen]
+n_practices <- 2 * k_chosen
+n_patients  <- round(n_practices * pv$m)
+mcse_max    <- max(sqrt(power_res$power * (1 - power_res$power) / power_res$n_sim))
+
+pct <- function(x, d = 0) sprintf(paste0("%.", d, "f%%"), 100 * x)
+```
+
+*Demonstration document. The study, its sources and all numbers are invented.*
+
+Version 1.0, 20 October 2026.
+
+# Study design
+
+DEMO-CRT is a planned cluster-randomised, controlled, parallel-group superiority trial in
+general practices of a regional practice network. Practices are randomised 1:1, in
+permuted blocks of four, to an electronic decision-support tool in the practice software
+(intervention) or to usual care (control). When a consultation for an acute respiratory
+tract infection is coded, the tool shows the current guideline recommendation on
+antibiotic treatment. Each practice is observed for six months after randomisation.
+
+# Primary endpoint and estimand
+
+The primary endpoint is whether the prescribing decision at a patient's first
+consultation for an acute respiratory tract infection in the observation period is
+concordant with the national guideline. It is assessed from the practice records by
+assessors blinded to the allocation.
+
+The primary estimand is the effect of offering the decision-support tool to a practice,
+compared with usual care, on guideline-concordant prescribing for adults with an acute
+respiratory tract infection, expressed as an odds ratio for a practice with an average
+practice effect. Practices that stop using the tool remain in the analysis as randomised
+(treatment policy). Patients who consult more than once contribute their first
+consultation only.
+
+The decision support is expected to raise guideline-concordant prescribing from 45% to
+60%.
+
+# Planning values
+
+| Quantity | Value | Source |
+|:-----------------------------------------|:------------------|:-----------------------------------------|
+| Guideline-concordant prescribing, usual care | `r pct(pv$p0)` | Practice network audit 2024 (internal report) |
+| Guideline-concordant prescribing, decision support | `r pct(pv$p1)` | Smallest increase of clinical interest, agreed with the investigators (steering committee, 18 June 2026) |
+| Intracluster correlation (logit scale) | `r pv$icc` | Pilot study in 12 practices, 2025 (internal report) |
+| Eligible patients per practice in six months, mean | `r pv$m` | Practice network audit 2024 (internal report) |
+| Eligible patients per practice, coefficient of variation | `r pv$cv` | Practice network audit 2024 (internal report) |
+| Significance level | `r pct(pv$alpha)`, two-sided | |
+| Power | `r pct(pv$power)` | |
+
+: Planning values. {#tbl-planning}
+
+# Sample size
+
+Because the primary analysis is a logistic mixed model and the practices differ in size,
+we estimated power by simulation. For 6 to 16 practices per arm, we simulated
+`r format(power_res$n_sim[1], big.mark = ",")` trials each under the planning values in
+@tbl-planning: the number of eligible patients per practice from a gamma distribution
+with the stated mean and coefficient of variation (at least 5), a normally distributed
+practice effect on the logit scale with the variance that gives the stated intracluster
+correlation, and one outcome per patient from the logistic model. Each simulated trial
+was analysed with the primary analysis (Section 5); power is the share of trials with
+p < 0.05 (@fig-power). The Monte Carlo standard error of each estimate is at most
+`r sprintf("%.1f", 100 * mcse_max)` percentage points.
+
+```{r}
+#| label: fig-power
+#| fig-cap: "Estimated power by number of practices per arm. Dashed line: 80% power; dotted line: chosen number of practices."
+#| fig-width: 6
+#| fig-height: 3.4
+par(mar = c(4.2, 4.4, 0.8, 0.8))
+plot(power_res$k, power_res$power, type = "b", pch = 19, ylim = c(0.4, 1), las = 1,
+     xlab = "Practices per arm", ylab = "Estimated power")
+abline(h = pv$power, lty = 2)
+abline(v = k_chosen, lty = 3)
+```
+
+The smallest number of practices per arm with an estimated power of at least 80% is
+`r k_chosen` (estimated power `r pct(power_at_k, 1)`). We will therefore randomise
+`r n_practices` practices, which at a mean of `r pv$m` eligible patients per practice
+gives about `r format(n_patients, big.mark = ",")` patients.
+
+The simulation is in `R/simulate.R` and `sim/run_power.R`, with the planning values in
+`R/planning.R`; the results are saved in `results/power.rds`, which this document reads.
+
+# Analysis
+
+The primary analysis is a logistic mixed model of guideline-concordant prescribing with
+the intervention as fixed effect and a random intercept for practice, fitted by maximum
+likelihood with the Laplace approximation. The intervention effect is tested with the
+Wald test at the two-sided 5% level. The outcome is taken from the practice records, so
+missing outcome data are not expected.
+
+# Software
+
+Simulations were run in `r R.version.string` with lme4 `r packageVersion("lme4")`. The
+simulation code and the random seed are part of the source of this document.

@@ -1,30 +1,36 @@
 # scto-ai-review: project notes
 
 The kit for an SCTO talk: the deck and a handout (`slides/`), a starter for each of four
-tools (`tools/`), a synthetic demonstration SSE with planted issues (`demo/`), the
+tools (`tools/`), two synthetic demonstration SSEs with planted issues (`demo/`, and
+`demo-crt/`, a cluster trial whose sample size comes from saved simulation results), the
 sources (`material/`) and the earlier demo deck (`archive/`). `README.md` is the start
 page.
 
 ## The answer key stays out of reviews
 
-- Only `demo/sse/` is reviewable. Never let an agent or a chat review the demo from
-  inside this repository (the `dkf-review` skill, a chat, Claude Code), and never copy
-  `demo/answer-key.*`, `slides/`, `archive/` or this file into a review job or a prompt.
-  The API starters in `tools/3-api/` send only the files named on their command line,
-  so they may run on `demo/sse/` from here.
-- Review the demo with the agent from a clone of `stats_review`, with `new_job.py
-  --product <this repo>/demo/sse/`.
-- Never add hints to `demo/sse/`: no comments, file names or text that point at the
-  planted issues.
+- Only `demo/sse/` and `demo-crt/sse/` are reviewable. Never let an agent or a chat
+  review a demo from inside this repository (the `dkf-review` skill, a chat, Claude
+  Code), and never copy `demo/answer-key.*`, `demo-crt/answer-key.*`, `slides/`,
+  `archive/` or this file into a review job or a prompt. The API starters in
+  `tools/3-api/` send only the files named on their command line, so they may run on
+  either `sse/` from here.
+- Review a demo with the agent from a clone of `stats_review`, with `new_job.py
+  --product <this repo>/demo/sse/` (or `demo-crt/sse/`).
+- Never add hints to `demo/sse/` or `demo-crt/sse/`: no comments, file names or text
+  that point at the planted issues.
+- `demo-crt/sse/results/power.rds` is part of a planted issue: never regenerate it with
+  `sim/run_power.R`. `demo-crt/answer-key.md` says how it was made.
 
 ## Numbers and facts
 
-- Every number about the demo, on the slides, in the handout or in the answer key,
-  comes from `Rscript demo/answer-key.R`; the archived deck's figure comes from
-  `Rscript archive/assets/make-figures.R`. Change the SSE, and re-run both and update
-  the text.
-- Scoreboard counts come only from recorded runs in `demo/runs/`, scored against
-  `demo/answer-key.md`. Never fill them in from expectation.
+- Every number about a demo, on the slides, in the handout or in its answer key, comes
+  from its script: `Rscript demo/answer-key.R` or `Rscript demo-crt/answer-key.R`
+  (about an hour on four cores); the archived deck's figure comes from
+  `Rscript archive/assets/make-figures.R`. Change an SSE, and re-run its script (and
+  for DEMO-TKA the figure's) and update the text.
+- Scoreboard counts come only from recorded runs in `demo/runs/` and
+  `demo-crt/runs/`, scored against the demo's answer key. Never fill them in from
+  expectation.
 - Facts about other tools and people are quoted from the sources listed in
   `README.md`; add the source when adding a fact, and keep source files in `material/`
   with a note of where each fact is (page or post).
@@ -50,6 +56,7 @@ page.
   `slides/index.html`.
 - `quarto render slides/handout.qmd`, then check it at desktop and phone width: the
   page never scrolls sideways. Commit the rendered `slides/handout.html`.
-- `quarto render demo/sse/DEMO-TKA_SSE.qmd` renders with Typst; the committed PDF is
-  the one all tools review.
+- `quarto render demo/sse/DEMO-TKA_SSE.qmd` and `quarto render
+  demo-crt/sse/DEMO-CRT_SSE.qmd` render with Typst; the committed PDFs are the ones all
+  tools review.
 - Slide text: short, plain, one idea per slide; speaker notes carry the rest.
