@@ -20,7 +20,7 @@ only running the code establishes or sizes. Every number below is recomputed by
 | 1 | Text | The text expects 45% to 60%; Table 1 and the code plan for 62%, the smallest increase of clinical interest | Primary endpoint and estimand, last sentence; Table 1; `R/planning.R` |
 | 2 | Computation | The saved results do not come from the delivered code: they were made with an ICC of 0.03 | `results/power.rds`, read by the `setup` chunk; `sim/run_power.R` |
 | 3 | Code | The simulation puts the practice effects on the wrong patients, so it simulates a smaller ICC than stated | `R/simulate.R`, `simulate_trial()`: `merge()` re-sorts the patients; `rep(practices$u, practices$size)` assumes the original order |
-| 4 | Computation | With this few practices, the planned Wald z test rejects too often when there is no effect | Analysis; `analyse()` in `R/simulate.R` takes `Pr(>|z|)` |
+| 4 | Computation | With this few practices, the planned Wald z test rejects too often when there is no effect | Analysis; `analyse()` in `R/simulate.R` takes the normal p-value, `Pr(>\|z\|)` |
 
 ### 1. 60% or 62% (text)
 
@@ -62,7 +62,7 @@ order agree and the code is right; the grid starts at 12.
 
 That the code realises about the 0.03 the saved results were made with is a
 coincidence. The two issues are separate: the saved results come from `icc = 0.03` in
-the planning values, which the code then reduces to ⟨ICC03⟩.
+the planning values, which the code then reduces to 0.018.
 
 With each practice's effect on its own patients (2,000 trials per point; Monte Carlo
 standard error at most 1.1 points), the planned Wald test reaches 80% at 12 practices per
@@ -78,9 +78,9 @@ on its own patients (4,000 trials each; Monte Carlo standard error 0.3 points at
 
 | Type I error | 8 per arm | 12 per arm | 14 per arm |
 |---|---|---|---|
-| Wald z, as planned | 8.8% | 7.7% | ⟨Z14⟩ |
-| The same statistic against t with 2k − 2 degrees of freedom | 6.1% | 6.1% | ⟨T14⟩ |
-| t-test of the practice proportions | 4.9% | 5.1% | ⟨C14⟩ |
+| Wald z, as planned | 8.8% | 7.7% | 7.5% |
+| The same statistic against t with 2k − 2 degrees of freedom | 6.1% | 6.1% | 6.0% |
+| t-test of the practice proportions | 4.9% | 5.1% | 4.7% |
 
 The t reference brings the error down but not to 5%; the t-test of the practice
 proportions keeps it, at a price in power:
