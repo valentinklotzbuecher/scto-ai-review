@@ -23,8 +23,12 @@ format:
 :::: {.columns}
 ::: {.column width="56%"}
 ```{=html}
-<div class="shot"><img src="assets/shot-rust-full.png" style="width: 100%" alt="Ruslan Rust on X, 28 October 2026: Lots of debate this week on whether journals should ban AI in peer review. We actually tested this in our new preprint, and the results were pretty clear to me. For context, I've reviewed for most of the big journals and evaluated 1,000 human reviews as an editor. TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous. Below, the preprint's figure: Human peer reviewers found 27% of the major errors. Every one of 15 AI models found more (53-96%), on the same three trial reports with the same answer key."></div>
+<div class="shot"><img src="assets/shot-rust.png" style="width: 100%" alt="Ruslan Rust on X, 28 October 2026: Lots of debate this week on whether journals should ban AI in peer review. We actually tested this in our new preprint, and the results were pretty clear to me. For context, I've reviewed for most of the big journals and evaluated 1,000 human reviews as an editor. I love to read and evaluate science. TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous."></div>
 ```
+
+::: {.fragment fragment-index=1 .punchline}
+Human reviewers found 27% of the major errors; each of 15 models found more, 53 to 96%.
+:::
 :::
 
 ::: {.column width="44%" .plate .fragment fragment-index=1}
@@ -42,38 +46,46 @@ Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
 
 ::: notes
 [0:30–1:45] The debate this autumn: should journals ban AI in peer review? Ruslan Rust's
-group tested it. They repeated the classic BMJ experiment: known errors inserted into
-reports of randomised trials, every review scored against the same answer key. His
-conclusion: from now on he won't review without AI, and for clinical trials he calls
-human-only review dangerous. [click] The forest plot: human peer reviewers, in the 2004
-study, found about a quarter of the major errors. Every one of 15 current models,
-reading only the text, found more: 53 to 96%. Caveats: a preprint, a historical human
-comparison, language models as judges, and models that also flag concerns on clean
-reports. [click] A second study, from Harvard, the same week: King and Worthington
-compared AI reviews with paid human reviews that editors and authors had rated
-unusually good, and the AI reviews were better by every measure they could construct:
-124 papers, one review each from Claude Opus 4.8 at its maximum reasoning setting,
-judged by another model and by three former journal editors, who preferred the AI
-review in 26 of 30 judgments. Also a working paper. Or as one researcher put it: "It's
-been true for a year at least." So the question is less whether to use these tools
-than how.
+group tested it. His conclusion: from now on he won't review without AI, and for
+clinical trials he calls human-only review dangerous. [click] They repeated the classic
+BMJ experiment: known errors inserted into reports of randomised trials, every review
+scored against the same answer key. Human peer reviewers, in the 2004 study, found
+about a quarter of the major errors. Every one of 15 current models, reading only the
+text, found more: 53 to 96%. Caveats: a preprint, a historical human comparison,
+language models as judges, and models that also flag concerns on clean reports.
+[click] A second study, from Harvard, the same week: King and Worthington compared AI
+reviews with paid human reviews that editors and authors had rated unusually good, and
+the AI reviews were better by every measure they could construct: 124 papers, one review
+each from Claude Opus 4.8 at its maximum reasoning setting, judged by another model and
+by three former journal editors, who preferred the AI review in 26 of 30 judgments.
+Also a working paper. Or as one researcher put it: "It's been true for a year at least."
 :::
 
-## Four ways to an AI review
+## And our internal review?
 
-::: scope
-Reviewing a statistical product: its **methods**, its **numbers** and its **code**.
+::: big
+Sample size estimations, analysis plans, reports
 :::
+
+{{< include diagrams/_question.qmd >}}
+
+::: notes
+[1:45–2:15] Journals are one thing. What can these tools do, more specifically, for our
+own review: the consistency review of sample size estimations, analysis plans and
+reports, where a second statistician checks the methods, the numbers and the code? [click]
+Where does AI come in? I have tried a few things, and I'll show them, so that we can discuss this with some
+experience rather than in the abstract. All of it is my own exploration, not something
+DKF runs or recommends.
+:::
+
+## Four ways I explored
 
 {{< include diagrams/_overview.qmd >}}
 
 ::: notes
-[1:45–2:30] Four ways to get an AI review of a statistical product. The chat: paste and
-ask. [click] Review services: someone else's pipeline. [click] Your own pipeline, a
-script through the API. [click] And then something different: an agent that runs the
-code in the repository. Review here means the whole product: the statistical methods,
-the design, the estimand, the sample size and the analysis, the printed numbers, and the
-code. Everything today is my own exploration, not something DKF runs or recommends.
+[2:15–2:45] Four ways. The chat: paste and ask. [click] Review services: someone else's
+pipeline. [click] Your own pipeline, a script through the API. [click] And then
+something different: an agent that runs the code in the repository.
 :::
 
 ## Paste it into the chat
@@ -89,7 +101,7 @@ Strongest model, maximum effort
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[2:30–3:45] The simplest way is what the preprint tested. Paste the PDF and the source
+[2:45–4:00] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
@@ -126,7 +138,7 @@ Francis (research_skills, MIT licence).
 ```
 
 ::: notes
-[3:45–5:00] Others have built whole review pipelines and offer them as services. You
+[4:00–5:00] Others have built whole review pipelines and offer them as services. You
 upload the PDF. [click] Behind it run fixed chains of model calls, with prompts the
 vendor wrote; Reviewer 2's first stage, The Breaker, takes a sledgehammer to the text,
 and later stages filter out what the aggression invents. [click] You get a report.
@@ -244,6 +256,44 @@ cloud machine, and you type one sentence. It runs on your Claude plan. [click] B
 in the kit, with a handout that walks through each step.
 :::
 
+## To discuss
+
+::: {.tight}
+- What would you need to see before you sign a product an AI reviewed?
+- Review results, not lines?
+- Which checks stay with us: the estimand, the design?
+- Should we write our products for an AI reader?
+- A replication certificate with every product?
+- Build our own tools, or wait for the next model?
+- How will junior statisticians learn to review?
+:::
+
+::: notes
+[9:00–20:00] To discuss. What would you need to see before you sign a product an AI
+reviewed? Could our review become result-oriented: the AI goes through every line,
+every number and every re-run, and we check that it tested enough, that each chunk,
+section and analysis does what it says, and that the approach and the interpretation
+hold? Even the author of the skills I build on says the results come from robots and
+should be verified by humans. Which checks stay with us: the choice of estimand, the
+clinical relevance, the design? If an AI reads our products first, should we write them
+for it: the estimand in full, every assumption in the text and not only in the code,
+every number traceable to the code that makes it? Certify, from Gary King, Yiqing Xu and
+Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun a
+replication package on your computer, and certifies that rerunning the code produces
+the results to be published: should our products carry such a certificate? Should we
+build our own tools at all? Sutton's bitter lesson: hand-built machinery keeps losing to
+general methods that use more computation. Rex Douglass, on the day Google launched Deep
+Review, said he never built a review tool because "one of the big three does it and
+it's over"; Joe Francis retired Reviewer 2 as obsolete; my own prototype went the same
+way, and my skills will too. What carries over: test cases with known answers, review
+standards, data rules (backup slide in the appendix). And how will junior statisticians
+learn to review, if the AI does the line-by-line work? The preprint's last author calls
+human-only review dangerous for clinical trials; is AI-only review? Thank you; the
+links are in the appendix.
+:::
+
+# Appendix {.divider}
+
 ## The bitter lesson
 
 ::: quote
@@ -267,7 +317,7 @@ Rich Sutton, The Bitter Lesson, 2019
 :::
 
 ::: notes
-[9:00–10:30] Use them, but don't over-engineer them. Sutton's lesson from 70 years of AI
+Backup for "Build our own tools, or wait for the next model?". Sutton's lesson from 70 years of AI
 research: hand-built machinery keeps losing to general methods that use more
 computation, and review tools are no exception. [click] Rex Douglass, on the day Google
 launched Deep Review: he had thought about building a review tool twice a day for three
@@ -278,48 +328,6 @@ tools are obsolete before they are finished. [click] What carries over to every 
 model: test cases with known answers, standards for what a review must check, and rules
 for what data may go where.
 :::
-
-## And in five years?
-
-```{=html}
-<div class="pop fragment fade-out" data-fragment-index="1"><img src="assets/shot-rust.png" style="width: 780px" alt="Ruslan Rust on X, 28 October 2026: Lots of debate this week on whether journals should ban AI in peer review. We actually tested this in our new preprint, and the results were pretty clear to me. For context, I've reviewed for most of the big journals and evaluated 1,000 human reviews as an editor. I love to read and evaluate science. TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous."></div>
-```
-
-::: {.fragment fragment-index=1}
-::: punchline
-And AI-only review?
-:::
-
-::: {.tight}
-- What would you need to see before you sign a product an AI reviewed?
-- Review results, not lines: we check that the AI tested enough?
-- Which checks would you never hand over: the estimand, the design?
-- How should we write our products, if an AI reads them first?
-- A replication certificate with every product?
-- How will junior statisticians learn to review?
-:::
-:::
-
-::: notes
-[10:30–20:00] Back to the start. The preprint's last author won't review without AI any
-more, and says that for clinical trials, human-only review is dangerous. [click] Is
-AI-only review dangerous too? Some questions to discuss. What would you need to see
-before you sign a product an AI reviewed? Could our review become result-oriented: the
-AI goes through every line, every number and every re-run, and we check that it tested
-enough, that each chunk, section and analysis does what it says, and that the approach
-and the interpretation hold? Even the author of the skills I build on says the results
-come from robots and should be verified by humans. Which checks would you never hand
-over: the choice of estimand, the clinical relevance, the design? If an AI reads our
-products first, should we write them for it: the estimand in full, every assumption in
-the text and not only in the code, every number traceable to the code that makes it?
-Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant,
-Claude Code or Codex, rerun a replication package on your computer, and certifies that
-rerunning the code produces the results to be published: should our products carry such
-a certificate? And how will junior statisticians learn to review, if the AI does the
-line-by-line work? Thank you; the links are in the appendix.
-:::
-
-# Appendix {.divider}
 
 ## The Agent SDK
 

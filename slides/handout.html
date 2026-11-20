@@ -2205,7 +2205,8 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#models-find-more-errors-than-reviewers-did" id="toc-models-find-more-errors-than-reviewers-did" class="nav-link active" data-scroll-target="#models-find-more-errors-than-reviewers-did">Models find more errors than reviewers did</a></li>
-  <li><a href="#four-ways-to-an-ai-review" id="toc-four-ways-to-an-ai-review" class="nav-link" data-scroll-target="#four-ways-to-an-ai-review">Four ways to an AI review</a>
+  <li><a href="#and-our-internal-review" id="toc-and-our-internal-review" class="nav-link" data-scroll-target="#and-our-internal-review">And our internal review?</a></li>
+  <li><a href="#four-ways-i-explored" id="toc-four-ways-i-explored" class="nav-link" data-scroll-target="#four-ways-i-explored">Four ways I explored</a>
   <ul class="collapse">
   <li><a href="#paste-it-into-the-chat" id="toc-paste-it-into-the-chat" class="nav-link" data-scroll-target="#paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</a></li>
   <li><a href="#review-services" id="toc-review-services" class="nav-link" data-scroll-target="#review-services"><span class="num">02</span>Review services</a></li>
@@ -2279,8 +2280,32 @@ vertical-align: -.125em;
 </blockquote>
 <p>So the question is less whether to use these tools than how.</p>
 </section>
-<section id="four-ways-to-an-ai-review" class="level2">
-<h2 data-anchor-id="four-ways-to-an-ai-review">Four ways to an AI review</h2>
+<section id="and-our-internal-review" class="level2">
+<h2 data-anchor-id="and-our-internal-review">And our internal review?</h2>
+<div class="dg-wrap">
+<svg class="dg" style="max-height: 300px; margin-top: 40px" viewbox="0 0 1000 190" role="img" aria-label="Sample size estimations, analysis plans and reports go to a second statistician, who checks their methods, numbers and code. Then a question mark: where does AI come in?">
+  <defs><marker id="mq" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
+  <path class="doc" d="M30 40 h56 l18 18 v84 h-74 z" /><path class="fold" d="M86 40 v18 h18" />
+  <text class="mono" x="67" y="112" font-size="16" text-anchor="middle">SSE</text>
+  <path class="doc" d="M140 40 h56 l18 18 v84 h-74 z" /><path class="fold" d="M196 40 v18 h18" />
+  <text class="mono" x="177" y="112" font-size="16" text-anchor="middle">SAP</text>
+  <path class="doc" d="M250 40 h56 l18 18 v84 h-74 z" /><path class="fold" d="M306 40 v18 h18" />
+  <text class="mono" x="287" y="112" font-size="14" text-anchor="middle">REPORT</text>
+  <line class="arrow" x1="345" y1="92" x2="420" y2="92" marker-end="url(#mq)"></line>
+  <rect class="box" x="428" y="42" width="320" height="100" />
+  <text class="strong" x="588" y="84" font-size="25" text-anchor="middle">second statistician</text>
+  <text class="soft" x="588" y="118" font-size="20" text-anchor="middle">methods · numbers · code</text>
+  <g class="fragment" data-fragment-index="1">
+  <line class="arrow cut" x1="748" y1="92" x2="800" y2="92"></line>
+  <rect class="ghost" x="800" y="42" width="170" height="100" />
+  <text class="accent" x="885" y="104" font-size="34" text-anchor="middle">AI?</text>
+  </g>
+</svg>
+</div>
+<p>Journals are one thing. What can these tools do, more specifically, for our own review: the consistency review of sample size estimations, analysis plans and reports, where a second statistician checks the methods, the numbers and the code? The four ways below are what I explored, as a basis for the discussion.</p>
+</section>
+<section id="four-ways-i-explored" class="level2">
+<h2 data-anchor-id="four-ways-i-explored">Four ways I explored</h2>
 <div class="dg-wrap">
 <svg class="dg" style="margin-top: 56px" viewbox="0 0 1100 250" role="img" aria-label="Four ways to an AI review, in the order of the talk: a chat, where you paste and ask; a review service, someone else&#39;s pipeline; an API script, your own pipeline; and, after a dividing line, an agent that runs the code in the repository.">
   <rect class="box" x="45" y="30" width="230" height="190" />
@@ -2553,9 +2578,10 @@ vertical-align: -.125em;
 <ol type="1">
 <li><strong>What would you need to see before you sign a product an AI reviewed?</strong></li>
 <li><strong>Review results, not lines?</strong> In a result-oriented review the AI goes through every line, every number and every re-run, and keeps its tests and logs. The human checks that the AI tested enough, that each chunk, section, preparation step and analysis does what it says, and that the approach and the interpretation hold. Even the author of the skills mine build on says: “When using them, you should remember that the results have been produced by robots and should be verified by humans” (Joe Francis on X, 26 October 2026).</li>
-<li><strong>Which checks would you never hand over?</strong> The estimand, the clinical relevance, the design?</li>
-<li><strong>How should we write our products, if an AI reads them first?</strong> The estimand in full, every assumption in the text and not only in the code, every number traceable to the code that makes it?</li>
+<li><strong>Which checks stay with us?</strong> The estimand, the clinical relevance, the design?</li>
+<li><strong>Should we write our products for an AI reader?</strong> The estimand in full, every assumption in the text and not only in the code, every number traceable to the code that makes it?</li>
 <li><strong>A replication certificate with every product?</strong> Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard (a beta), has your own AI assistant, such as Claude Code or Codex, rerun a replication package on your computer; the certificate adds “evidence that rerunning the code produces the results to be published.”</li>
+<li><strong>Build our own tools, or wait for the next model?</strong> See the bitter lesson above: what carries over is test cases, review standards and data rules.</li>
 <li><strong>How will junior statisticians learn to review,</strong> if the AI does the line work?</li>
 </ol>
 </section>

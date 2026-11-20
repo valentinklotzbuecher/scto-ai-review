@@ -185,23 +185,26 @@ because the archived deck still carries the superseded figure.
 
 In the deck (`slides/index.qmd`):
 
-- The intro slide, "Models find more errors than reviewers did": the 27% against 53–96%,
-  every one of 15 models above the human reviewers, and Fig. 1b. The caveats (preprint,
-  2004 human reviewers, LLM judges, flags on unmodified reports) are in its notes.
-- The discussion slide, "And in five years?": Rust's quote, as the bookend.
+- The intro slide, "Models find more errors than reviewers did": Rust's words, then the
+  27% against 53–96% and Fig. 1b. The caveats (preprint, 2004 human reviewers, LLM
+  judges, flags on unmodified reports) are in its notes.
+- The discussion slide, "To discuss": the preprint's last author, as the bookend, in its
+  notes.
 - The posts are shown as screenshots, cut from the files above into
   `slides/assets/shot-*.png`; where a card leaves text out, a dashed rule marks the gap:
-  - intro slide, card on the last click: `shot-king-worthington.png`, the whole of
+  - intro slide: `shot-rust.png`, the text of `rust-2026-10-28-tweet.png` without its
+    figure (the figure is the next click, from the preprint itself); then, on the last
+    click, `shot-king-worthington.png`, the whole of
     `douglass-2026-10-23-king-worthington-tweet.png`;
-  - "The bitter lesson", after the agent, two cards for one click each: `shot-deep-review.png`, the whole of
-    `douglass-2026-10-15-deep-review-tweet.png` ("Review services" also lists Deep
-    Review); then `shot-reviewer2-retired.png`, from `francis-2026-10-26-tweet.jpeg`:
-    the post retiring Reviewer 2, then a reply's question and his answer ("Yes, I
-    decided it was obsolete");
-  - "And in five years?": `shot-rust.png`, the text of `rust-2026-10-28-tweet.png`
-    without its figure, until the click that brings up the questions.
+  - "The bitter lesson", a backup slide in the appendix for the discussion item "Build
+    our own tools, or wait for the next model?", two cards for one click each:
+    `shot-deep-review.png`, the whole of `douglass-2026-10-15-deep-review-tweet.png`
+    ("Review services" also lists Deep Review); then `shot-reviewer2-retired.png`, from
+    `francis-2026-10-26-tweet.jpeg`: the post retiring Reviewer 2, then a reply's
+    question and his answer ("Yes, I decided it was obsolete").
 - The discussion slide's notes quote Francis's "verified by humans" sentence (from
-  `francis-2026-10-26-skills-tweet.png`) as text, and describe Certify.
+  `francis-2026-10-26-skills-tweet.png`) as text, describe Certify, and summarise the
+  bitter lesson with Douglass's comment.
 
 In the handout (`slides/handout.qmd`) and the tool READMEs (`tools/`), as text, not
 screenshots:

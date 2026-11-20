@@ -68,7 +68,18 @@ The preprint's last author, Ruslan Rust, on X:
 
 So the question is less whether to use these tools than how.
 
-## Four ways to an AI review
+## And our internal review?
+
+::: dg-wrap
+{{< include diagrams/_question.qmd >}}
+:::
+
+Journals are one thing. What can these tools do, more specifically, for our own review:
+the consistency review of sample size estimations, analysis plans and reports, where a
+second statistician checks the methods, the numbers and the code? The four ways below
+are what I explored, as a basis for the discussion.
+
+## Four ways I explored
 
 ::: dg-wrap
 {{< include diagrams/_overview.qmd >}}
@@ -228,16 +239,17 @@ dangerous for clinical trials. And AI-only review?
    of the skills mine build on says: "When using them, you should remember that the
    results have been produced by robots and should be verified by humans" (Joe Francis
    on X, 26 October 2026).
-3. **Which checks would you never hand over?** The estimand, the clinical relevance, the
-   design?
-4. **How should we write our products, if an AI reads them first?** The estimand in full,
-   every assumption in the text and not only in the code, every number traceable to the
-   code that makes it?
+3. **Which checks stay with us?** The estimand, the clinical relevance, the design?
+4. **Should we write our products for an AI reader?** The estimand in full, every
+   assumption in the text and not only in the code, every number traceable to the code
+   that makes it?
 5. **A replication certificate with every product?** Certify, from Gary King, Yiqing Xu
    and Leo Yang at Harvard (a beta), has your own AI assistant, such as Claude Code or
    Codex, rerun a replication package on your computer; the certificate adds "evidence
    that rerunning the code produces the results to be published."
-6. **How will junior statisticians learn to review,** if the AI does the line work?
+6. **Build our own tools, or wait for the next model?** See the bitter lesson above:
+   what carries over is test cases, review standards and data rules.
+7. **How will junior statisticians learn to review,** if the AI does the line work?
 
 ## The demo
 

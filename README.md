@@ -31,23 +31,24 @@ version 0.3.1 (tag `skills-v0.3.1`).
 
 ## The talk
 
-It opens with a preprint in which every one of 15 language models found more of the
-errors inserted into trial reports than human peer reviewers had, and with King and
-Worthington's finding that AI reviews beat paid expert reviews. Then four ways to an AI
-review, each drawn as a diagram: a chat at maximum effort, where a skill can bring your
-checklist along; review services, someone else's pipeline, paid, free or open source;
-your own pipeline, a script through the API in R (ellmer, with vitals to score it on
-test cases with known answers) or Python (the SDKs); and an agent in the product's
-repository, with the skills as its instructions and the Agent SDK to start it from a
-script. One slide shows how to try the script and the agent from this kit. Then Sutton's
-bitter lesson, as a warning not to over-engineer: Google's Deep Review, Reviewer 2
-retired as obsolete, my own prototype too; what carries over is test cases, review
-standards and data rules. It ends on one discussion slide that brings back the
-preprint's last author (human-only review is dangerous; is AI-only review?), with
-questions on signing off an AI-reviewed product, result-oriented review, the checks
-never to hand over, writing for an AI reader, replication certificates and how juniors
-will learn to review. The talk takes about ten and a half minutes, which leaves the rest
-of the slot for the discussion; the Agent SDK is in the appendix.
+It opens with Ruslan Rust's post (from now on no peer review without AI; for clinical
+trials, human-only review dangerous) and his preprint, in which every one of 15 language
+models found more of the errors inserted into trial reports than human peer reviewers
+had, then King and Worthington's finding that AI reviews beat paid expert reviews. It
+then asks what this means for our internal review, where a second statistician checks
+the methods, numbers and code of sample size estimations, analysis plans and reports,
+and shows four ways I explored, each drawn as a diagram: a chat at maximum effort, where
+a skill can bring your checklist along; review services, someone else's pipeline, paid,
+free or open source; your own pipeline, a script through the API in R (ellmer, with
+vitals to score it on test cases with known answers) or Python (the SDKs); and an agent
+in the product's repository, with the skills as its instructions and the Agent SDK to
+start it from a script. One slide shows how to try the script and the agent from this
+kit. It ends on one slide of items to discuss: signing off an AI-reviewed product,
+reviewing results rather than lines, the checks that stay with us, writing for an AI
+reader, replication certificates, building our own tools or waiting for the next model
+(Sutton's bitter lesson, with a backup slide in the appendix), and how juniors will
+learn to review. The talk takes about nine minutes, which leaves the rest of the slot
+for the discussion.
 
 ## Contents
 
