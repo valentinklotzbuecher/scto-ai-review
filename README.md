@@ -10,7 +10,7 @@ recommendation.
 
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
-- **The slides**, [`slides/index.html`](slides/index.html): eleven slides and an
+- **The slides**, [`slides/index.html`](slides/index.html): twelve slides and an
   appendix; press S for the speaker notes.
 - **A starter for each way**, in [`tools/`](tools/):
 
@@ -44,7 +44,9 @@ source; your own pipeline, a script through the API in R (ellmer, with vitals to
 it on test cases with known answers) or Python (the SDKs); and an agent in the product's
 repository, with the skills as its instructions and the Agent SDK to start it from a
 script, followed by what you choose for it: depth, data (none, synthetic, shared) and
-what you get. One slide shows how to try the script and the agent from this kit. It ends
+what you get, and by what it found on the demo, a test case with a known answer: all six
+planted issues, with the chat, the skill and the script still to run. One slide shows
+how to try the script and the agent from this kit. It ends
 on one slide of items to discuss: signing off an AI-reviewed product, reviewing results
 rather than lines, the checks that stay with us, writing for an AI reader, replication
 certificates, building our own tools or waiting for the next model (Sutton's bitter

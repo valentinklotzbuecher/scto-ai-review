@@ -1,11 +1,11 @@
 ```{=html}
-<svg class="dg" viewBox="0 0 1100 392" role="img" aria-label="Inside the skill dkf-document-check, in three layers. Always in view: its name and description, which says to use it when asked to check, review or consistency-review a statistical document. When the task matches: SKILL.md, the checklist: rules; documents, versions and consistency; printed consistency and arithmetic; design, estimand and method; output. When needed: references on estimands, clinical guidelines and product profiles, and a script that recomputes the printed numbers.">
+<svg class="dg" viewBox="0 0 1100 392" role="img" aria-label="Inside the skill dkf-document-check, in three layers. Always in view: its name and description, which says to use it when asked to check, review or consistency-review a statistical document in a chat. When the task matches: SKILL.md, the checklist: rules; documents, versions and consistency; printed consistency and arithmetic; design, estimand and method; output. When needed: references on estimands, clinical guidelines and product profiles, and a script that recomputes the printed numbers.">
   <text class="file" x="0" y="20" font-size="19">dkf-document-check/</text>
   <rect class="model" x="0" y="36" width="1100" height="102"/>
   <text class="mono" x="20" y="70" font-size="14">ALWAYS IN VIEW</text>
   <text class="strong" x="250" y="72" font-size="22">name and description</text>
   <text class="soft" x="250" y="102" font-size="18">“Document check of a statistical product … before a second statistician reviews it.</text>
-  <text class="soft" x="250" y="126" font-size="18">Use when asked to check, review or consistency-review such a document.”</text>
+  <text class="soft" x="250" y="126" font-size="18">Use when asked to check, review or consistency-review such a document in a chat.”</text>
   <g class="fragment" data-fragment-index="1">
   <rect class="tool" x="0" y="152" width="1100" height="108"/>
   <text class="mono" x="20" y="186" font-size="14">WHEN THE TASK</text>

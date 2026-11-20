@@ -1229,13 +1229,13 @@ display:block!important;
 <div class="crumbs">
 <p><span class="on">Chat</span><span>Services</span><span>Script</span><span>Agent</span></p>
 </div>
-<svg class="dg" viewbox="0 0 1100 392" role="img" aria-label="Inside the skill dkf-document-check, in three layers. Always in view: its name and description, which says to use it when asked to check, review or consistency-review a statistical document. When the task matches: SKILL.md, the checklist: rules; documents, versions and consistency; printed consistency and arithmetic; design, estimand and method; output. When needed: references on estimands, clinical guidelines and product profiles, and a script that recomputes the printed numbers.">
+<svg class="dg" viewbox="0 0 1100 392" role="img" aria-label="Inside the skill dkf-document-check, in three layers. Always in view: its name and description, which says to use it when asked to check, review or consistency-review a statistical document in a chat. When the task matches: SKILL.md, the checklist: rules; documents, versions and consistency; printed consistency and arithmetic; design, estimand and method; output. When needed: references on estimands, clinical guidelines and product profiles, and a script that recomputes the printed numbers.">
   <text class="file" x="0" y="20" font-size="19">dkf-document-check/</text>
   <rect class="model" x="0" y="36" width="1100" height="102" />
   <text class="mono" x="20" y="70" font-size="14">ALWAYS IN VIEW</text>
   <text class="strong" x="250" y="72" font-size="22">name and description</text>
   <text class="soft" x="250" y="102" font-size="18">“Document check of a statistical product … before a second statistician reviews it.</text>
-  <text class="soft" x="250" y="126" font-size="18">Use when asked to check, review or consistency-review such a document.”</text>
+  <text class="soft" x="250" y="126" font-size="18">Use when asked to check, review or consistency-review such a document in a chat.”</text>
   <g class="fragment" data-fragment-index="1">
   <rect class="tool" x="0" y="152" width="1100" height="108" />
   <text class="mono" x="20" y="186" font-size="14">WHEN THE TASK</text>
@@ -1496,6 +1496,79 @@ display:block!important;
 }</style></aside>
 </section>
 <section class="slide level2">
+<h2>A test case with a known answer</h2>
+<div class="scope">
+<p>A synthetic sample size estimation of two pages with six planted issues: two in the text, two only in the code, two that need a calculation or a re-run.</p>
+</div>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: center;">Found</th>
+<th style="text-align: center;">Consequence stated</th>
+<th style="text-align: center;">Time</th>
+<th style="text-align: center;">Cost</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Chat</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chat with the skill</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Your own script</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+<td style="text-align: center;">·</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Agent, quick</td>
+<td style="text-align: center;">6 of 6</td>
+<td style="text-align: center;">5 of 5</td>
+<td style="text-align: center;">34 min</td>
+<td style="text-align: center;">$10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Agent, standard</td>
+<td style="text-align: center;">6 of 6</td>
+<td style="text-align: center;">5 of 5</td>
+<td style="text-align: center;">3.4 h</td>
+<td style="text-align: center;">$72</td>
+</tr>
+</tbody>
+</table>
+<div class="tiny muted">
+<p>· not yet run. Quick: start to finished form; standard: model time. Cost at API list prices; both agent runs were on a subscription. Not a blind test: the skills and the test case were written in the same week.</p>
+</div>
+<div class="fragment punchline">
+<p>All six found, and for the five that change the sample size or the power, by how much.</p>
+</div>
+<aside class="notes">
+<p>[9:00–9:45] Does it work? I wrote a test case with a known answer: a synthetic sample size estimation of two pages, with six planted issues, two in the text, two only in the code, and two that need a calculation or a re-run. The agent found all six, in every run. [click] And for the five that change the sample size or the power, it said by how much: at the correlation the code uses, the design as written needs 80 evaluable participants per group, not 55. At quick depth that took 34 minutes from start to the finished form, about ten dollars at API list prices, on the subscription; the first run, at standard depth, three and a half hours of model time, and it caught an error in my own answer key. Not a blind test: I wrote the skills and the test case in the same week, and the skills already describe two of the planted issue types. The chat, the chat with the skill and the script come next on this table. That is what test cases are for: every new tool and every new model is scored on the same case.</p>
+<style type="text/css">
+span.MJX_Assistive_MathML {
+position:absolute!important;
+clip: rect(1px, 1px, 1px, 1px);
+padding: 1px 0 0 0!important;
+border: 0!important;
+height: 1px!important;
+width: 1px!important;
+overflow: hidden!important;
+display:block!important;
+}</style></aside>
+</section>
+<section class="slide level2">
 <h2>Try it yourself</h2>
 <div class="columns">
 <div class="column" style="width:47%;">
@@ -1539,7 +1612,7 @@ then write the consistency review.</code></pre>
 <strong>github.com/valentinklotzbuecher/stats_review</strong>: the review skills</p>
 </div>
 <aside class="notes">
-<p>[9:00–9:45] And you can try both. The script is in the kit, the repository scto-ai-review, in the folder tools/3-api: the R or the Python starter sends a product through the API with my prompt and answer format. One command, and you get a table of issues and a log of tokens and cost; you need an API key, paid per use. Run it on the demo first: a two-page sample size estimation with six planted issues and an answer key, so you can score what it finds. [click] The agent: Claude Code on the web, at claude.ai/code, on your Claude plan. You start a session with your product’s repository and stats_review, the repository with my review skills, at the tag skills-v0.3.1; its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type one sentence, and the review lands on a branch of your product’s repository, where you merge it. [click] Both repositories, with a handout that walks through each step.</p>
+<p>[9:45–10:30] And you can try both. The script is in the kit, the repository scto-ai-review, in the folder tools/3-api: the R or the Python starter sends a product through the API with my prompt and answer format. One command, and you get a table of issues and a log of tokens and cost; you need an API key, paid per use. Run it on the demo first: a two-page sample size estimation with six planted issues and an answer key, so you can score what it finds. [click] The agent: Claude Code on the web, at claude.ai/code, on your Claude plan. You start a session with your product’s repository and stats_review, the repository with my review skills, at the tag skills-v0.3.1; its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type one sentence, and the review lands on a branch of your product’s repository, where you merge it. [click] Both repositories, with a handout that walks through each step.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1566,7 +1639,7 @@ display:block!important;
 </ul>
 </div>
 <aside class="notes">
-<p>[9:45–20:00] To discuss. What would you need to see before you sign a product an AI reviewed? Could our review become result-oriented: the AI goes through every line, every number and every re-run, and we check that it tested enough, that each chunk, section and analysis does what it says, and that the approach and the interpretation hold? Even the author of the skills I build on says the results come from robots and should be verified by humans. Which checks stay with us: the choice of estimand, the clinical relevance, the design? If an AI reads our products first, should we write them for it: the estimand in full, every assumption in the text and not only in the code, every number traceable to the code that makes it? Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun a replication package on your computer, and certifies that rerunning the code produces the results to be published: should our products carry such a certificate? Should we build our own tools at all? Sutton’s bitter lesson: hand-built machinery keeps losing to general methods that use more computation. Rex Douglass, on the day Google launched Deep Review, said he never built a review tool because “one of the big three does it and it’s over”; Joe Francis retired Reviewer 2 as obsolete; my own prototype went the same way, and my skills will too. What carries over: test cases with known answers, review standards, data rules (backup slide in the appendix). And how will junior statisticians learn to review, if the AI does the line-by-line work? The preprint’s last author calls human-only review dangerous for clinical trials; is AI-only review? Thank you; the links are in the appendix.</p>
+<p>[10:30–20:00] To discuss. What would you need to see before you sign a product an AI reviewed? Could our review become result-oriented: the AI goes through every line, every number and every re-run, and we check that it tested enough, that each chunk, section and analysis does what it says, and that the approach and the interpretation hold? Even the author of the skills I build on says the results come from robots and should be verified by humans. Which checks stay with us: the choice of estimand, the clinical relevance, the design? If an AI reads our products first, should we write them for it: the estimand in full, every assumption in the text and not only in the code, every number traceable to the code that makes it? Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun a replication package on your computer, and certifies that rerunning the code produces the results to be published: should our products carry such a certificate? Should we build our own tools at all? Sutton’s bitter lesson: hand-built machinery keeps losing to general methods that use more computation. Rex Douglass, on the day Google launched Deep Review, said he never built a review tool because “one of the big three does it and it’s over”; Joe Francis retired Reviewer 2 as obsolete; my own prototype went the same way, and my skills will too. What carries over: test cases with known answers, review standards, data rules (backup slide in the appendix). And how will junior statisticians learn to review, if the AI does the line-by-line work? The preprint’s last author calls human-only review dangerous for clinical trials; is AI-only review? Thank you; the links are in the appendix.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
