@@ -183,19 +183,31 @@ Starter: [tools/4-agent](https://github.com/valentinklotzbuecher/scto-ai-review/
 
 ### Try it yourself
 
-Your own script, from [tools/3-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api): one command per product, in R or in
-Python, with an API key.
+**Your own script** is in the kit, [scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review), in the folder
+[`tools/3-api`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api): `review.R` (ellmer), `review.py`
+(Anthropic SDK), the prompt and the answer format. One command per product, from the
+kit's top folder, with an API key:
 
 ```bash
 Rscript tools/3-api/review.R product.pdf
 python tools/3-api/review.py product.pdf
 ```
 
-The agent, from [tools/4-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent): Claude Code on the web with the review skills
-from stats_review, a setup script that installs R and Quarto in the cloud machine, and
-one sentence:
+You get a table of issues and a log of tokens and cost in `review-results/`.
 
-> Review the product with dkf-review, then write the consistency review.
+**The agent** runs on the review skills in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), at the
+tag `skills-v0.3.1`; the steps are in the kit's [`tools/4-agent`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent).
+
+1. At [claude.ai/code](https://claude.ai/code), on your Claude plan, create a cloud
+   environment with stats_review's
+   [`tools/web_setup.sh`](https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.3.1/tools/web_setup.sh) as its setup
+   script; it installs R and Quarto.
+2. Start a session with your product's repository and stats_review.
+3. Type one sentence:
+
+   > Review the product with dkf-review, then write the consistency review.
+
+4. The review lands on a branch of your product's repository; merge it there.
 
 Start with the [demo](#the-demo): a two-page sample size estimation with six planted
 issues and an answer key.

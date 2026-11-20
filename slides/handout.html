@@ -2545,13 +2545,20 @@ vertical-align: -.125em;
 </section>
 <section id="try-it-yourself" class="level3">
 <h3 data-anchor-id="try-it-yourself">Try it yourself</h3>
-<p>Your own script, from <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api">tools/3-api</a>: one command per product, in R or in Python, with an API key.</p>
+<p><strong>Your own script</strong> is in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">scto-ai-review</a>, in the folder <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api"><code>tools/3-api</code></a>: <code>review.R</code> (ellmer), <code>review.py</code> (Anthropic SDK), the prompt and the answer format. One command per product, from the kit’s top folder, with an API key:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> tools/3-api/review.R product.pdf</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/3-api/review.py product.pdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The agent, from <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent">tools/4-agent</a>: Claude Code on the web with the review skills from stats_review, a setup script that installs R and Quarto in the cloud machine, and one sentence:</p>
+<p>You get a table of issues and a log of tokens and cost in <code>review-results/</code>.</p>
+<p><strong>The agent</strong> runs on the review skills in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, at the tag <code>skills-v0.3.1</code>; the steps are in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent"><code>tools/4-agent</code></a>.</p>
+<ol type="1">
+<li><p>At <a href="https://claude.ai/code">claude.ai/code</a>, on your Claude plan, create a cloud environment with stats_review’s <a href="https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.3.1/tools/web_setup.sh"><code>tools/web_setup.sh</code></a> as its setup script; it installs R and Quarto.</p></li>
+<li><p>Start a session with your product’s repository and stats_review.</p></li>
+<li><p>Type one sentence:</p>
 <blockquote class="blockquote">
 <p>Review the product with dkf-review, then write the consistency review.</p>
-</blockquote>
+</blockquote></li>
+<li><p>The review lands on a branch of your product’s repository; merge it there.</p></li>
+</ol>
 <p>Start with the <a href="#the-demo">demo</a>: a two-page sample size estimation with six planted issues and an answer key.</p>
 </section>
 </section>

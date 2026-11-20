@@ -207,6 +207,10 @@ need it (appendix).
 Your own script
 :::
 
+::: where
+scto-ai-review · tools/3-api
+:::
+
 ```bash
 Rscript review.R product.pdf
 python review.py product.pdf
@@ -227,33 +231,41 @@ python review.py product.pdf
 The agent
 :::
 
+::: where
+stats_review · tag skills-v0.3.1
+:::
+
 ```text
 Review the product with dkf-review,
 then write the consistency review.
 ```
 
 ::: {.tight .compact}
-- Claude Code on the web, on your plan
-- my review skills, from stats_review
-- a setup script installs R and Quarto
+- claude.ai/code, on your plan
+- with your repository and stats_review
+- setup: tools/web_setup.sh
+- the review lands on a branch
 :::
 :::
 ::::
 
 ::: {.fragment fragment-index=2 .scope}
-Both in the kit: **github.com/valentinklotzbuecher/scto-ai-review**, with a handout and a
-test case with known answers.
+**github.com/valentinklotzbuecher/scto-ai-review**: the kit, a handout, a test case\
+**github.com/valentinklotzbuecher/stats_review**: the review skills
 :::
 
 ::: notes
-[8:00–9:00] And you can try both. The script: the R or the Python starter sends a
-product through the API with my prompt and answer format. One command, and you get a
-table of issues and a log of tokens and cost; you need an API key, paid per use. Run it
-on the demo first: a two-page sample size estimation with six planted issues and an
-answer key, so you can score what it finds. [click] The agent: Claude Code on the web,
-with my review skills from stats_review. A setup script installs R and Quarto in the
-cloud machine, and you type one sentence. It runs on your Claude plan. [click] Both are
-in the kit, with a handout that walks through each step.
+[8:00–9:00] And you can try both. The script is in the kit, the repository
+scto-ai-review, in the folder tools/3-api: the R or the Python starter sends a product
+through the API with my prompt and answer format. One command, and you get a table of
+issues and a log of tokens and cost; you need an API key, paid per use. Run it on the
+demo first: a two-page sample size estimation with six planted issues and an answer
+key, so you can score what it finds. [click] The agent: Claude Code on the web, at
+claude.ai/code, on your Claude plan. You start a session with your product's repository
+and stats_review, the repository with my review skills, at the tag skills-v0.3.1; its
+setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type
+one sentence, and the review lands on a branch of your product's repository, where you
+merge it. [click] Both repositories, with a handout that walks through each step.
 :::
 
 ## To discuss
