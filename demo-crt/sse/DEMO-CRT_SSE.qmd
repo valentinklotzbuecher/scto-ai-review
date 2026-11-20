@@ -84,7 +84,7 @@ The decision support is expected to raise guideline-concordant prescribing from 
 # Planning values
 
 | Quantity | Value | Source |
-|:-----------------------------------------|:------------------|:-----------------------------------------|
+|:---------------------------------------------|:----------------|:---------------------------------------|
 | Guideline-concordant prescribing, usual care | `r pct(pv$p0)` | Practice network audit 2024 (internal report) |
 | Guideline-concordant prescribing, decision support | `r pct(pv$p1)` | Smallest increase of clinical interest, agreed with the investigators (steering committee, 18 June 2026) |
 | Intracluster correlation (logit scale) | `r pv$icc` | Pilot study in 12 practices, 2025 (internal report) |
