@@ -9,7 +9,8 @@
   session could read files on disk: an app session with tools, not a bare chat window.
   It ran its own scripts (`recompute.py`, its own simulations, a read of the plotted
   values from the PDF's vector graphics), never the product's code ("I didn't run the
-  product's code, by the skill's rule"). Model, effort and time not recorded.
+  product's code, by the skill's rule"). Claude Opus 5.5 at maximum effort, as the user
+  reports; time not recorded.
 - **Files.** `answer.md`, the answer as the user pasted it into this kit's Claude Code
   session; `check_log.csv`, `consistency_table.csv` and `sensitivity_statements.csv`,
   the files it saved, as uploaded (byte-identical).
@@ -78,5 +79,5 @@ number.
 
 ## Time and cost
 
-Not recorded. Run by the user on a Claude plan, so no API cost; model, effort and time
-to be added from the user.
+Claude Opus 5.5 at maximum effort, as the user reports; time not recorded. Run on the
+user's Claude plan, so no API cost.
