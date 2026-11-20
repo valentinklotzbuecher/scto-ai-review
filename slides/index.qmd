@@ -153,9 +153,11 @@ checklist, the statistical methods first, then the numbers, the code and the
 interpretation. [click] The model answers, and you pay per use. [click] You collect a
 table, one row per document, with a log of every run: model, tokens, cost. My review
 prototype did this for our SSEs for under a dollar fifty. You also get the API's
-commercial data terms. The price is code that talks to one provider at one point in
-time. [click] And the same libraries can run an agent: give the model tools, for example
-"run this R code", and let ellmer or the SDK run the loop. Which is the last step.
+commercial data terms. [click] And that is the real reason to script it: you can test
+it. Run the same script on test cases with known answers and score every run; in R, the
+vitals package does this next to ellmer, a port of Inspect, the Python framework for
+evaluating language models. So you compare prompts, models and effort settings on cases
+you know. The price is code that talks to one provider at one point in time.
 :::
 
 ## An agent in the repository
@@ -178,8 +180,68 @@ runs the code, recomputes the numbers and re-runs the simulations, and agents th
 not write a finding challenge it. [click] The output is a draft of the
 consistency-review form with a log behind every number, pushed to a branch. [click] And
 it never touches your computer. It runs on your Claude subscription, no API credits.
-What it reads still goes to the provider, under your plan's terms. The same agent can be
-driven from code with the Agent SDK; for one review you don't need that (appendix).
+What it reads still goes to the provider, under your plan's terms. [click] And the same
+agent can be started from a script, with the Agent SDK in Python or TypeScript, or with
+claude -p from R: to run it over test cases with known answers, for batch runs, with
+guardrails in code. That runs on an API key, billed per token; for one review you don't
+need it (appendix).
+:::
+
+## Try it yourself
+
+:::: {.columns}
+::: {.column width="47%"}
+::: punchline
+Your own script
+:::
+
+```bash
+Rscript review.R product.pdf
+python review.py product.pdf
+```
+
+::: {.tight .compact}
+- the same prompt for every product
+- a table of issues, a log of tokens and cost
+- an API key, paid per use
+:::
+:::
+
+::: {.column width="6%"}
+:::
+
+::: {.column width="47%" .fragment fragment-index=1}
+::: punchline
+The agent
+:::
+
+```text
+Review the product with dkf-review,
+then write the consistency review.
+```
+
+::: {.tight .compact}
+- Claude Code on the web, on your plan
+- my review skills, from stats_review
+- a setup script installs R and Quarto
+:::
+:::
+::::
+
+::: {.fragment fragment-index=2 .scope}
+Both in the kit: **github.com/valentinklotzbuecher/scto-ai-review**, with a handout and a
+test case with known answers.
+:::
+
+::: notes
+[8:00–9:00] And you can try both. The script: the R or the Python starter sends a
+product through the API with my prompt and answer format. One command, and you get a
+table of issues and a log of tokens and cost; you need an API key, paid per use. Run it
+on the demo first: a two-page sample size estimation with six planted issues and an
+answer key, so you can score what it finds. [click] The agent: Claude Code on the web,
+with my review skills from stats_review. A setup script installs R and Quarto in the
+cloud machine, and you type one sentence. It runs on your Claude plan. [click] Both are
+in the kit, with a handout that walks through each step.
 :::
 
 ## The bitter lesson
@@ -205,7 +267,7 @@ Rich Sutton, The Bitter Lesson, 2019
 :::
 
 ::: notes
-[8:00–9:30] So should we build more such tools? Sutton's lesson from 70 years of AI
+[9:00–10:30] Use them, but don't over-engineer them. Sutton's lesson from 70 years of AI
 research: hand-built machinery keeps losing to general methods that use more
 computation, and review tools are no exception. [click] Rex Douglass, on the day Google
 launched Deep Review: he had thought about building a review tool twice a day for three
@@ -239,7 +301,7 @@ And AI-only review?
 :::
 
 ::: notes
-[9:30–20:00] Back to the start. The preprint's last author won't review without AI any
+[10:30–20:00] Back to the start. The preprint's last author won't review without AI any
 more, and says that for clinical trials, human-only review is dangerous. [click] Is
 AI-only review dangerous too? Some questions to discuss. What would you need to see
 before you sign a product an AI reviewed? Could our review become result-oriented: the
@@ -258,23 +320,6 @@ line-by-line work? Thank you; the links are in the appendix.
 :::
 
 # Appendix {.divider}
-
-## At a glance
-
-| | Sees | Runs the code | Record | Pays with |
-|:--|:--|:-:|:-:|:--|
-| Chat | what you paste | no | none | subscription |
-| API script | what you send | no | log | per use |
-| Review service | the PDF | no | report | paid, free or open source |
-| Agent + skills | the repository | yes | every check | subscription |
-
-::: notes
-The four ways side by side. Two questions separate them: what does it see, and
-can it run the code? Only the agent sees the whole repository and runs the code; the
-script and the agent leave a record you can check, and a skill adds a check log to the
-chat. The chat and the agent run on the subscription you may already have. (A chat with
-a code tool can run some code too, but not your R project.)
-:::
 
 ## The Agent SDK
 
@@ -295,5 +340,6 @@ a code tool can run some code too, but not your R project.)
 - Reviewer 2: [github.com/isitcredible/reviewer2](https://github.com/isitcredible/reviewer2); research_skills: [github.com/isitcredible/research_skills](https://github.com/isitcredible/research_skills)
 - Claude Code on the web: [code.claude.com/docs/en/claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web)
 - Agent SDK: [code.claude.com/docs/en/agent-sdk](https://code.claude.com/docs/en/agent-sdk/overview)
+- ellmer and vitals: [ellmer.tidyverse.org](https://ellmer.tidyverse.org), [vitals.tidyverse.org](https://vitals.tidyverse.org)
 - Rich Sutton, The Bitter Lesson: [incompleteideas.net/IncIdeas/BitterLesson.html](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
 :::

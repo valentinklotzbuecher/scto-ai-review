@@ -10,7 +10,7 @@ recommendation.
 
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
-- **The slides**, [`slides/index.html`](slides/index.html): eight slides and an
+- **The slides**, [`slides/index.html`](slides/index.html): nine slides and an
   appendix; press S for the speaker notes.
 - **A starter for each way**, in [`tools/`](tools/):
 
@@ -36,16 +36,18 @@ errors inserted into trial reports than human peer reviewers had, and with King 
 Worthington's finding that AI reviews beat paid expert reviews. Then four ways to an AI
 review, each drawn as a diagram: a chat at maximum effort, where a skill can bring your
 checklist along; review services, someone else's pipeline, paid, free or open source;
-your own pipeline, a script through the API in R (ellmer) or Python (the SDKs); and an
-agent in the product's repository, with the skills as its instructions. Then Sutton's
-bitter lesson: Google's Deep Review, Reviewer 2 retired as obsolete, my own prototype
-too; what carries over is test cases, review standards and data rules. It ends on one
-discussion slide that brings back the preprint's last author (human-only review is
-dangerous; is AI-only review?), with questions on signing off an AI-reviewed product,
-result-oriented review, the checks never to hand over, writing for an AI reader,
-replication certificates and how juniors will learn to review. The talk takes about nine
-and a half minutes, which leaves the rest of the slot for the discussion; the comparison
-table and the Agent SDK are in the appendix.
+your own pipeline, a script through the API in R (ellmer, with vitals to score it on
+test cases with known answers) or Python (the SDKs); and an agent in the product's
+repository, with the skills as its instructions and the Agent SDK to start it from a
+script. One slide shows how to try the script and the agent from this kit. Then Sutton's
+bitter lesson, as a warning not to over-engineer: Google's Deep Review, Reviewer 2
+retired as obsolete, my own prototype too; what carries over is test cases, review
+standards and data rules. It ends on one discussion slide that brings back the
+preprint's last author (human-only review is dangerous; is AI-only review?), with
+questions on signing off an AI-reviewed product, result-oriented review, the checks
+never to hand over, writing for an AI reader, replication certificates and how juniors
+will learn to review. The talk takes about ten and a half minutes, which leaves the rest
+of the slot for the discussion; the Agent SDK is in the appendix.
 
 ## Contents
 
@@ -121,6 +123,10 @@ re-run every tool on the new PDF.
   github.com/isitcredible/reviewer2, pp. 6–7; quoted in `material/README.md`
 - Claude Science's built-in reviewer, in the archived deck's notes:
   claude.com/docs/claude-science/the-reviewer
+- vitals 0.4.1, CRAN (Simon Couch, Posit): "A port of 'Inspect', a widely adopted 'Python'
+  framework for large language model evaluation. Specifically aimed at 'ellmer' users
+  who want to measure the effectiveness of their large language model-based products";
+  vitals.tidyverse.org; quoted in `material/README.md`
 - Claude Agent SDK: code.claude.com/docs/en/agent-sdk/overview (Claude Code as a
   library; skills load from `.claude/`; API-key authentication for agents built on it;
   the CLI with `-p` from other languages); quoted in `material/README.md`

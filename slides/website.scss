@@ -196,6 +196,10 @@ $code-color: $ink;
 /* Code: paper-tinted, square */
 .reveal pre, .reveal pre code { border-radius: 0; }
 .reveal pre { border: 1px solid rgba(44, 58, 47, 0.18); box-shadow: none; }
+/* Commands on "Try it yourself": larger, inside their column, one look for both */
+.reveal .columns pre { font-size: 0.68em; }
+.reveal .columns pre.text { width: calc(100% - 12px); background-color: $code-paper !important; }
+.reveal .columns pre.text code { background: transparent; }
 
 /* A figure mounted like a plate photograph */
 .reveal .plate img {

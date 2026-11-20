@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 520px" viewBox="0 0 770 430" role="img" aria-label="Inside an isolated cloud VM: a copy of the repository with the skills as its instructions, and tools that read files, run R and write logs. Claude, outside the VM and on your subscription, decides the next step; the tools run it and send back the result, in a loop until done. The draft form and logs are pushed to a branch. Your computer is not connected.">
+<svg class="dg" style="max-height: 530px" viewBox="0 0 770 444" role="img" aria-label="Inside an isolated cloud VM: a copy of the repository with the skills as its instructions, and tools that read files, run R and write logs. Claude, outside the VM and on your subscription, decides the next step; the tools run it and send back the result, in a loop until done. The draft form and logs are pushed to a branch. Your computer is not connected. Last, the Agent SDK: the same agent, started from a script.">
   <defs>
     <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker>
     <marker id="m5s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E"/></marker>
@@ -45,6 +45,11 @@
   <rect class="out" x="125" y="368" width="170" height="50"/>
   <text x="210" y="392" font-size="17" text-anchor="middle">draft form + logs</text>
   <text class="mono" x="210" y="410" font-size="11" text-anchor="middle">PUSHED TO A BRANCH</text>
+  </g>
+  <g class="fragment" data-fragment-index="6">
+  <rect class="ghost" x="470" y="384" width="295" height="54"/>
+  <text class="strong" x="488" y="406" font-size="17">Agent SDK</text>
+  <text class="soft" x="488" y="427" font-size="14">the same agent, started from a script</text>
   </g>
 </svg>
 ```

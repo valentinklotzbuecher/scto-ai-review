@@ -142,6 +142,21 @@ hosts, but they are allowed):
   Publication: Checkable by Anyone, Anywhere, in Seconds, Forever." In the notes of "An
   agent in the repository" and in the links.
 
+## vitals (CRAN package database, read 20 November 2026)
+
+vitals 0.4.1, published on CRAN on 10 November 2026; author Simon Couch, with Max
+Kuhn, Hadley Wickham and Mine Cetinkaya-Rundel as contributors; Posit Software, PBC;
+vitals.tidyverse.org, github.com/tidyverse/vitals. Title: "Large Language Model
+Evaluation". Description:
+
+> A port of 'Inspect', a widely adopted 'Python' framework for large language model
+> evaluation. Specifically aimed at 'ellmer' users who want to measure the effectiveness
+> of their large language model-based products, the package supports prompt
+> engineering, tool usage, multi-turn dialog, and model graded evaluations.
+
+Used on "Your own script" (the script box and the notes), in the handout and in
+`tools/3-api`: scripted calls can be scored on test cases with known answers.
+
 ## Just Ask the Model, our Unjournal working paper (read 19 November 2026)
 
 Klotzbücher, Reinstein, Pacchiardi and Zhang, *Just Ask the Model: One-Shot LLM Research

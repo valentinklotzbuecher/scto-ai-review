@@ -81,6 +81,15 @@ such as `chat_openai()`, and check its model names and effort setting.
 - Answer the same twice. Two runs on one product can differ; run it twice to see how
   much.
 
+## Test it on cases with known answers
+
+Because it is a script, you can test it: run it on products whose issues you know, such
+as the demo in [`../../demo/`](../../demo/README.md), and score each run against the
+answer key. In R, [vitals](https://vitals.tidyverse.org) does this next to ellmer: a port
+of Inspect, a Python framework for evaluating language models, aimed at ellmer users. So
+you compare prompts, models and effort settings on cases you know before you trust a
+change.
+
 ## With tools in a loop: an agent
 
 Give the model tools, such as "run this R code", and let the library run the loop: the
