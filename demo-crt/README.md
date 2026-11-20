@@ -11,7 +11,7 @@ script recomputes every number in it.
 |---|---|
 | [`sse/`](sse/) | the product: `DEMO-CRT_SSE.qmd` and its rendered PDF, the code it names (`R/`, `sim/`) and the results it reads (`results/power.rds`); the only part a review may see |
 | `answer-key.md` | the four issues, their consequences and the scoring rules: **spoilers** |
-| `answer-key.R` | recomputes every number in the key (R with lme4; about an hour on four cores) |
+| `answer-key.R` | recomputes every number in the key (R with lme4; about 20 minutes on four cores) |
 | [`runs/`](runs/README.md) | each recorded review, unchanged, with its score, and `scoreboard.csv` |
 
 ## Try it yourself first
@@ -21,8 +21,8 @@ Review it as you would a colleague's SSE, code included, then open the key.
 ## Review it with a tool
 
 Give the tool the whole of `sse/` and nothing else. The code needs R with lme4; the whole
-simulation (`Rscript sim/run_power.R`, from `sse/`) takes about half an hour, one grid
-point a few minutes.
+simulation (`Rscript sim/run_power.R`, from `sse/`) took a quarter of an hour on one core
+here, one grid point a minute or two.
 
 - Chat, with or without the skill: attach every file in `sse/`
   ([`../tools/1-chat`](../tools/1-chat/README.md)). The skill does not run the product's

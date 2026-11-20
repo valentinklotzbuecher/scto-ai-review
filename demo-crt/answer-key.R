@@ -1,6 +1,6 @@
 # Recomputes every number in demo-crt/answer-key.md. Run from the repository root:
 #   Rscript demo-crt/answer-key.R
-# R with lme4; uses all cores (about an hour on four). Reads the delivered product in
+# R with lme4; uses all cores (about 20 minutes on four). Reads the delivered product in
 # demo-crt/sse/ and changes nothing in it. Every replicate of a new simulation has its own
 # seed, so the results do not depend on the number of cores.
 
@@ -105,8 +105,9 @@ r <- sapply(grid, function(k) realised(k, pv, 1000, 3e6 + 1e4 * k))
 line("\n3. Patients carrying their own practice's effect: %s", pairs(grid, 100 * r["own", ], "%.0f%%"))
 line("   realised ICC (average latent correlation of two patients in one practice; stated %.2f): %s",
      pv$icc, pairs(grid, r["f", ] * pv$icc))
-line("   at the printed %d: %s of patients, ICC %.3f %s", k_print, pct(r["own", grid == k_print], 0),
-     r["f", grid == k_print] * pv$icc, elapsed())
+line("   at the printed %d: %s of patients, ICC %.3f; with the ICC 0.03 of the saved results: %.3f %s",
+     k_print, pct(r["own", grid == k_print], 0), r["f", grid == k_print] * pv$icc,
+     r["f", grid == k_print] * 0.03, elapsed())
 
 # 4. Power with each practice's effect on its own patients
 pw <- t(sapply(grid, function(k) reject_rates(k, pv, 2000, 1e6 + 1e4 * k)))
@@ -122,7 +123,7 @@ line("   at the printed %d: Wald z %s, Wald t %s, practice-level t %s", k_print,
      pct(pw[grid == k_print, "wald"]), pct(pw[grid == k_print, "wald_t"]), pct(pw[grid == k_print, "cluster_t"]))
 
 # 5. Type I error: no effect, each practice's effect on its own patients
-for (k in sort(unique(c(k_print, k_fixed, k_t)))) {
+for (k in sort(unique(c(k_print, k_fixed, k_t, k_cl)))) {
   a <- reject_rates(k, no_effect(pv), 4000, 2e6 + 1e4 * k)
   line("\n5. Type I error, k = %d (4,000 trials; MCSE %.1f points at 5%%): Wald z %s, Wald t %s, practice-level t %s %s",
        k, 100 * sqrt(0.05 * 0.95 / 4000), pct(a[["wald"]]), pct(a[["wald_t"]]), pct(a[["cluster_t"]]), elapsed())
@@ -136,10 +137,23 @@ line("\n6. Odds ratio 45%% vs %s (Table 1, code): %.2f; 45%% vs 60%% (text): %.2
      pct(pv$p1, 0), exp(pv$log_or), exp(qlogis(0.60) - qlogis(pv$p0)))
 line("   marginal proportions the simulation implies: %s and %s", pct(marginal(pv$p0)), pct(marginal(pv$p1)))
 
+# 7. What a reading can estimate: the individually randomised sample size, inflated by
+#    the design effect for practices of varying size, 1 + ((cv^2 + 1) m - 1) ICC
+n_ind <- power.prop.test(p1 = pv$p0, p2 = pv$p1, sig.level = pv$alpha, power = pv$power)$n
+moment <- function(j) integrate(function(u) plogis(qlogis(pv$p0) + u)^j * dnorm(u, 0, pv$sd_u), -Inf, Inf)$value
+icc_prop <- (moment(2) - moment(1)^2) / (moment(1) * (1 - moment(1)))   # in usual care
+de <- function(icc) 1 + ((pv$cv^2 + 1) * pv$m - 1) * icc
+line("\n7. Individually randomised (power.prop.test): %.1f patients per arm", n_ind)
+line("   design effect with the ICC %.2f taken as stated: %.2f, so %.1f practices per arm (%d)",
+     pv$icc, de(pv$icc), n_ind * de(pv$icc) / pv$m, ceiling(n_ind * de(pv$icc) / pv$m))
+line("   with the ICC on the proportion scale (%.3f): %.2f, so %.1f practices per arm (%d)",
+     icc_prop, de(icc_prop), n_ind * de(icc_prop) / pv$m, ceiling(n_ind * de(icc_prop) / pv$m))
+
 # Summary: practices per arm, and power at the printed number, layer by layer
 line("\nSummary (practices per arm | patients | power at the printed %d):", k_print)
 line("   the PDF:                               %2d | %4d | %s", k_print, round(2 * k_print * pv$m), pct(saved$power[saved$k == k_print]))
 line("   delivered code re-run:                 %2d | %4d | %s", k_rerun, round(2 * k_rerun * pv$m), pct(rerun_now[saved$k == k_print]))
 line("   effects where they belong, Wald z:     %2d | %4d | %s", k_fixed, round(2 * k_fixed * pv$m), pct(pw[grid == k_print, "wald"]))
 line("   ... Wald against t(2k - 2):            %2d | %4d | %s", k_t, round(2 * k_t * pv$m), pct(pw[grid == k_print, "wald_t"]))
+line("   ... t-test of practice proportions:    %2d | %4d | %s", k_cl, round(2 * k_cl * pv$m), pct(pw[grid == k_print, "cluster_t"]))
 line("Done %s", elapsed())

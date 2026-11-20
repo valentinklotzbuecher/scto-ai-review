@@ -88,7 +88,7 @@ quarto render archive/demo-deck.qmd        # the earlier deck
 quarto render demo/sse/DEMO-TKA_SSE.qmd    # the SSE as PDF via Typst; needs R and knitr
 Rscript demo/answer-key.R                  # about a minute
 quarto render demo-crt/sse/DEMO-CRT_SSE.qmd  # reads the saved results; runs no simulation
-Rscript demo-crt/answer-key.R              # needs lme4; about an hour on four cores
+Rscript demo-crt/answer-key.R              # needs lme4; about 20 minutes on four cores
 Rscript archive/assets/make-figures.R      # the earlier deck's power figure (base R)
 ```
 

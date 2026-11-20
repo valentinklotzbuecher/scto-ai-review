@@ -25,7 +25,7 @@ page.
 
 - Every number about a demo, on the slides, in the handout or in its answer key, comes
   from its script: `Rscript demo/answer-key.R` or `Rscript demo-crt/answer-key.R`
-  (about an hour on four cores); the archived deck's figure comes from
+  (about 20 minutes on four cores); the archived deck's figure comes from
   `Rscript archive/assets/make-figures.R`. Change an SSE, and re-run its script (and
   for DEMO-TKA the figure's) and update the text.
 - Scoreboard counts come only from recorded runs in `demo/runs/` and
