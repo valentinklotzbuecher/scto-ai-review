@@ -10,7 +10,7 @@ recommendation.
 
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
-- **The slides**, [`slides/index.html`](slides/index.html): nine slides and an
+- **The slides**, [`slides/index.html`](slides/index.html): eleven slides and an
   appendix; press S for the speaker notes.
 - **A starter for each way**, in [`tools/`](tools/):
 
@@ -37,18 +37,19 @@ models found more of the errors inserted into trial reports than human peer revi
 had, then King and Worthington's finding that AI reviews beat paid expert reviews. It
 then asks what this means for our internal review, where a second statistician checks
 the methods, numbers and code of sample size estimations, analysis plans and reports,
-and shows four ways I explored, each drawn as a diagram: a chat at maximum effort, where
-a skill can bring your checklist along; review services, someone else's pipeline, paid,
-free or open source; your own pipeline, a script through the API in R (ellmer, with
-vitals to score it on test cases with known answers) or Python (the SDKs); and an agent
-in the product's repository, with the skills as its instructions and the Agent SDK to
-start it from a script. One slide shows how to try the script and the agent from this
-kit. It ends on one slide of items to discuss: signing off an AI-reviewed product,
-reviewing results rather than lines, the checks that stay with us, writing for an AI
-reader, replication certificates, building our own tools or waiting for the next model
-(Sutton's bitter lesson, with a backup slide in the appendix), and how juniors will
-learn to review. The talk takes about nine minutes, which leaves the rest of the slot
-for the discussion.
+and shows four ways I explored, each drawn as a diagram: a chat at maximum effort, with
+a slide on what is inside a skill (the real files of dkf-document-check, in the order
+the model reads them); review services, someone else's pipeline, paid, free or open
+source; your own pipeline, a script through the API in R (ellmer, with vitals to score
+it on test cases with known answers) or Python (the SDKs); and an agent in the product's
+repository, with the skills as its instructions and the Agent SDK to start it from a
+script, followed by what you choose for it: depth, data (none, synthetic, shared) and
+what you get. One slide shows how to try the script and the agent from this kit. It ends
+on one slide of items to discuss: signing off an AI-reviewed product, reviewing results
+rather than lines, the checks that stay with us, writing for an AI reader, replication
+certificates, building our own tools or waiting for the next model (Sutton's bitter
+lesson, with a backup slide in the appendix), and how juniors will learn to review. The
+talk takes about ten minutes, which leaves the rest of the slot for the discussion.
 
 ## Contents
 

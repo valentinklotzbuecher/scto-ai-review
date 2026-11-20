@@ -60,6 +60,25 @@ read 18 November 2026.
 
 The full guide is stats_review's README.
 
+## What you choose
+
+In the job's `00_ASSIGNMENT.md`, next to the product, the documents it depends on and
+your questions:
+
+| Depth | |
+|---|---|
+| `quick` | two agents, a review agent and a fresh verdict agent that also writes the form; for a short SSE or a re-review |
+| `standard` (default) | one agent per stage, and a fresh agent that challenges every finding |
+| `full` | adds an audit, for high-risk products |
+
+What you get: the DKF consistency-review form (`CONSISTENCY_REVIEW.md`, `.html`, `.org`)
+with the decision boxes computed from the issues, REVIEW comments in a copy of the
+`.qmd`, the scripts and logs behind every number, and `REVIEWER.md` and
+`DISPOSITIONS.md` for the human reviewer. Twelve clinical modules come in when the
+product needs them: sample size, simulation, estimand, RCT, missing data,
+time-to-event, multiplicity and subgroups, regression models, observational
+comparisons, prediction models, Bayesian analyses, small samples.
+
 ## Data
 
 | Data mode | The agent reads |

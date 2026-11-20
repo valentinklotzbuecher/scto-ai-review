@@ -2364,33 +2364,30 @@ vertical-align: -.125em;
 </svg>
 </div>
 <p>Choose the strongest model your plan offers at its maximum reasoning setting, attach the PDF and the Quarto source, and ask whether it is consistent. In my experience this has worked well since OpenAI’s o1 pro, in December 2024, and King and Worthington’s AI reviews were made this way. What you don’t get: a record of what was checked, the same answer twice, or any code run.</p>
-<p>You can also give the chat your own checklist, as a skill: a folder of instructions, reference files and small scripts that the model loads when a task matches, so no prompt is pasted. <code>dkf-document-check</code> is the first stage of my review skills on its own, for Claude chat: it names the design and the estimand attribute by attribute, recomputes every printed number with scripts and logs each check. It runs no product code. My skills are adapted from research_skills, released by Joe Francis.</p>
+<p>You can also give the chat your own checklist, as a skill: a folder of instructions, reference files and small scripts. The model always sees only the skill’s name and description; it reads <code>SKILL.md</code>, the checklist, when a task matches, and opens the references and runs the scripts when it needs them. No prompt is pasted. <code>dkf-document-check</code> is the first stage of my review skills on its own, for Claude chat: it names the design and the estimand attribute by attribute, recomputes every printed number with scripts and logs each check. It runs no product code. My skills are adapted from research_skills, released by Joe Francis.</p>
 <div class="dg-wrap">
-<svg class="dg" style="max-height: 380px" viewbox="0 0 760 250" role="img" aria-label="A skill is a folder with SKILL.md, references and scripts. The model in a chat loads it when the task matches, reads your documents, and returns findings with a check log.">
-  <defs><marker id="m4" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
-  <text class="mono" x="10" y="14" font-size="13">A SKILL: A FOLDER</text>
-  <path class="tool" d="M10 22 h70 l12 14 h128 v102 h-210 z" />
-  <text class="file" x="26" y="68" font-size="16">SKILL.md</text>
-  <text class="file" x="26" y="95" font-size="16">references/</text>
-  <text class="file" x="26" y="122" font-size="16">scripts/</text>
+<svg class="dg" viewbox="0 0 1100 392" role="img" aria-label="Inside the skill dkf-document-check, in three layers. Always in view: its name and description, which says to use it when asked to check, review or consistency-review a statistical document. When the task matches: SKILL.md, the checklist: rules; documents, versions and consistency; printed consistency and arithmetic; design, estimand and method; output. When needed: references on estimands, clinical guidelines and product profiles, and a script that recomputes the printed numbers.">
+  <text class="file" x="0" y="20" font-size="19">dkf-document-check/</text>
+  <rect class="model" x="0" y="36" width="1100" height="102" />
+  <text class="mono" x="20" y="70" font-size="14">ALWAYS IN VIEW</text>
+  <text class="strong" x="250" y="72" font-size="22">name and description</text>
+  <text class="soft" x="250" y="102" font-size="18">“Document check of a statistical product … before a second statistician reviews it.</text>
+  <text class="soft" x="250" y="126" font-size="18">Use when asked to check, review or consistency-review such a document.”</text>
   <g class="fragment" data-fragment-index="1">
-  <path class="doc" d="M40 160 h40 l16 16 v54 h-56 z" /><path class="fold" d="M80 160 v16 h16" />
-  <text class="mono" x="68" y="206" font-size="13" text-anchor="middle">PDF</text>
-  <path class="doc" d="M110 160 h40 l16 16 v54 h-56 z" /><path class="fold" d="M150 160 v16 h16" />
-  <text class="mono" x="138" y="206" font-size="13" text-anchor="middle">.QMD</text>
-  <text class="mono" x="103" y="248" font-size="13" text-anchor="middle">YOUR DOCUMENTS</text>
-  <path class="arrow" d="M222 80 C 280 80, 292 110, 330 112" marker-end="url(#m4)" />
-  <text class="mono" x="232" y="62" font-size="13">LOADED WHEN THE TASK MATCHES</text>
-  <path class="arrow" d="M170 195 C 260 195, 282 150, 330 140" marker-end="url(#m4)" />
-  <rect class="model" x="335" y="85" width="170" height="80" />
-  <text class="strong" x="420" y="120" font-size="23" text-anchor="middle">model</text>
-  <text x="420" y="148" font-size="17" text-anchor="middle">in a chat</text>
+  <rect class="tool" x="0" y="152" width="1100" height="108" />
+  <text class="mono" x="20" y="186" font-size="14">WHEN THE TASK</text>
+  <text class="mono" x="20" y="206" font-size="14">MATCHES</text>
+  <text class="strong" x="250" y="188" font-size="22">SKILL.md: the checklist</text>
+  <text x="250" y="218" font-size="18">Rules · 1 Documents, versions and consistency · 2 Printed consistency</text>
+  <text x="250" y="243" font-size="18">and arithmetic · 3 Design, estimand and method · Output</text>
   </g>
   <g class="fragment" data-fragment-index="2">
-  <line class="arrow" x1="505" y1="125" x2="556" y2="125" marker-end="url(#m4)"></line>
-  <rect class="out" x="562" y="80" width="188" height="90" />
-  <text class="strong" x="656" y="116" font-size="21" text-anchor="middle">findings</text>
-  <text x="656" y="144" font-size="16" text-anchor="middle">check log, tables</text>
+  <rect class="box" x="0" y="274" width="1100" height="108" />
+  <text class="mono" x="20" y="308" font-size="14">WHEN NEEDED</text>
+  <text class="file" x="250" y="310" font-size="17">references/</text>
+  <text x="400" y="310" font-size="18">estimands, clinical guidelines, product profiles</text>
+  <text class="file" x="250" y="350" font-size="17">scripts/</text>
+  <text x="400" y="350" font-size="18">recompute.py: recomputes the printed numbers</text>
   </g>
 </svg>
 </div>
@@ -2539,6 +2536,13 @@ vertical-align: -.125em;
 </div>
 <p>The last step, with the skills as its instructions. Claude Code on the web works in an isolated cloud VM, with a copy of the product’s repository and the review skills. You type one sentence. The model decides the next step, its tools read files, run R and write logs, and the result goes back, until it is done. So it does what no reader can: it runs the code, recomputes the numbers, re-runs the simulations, and has agents that did not write a finding challenge it. The output is a draft of the consistency-review form with a log behind every number, pushed to a branch.</p>
 <p>It never touches your computer, and it runs on your Claude plan, without API credits; what it reads still goes to the provider. The same agent can be started from a script, with the Agent SDK in Python or TypeScript, or with <code>claude -p</code> from R: to run it over test cases with known answers, for batch runs, with guardrails in code. That runs on an API key, billed per token, and one review does not need it.</p>
+<p><strong>What you choose</strong>, in the job’s assignment, next to the product, its protocol and SAP, and your questions:</p>
+<ul>
+<li><strong>Depth:</strong> <code>quick</code>, two agents, for a short SSE or a re-review (34 minutes on the demo); <code>standard</code>, one agent per stage and a fresh agent that challenges every finding; <code>full</code>, which adds an audit, for high-risk products.</li>
+<li><strong>Data:</strong> <code>none</code>, documents and code only (the default); <code>synthetic</code>, dummy data built from the code’s data contract or from a codebook made locally, so the code runs without patient data (it shows that the code runs and does what the text says, never a printed number); <code>shared</code>, patient-level data, only with a recorded clearance.</li>
+<li><strong>What you get:</strong> the DKF consistency-review form with the decision boxes filled in, REVIEW comments in a copy of the <code>.qmd</code>, a log behind every number, and a file for the human reviewer’s decisions.</li>
+<li><strong>Modules:</strong> twelve clinical modules come in when the product needs them: sample size, simulation, estimand, RCT, missing data, time-to-event, multiplicity and subgroups, regression models, observational comparisons, prediction models, Bayesian analyses, small samples.</li>
+</ul>
 <div class="starter">
 <p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent">tools/4-agent</a>: the set-up, the one sentence, the data modes; the skills are in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, version 0.3.1</p>
 </div>

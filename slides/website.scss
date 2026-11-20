@@ -271,6 +271,26 @@ $code-color: $ink;
 .reveal .svc .t.open { color: $mauve; font-weight: 500; }
 .reveal .svc .more { font-size: 0.9em; color: $ink-soft; border-top-style: dashed; }
 
+/* The agent's options: three ruled columns, each option name in mauve above its line */
+.reveal .opts {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0 1.1em;
+  margin: 0.5em 0 0.6em 0;
+}
+.reveal .opts .h {
+  font-family: $font-family-monospace;
+  font-size: 0.52em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  border-bottom: 1px solid $hairline;
+  padding-bottom: 0.3em;
+  margin-bottom: 0.3em;
+}
+.reveal .opts .o { font-size: 0.68em; line-height: 1.3; margin: 0.45em 0 0.55em 0; }
+.reveal .opts .k { display: block; font-weight: 700; color: $mauve; }
+
 /* Scope line under the first heading */
 .reveal .scope { font-size: 0.8em; color: $ink-soft; margin: -0.1em 0 0.4em 0; }
 .reveal .scope strong { color: $ink; }

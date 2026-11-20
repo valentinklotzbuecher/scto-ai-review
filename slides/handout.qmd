@@ -103,14 +103,15 @@ reviews were made this way. What you don't get: a record of what was checked, th
 answer twice, or any code run.
 
 You can also give the chat your own checklist, as a skill: a folder of instructions,
-reference files and small scripts that the model loads when a task matches, so no prompt
-is pasted. `dkf-document-check` is the first stage of my review skills on its own, for
+reference files and small scripts. The model always sees only the skill's name and
+description; it reads `SKILL.md`, the checklist, when a task matches, and opens the
+references and runs the scripts when it needs them. No prompt is pasted. `dkf-document-check` is the first stage of my review skills on its own, for
 Claude chat: it names the design and the estimand attribute by attribute, recomputes
 every printed number with scripts and logs each check. It runs no product code. My
 skills are adapted from research_skills, released by Joe Francis.
 
 ::: dg-wrap
-{{< include diagrams/_skill.qmd >}}
+{{< include diagrams/_skill-layers.qmd >}}
 :::
 
 ::: starter
@@ -176,6 +177,24 @@ what it reads still goes to the provider. The same agent can be started from a s
 with the Agent SDK in Python or TypeScript, or with `claude -p` from R: to run it over
 test cases with known answers, for batch runs, with guardrails in code. That runs on an
 API key, billed per token, and one review does not need it.
+
+**What you choose**, in the job's assignment, next to the product, its protocol and SAP,
+and your questions:
+
+- **Depth:** `quick`, two agents, for a short SSE or a re-review (34 minutes on the
+  demo); `standard`, one agent per stage and a fresh agent that challenges every
+  finding; `full`, which adds an audit, for high-risk products.
+- **Data:** `none`, documents and code only (the default); `synthetic`, dummy data built
+  from the code's data contract or from a codebook made locally, so the code runs
+  without patient data (it shows that the code runs and does what the text says, never
+  a printed number); `shared`, patient-level data, only with a recorded clearance.
+- **What you get:** the DKF consistency-review form with the decision boxes filled in,
+  REVIEW comments in a copy of the `.qmd`, a log behind every number, and a file for the
+  human reviewer's decisions.
+- **Modules:** twelve clinical modules come in when the product needs them: sample size,
+  simulation, estimand, RCT, missing data, time-to-event, multiplicity and subgroups,
+  regression models, observational comparisons, prediction models, Bayesian analyses,
+  small samples.
 
 ::: starter
 Starter: [tools/4-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent): the set-up, the one sentence, the data modes; the skills are in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), version 0.3.1

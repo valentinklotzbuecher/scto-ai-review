@@ -101,7 +101,7 @@ Strongest model, maximum effort
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[2:45–4:00] The simplest way is what the preprint tested. Paste the PDF and the source
+[2:45–3:45] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
@@ -114,6 +114,27 @@ model loads when the task matches. Mine, dkf-document-check, is the first stage 
 review skills: it names the design and the estimand attribute by attribute, recomputes
 every printed number and logs each check. It is adapted from the skills released by Joe
 Francis (research_skills, MIT licence).
+:::
+
+## What's in a skill
+
+::: crumbs
+<span class="on">Chat</span><span>Services</span><span>Script</span><span>Agent</span>
+:::
+
+{{< include diagrams/_skill-layers.qmd >}}
+
+::: notes
+[3:45–4:30] What a skill is, concretely: a folder. Mine for the chat is called
+dkf-document-check. The model always sees only its name and description, which says
+when to use it: when asked to check, review or consistency-review a statistical
+document. [click] When a task matches, it reads SKILL.md, the checklist: the rules,
+then three checks in order: the documents, their versions and their consistency with
+protocol and SAP; the printed numbers and their arithmetic; and the design, the estimand
+and the method; then what the output looks like. [click] And it opens the rest only when
+needed: references on estimands, clinical guidelines and the kinds of product, and a
+script that recomputes the printed numbers. Plain text and a small script, adapted from
+the skills Joe Francis released; the agent's skills are built the same way.
 :::
 
 ## Review services
@@ -138,7 +159,7 @@ Francis (research_skills, MIT licence).
 ```
 
 ::: notes
-[4:00–5:00] Others have built whole review pipelines and offer them as services. You
+[4:30–5:30] Others have built whole review pipelines and offer them as services. You
 upload the PDF. [click] Behind it run fixed chains of model calls, with prompts the
 vendor wrote; Reviewer 2's first stage, The Breaker, takes a sledgehammer to the text,
 and later stages filter out what the aggression invents. [click] You get a report.
@@ -158,7 +179,7 @@ third party. Or you build your own.
 {{< include diagrams/_api.qmd >}}
 
 ::: notes
-[5:00–6:15] Your own pipeline: a script through the API, for many documents. [click] The
+[5:30–6:30] Your own pipeline: a script through the API, for many documents. [click] The
 script, in R with the ellmer package or in Python with the providers' SDK libraries,
 sends each document with the same system prompt; mine reads like a senior reviewer's
 checklist, the statistical methods first, then the numbers, the code and the
@@ -181,7 +202,7 @@ you know. The price is code that talks to one provider at one point in time.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[6:15–8:00] The last step: an agent working in the product's repository, here Claude
+[6:30–8:00] The last step: an agent working in the product's repository, here Claude
 Code on the web. The skills come back as its instructions: what you type is one
 sentence, "review the product with dkf-review, then write the consistency review"; the
 skills hold the rest. It runs in an isolated cloud machine, with a copy of the
@@ -197,6 +218,61 @@ agent can be started from a script, with the Agent SDK in Python or TypeScript, 
 claude -p from R: to run it over test cases with known answers, for batch runs, with
 guardrails in code. That runs on an API key, billed per token; for one review you don't
 need it (appendix).
+:::
+
+## The agent: what you choose
+
+::: crumbs
+<span>Chat</span><span>Services</span><span>Script</span><span class="on">Agent</span>
+:::
+
+::: scope
+In the job's assignment, with the product, its protocol and SAP, and your questions:
+:::
+
+```{=html}
+<div class="opts">
+  <div>
+    <div class="h">Depth</div>
+    <div class="o"><span class="k">quick</span>two agents, for a short SSE</div>
+    <div class="o"><span class="k">standard</span>an agent per stage, and a challenge</div>
+    <div class="o"><span class="k">full</span>adds an audit</div>
+  </div>
+  <div class="fragment" data-fragment-index="1">
+    <div class="h">Data</div>
+    <div class="o"><span class="k">none</span>documents and code</div>
+    <div class="o"><span class="k">synthetic</span>dummy data, so the code runs</div>
+    <div class="o"><span class="k">shared</span>patient data, with a clearance</div>
+  </div>
+  <div class="fragment" data-fragment-index="2">
+    <div class="h">You get</div>
+    <div class="o"><span class="k">the form</span>the DKF consistency review</div>
+    <div class="o"><span class="k">comments</span>in a copy of the .qmd</div>
+    <div class="o"><span class="k">logs</span>behind every number</div>
+  </div>
+</div>
+```
+
+::: {.fragment fragment-index=3 .scope}
+Twelve clinical modules: sample size, simulation, estimand, RCT, missing data,
+time-to-event, multiplicity, regression, observational, prediction, Bayesian, small
+samples.
+:::
+
+::: notes
+[8:00–9:00] What you choose for the agent, in the job's assignment file, next to the
+product, the documents it depends on, such as the protocol and the SAP, and your
+questions to the reviewer. The depth: quick is two agents, for a short SSE or a
+re-review; on the demo it took 34 minutes. Standard is one agent per stage, and a fresh
+agent challenges every finding. Full adds an audit, for high-risk products. [click] The
+data: by default none, only documents and code. Synthetic: the agent builds dummy data
+from the code's data contract, or from a codebook you make locally, so the code runs
+without patient data; that shows that the code runs and does what the text says, and
+that its estimators recover known effects, but never a printed number. Shared:
+patient-level data, only with a recorded clearance. [click] What you get: the DKF
+consistency-review form with the decision boxes filled in, REVIEW comments in a copy of
+the Quarto source, and a log behind every number. [click] And twelve clinical modules
+come in when the product needs them.
 :::
 
 ## Try it yourself
@@ -255,7 +331,7 @@ then write the consistency review.
 :::
 
 ::: notes
-[8:00–9:00] And you can try both. The script is in the kit, the repository
+[9:00–9:45] And you can try both. The script is in the kit, the repository
 scto-ai-review, in the folder tools/3-api: the R or the Python starter sends a product
 through the API with my prompt and answer format. One command, and you get a table of
 issues and a log of tokens and cost; you need an API key, paid per use. Run it on the
@@ -281,7 +357,7 @@ merge it. [click] Both repositories, with a handout that walks through each step
 :::
 
 ::: notes
-[9:00–20:00] To discuss. What would you need to see before you sign a product an AI
+[9:45–20:00] To discuss. What would you need to see before you sign a product an AI
 reviewed? Could our review become result-oriented: the AI goes through every line,
 every number and every re-run, and we check that it tested enough, that each chunk,
 section and analysis does what it says, and that the approach and the interpretation

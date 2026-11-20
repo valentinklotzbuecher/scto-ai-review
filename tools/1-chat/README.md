@@ -51,6 +51,18 @@ It reads the product as an argument before any code, with four questions:
   design and the estimand, attribute by attribute.
 - What must a review of the code check?
 
+What is in the folder, and when the model reads it:
+
+```
+dkf-document-check/
+  SKILL.md                            always: name and description; when a task
+                                      matches: the rules, three checks, the output
+  references/estimands.md             when needed
+  references/clinical-guidelines.md   when needed
+  references/product-profiles.md      when needed
+  scripts/recompute.py                when needed: recomputes the printed numbers
+```
+
 It returns findings, a consistency table, a check log and leads for the code review. It
 does not run the product's code, nobody challenges its findings in a fresh context, and
 it writes no DKF form; for those, the agent.
