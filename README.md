@@ -16,9 +16,9 @@ recommendation.
 
 | | Way | Starter |
 |---|---|---|
-| 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `dkf-document-check`, a skill for Claude chat |
+| 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `stats-document-check`, a skill for Claude chat |
 | 2 | [An API review prototype](tools/2-api/README.md) | my review prototype, a Quarto document (`review.qmd`): settings in R, the request through the Anthropic Python SDK, every run kept, the review rendered with its prompt and cost |
-| 3 | [In development: agentic review](tools/3-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions; still in development |
+| 3 | [In development: agentic review](tools/3-agent/README.md) | Claude Code on the web with the review skills as its instructions; still in development |
 
 - **The services**, [`tools/services/`](tools/services/README.md): the list, paid, free
   and open source, with sources; templates for a script of your own.
@@ -31,7 +31,7 @@ recommendation.
 
 The review skills live in their own repository,
 [stats_review](https://github.com/valentinklotzbuecher/stats_review); this kit links to
-version 0.3.1 (tag `skills-v0.3.1`).
+version 0.4.0 (tag `skills-v0.4.0`).
 
 ## The talk
 
@@ -167,7 +167,7 @@ If you re-render one, re-run every tool on the new PDF.
   reticulate's `py_require()`. The document itself is the speaker's prototype, ported
   with current models and its prompt in `tools/2-api/prompt.md`
 - The prompts are our own: "Please check if this is consistent." on the chat slide;
-  `tools/2-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
+  `tools/2-api/prompt.md`; `chat-skills/stats-document-check/SKILL.md` and the agent
   instruction in `stats_review`; the earlier prototype's prompt on the archived deck's
   backup slide
 - ChatGPT's Pro series (GPT-6 Pro, on the Pro plans): OpenAI's help centre,

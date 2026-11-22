@@ -9,7 +9,7 @@ page.
 ## The answer key stays out of reviews
 
 - Only `demo/sse/` and `demo-crt/sse/` are reviewable. Never let an agent or a chat
-  review a demo from inside this repository (the `dkf-review` skill, a chat, Claude
+  review a demo from inside this repository (the `stats-review` skill, a chat, Claude
   Code), and never copy `demo/answer-key.*`, `demo-crt/answer-key.*`, `slides/`,
   `archive/` or this file into a review job or a prompt. The review document in
   `tools/2-api/` sends only the `.qmd` and PDF it finds in its `to_be_reviewed/` (or
@@ -41,7 +41,7 @@ page.
 
 - The deck and the handout include the same diagrams from `slides/diagrams/`; change
   one there, and re-render both.
-- The kit links to the review skills at a fixed version, tag `skills-v0.3.1` in
+- The kit links to the review skills at a fixed version, tag `skills-v0.4.0` in
   `stats_review`. For a newer version, update the links in `tools/1-chat`,
   `tools/3-agent`, the handout and the deck's Links slides.
 - `tools/2-api/review.qmd` is the speaker's review prototype, ported from

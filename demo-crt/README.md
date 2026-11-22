@@ -35,7 +35,7 @@ here, one grid point a minute or two.
   Debian or Ubuntu: `apt-get install -y r-base r-cran-lme4`):
 
   ```bash
-  python3 .claude/skills/dkf-review/scripts/new_job.py jobs/2026-11_DEMO-CRT \
+  python3 .claude/skills/stats-review/scripts/new_job.py jobs/2026-11_DEMO-CRT \
     --product /path/to/scto-ai-review/demo-crt/sse/
   ```
 

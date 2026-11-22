@@ -2350,7 +2350,7 @@ vertical-align: -.125em;
 <section id="paste-it-into-the-chat" class="level3">
 <h3 data-anchor-id="paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</h3>
 <div class="dg-wrap">
-<svg class="dg" style="max-height: 440px" viewbox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /dkf-document-check: a folder, dkf-document-check, with SKILL.md, references and scripts, which the model loads.">
+<svg class="dg" style="max-height: 440px" viewbox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /stats-document-check: a folder, stats-document-check, with SKILL.md, references and scripts, which the model loads.">
   <defs><marker id="m1" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
   <g class="fragment fade-out" data-fragment-index="3">
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>
@@ -2374,9 +2374,9 @@ vertical-align: -.125em;
   <text x="567" y="123" font-size="21" text-anchor="middle">answer</text>
   </g>
   <g class="fragment" data-fragment-index="3">
-  <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please review this using /dkf-document-check.”</text>
+  <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please review this using /stats-document-check.”</text>
   <path class="tool" d="M200 200 h60 l10 12 h216 v62 h-286 z" />
-  <text class="file" x="343" y="240" font-size="18" text-anchor="middle">dkf-document-check</text>
+  <text class="file" x="343" y="240" font-size="18" text-anchor="middle">stats-document-check</text>
   <text class="soft" x="343" y="264" font-size="16" text-anchor="middle">SKILL.md · references · scripts</text>
   <line class="arrow" x1="343" y1="212" x2="343" y2="182" marker-end="url(#m1)"></line>
   </g>
@@ -2385,7 +2385,7 @@ vertical-align: -.125em;
 <p>Choose the strongest model your plan offers at its maximum reasoning setting (ChatGPT’s Pro series, Claude Opus 5.5 or Fable 5.2), attach the PDF and the Quarto source, and ask whether it is consistent. In my experience this has worked well since OpenAI’s o1 pro, in December 2024, and King and Worthington’s AI reviews were made this way. What you don’t get: a record of what was checked, the same answer twice, or any code run.</p>
 <p>You can also give the chat your own checklist, as a skill: a folder you upload once and then name in your request.</p>
 <blockquote class="blockquote">
-<p>Please review this using /dkf-document-check.</p>
+<p>Please review this using /stats-document-check.</p>
 </blockquote>
 <p>What its <code>SKILL.md</code> holds:</p>
 <ul>
@@ -2395,7 +2395,7 @@ vertical-align: -.125em;
 <li><strong>3 Design, estimand and method:</strong> do they answer the question the product states?</li>
 <li><strong>Output:</strong> findings, a consistency table, a check log.</li>
 </ul>
-<p>Next to it: <code>references/</code> (estimands, clinical guidelines, product profiles) and <code>scripts/recompute.py</code>. The model reads only the names and descriptions of its skills until a request matches, then loads the rest. <code>dkf-document-check</code> is the first stage of my review skills on its own; it runs no product code. My skills are adapted from research_skills, released by Joe Francis.</p>
+<p>Next to it: <code>references/</code> (estimands, clinical guidelines, product profiles) and <code>scripts/recompute.py</code>. The model reads only the names and descriptions of its skills until a request matches, then loads the rest. <code>stats-document-check</code> is the first stage of my review skills on its own; it runs no product code. My skills are adapted from research_skills, released by Joe Francis.</p>
 <div class="starter">
 <p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat">tools/1-chat</a>: the prompt, the settings, the skill, the data rules</p>
 </div>
@@ -2599,16 +2599,16 @@ vertical-align: -.125em;
 <li><strong>Synthetic data</strong> when patient data cannot be shared: dummy data built from the code or from a codebook made locally, so the code runs. It shows that the code runs and does what the text says, never a printed number.</li>
 <li><strong>Version-controlled:</strong> every script, log and result is committed with the product, so it could become part of its replication package; REVIEW comments go into a copy of the <code>.qmd</code>.</li>
 </ul>
-<p><strong>Still in development.</strong> The skills are at version 0.3.1, tested so far on one synthetic test case, the <a href="#the-demo">demo</a>, where every run found all six planted issues.</p>
+<p><strong>Still in development.</strong> The skills are at version 0.4.0, tested so far on one synthetic test case, the <a href="#the-demo">demo</a>, where every run found all six planted issues.</p>
 <div class="starter">
-<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-agent">tools/3-agent</a>: the set-up, the one sentence, the depth and the data modes; the skills are in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, version 0.3.1</p>
+<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-agent">tools/3-agent</a>: the set-up, the one sentence, the depth and the data modes; the skills are in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0">stats_review</a>, version 0.4.0</p>
 </div>
 </section>
 <section id="try-it-yourself" class="level3">
 <h3 data-anchor-id="try-it-yourself">Try it yourself</h3>
-<p><strong>The skill, in a chat.</strong> Download <code>dkf-document-check.zip</code> from stats_review’s <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1/chat-skills"><code>chat-skills/</code></a> and upload it in Claude (Customize, then Skills, then “+”; code execution must be on). In a new chat, attach the product’s PDF and its Quarto source, and ask:</p>
+<p><strong>The skill, in a chat.</strong> Download <code>stats-document-check.zip</code> from stats_review’s <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0/chat-skills"><code>chat-skills/</code></a> and upload it in Claude (Customize, then Skills, then “+”; code execution must be on). In a new chat, attach the product’s PDF and its Quarto source, and ask:</p>
 <blockquote class="blockquote">
-<p>Please review this using /dkf-document-check.</p>
+<p>Please review this using /stats-document-check.</p>
 </blockquote>
 <p>It runs on your Claude plan; the steps are in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat"><code>tools/1-chat</code></a>.</p>
 <p><strong>The review document</strong> is in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">scto-ai-review</a>, in the folder <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api"><code>tools/2-api</code></a>. With an API key in <code>~/.Renviron</code>:</p>
@@ -2618,13 +2618,13 @@ vertical-align: -.125em;
 <li><p>Open <code>review.qmd</code> in RStudio, set <code>cfg</code>, run the chunks, and render.</p></li>
 </ol>
 <p>Every run is kept in <code>review_results/prototype_runs/</code>.</p>
-<p><strong>The agent</strong>, still in development, runs on the review skills in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, at the tag <code>skills-v0.3.1</code>; the steps are in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-agent"><code>tools/3-agent</code></a>.</p>
+<p><strong>The agent</strong>, still in development, runs on the review skills in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0">stats_review</a>, at the tag <code>skills-v0.4.0</code>; the steps are in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-agent"><code>tools/3-agent</code></a>.</p>
 <ol type="1">
-<li><p>At <a href="https://claude.ai/code">claude.ai/code</a>, on your Claude plan, create a cloud environment with stats_review’s <a href="https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.3.1/tools/web_setup.sh"><code>tools/web_setup.sh</code></a> as its setup script; it installs R and Quarto.</p></li>
+<li><p>At <a href="https://claude.ai/code">claude.ai/code</a>, on your Claude plan, create a cloud environment with stats_review’s <a href="https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.4.0/tools/web_setup.sh"><code>tools/web_setup.sh</code></a> as its setup script; it installs R and Quarto.</p></li>
 <li><p>Start a session with your product’s repository and stats_review.</p></li>
 <li><p>Type one sentence:</p>
 <blockquote class="blockquote">
-<p>Review the product with dkf-review, then write the consistency review.</p>
+<p>Review the product with stats-review, then write the consistency review.</p>
 </blockquote></li>
 <li><p>The review lands on a branch of your product’s repository; merge it there.</p></li>
 </ol>
@@ -2784,7 +2784,7 @@ vertical-align: -.125em;
 <section id="the-talk-and-its-tools" class="level3">
 <h3 data-anchor-id="the-talk-and-its-tools">The talk and its tools</h3>
 <ul>
-<li>The kit: <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>; the review skills: <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">github.com/valentinklotzbuecher/stats_review</a></li>
+<li>The kit: <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>; the review skills: <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0">github.com/valentinklotzbuecher/stats_review</a></li>
 <li>Agents: <a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code on the web</a>; the <a href="https://code.claude.com/docs/en/agent-sdk/overview">Agent SDK</a></li>
 <li>The API: <a href="https://platform.claude.com/docs/en/about-claude/models/overview">Claude models, effort and prices</a>; the <a href="https://github.com/anthropics/anthropic-sdk-python">Anthropic Python SDK</a>; in R, <a href="https://ellmer.tidyverse.org">ellmer</a>, <a href="https://vitals.tidyverse.org">vitals</a> (evaluations), <a href="https://ragnar.tidyverse.org">ragnar</a> (retrieval) and <a href="https://rstudio.github.io/reticulate/">reticulate</a> (Python from R)</li>
 <li>Services: <a href="https://refine.ink">refine.ink</a>, <a href="https://reviewer3.com">reviewer3.com</a>, <a href="https://paperreview.ai">paperreview.ai</a>, <a href="https://openaireview.org">openaireview.org</a>, <a href="https://coarse.ink">coarse.ink</a>, Google’s <a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a>, <a href="https://www.qedscience.com/">QED Science</a></li>

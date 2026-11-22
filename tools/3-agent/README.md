@@ -3,12 +3,12 @@
 An agent works in a copy of the product's repository. It reads the files, runs the R
 code, recomputes the numbers, re-runs the simulations, has its findings challenged by
 agents that did not write them, and writes a draft review with a
-log behind every number. Here: Claude Code on the web with the DKF review skills from
-[stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
-(version 0.3.1). The skills are its instructions, the same format as the skill for the
+log behind every number. Here: Claude Code on the web with the review skills from
+[stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0)
+(version 0.4.0). The skills are its instructions, the same format as the skill for the
 chat in [`../1-chat`](../1-chat/README.md): you type one sentence, and they hold the rest.
 
-**Still in development.** The skills are at version 0.3.1, tested so far on one
+**Still in development.** The skills are at version 0.4.0, tested so far on one
 synthetic test case, the [demo](../../demo/README.md), where every run found all six
 planted issues. Expect them to change from version to version.
 
@@ -33,7 +33,7 @@ read 18 November 2026.
 1. Connect GitHub at claude.ai/connect-github. The Claude GitHub App must be installed on
    the product's repository.
 2. Create a cloud environment and paste stats_review's
-   [`tools/web_setup.sh`](https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.3.1/tools/web_setup.sh)
+   [`tools/web_setup.sh`](https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.4.0/tools/web_setup.sh)
    as its setup script. It installs R with knitr and rmarkdown, Quarto, Poppler and
    mistune; add the product's R packages there.
 3. Allow package managers and github.com under network access.
@@ -46,7 +46,7 @@ read 18 November 2026.
 2. Create the job beside the product, or ask Claude to:
 
    ```bash
-   python3 ../stats_review/.claude/skills/dkf-review/scripts/new_job.py review/2026-11-19_quick \
+   python3 ../stats_review/.claude/skills/stats-review/scripts/new_job.py review/2026-11-19_quick \
      --product my_sse.qmd my_sse.pdf
    ```
 
@@ -54,7 +54,7 @@ read 18 November 2026.
    on, what is cleared, the data mode, the depth (`quick` for a short SSE).
 4. Type one sentence; the skills hold the rest:
 
-   > Review the product in review/2026-11-19_quick with dkf-review, then write the
+   > Review the product in review/2026-11-19_quick with stats-review, then write the
    > consistency review.
 
    It checks the clearance, states depth, data mode and size, asks you to check your

@@ -37,9 +37,9 @@ The model reads each skill's name and description and loads the rest when a task
 matches, so the checklist comes along and you no longer paste a prompt. The same skills
 are the agent's instructions in [`../3-agent`](../3-agent/README.md).
 
-`dkf-document-check` is the first stage of the DKF consistency review on its own, for
-Claude chat (version 0.1.1, following the review skills 0.3.1 in
-[stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1/chat-skills)).
+`stats-document-check` is the first stage of the DKF consistency review on its own, for
+Claude chat (version 0.2.0, following the review skills 0.4.0 in
+[stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0/chat-skills)).
 It reads the product as an argument before any code, with four questions:
 
 - Is it the document it says it is, and does it agree with the documents that govern it
@@ -53,7 +53,7 @@ It reads the product as an argument before any code, with four questions:
 What is in the folder, and when the model reads it:
 
 ```
-dkf-document-check/
+stats-document-check/
   SKILL.md                            always: name and description; when a task
                                       matches: the rules, three checks, the output
   references/estimands.md             when needed
@@ -66,16 +66,16 @@ It returns findings, a consistency table, a check log and leads for the code rev
 does not run the product's code, and nobody challenges its findings in a fresh context;
 for those, the agent.
 
-1. Download `dkf-document-check.zip` from stats_review's
-   [`chat-skills/`](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1/chat-skills).
+1. Download `stats-document-check.zip` from stats_review's
+   [`chat-skills/`](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0/chat-skills).
 2. In Claude, open Customize, then Skills, choose "+", create a skill and upload the
    ZIP. Code execution must be on. An uploaded skill is yours only.
 3. In a new chat, attach the rendered product (PDF) and, if you like, its Quarto source
    and the governing documents, and ask:
 
-   > Please review this using /dkf-document-check.
+   > Please review this using /stats-document-check.
 
-The skill is condensed from the document stage of the `dkf-review` skill, which is
+The skill is condensed from the document stage of the `stats-review` skill, which is
 adapted from Joe Francis's [research_skills](https://github.com/isitcredible/research_skills)
 (The Catalogue of Errors Ltd, MIT licence), written for research papers.
 

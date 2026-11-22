@@ -31,7 +31,7 @@ read the answer key, and then finds the issues without doing the review.
   ([`../tools/3-agent`](../tools/3-agent/README.md)):
 
   ```bash
-  python3 .claude/skills/dkf-review/scripts/new_job.py jobs/2026-11_DEMO-TKA \
+  python3 .claude/skills/stats-review/scripts/new_job.py jobs/2026-11_DEMO-TKA \
     --product /path/to/scto-ai-review/demo/sse/
   ```
 
@@ -56,7 +56,8 @@ each one found, whether the review states its consequence in participants or pow
 | 20 Nov 2026 | chat with the skill `dkf-document-check` 0.1.1 | 6 of 6 | 5 of 5 | not recorded | subscription |
 
 The first run also caught an error in the first version of the key. The chat with the
-skill ran only its own scripts, never the product's code. Runs of the chat on its own
+skill, since renamed `stats-document-check`, ran only its own scripts, never the
+product's code. Runs of the chat on its own
 and of the API script are still to do.
 
 Not a blind test: the skills and the demo were written in the same week, and the skills

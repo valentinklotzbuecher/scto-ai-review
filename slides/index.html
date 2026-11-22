@@ -1183,7 +1183,7 @@ display:block!important;
 <div class="crumbs">
 <p><span class="on">Chat</span><span>Script</span><span>Agent</span></p>
 </div>
-<svg class="dg" style="max-height: 440px" viewbox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /dkf-document-check: a folder, dkf-document-check, with SKILL.md, references and scripts, which the model loads.">
+<svg class="dg" style="max-height: 440px" viewbox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /stats-document-check: a folder, stats-document-check, with SKILL.md, references and scripts, which the model loads.">
   <defs><marker id="m1" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
   <g class="fragment fade-out" data-fragment-index="3">
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>
@@ -1207,15 +1207,15 @@ display:block!important;
   <text x="567" y="123" font-size="21" text-anchor="middle">answer</text>
   </g>
   <g class="fragment" data-fragment-index="3">
-  <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please review this using /dkf-document-check.”</text>
+  <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please review this using /stats-document-check.”</text>
   <path class="tool" d="M200 200 h60 l10 12 h216 v62 h-286 z" />
-  <text class="file" x="343" y="240" font-size="18" text-anchor="middle">dkf-document-check</text>
+  <text class="file" x="343" y="240" font-size="18" text-anchor="middle">stats-document-check</text>
   <text class="soft" x="343" y="264" font-size="16" text-anchor="middle">SKILL.md · references · scripts</text>
   <line class="arrow" x1="343" y1="212" x2="343" y2="182" marker-end="url(#m1)"></line>
   </g>
 </svg>
 <aside class="notes">
-<p>[3:00–4:00] The simplest way is what the preprint tested. Paste the PDF and the source into a chat and ask it to check whether the document is consistent. [click] Take the strongest model, the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, and set its effort to maximum. [click] You get an answer, and it works surprisingly well; in my experience since OpenAI’s o1 pro, in December 2024. King and Worthington’s AI reviews were made exactly this way: one model at its maximum reasoning setting, given the paper and the reviewer guidelines. What you don’t get: a record of what was checked, the same answer twice, or better data terms than your plan’s. [click] Or you bring your own checklist, as a skill, and call it by name: please review this using /dkf-document-check. A skill is a folder of plain text. SKILL.md holds the rules, only documents you may share, the print decides, the product’s code never runs, and three checks in order: the documents and their versions against protocol, SAP and registry; the printed numbers, each recomputed by a script; the design, the estimand and the method. Next to it, references on estimands, clinical guidelines and product profiles, and the small script. The model reads only the names and descriptions of its skills until a request matches, then loads the rest. Mine is the first stage of my review skills, adapted from the skills Joe Francis released (research_skills, MIT licence); the agent’s skills are built the same way.</p>
+<p>[3:00–4:00] The simplest way is what the preprint tested. Paste the PDF and the source into a chat and ask it to check whether the document is consistent. [click] Take the strongest model, the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, and set its effort to maximum. [click] You get an answer, and it works surprisingly well; in my experience since OpenAI’s o1 pro, in December 2024. King and Worthington’s AI reviews were made exactly this way: one model at its maximum reasoning setting, given the paper and the reviewer guidelines. What you don’t get: a record of what was checked, the same answer twice, or better data terms than your plan’s. [click] Or you bring your own checklist, as a skill, and call it by name: please review this using /stats-document-check. A skill is a folder of plain text. SKILL.md holds the rules, only documents you may share, the print decides, the product’s code never runs, and three checks in order: the documents and their versions against protocol, SAP and registry; the printed numbers, each recomputed by a script; the design, the estimand and the method. Next to it, references on estimands, clinical guidelines and product profiles, and the small script. The model reads only the names and descriptions of its skills until a request matches, then loads the rest. Mine is the first stage of my review skills, adapted from the skills Joe Francis released (research_skills, MIT licence); the agent’s skills are built the same way.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1508,7 +1508,7 @@ display:block!important;
   </g>
 </svg>
 <aside class="notes">
-<p>[7:15–9:15] What I did instead: a coding agent working in the product’s repository, with skills adapted from Joe’s as its instructions; here Claude Code on the web, and Codex and others work the same way. It starts from the product’s repository, with my review skills in it as the agent’s instructions: what you type is one sentence, “review the product with dkf-review, then write the consistency review”; the skills hold the rest. [click] Tools read the files, run R and write logs. [click] The agent decides the next step, with its model, which runs at the provider; the tools carry it out, and the result comes back, again and again, until it is done. It runs on your Claude subscription, no API credits. [click] The repository and the tools sit in an isolated cloud machine, with the model outside; it never touches your computer. What it reads still goes to the provider, under your plan’s terms. [click] The output is the review, with a log behind every number, pushed to a branch. [click] And the same agent can be started from a script, with the Agent SDK in Python or TypeScript, or with claude -p from R: to run it over test cases with known answers, for batch runs, with guardrails in code. That runs on an API key, billed per token; for one review you don’t need it. [click] Still in development, and what it adds over the script. It runs the code: it re-renders the product, recomputes the printed numbers and re-runs the simulations, which no reader can. It challenges its own findings: an agent that did not write a finding checks it, in a fresh context. Where patient data cannot be shared, it builds synthetic data from the code, so the code runs and does what the text says, though it never confirms a printed number. The skills are at version 0.3.1, so far tested on one synthetic test case, a two-page sample size estimation with six planted issues: every run found all six, and said by how much the five that matter change the sample size or the power; the quick run took 34 minutes, about ten dollars at API list prices. A second test case is next.</p>
+<p>[7:15–9:15] What I did instead: a coding agent working in the product’s repository, with skills adapted from Joe’s as its instructions; here Claude Code on the web, and Codex and others work the same way. It starts from the product’s repository, with my review skills in it as the agent’s instructions: what you type is one sentence, “review the product with stats-review, then write the consistency review”; the skills hold the rest. [click] Tools read the files, run R and write logs. [click] The agent decides the next step, with its model, which runs at the provider; the tools carry it out, and the result comes back, again and again, until it is done. It runs on your Claude subscription, no API credits. [click] The repository and the tools sit in an isolated cloud machine, with the model outside; it never touches your computer. What it reads still goes to the provider, under your plan’s terms. [click] The output is the review, with a log behind every number, pushed to a branch. [click] And the same agent can be started from a script, with the Agent SDK in Python or TypeScript, or with claude -p from R: to run it over test cases with known answers, for batch runs, with guardrails in code. That runs on an API key, billed per token; for one review you don’t need it. [click] Still in development, and what it adds over the script. It runs the code: it re-renders the product, recomputes the printed numbers and re-runs the simulations, which no reader can. It challenges its own findings: an agent that did not write a finding checks it, in a fresh context. Where patient data cannot be shared, it builds synthetic data from the code, so the code runs and does what the text says, though it never confirms a printed number. The skills are at version 0.4.0, so far tested on one synthetic test case, a two-page sample size estimation with six planted issues: every run found all six, and said by how much the five that matter change the sample size or the power; the quick run took 34 minutes, about ten dollars at API list prices. A second test case is next.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1532,7 +1532,7 @@ display:block!important;
 <p>stats_review · chat-skills</p>
 </div>
 <pre class="text"><code>Please review this using
-/dkf-document-check.</code></pre>
+/stats-document-check.</code></pre>
 <div class="tight compact">
 <ul>
 <li>upload its ZIP in Claude</li>
@@ -1565,10 +1565,10 @@ to_be_reviewed/</code></pre>
 <p>The agent</p>
 </div>
 <div class="where">
-<p>stats_review · skills-v0.3.1</p>
+<p>stats_review · skills-v0.4.0</p>
 </div>
 <pre class="text"><code>Review the product with
-dkf-review, then write
+stats-review, then write
 the consistency review.</code></pre>
 <div class="tight compact">
 <ul>
@@ -1584,7 +1584,7 @@ the consistency review.</code></pre>
 <strong>github.com/valentinklotzbuecher/stats_review</strong>: the review skills</p>
 </div>
 <aside class="notes">
-<p>[9:15–10:15] And you can try all three. The skill, in a chat: download its ZIP from stats_review, the repository with my review skills, in the folder chat-skills; upload it in Claude, with code execution on; attach the product’s PDF and its Quarto source, and type one sentence. It runs on your Claude plan. [click] The review document is in the kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in RStudio, put the product in to_be_reviewed, set the settings, run the chunks and render. You need an API key, paid per use. [click] And the agent, still in development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start a session with your product’s repository and stats_review, at the tag skills-v0.3.1; its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type one sentence, and the review lands on a branch of your product’s repository, where you merge it. Try all three on the test cases first: synthetic sample size estimations with planted issues and an answer key, so you can score what they find. [click] Both repositories, with a handout that walks through each step.</p>
+<p>[9:15–10:15] And you can try all three. The skill, in a chat: download its ZIP from stats_review, the repository with my review skills, in the folder chat-skills; upload it in Claude, with code execution on; attach the product’s PDF and its Quarto source, and type one sentence. It runs on your Claude plan. [click] The review document is in the kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in RStudio, put the product in to_be_reviewed, set the settings, run the chunks and render. You need an API key, paid per use. [click] And the agent, still in development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start a session with your product’s repository and stats_review, at the tag skills-v0.4.0; its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type one sentence, and the review lands on a branch of your product’s repository, where you merge it. Try all three on the test cases first: synthetic sample size estimations with planted issues and an answer key, so you can score what they find. [click] Both repositories, with a handout that walks through each step.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1643,7 +1643,7 @@ display:block!important;
 <h2>Links: the talk and its tools</h2>
 <div class="small tight">
 <ul>
-<li><strong>This talk</strong>, with a handout, the review document and two test cases: <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>; the review skills: <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">github.com/valentinklotzbuecher/stats_review</a></li>
+<li><strong>This talk</strong>, with a handout, the review document and two test cases: <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>; the review skills: <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0">github.com/valentinklotzbuecher/stats_review</a></li>
 <li><strong>Agents:</strong> <a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code on the web</a>; the <a href="https://code.claude.com/docs/en/agent-sdk/overview">Agent SDK</a></li>
 <li><strong>The API:</strong> <a href="https://platform.claude.com/docs/en/about-claude/models/overview">Claude models, effort and prices</a>; in R, <a href="https://ellmer.tidyverse.org">ellmer</a>, <a href="https://vitals.tidyverse.org">vitals</a> (evaluations), <a href="https://ragnar.tidyverse.org">ragnar</a> (retrieval) and <a href="https://rstudio.github.io/reticulate/">reticulate</a> (Python from R)</li>
 <li><strong>Services:</strong> <a href="https://refine.ink">refine.ink</a>, <a href="https://reviewer3.com">reviewer3.com</a>, <a href="https://paperreview.ai">paperreview.ai</a>, <a href="https://openaireview.org">openaireview.org</a>, <a href="https://coarse.ink">coarse.ink</a>, Google’s <a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a>, <a href="https://www.qedscience.com/">QED Science</a></li>

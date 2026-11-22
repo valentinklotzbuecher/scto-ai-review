@@ -116,7 +116,7 @@ OpenAI's o1 pro, in December 2024. King and Worthington's AI reviews were made e
 this way: one model at its maximum reasoning setting, given the paper and the
 reviewer guidelines. What you don't get: a record of what was checked, the same answer
 twice, or better data terms than your plan's. [click] Or you bring your own checklist,
-as a skill, and call it by name: please review this using /dkf-document-check. A skill
+as a skill, and call it by name: please review this using /stats-document-check. A skill
 is a folder of plain text. SKILL.md holds the rules, only documents you may share, the
 print decides, the product's code never runs, and three checks in order: the documents
 and their versions against protocol, SAP and registry; the printed numbers, each
@@ -325,7 +325,7 @@ based on that is the agent.
 with skills adapted from Joe's as its instructions; here Claude Code on the web, and
 Codex and others work the same way. It starts from the product's repository, with my
 review skills in it as the agent's instructions: what you type is one sentence, "review
-the product with dkf-review, then write the consistency review"; the skills hold the
+the product with stats-review, then write the consistency review"; the skills hold the
 rest. [click] Tools read the files, run R and write logs. [click] The agent decides the
 next step, with its model, which runs at the provider; the tools carry it out, and the
 result comes back, again and again, until it is done. It runs on your Claude
@@ -341,7 +341,7 @@ re-renders the product, recomputes the printed numbers and re-runs the simulatio
 which no reader can. It challenges its own findings: an agent that did not write a
 finding checks it, in a fresh context. Where patient data cannot be shared, it builds
 synthetic data from the code, so the code runs and does what the text says, though it
-never confirms a printed number. The skills are at version 0.3.1, so far tested on one
+never confirms a printed number. The skills are at version 0.4.0, so far tested on one
 synthetic test case, a two-page sample size estimation with six planted issues: every
 run found all six, and said by how much the five that matter change the sample size or
 the power; the quick run took 34 minutes, about ten dollars at API list prices. A
@@ -362,7 +362,7 @@ stats_review · chat-skills
 
 ```text
 Please review this using
-/dkf-document-check.
+/stats-document-check.
 ```
 
 ::: {.tight .compact}
@@ -405,12 +405,12 @@ The agent
 :::
 
 ::: where
-stats_review · skills-v0.3.1
+stats_review · skills-v0.4.0
 :::
 
 ```text
 Review the product with
-dkf-review, then write
+stats-review, then write
 the consistency review.
 ```
 
@@ -437,7 +437,7 @@ the kit, the repository scto-ai-review, in the folder tools/2-api: open review.q
 RStudio, put the product in to_be_reviewed, set the settings, run the chunks and
 render. You need an API key, paid per use. [click] And the agent, still in
 development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start
-a session with your product's repository and stats_review, at the tag skills-v0.3.1;
+a session with your product's repository and stats_review, at the tag skills-v0.4.0;
 its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You
 type one sentence, and the review lands on a branch of your product's repository,
 where you merge it. Try all three on the test cases first: synthetic sample size
@@ -511,7 +511,7 @@ appendix.
 ## Links: the talk and its tools
 
 ::: {.small .tight}
-- **This talk**, with a handout, the review document and two test cases: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
+- **This talk**, with a handout, the review document and two test cases: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0)
 - **Agents:** [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web); the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
 - **The API:** [Claude models, effort and prices](https://platform.claude.com/docs/en/about-claude/models/overview); in R, [ellmer](https://ellmer.tidyverse.org), [vitals](https://vitals.tidyverse.org) (evaluations), [ragnar](https://ragnar.tidyverse.org) (retrieval) and [reticulate](https://rstudio.github.io/reticulate/) (Python from R)
 - **Services:** [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), Google's [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/), [QED Science](https://www.qedscience.com/)
