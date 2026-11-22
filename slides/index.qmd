@@ -296,30 +296,31 @@ obsolete this fast? What I did based on that is the agent.
 
 ::: notes
 [6:45–8:30] So: a coding agent working in the product's repository, with skills adapted
-from Joe's as its instructions; here Claude Code on the web, and Codex and others work
-the same way. Three parts. The product's repository, with my review skills in it as the
-agent's instructions: what you type is one sentence, "review the product with
-stats-review, then write the consistency review"; the skills hold the rest. Tools that
-read the files, run R and write logs. And the coding agent, whose model decides the next
-step. What it adds over the script: it runs the code: it re-renders the product,
-recomputes the printed numbers and re-runs the simulations, which no reader can. It
-challenges its own findings: an agent that did not write a finding checks it, in a
-fresh context. And where patient data cannot be shared, it builds synthetic data from
-the code, so the code runs and does what the text says, though it never confirms a
-printed number. It runs on your Claude subscription, no API credits. [click] Then the
-loop: the agent decides the next step, with its model, which runs at the provider; the
-tools carry it out, and the result comes back, again and again, until it is done.
-[click] The repository and the tools sit in an isolated cloud machine, with the model
-outside; it never touches your computer. What it reads still goes to the provider,
-under your plan's terms. [click] The output is the review, with a log behind every
-number, pushed to a branch. [click] And the same agent can be started from a script,
-with the Agent SDK in Python or TypeScript, or with claude -p from R: to run it over
-test cases with known answers, for batch runs, with guardrails in code. That runs on an
-API key, billed per token; for one review you don't need it. All of this is a first
-shot. The skills are at version 0.4.1, so far tested on one synthetic test case, a
-two-page sample size estimation with six planted issues: every run found all six, and
-said by how much the five that matter change the sample size or the power; the quick
-run took 34 minutes, about ten dollars at API list prices. A second test case is next.
+from Joe's as its instructions. First the repository: the product's Quarto source, its
+PDF and its R code, with my review skills in it as the agent's instructions: what you
+type is one sentence, "review the product with stats-review, then write the consistency
+review"; the skills hold the rest. [click] Then the coding agent and its tools, here
+Claude Code on the web, and Codex and others work the same way. The agent decides the
+next step, with its model, which runs at the provider; the tools carry it out: they read
+the files, run R and write logs; and the result comes back. What it adds over the
+script: it runs the code: it re-renders the product, recomputes the printed numbers and
+re-runs the simulations, which no reader can. It challenges its own findings: an agent
+that did not write a finding checks it, in a fresh context. And where patient data
+cannot be shared, it builds synthetic data from the code, so the code runs and does what
+the text says, though it never confirms a printed number. It runs on your Claude
+subscription, no API credits. [click] And that is a loop: next step, tools, result,
+again and again, until it is done. [click] The repository and the tools sit in an
+isolated cloud machine, with the model outside; it never touches your computer. What it
+reads still goes to the provider, under your plan's terms. [click] The output is the
+review, with a log behind every number, pushed to a branch. [click] And the same agent
+can be started from a script, with the Agent SDK in Python or TypeScript, or with
+claude -p from R: to run it over test cases with known answers, for batch runs, with
+guardrails in code. That runs on an API key, billed per token; for one review you don't
+need it. All of this is a first shot. The skills are at version 0.4.1, so far tested on
+one synthetic test case, a two-page sample size estimation with six planted issues:
+every run found all six, and said by how much the five that matter change the sample
+size or the power; the quick run took 34 minutes, about ten dollars at API list prices.
+A second test case is next.
 :::
 
 ## Try it yourself
