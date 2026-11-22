@@ -245,8 +245,8 @@ one.
 :::
 
 What I did based on that: a coding agent, such as Claude Code or Codex, with my skills,
-adapted from Joe Francis's, as its instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a
-copy of the product's repository and the review skills. You type one sentence. The
+adapted from Joe Francis's, as its instructions. Here Claude Code on the web, which works in an isolated cloud VM, with the
+product's repository and the review skills. You type one sentence. The
 model decides the next step, its tools read files, run R and write logs, and the result
 goes back, until it is done; the review and its logs are pushed to a branch.
 
