@@ -81,7 +81,13 @@ So the question is less whether to use these tools than how.
 
 Sample size estimations, analysis plans and reports go to a second statistician, who
 checks the methods, the numbers and the code. Both studies read only the text; errors in
-data handling or analysis code, the preprint's authors note, are not visible there.
+data handling or analysis code, the preprint's authors note, are not visible there. For
+code, the AI Replication Games give a first, sobering answer: in 2024, 288 researchers
+in 103 teams reproduced published results and looked for coding errors; teams using
+ChatGPT reproduced about as many results as human-only teams (91% and 94%) but found
+fewer major coding errors, and teams left to ChatGPT reproduced only 37% (Brodeur et al.,
+PNAS 2026). A follow-up in 2025–26, not yet public, finds that with newer tools AI access
+helped, while checking each suspected error stayed with the researcher.
 Where could AI come in: before the second statistician, as a check the author runs
 first, or alongside the reviewer? That is open. The three approaches below are what I
 explored, as a basis for the discussion.

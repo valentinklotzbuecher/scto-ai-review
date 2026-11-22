@@ -184,6 +184,19 @@ frontier model, with no bespoke pipeline". The talk cited the earlier 80% until
 19 November 2026 and has not cited the working paper since; the quote stays here
 because the archived deck still carries the superseded figure.
 
+## Brodeur et al. 2026 in PNAS (abstract, read through Crossref, 22 November 2026)
+
+*AI-assisted teams outperform AI-led teams but not human-only teams in assessing research
+reproducibility in quantitative social science*, PNAS 123(22), e2524747123,
+doi:10.1073/pnas.2524747123 (CC BY-NC-ND 4.0; about 270 authors, the speaker among
+them). Quoted for the notes of "Internal consistency review" and the handout: "We
+randomly assigned 288 researchers to 103 teams working under three conditions:
+human-only, AI-assisted (using ChatGPT as a collaborative tool), or AI-led (ChatGPT
+operating with minimal human oversight)." "Human-only and AI-assisted teams achieved
+comparable reproduction rates (94% vs. 91%) and performed similarly on most outcomes,
+except human-only teams identified significantly more major coding errors. Both
+substantially outperformed AI-led teams, which achieved only a 37% reproduction rate".
+
 ## Aparicio et al. 2026 (not yet public)
 
 The second AI Replication Games experiment (2025–26), after the 2024 one in Brodeur et
