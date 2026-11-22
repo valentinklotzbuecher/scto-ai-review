@@ -2,7 +2,7 @@
 
 An agent works in a copy of the product's repository. It reads the files, runs the R
 code, recomputes the numbers, re-runs the simulations, has its findings challenged by
-agents that did not write them, and writes a draft of the consistency-review form with a
+agents that did not write them, and writes a draft review with a
 log behind every number. Here: Claude Code on the web with the DKF review skills from
 [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
 (version 0.3.1). The skills are its instructions, the same format as the skill for the
@@ -22,7 +22,7 @@ planted issues. Expect them to change from version to version.
   usage limits … and there's no separate charge for the cloud VM." Cloud sessions are
   available on Pro, Max, Ultra and Team plans, and for Enterprise users with premium
   seats or Chat + Claude Code seats.
-- **It leaves a record**: the job folder, with the form, the issues, and the scripts and
+- **It leaves a record**: the job folder, with the review, the issues, and the scripts and
   logs behind them, committed with the product.
 
 Quotes: [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web),
@@ -71,11 +71,11 @@ your questions:
 
 | Depth | |
 |---|---|
-| `quick` | two agents, a review agent and a fresh verdict agent that also writes the form; for a short SSE or a re-review |
+| `quick` | two agents, a review agent and a fresh verdict agent that also writes the review; for a short SSE or a re-review |
 | `standard` (default) | one agent per stage, and a fresh agent that challenges every finding |
 | `full` | adds an audit, for high-risk products |
 
-What you get: the DKF consistency-review form (`CONSISTENCY_REVIEW.md`, `.html`, `.org`)
+What you get: the consistency review (`CONSISTENCY_REVIEW.md`, `.html`, `.org`)
 with the decision boxes computed from the issues, REVIEW comments in a copy of the
 `.qmd`, the scripts and logs behind every number, and `REVIEWER.md` and
 `DISPOSITIONS.md` for the human reviewer. Twelve clinical modules come in when the

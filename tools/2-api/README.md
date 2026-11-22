@@ -2,13 +2,13 @@
 
 My review prototype: a Quarto document that sends a product to the model through the API
 with the same review instructions every time, saves every run with its settings, tokens
-and hashes, and renders the review in the DKF form. Billed per use with an API key, not
+and hashes, and renders the review. Billed per use with an API key, not
 on a chat plan. A first pass before the human review, not a replacement for it.
 
 | File | What it is |
 |---|---|
 | [`review.qmd`](review.qmd) | the review document: settings and display in R; the request through the Anthropic Python SDK, run from R with reticulate |
-| [`prompt.md`](prompt.md) | the review instructions: a senior biostatistician's first pass, with checklists for a sample size estimation, an analysis report and data preparation, and the form to answer in |
+| [`prompt.md`](prompt.md) | the review instructions: a senior biostatistician's first pass, with checklists for a sample size estimation, an analysis report and data preparation, and the structure of the answer |
 | [`to_be_reviewed/`](to_be_reviewed/README.md) | where the product goes: its `.qmd`, its PDF, or both |
 
 ## Set it up once
@@ -55,19 +55,8 @@ Every run, never overwritten, in `review_results/prototype_runs/`:
 answered, the stop reason, the settings, the tokens, and SHA-256 hashes of the prompt,
 the `.qmd` and the PDF; the `.json` also keeps the model's summarised reasoning.
 
-The review, in the DKF form:
-
-- **Decision:** five boxes (minor or major changes in the text; minor or major changes
-  in the R programming; clarifications required), with a provisional rationale
-- **General comments:** the product type, the overall state, the main risk, the limits
-  of the review
-- **Major issues:** each marked Confirmed, Likely or Clarification required, with
-  location, finding, why it matters and a suggested action
-- **Minor issues**
-- **Answers to the issues listed in the assignment**
-
-The rendered report adds the run's details, the prompt as sent and the cost at list
-prices.
+What the review looks like is set in `prompt.md`, and yours to change. The rendered
+report adds the run's details, the prompt as sent and the cost at list prices.
 
 ## Settings
 

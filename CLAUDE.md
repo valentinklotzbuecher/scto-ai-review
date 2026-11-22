@@ -45,10 +45,11 @@ page.
   `stats_review`. For a newer version, update the links in `tools/1-chat`,
   `tools/4-agent`, the handout and the deck's Links slide.
 - `tools/2-api/review.qmd` is the speaker's review prototype, ported from
-  `02-review-prototype.qmd` in dkf-llm-explorations with current models and the prompt
-  in `prompt.md`. Keep its request chunk `eval=FALSE`, so rendering sends nothing, and
-  check a change by rendering it with a demo in `to_be_reviewed/`. Of that folder only
-  its README is committed; never a product, a rendered review or `review_results/`.
+  `02-review-prototype.qmd` in dkf-llm-explorations with current models. Both read the
+  review instructions from their `prompt.md`; keep the two files identical. Keep its
+  request chunk `eval=FALSE`, so rendering sends nothing, and check a change by rendering
+  it with a demo in `to_be_reviewed/`. Of that folder only its README is committed;
+  never a product, a rendered review or `review_results/`.
 - No API keys, no patient data and no real product in this repository.
 
 ## Rendering and checking

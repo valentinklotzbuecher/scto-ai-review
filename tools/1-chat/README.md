@@ -14,9 +14,8 @@ brings your checklist along.
 
    > Please check if this is consistent.
 
-   Or, for an answer in the DKF form (decision, general comments, major and minor
-   issues), paste the review prompt from [`../2-api/prompt.md`](../2-api/prompt.md)
-   first.
+   Or, for an answer in a fixed structure, paste the review prompt from
+   [`../2-api/prompt.md`](../2-api/prompt.md) first.
 
 Try it on the demo: attach the two files in [`../../demo/sse/`](../../demo/sse/) and
 nothing else from this kit; the answer key is in it.
@@ -64,8 +63,8 @@ dkf-document-check/
 ```
 
 It returns findings, a consistency table, a check log and leads for the code review. It
-does not run the product's code, nobody challenges its findings in a fresh context, and
-it writes no DKF form; for those, the agent.
+does not run the product's code, and nobody challenges its findings in a fresh context;
+for those, the agent.
 
 1. Download `dkf-document-check.zip` from stats_review's
    [`chat-skills/`](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1/chat-skills).

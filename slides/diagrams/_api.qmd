@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 420px" viewBox="0 0 744 272" role="img" aria-label="The review document, review.qmd, takes a product's Quarto source and PDF. Its chunks hold the settings, in R; the prompt, from prompt.md; and the request, sent with the Python SDK. One request goes to the model, paid per use. Every run is saved as .md and .json and kept. Rendering shows the latest run as the review in the DKF form. Runs on test cases with known answers give scores, in R with vitals.">
+<svg class="dg" style="max-height: 420px" viewBox="0 0 744 272" role="img" aria-label="The review document, review.qmd, takes a product's Quarto source and PDF. Its chunks hold the settings, in R; the prompt, from prompt.md; and the request, sent with the Python SDK. One request goes to the model, paid per use. Every run is saved as .md and .json and kept. Rendering shows the latest run as a report: the review, the prompt and the cost. The saved runs on test cases with known answers give scores, in R with vitals.">
   <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <path class="doc" d="M12 40 h48 l16 16 v66 h-64 z"/><path class="fold" d="M60 40 v16 h16"/>
   <text class="mono" x="44" y="98" font-size="14" text-anchor="middle">QMD</text>
@@ -34,11 +34,11 @@
   <line class="arrow" x1="653" y1="162" x2="653" y2="128" marker-end="url(#m2)"/>
   <text class="mono" x="664" y="150" font-size="12">RENDER</text>
   <rect class="out" x="570" y="42" width="166" height="80"/>
-  <text class="strong" x="653" y="76" font-size="19" text-anchor="middle">review</text>
-  <text x="653" y="102" font-size="15" text-anchor="middle">in the DKF form</text>
+  <text class="strong" x="653" y="76" font-size="19" text-anchor="middle">report</text>
+  <text x="653" y="102" font-size="15" text-anchor="middle">review, prompt, cost</text>
   </g>
   <g class="fragment" data-fragment-index="4">
-  <line class="arrow" x1="570" y1="82" x2="526" y2="82" marker-end="url(#m2)"/>
+  <path class="arrow" d="M598 162 V144 H465 V132" marker-end="url(#m2)"/>
   <rect class="out" x="410" y="38" width="110" height="88"/>
   <text class="strong" x="465" y="68" font-size="18" text-anchor="middle">scores</text>
   <text x="465" y="91" font-size="15" text-anchor="middle">on test cases</text>

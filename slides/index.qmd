@@ -118,61 +118,24 @@ something different: an agent that runs the code in the repository.
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[3:30–4:15] The simplest way is what the preprint tested. Paste the PDF and the source
+[3:30–4:30] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
 OpenAI's o1 pro, in December 2024. King and Worthington's AI reviews were made exactly
 this way: one model at its maximum reasoning setting, given the paper and the
 reviewer guidelines. What you don't get: a record of what was checked, the same answer
-twice, or better data terms than your plan's. [click] You can also give the chat your
-own checklist, as a skill: a folder with instructions and small scripts, which the
-model loads when the task matches. Mine, dkf-document-check, is the first stage of my
-review skills: it names the design and the estimand attribute by attribute, recomputes
-every printed number and logs each check. It is adapted from the skills released by Joe
-Francis (research_skills, MIT licence).
-:::
-
-## What's in a skill
-
-::: crumbs
-<span class="on">Chat</span><span>Script</span><span>Services</span><span>Agent</span>
-:::
-
-::: quote
-Please review this using /dkf-document-check.
-:::
-
-::: {.fragment fragment-index=1}
-::: where
-dkf-document-check/SKILL.md
-:::
-
-::: {.tight .compact}
-- **Rules:** only cleared documents; the print decides; no product code runs
-- **1 Documents and versions:** is it what it says, and does it match protocol, SAP,
-  registry?
-- **2 Printed numbers:** do they agree and add up? Each recomputed by a script
-- **3 Design, estimand and method:** do they answer the stated question?
-- **Output:** findings, a consistency table, a check log
-:::
-:::
-
-::: {.fragment fragment-index=2 .scope}
-Next to it: `references/` (estimands, clinical guidelines, product profiles) and
-`scripts/recompute.py`.
-:::
-
-::: notes
-[4:15–5:00] How you use a skill: you name it in your request, here with a slash. Please
-review this using /dkf-document-check. [click] What it holds is plain text, SKILL.md:
-the rules, only documents you may share, the print decides, the product's code never
-runs; then three checks in order: the documents and their versions against protocol,
-SAP and registry; the printed numbers, each recomputed by a script; and the design, the
-estimand and the method; and what the output looks like. [click] Next to it, reference
-files and the small script. The model reads only the names and descriptions of its
-skills until a request matches, then loads the rest. Mine is adapted from the skills Joe
-Francis released; the agent's skills are built the same way.
+twice, or better data terms than your plan's. [click] Or you bring your own checklist,
+as a skill, and call it by name: please review this using /dkf-document-check. A skill
+is a folder of plain text. SKILL.md holds the rules, only documents you may share, the
+print decides, the product's code never runs, and three checks in order: the documents
+and their versions against protocol, SAP and registry; the printed numbers, each
+recomputed by a script; the design, the estimand and the method. Next to it, references
+on estimands, clinical guidelines and product profiles, and the small script. The model
+reads only the names and descriptions of its skills until a request matches, then loads
+the rest. Mine is the first stage of my review skills, adapted from the skills Joe
+Francis released (research_skills, MIT licence); the agent's skills are built the same
+way.
 :::
 
 ## Your own script
@@ -184,7 +147,7 @@ Francis released; the agent's skills are built the same way.
 {{< include diagrams/_api.qmd >}}
 
 ::: notes
-[5:00–5:45] Instead of pasting by hand: the same through the API, from a Quarto
+[4:30–5:15] Instead of pasting by hand: the same through the API, from a Quarto
 document, my review prototype. It takes the product's Quarto source and its PDF. Its
 chunks hold the settings, in R; the prompt, from a text file; and the request, sent
 with the Python SDK through reticulate. ellmer could send it too; the SDK gives me the
@@ -192,8 +155,7 @@ exact stop reason and a check that the model read the whole source. [click] One
 request, paid per use, under the API's commercial data terms. [click] Every run is
 saved, as Markdown and JSON, with its settings, its tokens and hashes of the prompt and
 the inputs, and never overwritten. [click] Rendering the document shows the latest
-review, in our consistency-review form, with the prompt and the cost; for our SSEs,
-under a dollar fifty. [click] And that is the real reason to script it: you can test
+review, with the prompt and the cost; for our SSEs, under a dollar fifty. [click] And that is the real reason to script it: you can test
 it. Run it on test cases with known answers and score every run; in R, the vitals
 package does this with ellmer, a port of Inspect, the Python framework for evaluating
 language models. So you compare prompts, models and effort settings on cases you know.
@@ -238,13 +200,8 @@ cfg <- list(
 :::
 ::::
 
-::: {.fragment .scope}
-**The DKF form:** Decision · General comments · Major issues · Minor issues · Answers to
-the assignment
-:::
-
 ::: notes
-[5:45–6:30] How it is set up. On the left, the first chunk: which files, the assignment,
+[5:15–6:00] How it is set up. On the left, the first chunk: which files, the assignment,
 that is the questions the review must answer, the model and the effort. [click] You put
 the product's Quarto source and PDF in the folder to_be_reviewed. [click] You set the
 settings. [click] The prompt is a text file: a senior biostatistician's first pass,
@@ -252,10 +209,7 @@ with a checklist for each product type, the sample size estimation, the analysis
 report, data preparation; and it must say what it could not check. [click] You run the
 chunks; the last one sends the request. It is set to eval false, so rendering never
 sends anything. [click] You render, and see the latest review, the prompt as sent and
-the cost. [click] In our form: the decision boxes, general comments, major issues, each
-confirmed, likely or a clarification, with location, finding, why it matters and a
-suggested action, then minor issues and the answers to the assignment. One thing it
-checks itself: that the model read the whole source, to the last line; otherwise the
+the cost; what the review looks like is set in the prompt. One thing it checks itself: that the model read the whole source, to the last line; otherwise the
 run is marked not completed.
 :::
 
@@ -281,7 +235,7 @@ run is marked not completed.
 ```
 
 ::: notes
-[6:30–7:15] Others have built exactly such pipelines, with many more calls, and offer
+[6:00–6:45] Others have built exactly such pipelines, with many more calls, and offer
 them as services. You upload the PDF. [click] Behind it run fixed chains of model calls,
 with prompts the vendor wrote; Reviewer 2's first stage, The Breaker, takes a
 sledgehammer to the text, and later stages filter out what the aggression invents.
@@ -302,7 +256,7 @@ one's own, along the lines of the open-source Reviewer 2. I went another way: an
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[7:15–8:45] The last step: a coding agent working in the product's repository, here
+[6:45–8:15] The last step: a coding agent working in the product's repository, here
 Claude Code on the web; Codex and others work the same way. An isolated cloud machine,
 with tools that read files, run R and write logs, and the model outside it, which
 decides the next step. [click] Into the machine goes a copy of the product's repository,
@@ -311,8 +265,8 @@ product with dkf-review, then write the consistency review"; the skills hold the
 [click] The model decides the next step; the tools carry it out, and the result comes
 back. [click] Again and again, until it is done. So it does what no reader can: it runs
 the code, recomputes the numbers and re-runs the simulations, and agents that did not
-write a finding challenge it. [click] The output is the review, in the DKF
-consistency-review form, with a log behind every number, pushed to a branch. [click]
+write a finding challenge it. [click] The output is the review, with a log
+behind every number, pushed to a branch. [click]
 And it never touches your computer. It runs on your Claude subscription, no API
 credits. What it reads still goes to the provider, under your plan's terms. [click] And
 the same agent can be started from a script, with the Agent SDK in Python or
@@ -332,7 +286,7 @@ review you don't need it (appendix).
   simulations
 - **Challenges its findings:** a fresh agent checks each one
 - **Synthetic data** when patient data cannot be shared, so the code still runs
-- **A log behind every number**, and the review in the DKF form
+- **A log behind every number**, and the scripts that produced it
 :::
 
 ::: {.fragment .punchline}
@@ -340,13 +294,13 @@ Still in development.
 :::
 
 ::: notes
-[8:45–9:30] What the agent adds over the script. [click] It runs the code: it
+[8:15–9:00] What the agent adds over the script. [click] It runs the code: it
 re-renders the product, recomputes the printed numbers and re-runs the simulations,
 which no reader can. [click] It challenges its own findings: an agent that did not
 write a finding checks it, in a fresh context. [click] Where patient data cannot be
 shared, it builds synthetic data from the code, so the code runs and does what the text
 says, though it never confirms a printed number. [click] Every number in the review has
-a log behind it, and the review comes in our consistency-review form. [click] I am still
+a log behind it, and the scripts that produced it. [click] I am still
 developing this. The skills are at version 0.3.1, so far tested on one synthetic test
 case, where every run found all six planted issues (appendix); a second test case is
 next.
@@ -355,7 +309,7 @@ next.
 ## Try it yourself
 
 :::: {.columns}
-::: {.column width="47%"}
+::: {.column width="31%"}
 ::: punchline
 The skill, in a chat
 :::
@@ -370,16 +324,16 @@ Please review this using
 ```
 
 ::: {.tight .compact}
-- upload the skill's ZIP in Claude
-- attach the PDF and its .qmd
+- upload its ZIP in Claude
+- attach the PDF and .qmd
 - on your plan
 :::
 :::
 
-::: {.column width="6%"}
+::: {.column width="3.5%"}
 :::
 
-::: {.column width="47%" .fragment fragment-index=1}
+::: {.column width="31%" .fragment fragment-index=1}
 ::: punchline
 The review document
 :::
@@ -395,28 +349,58 @@ to_be_reviewed/
 
 ::: {.tight .compact}
 - open review.qmd in RStudio
-- set cfg, run the chunks, render
+- set cfg, run, render
 - an API key, paid per use
+:::
+:::
+
+::: {.column width="3.5%"}
+:::
+
+::: {.column width="31%" .fragment fragment-index=2}
+::: punchline
+The agent
+:::
+
+::: where
+stats_review · skills-v0.3.1
+:::
+
+```text
+Review the product with
+dkf-review, then write
+the consistency review.
+```
+
+::: {.tight .compact}
+- claude.ai/code, on your plan
+- your repo + stats_review
+- setup: tools/web_setup.sh
+- still in development
 :::
 :::
 ::::
 
-::: {.fragment fragment-index=2 .scope}
+::: {.fragment fragment-index=3 .scope}
 **github.com/valentinklotzbuecher/scto-ai-review**: the kit, a handout, two test cases\
 **github.com/valentinklotzbuecher/stats_review**: the review skills
 :::
 
 ::: notes
-[9:30–10:15] And you can try two of them. The skill, in a chat: download its ZIP from
-stats_review, the repository with my review skills, in the folder chat-skills; upload it
-in Claude, with code execution on; attach the product's PDF and its Quarto source, and
-type one sentence. It runs on your Claude plan. [click] The review document is in the
-kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in
+[9:00–10:00] And you can try all three. The skill, in a chat: download its ZIP from
+stats_review, the repository with my review skills, in the folder chat-skills; upload
+it in Claude, with code execution on; attach the product's PDF and its Quarto source,
+and type one sentence. It runs on your Claude plan. [click] The review document is in
+the kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in
 RStudio, put the product in to_be_reviewed, set the settings, run the chunks and
-render. You need an API key, paid per use. Try both on the test cases first: synthetic
-sample size estimations with planted issues and an answer key, so you can score what
-they find. [click] Both repositories, with a handout that walks through each step. The
-agent's skills are in stats_review too, while I develop them.
+render. You need an API key, paid per use. [click] And the agent, still in
+development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start
+a session with your product's repository and stats_review, at the tag skills-v0.3.1;
+its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You
+type one sentence, and the review lands on a branch of your product's repository,
+where you merge it. Try all three on the test cases first: synthetic sample size
+estimations with planted issues and an answer key, so you can score what they find.
+[click] Both repositories, with a handout that walks through each step.
 :::
 
 ## To discuss
@@ -432,7 +416,7 @@ agent's skills are in stats_review too, while I develop them.
 :::
 
 ::: notes
-[10:15–20:00] To discuss. What would you need to see before you sign a product an AI
+[10:00–20:00] To discuss. What would you need to see before you sign a product an AI
 reviewed? Could our review become result-oriented: the AI goes through every line,
 every number and every re-run, and we check that it tested enough, that each chunk,
 section and analysis does what it says, and that the approach and the interpretation

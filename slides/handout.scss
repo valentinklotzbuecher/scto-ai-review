@@ -219,6 +219,7 @@ svg.dg .frame { fill: none; stroke: $mauve; stroke-width: 1.6; stroke-dasharray:
 svg.dg .frame-ink { fill: none; stroke: $hairline; stroke-width: 1.2; }
 svg.dg .arrow { fill: none; stroke: $ink; stroke-width: 1.8; }
 svg.dg .arrow.cut { stroke: $hairline; stroke-dasharray: 4 5; }
+svg.dg .fade-out { display: none; } /* the handout shows each diagram's last step */
 svg.dg .ghost { fill: none; stroke: $hairline; stroke-width: 1.4; stroke-dasharray: 7 6; }
 svg.dg .arrow.loop { stroke: $mauve; stroke-width: 2; }
 

@@ -10,14 +10,14 @@ recommendation.
 
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
-- **The slides**, [`slides/index.html`](slides/index.html): thirteen slides and an
+- **The slides**, [`slides/index.html`](slides/index.html): twelve slides and an
   appendix; press S for the speaker notes.
 - **A starter for each way**, in [`tools/`](tools/):
 
 | | Way | Starter |
 |---|---|---|
 | 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `dkf-document-check`, a skill for Claude chat |
-| 2 | [Your own script](tools/2-api/README.md) | my review prototype, a Quarto document (`review.qmd`): settings in R, the request through the Anthropic Python SDK, every run kept, the review rendered in the DKF form |
+| 2 | [Your own script](tools/2-api/README.md) | my review prototype, a Quarto document (`review.qmd`): settings in R, the request through the Anthropic Python SDK, every run kept, the review rendered with its prompt and cost |
 | 3 | [Review services](tools/3-services/README.md) | the list, paid, free and open source, with sources |
 | 4 | [A coding agent in the repository](tools/4-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions; still in development |
 
@@ -41,18 +41,18 @@ had, then King and Worthington's finding that AI reviews beat paid expert review
 sorts the field into three kinds of review (peer review of papers; statistics and
 methods; code) and turns to our internal consistency review, which needs all three,
 leaving open whether AI belongs before the second statistician or alongside. Then four
-approaches. A chat at maximum effort, with a slide on using a skill (the request as
-typed, and what its SKILL.md holds). Your own pipeline: my review prototype, a Quarto
+approaches. A chat at maximum effort, and with a skill: the request as typed, and the
+folder it calls (SKILL.md, references, scripts). Your own pipeline: my review prototype, a Quarto
 document that sends the product through the API (settings in R, the request with the
-Python SDK through reticulate), keeps every run and renders the review in the DKF form,
-shown as it is set up; because it is a script, it can be scored on test cases (in R,
+Python SDK through reticulate), keeps every run and renders the review, shown as it is
+set up; because it is a script, it can be scored on test cases (in R,
 vitals). Review services, someone else's pipeline, paid, free or open source; rather
 than build a more advanced pipeline along the lines of the open-source Reviewer 2, the
 talk turns to an agent. A coding agent in the product's repository, such as Claude Code
 or Codex, with the skills as its instructions and the Agent SDK to start it from a
 script, and what it adds over the script: it runs the code, challenges its findings,
 works on synthetic data and keeps a log behind every number; still in development. One
-slide shows how to try the chat skill and the review document. It ends on one slide of
+slide shows how to try the chat skill, the review document and the agent. It ends on one slide of
 items to discuss; the results on the test case and Sutton's bitter lesson are backup
 slides in the appendix. The talk takes about ten minutes, which leaves the rest of the
 slot for the discussion.

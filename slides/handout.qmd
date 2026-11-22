@@ -156,7 +156,7 @@ gives the exact stop reason and lets the document check that the model read the 
 source. One request per run, paid per use with an API key, under the API's terms. Every
 run is saved as Markdown and JSON, with its settings, its tokens and hashes of the
 prompt and the inputs, and never overwritten. Rendering the document shows the latest
-review in the DKF consistency-review form, with the prompt and the cost. The price is
+review, with the prompt and the cost. The price is
 code that talks to one provider at one point in time.
 
 How it is set up, in the kit's `tools/2-api`:
@@ -183,11 +183,8 @@ How it is set up, in the kit's `tools/2-api`:
    never sends anything.
 5. Render: the latest review, the prompt as sent and the cost.
 
-The review comes in the DKF form: **Decision** (five boxes and a provisional rationale),
-**General comments**, **Major issues** (each Confirmed, Likely or Clarification
-required, with location, finding, why it matters and a suggested action), **Minor
-issues**, and **Answers to the issues listed in the assignment**. A run whose model did
-not confirm reading the whole source is marked not completed.
+What the review looks like is set in `prompt.md`, and yours to change. A run whose
+model did not confirm reading the whole source is marked not completed.
 
 And because it is a script, you can test it: run it on test cases with known answers
 and score every run. In R, the [vitals](https://vitals.tidyverse.org) package does this
@@ -246,8 +243,8 @@ API key, billed per token, and one review does not need it.
 - **Synthetic data** when patient data cannot be shared: dummy data built from the code
   or from a codebook made locally, so the code runs. It shows that the code runs and
   does what the text says, never a printed number.
-- **A log behind every number**, and the review in the DKF consistency-review form, with
-  REVIEW comments in a copy of the `.qmd`.
+- **A log behind every number**, with the scripts that produced it, and REVIEW comments
+  in a copy of the `.qmd`.
 
 **Still in development.** The skills are at version 0.3.1, tested so far on one
 synthetic test case, the [demo](#the-demo), where every run found all six planted
@@ -284,9 +281,21 @@ With an API key in `~/.Renviron`:
 
 Every run is kept in `review_results/prototype_runs/`.
 
-**The agent's skills** are in stats_review too, at the tag `skills-v0.3.1`, while I
-develop them; the set-up is in the kit's
+**The agent**, still in development, runs on the review skills in
+[stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1),
+at the tag `skills-v0.3.1`; the steps are in the kit's
 [`tools/4-agent`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent).
+
+1. At [claude.ai/code](https://claude.ai/code), on your Claude plan, create a cloud
+   environment with stats_review's
+   [`tools/web_setup.sh`](https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.3.1/tools/web_setup.sh)
+   as its setup script; it installs R and Quarto.
+2. Start a session with your product's repository and stats_review.
+3. Type one sentence:
+
+   > Review the product with dkf-review, then write the consistency review.
+
+4. The review lands on a branch of your product's repository; merge it there.
 
 Start with the [demo](#the-demo): a two-page sample size estimation with six planted
 issues and an answer key.
@@ -381,7 +390,7 @@ What the planning values support: with the stated two-sided 5% level the ANCOVA 
 in total, against the SSE's 132. As planned, the trial has about 62% power for the
 two-sided test.
 
-The quick run's form, the first lines (the 5 November run, `demo/runs/2026-11-05_agent/`):
+The quick run's review, the first lines (the 5 November run, `demo/runs/2026-11-05_agent/`):
 
 ::: {.shot}
 ![](assets/consistency-review.png){fig-alt="Excerpt of the quick demo run's consistency review: all five Decision boxes ticked; general comments saying the planned 55 evaluable and 66 randomised participants per group do not give the stated 80% power, and that the ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the one-sided rejection rule, the noisy choice of N and the dropout allowance, with code lines and fixes." width="640"}
