@@ -229,15 +229,17 @@ Starter: [tools/3-services](https://github.com/valentinklotzbuecher/scto-ai-revi
 Rich Sutton, The Bitter Lesson, 2019
 :::
 
-Hand-built machinery keeps losing to general methods that use more computation, and
-review tools are no exception. So how much more to build, when tools become obsolete
-this fast? On the day Google launched Deep Review, Rex Douglass wrote that for about
-three years he had thought about building such a tool at least twice a day, and didn't,
-because "one of the big three does it and it's over". Later that month Joe Francis
-retired the hosted Reviewer 2, which he had decided was obsolete: "Something better and
-free coming shortly." The same day he released his skills; mine, which the agent below
-follows, are adapted from them. My own prototype dates with every new model, and my
-skills will too.
+On 26 October Joe Francis retired the hosted Reviewer 2, which he had decided was
+obsolete: "Something better and free coming shortly." Hand-built machinery keeps losing
+to general methods that use more computation, and review tools are no exception; on the
+day Google launched Deep Review, Rex Douglass wrote that for about three years he had
+thought about building such a tool at least twice a day, and didn't, because "one of the
+big three does it and it's over". So how much more to build, when tools become obsolete
+this fast? The same day, Francis released the three skills he begins his reviews with:
+"Point your agent at a folder with an article, its supplementary material, and
+replication package, and it will assess it"; a second skill verifies the review, a third
+writes a digest. Mine, which the agent below follows, are adapted from them. My own
+prototype dates with every new model, and my skills will too.
 
 What carries over to every new model:
 

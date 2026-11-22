@@ -253,6 +253,18 @@ to see if I could improve it, or learn from it for my own script.
 
 ## The bitter lesson
 
+:::: {.columns}
+::: {.column width="47%"}
+```{=html}
+<div class="shot"><img src="assets/shot-reviewer2-retired.png" style="max-height: 520px; width: auto; max-width: 100%" alt="Joseph Francis on X, 26 October 2026: Reviewer 2, he dead. The final version of the Reviewer 2 system is no longer available at isitcredible.com but is open source here: github.com/isitcredible/r... I will also be open sourcing a better system shortly. A reply asks: No more paid product? Now free but no longer updated? He answers: Yes, I decided it was obsolete. Something better and free coming shortly."></div>
+```
+:::
+
+::: {.column width="5%"}
+:::
+
+::: {.column width="48%"}
+::: {.fragment fragment-index=1}
 ::: quote
 "… general methods that leverage computation are ultimately the most effective, and by
 a large margin."
@@ -261,26 +273,30 @@ a large margin."
 ::: attribution
 Rich Sutton, The Bitter Lesson, 2019
 :::
-
-::: {.fragment fragment-index=1 .punchline}
-How much more to build, when tools become obsolete this fast?
 :::
 
+::: {.fragment fragment-index=2 .punchline}
+How much more to build, when tools become obsolete this fast?
+:::
+:::
+::::
+
 ```{=html}
-<div class="pop fragment fade-in-then-out" data-fragment-index="2"><img src="assets/shot-deep-review.png" style="width: 940px" alt="Rex Douglass on X, 15 October: For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over. Quoting News from Google, 14 October: Today Google Research is launching Deep Review, an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication."></div>
-<div class="pop fragment" data-fragment-index="3"><img src="assets/shot-reviewer2-retired.png" style="width: 600px" alt="Joseph Francis on X, 26 October 2026: Reviewer 2, he dead. The final version of the Reviewer 2 system is no longer available at isitcredible.com but is open source here: github.com/isitcredible/r... I will also be open sourcing a better system shortly. A reply asks: No more paid product? Now free but no longer updated? He answers: Yes, I decided it was obsolete. Something better and free coming shortly."></div>
+<div class="pop fragment" data-fragment-index="3"><img src="assets/shot-skills-release.png" style="width: 740px" alt="Joseph Francis on X, 26 October 2026: These are the three skills that I use to begin my reviews, now freely available for anyone to use: /review: point your agent at a folder with an article, its supplementary material, and replication package, and it will assess it. /audit-review: the agent will verify the initial review, checking for accuracy and completeness. /review-digest: the agent will produce a human-readable digest of the review. After a gap: when using them, you should remember that the results have been produced by robots and should be verified by humans. That said, verification steps are included in the skills, and the results tend to be reliable."></div>
 ```
 
 ::: notes
-[7:00–7:45] Before forking anything, the question every tool builder faces now.
-Sutton's bitter lesson, from seventy years of AI research: hand-built machinery keeps
-losing to general methods that use more computation. [click] So how much more should I
-build on my script, when tools become obsolete this fast? [click] Rex Douglass, on the
-day Google launched Deep Review: he had thought about building a review tool twice a
-day for three years, and didn't, because "one of the big three does it and it's over".
-[click] And later that month Joe Francis himself: Reviewer 2 is dead, he decided it was
-obsolete, and he will open-source something better shortly. The same day he released
-his skills. What I did based on that is the agent.
+[7:00–7:45] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
+offline: he decided it was obsolete, and something better and free was coming shortly.
+[click] That is the bitter lesson, Rich Sutton's, from seventy years of AI research:
+hand-built machinery keeps losing to general methods that use more computation. Or, as
+Rex Douglass put it on the day Google launched Deep Review: "one of the big three does
+it and it's over". [click] So how much more should I build on my script, when tools
+become obsolete this fast? [click] The same day, Joe released the skills he begins his
+reviews with: point your agent at a folder with an article, its supplementary material
+and replication package, and it assesses it; a second skill verifies that review. And,
+he writes, the results come from robots and should be verified by humans. What I did
+based on that is the agent.
 :::
 
 ## A coding agent in the repository

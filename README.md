@@ -47,10 +47,10 @@ prototype, a Quarto document that sends the product through the API (settings in
 request with the Python SDK through reticulate), keeps every run and renders the review,
 shown as it is set up; because it is a script, it can be scored on test cases (in R,
 vitals). Review services as templates for it: what they do, Refine and the open-source
-Reviewer 2, which I was planning to fork. Then Sutton's bitter lesson asks how much more
-to build when tools become obsolete this fast: Rex Douglass on Google's Deep Review, and
-Joe Francis retiring Reviewer 2 for something better and free. What I did based on that:
-a coding agent in the product's repository, such as Claude Code or Codex, with skills
+Reviewer 2, which I was planning to fork. Then the bitter lesson: Joe Francis retiring
+Reviewer 2 for something better and free, Sutton's quote, the question how much more to
+build when tools become obsolete this fast, and the skills Francis released the same
+day. What I did based on that: a coding agent in the product's repository, such as Claude Code or Codex, with skills
 adapted from his as its instructions and the Agent SDK to start it from a script, and
 what it adds over the script: it runs the code, challenges its findings, works on
 synthetic data and keeps a log behind every number; still in development. One slide
@@ -113,7 +113,7 @@ If you re-render one, re-run every tool on the new PDF.
   23 October (screenshot in `material/`)
 - Google's Deep Review: News from Google on X, 14 October 2026 (agentic; manuscripts,
   design docs, proposals; pilots on over 15,000 papers), quoted in Rex Douglass's post
-  of 15 October (screenshot in `material/`, the source of the card on "The bitter
+  of 15 October (screenshot in `material/`; quoted in the notes of "The bitter
   lesson"); "free, 2 a week", its storage and training terms from Google Research's
   post of 14 October 2026,
   research.google/blog/analyzing-technical-documents-with-deep-review/, quoted in
@@ -127,8 +127,9 @@ If you re-render one, re-run every tool on the new PDF.
   minutes, a few dollars; aggressive prompting, then a verification cascade; Apache
   2.0); Joseph Francis on X, 26 October 2026 ("Reviewer 2—he dead", "Yes, I decided it
   was obsolete"; screenshot in `material/`), and the same day releasing his skills
-  ("… the results have been produced by robots and should be verified by humans";
-  screenshot in `material/`). The prompt quoted for its first stage is
+  ("Point your agent at a folder …", "… the results have been produced by robots and
+  should be verified by humans"; screenshot in `material/`, the card on "The bitter
+  lesson"). The prompt quoted for its first stage is
   `src/reviewer2/prompts/01a_breaker.txt`
 - research_skills: github.com/isitcredible/research_skills (MIT, 0.9 first public
   release)
