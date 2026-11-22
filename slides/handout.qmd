@@ -103,8 +103,8 @@ come up twice: in the chat, and as the agent's instructions.
 {{< include diagrams/_chat.qmd >}}
 :::
 
-Choose the strongest model your plan offers at its maximum reasoning setting (GPT-6 Pro
-in ChatGPT, Claude Opus 5.5 or Fable 5.2), attach the PDF and the Quarto source, and
+Choose the strongest model your plan offers at its maximum reasoning setting (ChatGPT's Pro
+series, Claude Opus 5.5 or Fable 5.2), attach the PDF and the Quarto source, and
 ask whether it is consistent. In my experience this
 has worked well since OpenAI's o1 pro, in December 2024, and King and Worthington's AI
 reviews were made this way. What you don't get: a record of what was checked, the same
@@ -221,15 +221,15 @@ Rich Sutton, The Bitter Lesson, 2019
 :::
 
 On 26 October Joe Francis retired the hosted Reviewer 2, which he had decided was
-obsolete: "Something better and free coming shortly." Hand-built machinery keeps losing
-to general methods that use more computation, and review tools are no exception; on the
-day Google launched Deep Review, Rex Douglass wrote that for about three years he had
+obsolete: "Something better and free coming shortly." The same day he released the three
+skills he begins his reviews with: "Point your agent at a folder with an article, its
+supplementary material, and replication package, and it will assess it"; a second skill
+verifies the review, a third writes a digest. Hand-built machinery keeps losing to
+general methods that use more computation, and review tools are no exception; on the day
+Google launched Deep Review, Rex Douglass wrote that for about three years he had
 thought about building such a tool at least twice a day, and didn't, because "one of the
 big three does it and it's over". So how much more to build, when tools become obsolete
-this fast? The same day, Francis released the three skills he begins his reviews with:
-"Point your agent at a folder with an article, its supplementary material, and
-replication package, and it will assess it"; a second skill verifies the review, a third
-writes a digest. Mine, which the agent below follows, are adapted from them. My own
+this fast? My skills, which the agent below follows, are adapted from Francis's. My own
 prototype dates with every new model, and my skills will too.
 
 What carries over to every new model:
@@ -242,7 +242,7 @@ A shared set of test cases, written by different people and kept out of every re
 would let anyone measure any tool, and every new model; the [demo](#the-demo) is a first
 one.
 
-### [03]{.num}A coding agent in the repository
+### [03]{.num}In development: agentic review
 
 ::: dg-wrap
 {{< include diagrams/_agent.qmd >}}

@@ -18,7 +18,7 @@ recommendation.
 |---|---|---|
 | 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `dkf-document-check`, a skill for Claude chat |
 | 2 | [An API review prototype](tools/2-api/README.md) | my review prototype, a Quarto document (`review.qmd`): settings in R, the request through the Anthropic Python SDK, every run kept, the review rendered with its prompt and cost |
-| 3 | [A coding agent in the repository](tools/3-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions; still in development |
+| 3 | [In development: agentic review](tools/3-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions; still in development |
 
 - **The services**, [`tools/services/`](tools/services/README.md): the list, paid, free
   and open source, with sources; templates for a script of your own.
@@ -170,9 +170,9 @@ If you re-render one, re-run every tool on the new PDF.
   `tools/2-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
   instruction in `stats_review`; the earlier prototype's prompt on the archived deck's
   backup slide
-- GPT-6 Pro in ChatGPT, on the Pro plans and powered by GPT-6 Astra: OpenAI's help
-  centre, help.openai.com/en/articles/20001354, as of November 2026 (rolling out); Claude
-  Opus 5.5 and Fable 5.2: Anthropic's model overview, November 2026
+- ChatGPT's Pro series (GPT-6 Pro, on the Pro plans): OpenAI's help centre,
+  help.openai.com/en/articles/20001354, November 2026; Claude Opus 5.5 and Fable 5.2:
+  Anthropic's model overview, November 2026
 - "Since o1 pro" (December 2024) is the speaker's own experience, said as such
 - Further reading on the Links slides and in the handout: from the speaker's exploration
   notes (the Sources of `03-extensions.qmd` in dkf-llm-explorations) and the Unjournal

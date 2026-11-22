@@ -103,8 +103,8 @@ the repository.
 ::: notes
 [2:45–3:45] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
-strongest model, GPT-6 Pro in ChatGPT, Claude Opus 5.5 or Fable 5.2, and set its effort
-to maximum.
+strongest model, the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, and set its
+effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
 OpenAI's o1 pro, in December 2024. King and Worthington's AI reviews were made exactly
 this way: one model at its maximum reasoning setting, given the paper and the
@@ -245,7 +245,7 @@ script.
 ## The bitter lesson
 
 :::: {.columns}
-::: {.column width="47%"}
+::: {.column width="47%" .posts}
 ::: quote
 "Reviewer 2—he dead. … I will also be open sourcing a better system shortly."
 
@@ -255,13 +255,25 @@ script.
 ::: attribution
 Joe Francis on X, 26 October 2026
 :::
+
+::: {.fragment fragment-index=1}
+::: quote
+"These are the three skills that I use to begin my reviews, now freely available for
+anyone to use: … /review: Point your agent at a folder with an article, its
+supplementary material, and replication package, and it will assess it."
+:::
+
+::: attribution
+The same day, releasing his skills
+:::
+:::
 :::
 
 ::: {.column width="5%"}
 :::
 
 ::: {.column width="48%"}
-::: {.fragment fragment-index=1}
+::: {.fragment fragment-index=2}
 ::: quote
 "… general methods that leverage computation are ultimately the most effective, and by
 a large margin."
@@ -272,35 +284,27 @@ Rich Sutton, The Bitter Lesson, 2019
 :::
 :::
 
-::: {.fragment fragment-index=2 .punchline}
+::: {.fragment fragment-index=3 .punchline}
 How much more to build, when tools become obsolete this fast?
 :::
 :::
 ::::
 
-```{=html}
-<div class="pop fragment" data-fragment-index="3"><div class="qcard">
-<div class="quote">"These are the three skills that I use to begin my reviews, now freely available for anyone to use: … /review: Point your agent at a folder with an article, its supplementary material, and replication package, and it will assess it."</div>
-<div class="quote">"… the results have been produced by robots and should be verified by humans."</div>
-<div class="attribution">Joe Francis on X, 26 October 2026, releasing his skills</div>
-</div></div>
-```
-
 ::: notes
 [6:15–7:00] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
 offline: he decided it was obsolete, and something better and free was coming shortly.
-[click] That is the bitter lesson, Rich Sutton's, from seventy years of AI research:
-hand-built machinery keeps losing to general methods that use more computation. Or, as
-Rex Douglass put it on the day Google launched Deep Review: "one of the big three does
-it and it's over". [click] So how much more should I build on my script, when tools
-become obsolete this fast? [click] The same day, Joe released the skills he begins his
-reviews with: point your agent at a folder with an article, its supplementary material
-and replication package, and it assesses it; a second skill verifies that review. And,
-he writes, the results come from robots and should be verified by humans. What I did
+[click] The same day, he released the skills he begins his reviews with: point your
+agent at a folder with an article, its supplementary material and replication package,
+and it assesses it; a second skill verifies that review. And, he writes, the results
+come from robots and should be verified by humans. [click] That is the bitter lesson,
+Rich Sutton's, from seventy years of AI research: hand-built machinery keeps losing to
+general methods that use more computation. Or, as Rex Douglass put it on the day Google
+launched Deep Review: "one of the big three does it and it's over". [click] So how much
+more should I build on my script, when tools become obsolete this fast? What I did
 based on that is the agent.
 :::
 
-## A coding agent in the repository
+## In development: agentic review
 
 ::: crumbs
 <span>Chat</span><span>Script</span><span class="on">Agent</span>
@@ -324,18 +328,16 @@ with a log behind every number, pushed to a branch. [click] And the same agent c
 started from a script, with the Agent SDK in Python or TypeScript, or with claude -p
 from R: to run it over test cases with known answers, for batch runs, with guardrails in
 code. That runs on an API key, billed per token; for one review you don't need it.
-[click] What it adds over the script. It runs the code: it re-renders the product,
-recomputes the printed numbers and re-runs the simulations, which no reader can. It
-challenges its own findings: an agent that did not write a finding checks it, in a
-fresh context. Where patient data cannot be shared, it builds synthetic data from the
-code, so the code runs and does what the text says, though it never confirms a printed
-number. And everything it writes, every script, log and result, is committed with the
-product under version control, so it could become part of the product's replication
-package. I am still developing this. The skills are at version 0.3.1, so far tested on
-one synthetic test case, a two-page sample size estimation with six planted issues:
-every run found all six, and said by how much the five that matter change the sample
-size or the power; the quick run took 34 minutes, about ten dollars at API list
-prices. A second test case is next.
+[click] Still in development, and what it adds over the script. It runs the code: it
+re-renders the product, recomputes the printed numbers and re-runs the simulations,
+which no reader can. It challenges its own findings: an agent that did not write a
+finding checks it, in a fresh context. Where patient data cannot be shared, it builds
+synthetic data from the code, so the code runs and does what the text says, though it
+never confirms a printed number. The skills are at version 0.3.1, so far tested on one
+synthetic test case, a two-page sample size estimation with six planted issues: every
+run found all six, and said by how much the five that matter change the sample size or
+the power; the quick run took 34 minutes, about ten dollars at API list prices. A
+second test case is next.
 :::
 
 ## Try it yourself

@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 440px" viewBox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as GPT-6 Pro, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /dkf-document-check: a folder, dkf-document-check, with SKILL.md, references and scripts, which the model loads.">
+<svg class="dg" style="max-height: 440px" viewBox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /dkf-document-check: a folder, dkf-document-check, with SKILL.md, references and scripts, which the model loads.">
   <defs><marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <g class="fragment fade-out" data-fragment-index="3">
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>
@@ -14,7 +14,7 @@
   <rect class="model" x="228" y="56" width="230" height="120"/>
   <text class="strong" x="343" y="88" font-size="22" text-anchor="middle">strongest model</text>
   <text x="343" y="114" font-size="17" text-anchor="middle">maximum effort</text>
-  <text class="soft" x="343" y="141" font-size="14" text-anchor="middle">GPT-6 Pro,</text>
+  <text class="soft" x="343" y="141" font-size="14" text-anchor="middle">ChatGPT Pro series,</text>
   <text class="soft" x="343" y="161" font-size="14" text-anchor="middle">Claude Opus 5.5 or Fable 5.2</text>
   </g>
   <g class="fragment" data-fragment-index="2">

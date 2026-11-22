@@ -2212,7 +2212,7 @@ vertical-align: -.125em;
   <li><a href="#an-api-review-prototype" id="toc-an-api-review-prototype" class="nav-link" data-scroll-target="#an-api-review-prototype"><span class="num">02</span>An API review prototype</a></li>
   <li><a href="#further-development-review-services-as-templates" id="toc-further-development-review-services-as-templates" class="nav-link" data-scroll-target="#further-development-review-services-as-templates">Further development: review services as templates</a></li>
   <li><a href="#the-bitter-lesson" id="toc-the-bitter-lesson" class="nav-link" data-scroll-target="#the-bitter-lesson">The bitter lesson</a></li>
-  <li><a href="#a-coding-agent-in-the-repository" id="toc-a-coding-agent-in-the-repository" class="nav-link" data-scroll-target="#a-coding-agent-in-the-repository"><span class="num">03</span>A coding agent in the repository</a></li>
+  <li><a href="#in-development-agentic-review" id="toc-in-development-agentic-review" class="nav-link" data-scroll-target="#in-development-agentic-review"><span class="num">03</span>In development: agentic review</a></li>
   <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
   </ul></li>
   <li><a href="#questions-to-discuss" id="toc-questions-to-discuss" class="nav-link" data-scroll-target="#questions-to-discuss">Questions to discuss</a>
@@ -2350,7 +2350,7 @@ vertical-align: -.125em;
 <section id="paste-it-into-the-chat" class="level3">
 <h3 data-anchor-id="paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</h3>
 <div class="dg-wrap">
-<svg class="dg" style="max-height: 440px" viewbox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as GPT-6 Pro, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /dkf-document-check: a folder, dkf-document-check, with SKILL.md, references and scripts, which the model loads.">
+<svg class="dg" style="max-height: 440px" viewbox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /dkf-document-check: a folder, dkf-document-check, with SKILL.md, references and scripts, which the model loads.">
   <defs><marker id="m1" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
   <g class="fragment fade-out" data-fragment-index="3">
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>
@@ -2365,7 +2365,7 @@ vertical-align: -.125em;
   <rect class="model" x="228" y="56" width="230" height="120" />
   <text class="strong" x="343" y="88" font-size="22" text-anchor="middle">strongest model</text>
   <text x="343" y="114" font-size="17" text-anchor="middle">maximum effort</text>
-  <text class="soft" x="343" y="141" font-size="14" text-anchor="middle">GPT-6 Pro,</text>
+  <text class="soft" x="343" y="141" font-size="14" text-anchor="middle">ChatGPT Pro series,</text>
   <text class="soft" x="343" y="161" font-size="14" text-anchor="middle">Claude Opus 5.5 or Fable 5.2</text>
   </g>
   <g class="fragment" data-fragment-index="2">
@@ -2382,7 +2382,7 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>Choose the strongest model your plan offers at its maximum reasoning setting (GPT-6 Pro in ChatGPT, Claude Opus 5.5 or Fable 5.2), attach the PDF and the Quarto source, and ask whether it is consistent. In my experience this has worked well since OpenAI’s o1 pro, in December 2024, and King and Worthington’s AI reviews were made this way. What you don’t get: a record of what was checked, the same answer twice, or any code run.</p>
+<p>Choose the strongest model your plan offers at its maximum reasoning setting (ChatGPT’s Pro series, Claude Opus 5.5 or Fable 5.2), attach the PDF and the Quarto source, and ask whether it is consistent. In my experience this has worked well since OpenAI’s o1 pro, in December 2024, and King and Worthington’s AI reviews were made this way. What you don’t get: a record of what was checked, the same answer twice, or any code run.</p>
 <p>You can also give the chat your own checklist, as a skill: a folder you upload once and then name in your request.</p>
 <blockquote class="blockquote">
 <p>Please review this using /dkf-document-check.</p>
@@ -2517,7 +2517,7 @@ vertical-align: -.125em;
 <div class="attribution">
 <p>Rich Sutton, The Bitter Lesson, 2019</p>
 </div>
-<p>On 26 October Joe Francis retired the hosted Reviewer 2, which he had decided was obsolete: “Something better and free coming shortly.” Hand-built machinery keeps losing to general methods that use more computation, and review tools are no exception; on the day Google launched Deep Review, Rex Douglass wrote that for about three years he had thought about building such a tool at least twice a day, and didn’t, because “one of the big three does it and it’s over”. So how much more to build, when tools become obsolete this fast? The same day, Francis released the three skills he begins his reviews with: “Point your agent at a folder with an article, its supplementary material, and replication package, and it will assess it”; a second skill verifies the review, a third writes a digest. Mine, which the agent below follows, are adapted from them. My own prototype dates with every new model, and my skills will too.</p>
+<p>On 26 October Joe Francis retired the hosted Reviewer 2, which he had decided was obsolete: “Something better and free coming shortly.” The same day he released the three skills he begins his reviews with: “Point your agent at a folder with an article, its supplementary material, and replication package, and it will assess it”; a second skill verifies the review, a third writes a digest. Hand-built machinery keeps losing to general methods that use more computation, and review tools are no exception; on the day Google launched Deep Review, Rex Douglass wrote that for about three years he had thought about building such a tool at least twice a day, and didn’t, because “one of the big three does it and it’s over”. So how much more to build, when tools become obsolete this fast? My skills, which the agent below follows, are adapted from Francis’s. My own prototype dates with every new model, and my skills will too.</p>
 <p>What carries over to every new model:</p>
 <ul>
 <li>test cases with known answers, to see what a tool finds and what it misses;</li>
@@ -2526,10 +2526,10 @@ vertical-align: -.125em;
 </ul>
 <p>A shared set of test cases, written by different people and kept out of every review, would let anyone measure any tool, and every new model; the <a href="#the-demo">demo</a> is a first one.</p>
 </section>
-<section id="a-coding-agent-in-the-repository" class="level3">
-<h3 data-anchor-id="a-coding-agent-in-the-repository"><span class="num">03</span>A coding agent in the repository</h3>
+<section id="in-development-agentic-review" class="level3">
+<h3 data-anchor-id="in-development-agentic-review"><span class="num">03</span>In development: agentic review</h3>
 <div class="dg-wrap">
-<svg class="dg" style="max-height: 530px" viewbox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. The product&#39;s repository, with the skills as its instructions; tools that read its files, run R and write logs; the agent, Claude Code or Codex on your subscription, whose model decides the next step, the agent and the tools passing steps and results back and forth in a loop until done. The repository and the tools sit in an isolated cloud VM, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Then the Agent SDK: the same agent, started from a script. Last, what it adds: it runs the code, challenges its findings, works on synthetic data and is version-controlled; still in development.">
+<svg class="dg" style="max-height: 530px" viewbox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. The product&#39;s repository, with the skills as its instructions; tools that read its files, run R and write logs; the agent, Claude Code or Codex on your subscription, whose model decides the next step, the agent and the tools passing steps and results back and forth in a loop until done. The repository and the tools sit in an isolated cloud VM, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Then the Agent SDK: the same agent, started from a script. Last: still in development, it runs the code, challenges its findings and works on synthetic data.">
   <defs>
     <marker id="m5" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker>
     <marker id="m5s" viewbox="0 0 10 10" refx="8" refy="5" markerwidth="5" markerheight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E" /></marker>
@@ -2580,16 +2580,13 @@ vertical-align: -.125em;
   <text class="soft" x="488" y="427" font-size="14">the same agent, started from a script</text>
   </g>
   <g class="fragment" data-fragment-index="6">
-  <text class="mono" x="548" y="32" font-size="12">WHAT IT ADDS</text>
-  <circle cx="553" cy="51" r="3.5" fill="#5A317E"></circle>
-  <text x="564" y="56" font-size="16">runs the code</text>
-  <circle cx="553" cy="74" r="3.5" fill="#5A317E"></circle>
-  <text x="564" y="79" font-size="16">challenges its findings</text>
-  <circle cx="553" cy="97" r="3.5" fill="#5A317E"></circle>
-  <text x="564" y="102" font-size="16">works on synthetic data</text>
-  <circle cx="553" cy="120" r="3.5" fill="#5A317E"></circle>
-  <text x="564" y="125" font-size="16">version-controlled</text>
-  <text class="accent" x="548" y="151" font-size="16">still in development</text>
+  <text class="accent" x="548" y="40" font-size="17">still in development</text>
+  <circle cx="553" cy="64" r="3.5" fill="#5A317E"></circle>
+  <text x="564" y="69" font-size="16">runs the code</text>
+  <circle cx="553" cy="88" r="3.5" fill="#5A317E"></circle>
+  <text x="564" y="93" font-size="16">challenges its findings</text>
+  <circle cx="553" cy="112" r="3.5" fill="#5A317E"></circle>
+  <text x="564" y="117" font-size="16">works on synthetic data</text>
   </g>
 </svg>
 </div>

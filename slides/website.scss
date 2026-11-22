@@ -317,21 +317,8 @@ $code-color: $ink;
 /* The agent's loop arrow */
 .reveal svg.dg .arrow.loop { stroke: $mauve; stroke-width: 2; }
 
-/* Screenshot cards: a post pops up over the slide on a click, mounted like the site's plates */
-.reveal .pop {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 76px;
-  height: 620px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 16px;
-  background: rgba(252, 250, 244, 0.9);
-  z-index: 20;
-}
-.reveal .pop img, .reveal .shot img {
+/* Screenshots mounted like the site's plates */
+.reveal .shot img {
   display: block;
   height: auto;
   max-height: 560px;
@@ -339,27 +326,13 @@ $code-color: $ink;
   background: #fff;
   padding: 0.35rem;
 }
-.reveal .pop img { max-width: none; box-shadow: 0 14px 40px rgba(44, 58, 47, 0.22); }
 .reveal .shot { margin: 0.2em 0 0.4em 0; }
 
-/* A figure over the slide, with its source below */
-.reveal .pop figure.popfig { margin: 0; display: flex; flex-direction: column; align-items: center; }
-.reveal .pop figure.popfig figcaption { font-size: 0.45em; color: $ink-soft; margin-top: 0.7em; }
-
-/* A post quoted over the slide, mounted like the plates */
-.reveal .pop .qcard {
-  max-width: 1000px;
-  margin-top: 40px;
-  background: #fff;
-  border: 1px solid $hairline;
-  padding: 1rem 1.6rem 1.1rem 1.6rem;
-  box-shadow: 0 14px 40px rgba(44, 58, 47, 0.22);
-}
-.reveal .pop .qcard .quote { font-size: 0.9em; }
-.reveal .pop .qcard.solo { max-width: 900px; margin-top: 150px; }
+/* Quotes under a figure, and two posts in one column */
 .reveal .rust { margin-top: 0.4em; }
 .reveal .rust .quote { font-size: 0.85em; }
-.reveal .pop .qcard.solo .quote { font-size: 1.15em; }
+.reveal .posts .quote { font-size: 0.82em; }
+.reveal .posts .attribution { margin: 0 0 0.8em 1.8em !important; }
 
 /* Appendix divider: the site's fleuron */
 .reveal .slides section.divider h1::after {
