@@ -196,25 +196,58 @@ as the demo below.
 Starter: [tools/2-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.qmd`, `prompt.md` and the folder `to_be_reviewed/`
 :::
 
-### [03]{.num}Review services
+### [03]{.num}Review services as templates
 
 ::: dg-wrap
 {{< include diagrams/_services.qmd >}}
 :::
 
-Others have built exactly such pipelines, with many more calls, and offer them as
-services. You upload the
-PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you
-get a report. Some are paid (refine.ink, up to $50 a review; reviewer3.com), some free
-(paperreview.ai from Stanford, openaireview.org from Chicago, Google's Deep Review for
-two reviews a week), and two are open source (Joe Francis's Reviewer 2, coarse.ink). All
-are built for research papers, and all but the open-source ones mean uploading to a
-third party. One could build a more advanced pipeline of one's own, along the lines of
-the open-source Reviewer 2; I went another way, to an agent.
+Others have built such pipelines, with many more calls, and offer them as services; for
+a script of your own, they are templates. You upload the PDF, a fixed chain of model
+calls with prompts the vendor wrote runs behind it, and you get a report. Refine
+(refine.ink), the oldest, founded by the Northwestern economist Benjamin Golub and Yann
+Calvó López, is seen as the gold standard and costs up to $50 a review; reviewer3.com is
+paid too; paperreview.ai from Stanford, openaireview.org from Chicago and Google's Deep
+Review (two reviews a week) are free; and two are open source: coarse.ink, apparently
+reverse-engineered from Refine, and Joe Francis's Reviewer 2. Reviewer 2 chains more than
+30 model calls, which take 15–45 minutes and cost a few dollars: its first stage, The
+Breaker, takes "a sledgehammer to academic texts", and a verification cascade removes
+what the aggression invents. All are built for research papers, and all but the
+open-source ones mean uploading to a third party. I was planning to fork Reviewer 2, to
+improve it or to learn from it for my own script.
 
 ::: starter
 Starter: [tools/3-services](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-services): the list, with links and sources
 :::
+
+### The bitter lesson
+
+> … general methods that leverage computation are ultimately the most effective, and by
+> a large margin.
+
+::: attribution
+Rich Sutton, The Bitter Lesson, 2019
+:::
+
+Hand-built machinery keeps losing to general methods that use more computation, and
+review tools are no exception. So how much more to build, when tools become obsolete
+this fast? On the day Google launched Deep Review, Rex Douglass wrote that for about
+three years he had thought about building such a tool at least twice a day, and didn't,
+because "one of the big three does it and it's over". Later that month Joe Francis
+retired the hosted Reviewer 2, which he had decided was obsolete: "Something better and
+free coming shortly." The same day he released his skills; mine, which the agent below
+follows, are adapted from them. My own prototype dates with every new model, and my
+skills will too.
+
+What carries over to every new model:
+
+- test cases with known answers, to see what a tool finds and what it misses;
+- standards for what a review must check;
+- rules for what data may go where.
+
+A shared set of test cases, written by different people and kept out of every review,
+would let anyone measure any tool, and every new model; the [demo](#the-demo) is a first
+one.
 
 ### [04]{.num}A coding agent in the repository
 
@@ -222,8 +255,8 @@ Starter: [tools/3-services](https://github.com/valentinklotzbuecher/scto-ai-revi
 {{< include diagrams/_agent.qmd >}}
 :::
 
-The last step: a coding agent, such as Claude Code or Codex, with the skills as its
-instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a
+What I did based on that: a coding agent, such as Claude Code or Codex, with my skills,
+adapted from Joe Francis's, as its instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a
 copy of the product's repository and the review skills. You type one sentence. The
 model decides the next step, its tools read files, run R and write logs, and the result
 goes back, until it is done; the review and its logs are pushed to a branch.
@@ -299,32 +332,6 @@ at the tag `skills-v0.3.1`; the steps are in the kit's
 
 Start with the [demo](#the-demo): a two-page sample size estimation with six planted
 issues and an answer key.
-
-## The bitter lesson
-
-> … general methods that leverage computation are ultimately the most effective, and by
-> a large margin.
-
-::: attribution
-Rich Sutton, The Bitter Lesson, 2019
-:::
-
-Hand-built machinery keeps losing to general methods that use more computation, and
-review tools are no exception. On the day Google launched Deep Review, Rex Douglass
-wrote that for about three years he had thought about building such a tool at least
-twice a day, and didn't, because "one of the big three does it and it's over". Later
-that month Joe Francis retired the hosted Reviewer 2, which he had decided was
-obsolete; he now begins his reviews with skills. My own prototype dates with every new
-model, and my skills will too.
-
-What carries over to every new model:
-
-- test cases with known answers, to see what a tool finds and what it misses;
-- standards for what a review must check;
-- rules for what data may go where.
-
-A shared set of test cases, written by different people and kept out of every review,
-would let anyone measure any tool, and every new model; the demo below is a first one.
 
 ## Questions to discuss
 

@@ -1,4 +1,4 @@
-# 3 · Review services
+# 3 · Review services as templates
 
 Others built whole review pipelines: you upload the PDF, a fixed chain of model calls
 with prompts the vendor wrote runs behind it, and you get a report. All are built for
@@ -30,10 +30,11 @@ upload anything unpublished.
 - **Deep Review**: Google says uploaded documents are never used to train, fine-tune or
   improve its models, and are stored for one year.
 
-## Or build your own
+## As templates
 
-The pipelines behind the services are scripts that call a model through its API. The
-next step, [`../2-api`](../2-api/README.md), is a script of your own.
+The pipelines behind the services are scripts that call a model through its API, and
+the open-source ones show their steps and prompts: templates for a script of your own,
+such as the review document in [`../2-api`](../2-api/README.md).
 
 Sources: Joseph Francis, *Yell at It: Prompt Engineering for Automated Peer Review*,
 `paper/yellatit.pdf` in the Reviewer 2 repository, pp. 6–7 (refine.ink, reviewer3.com,

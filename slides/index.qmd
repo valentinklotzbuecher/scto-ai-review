@@ -213,7 +213,7 @@ the cost; what the review looks like is set in the prompt. One thing it checks i
 run is marked not completed.
 :::
 
-## Review services
+## Review services as templates
 
 ::: crumbs
 <span>Chat</span><span>Script</span><span class="on">Services</span><span>Agent</span>
@@ -235,16 +235,52 @@ run is marked not completed.
 ```
 
 ::: notes
-[6:00–6:45] Others have built exactly such pipelines, with many more calls, and offer
-them as services. You upload the PDF. [click] Behind it run fixed chains of model calls,
-with prompts the vendor wrote; Reviewer 2's first stage, The Breaker, takes a
-sledgehammer to the text, and later stages filter out what the aggression invents.
-[click] You get a report. [click] There are more every month: Refine and Reviewer3 are
-paid, Refine up to fifty dollars a paper; paperreview.ai from Stanford and openaireview
-from Chicago are free; Joe Francis's Reviewer 2 and coarse.ink are open source; and in
-October Google launched Deep Review, free for two reviews a week. All built for research
-papers, and you upload to a third party. One could now build a more advanced pipeline of
-one's own, along the lines of the open-source Reviewer 2. I went another way: an agent.
+[6:00–7:00] Others have built such pipelines, with many more calls, and offer them as
+services; for the script I just showed, they are templates. You upload the PDF.
+[click] Behind it runs a fixed chain of model calls, with prompts the vendor wrote.
+[click] You get a report. [click] There are more every month. Refine is the oldest:
+founded by Ben Golub, an economist at Northwestern, and Yann Calvó López; it is seen as
+the gold standard, and costs up to fifty dollars a paper. Reviewer3 is paid as well;
+paperreview.ai from Stanford and openaireview from Chicago are free; coarse.ink is open
+source, apparently reverse-engineered from Refine; and in October Google launched Deep
+Review, free for two reviews a week. Reviewer 2, by Joe Francis, is open source: more
+than thirty chained calls, fifteen to forty-five minutes and a few dollars a paper. Its
+first stage, The Breaker, takes a sledgehammer to the text, and a verification cascade
+then removes what the aggression invents. All are built for research papers, and all but
+the open-source ones mean uploading to a third party. I was planning to fork Reviewer 2,
+to see if I could improve it, or learn from it for my own script.
+:::
+
+## The bitter lesson
+
+::: quote
+"… general methods that leverage computation are ultimately the most effective, and by
+a large margin."
+:::
+
+::: attribution
+Rich Sutton, The Bitter Lesson, 2019
+:::
+
+::: {.fragment fragment-index=1 .punchline}
+How much more to build, when tools become obsolete this fast?
+:::
+
+```{=html}
+<div class="pop fragment fade-in-then-out" data-fragment-index="2"><img src="assets/shot-deep-review.png" style="width: 940px" alt="Rex Douglass on X, 15 October: For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over. Quoting News from Google, 14 October: Today Google Research is launching Deep Review, an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication."></div>
+<div class="pop fragment" data-fragment-index="3"><img src="assets/shot-reviewer2-retired.png" style="width: 600px" alt="Joseph Francis on X, 26 October 2026: Reviewer 2, he dead. The final version of the Reviewer 2 system is no longer available at isitcredible.com but is open source here: github.com/isitcredible/r... I will also be open sourcing a better system shortly. A reply asks: No more paid product? Now free but no longer updated? He answers: Yes, I decided it was obsolete. Something better and free coming shortly."></div>
+```
+
+::: notes
+[7:00–7:45] Before forking anything, the question every tool builder faces now.
+Sutton's bitter lesson, from seventy years of AI research: hand-built machinery keeps
+losing to general methods that use more computation. [click] So how much more should I
+build on my script, when tools become obsolete this fast? [click] Rex Douglass, on the
+day Google launched Deep Review: he had thought about building a review tool twice a
+day for three years, and didn't, because "one of the big three does it and it's over".
+[click] And later that month Joe Francis himself: Reviewer 2 is dead, he decided it was
+obsolete, and he will open-source something better shortly. The same day he released
+his skills. What I did based on that is the agent.
 :::
 
 ## A coding agent in the repository
@@ -256,8 +292,9 @@ one's own, along the lines of the open-source Reviewer 2. I went another way: an
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[6:45–8:15] The last step: a coding agent working in the product's repository, here
-Claude Code on the web; Codex and others work the same way. An isolated cloud machine,
+[7:45–9:15] What I did instead: a coding agent working in the product's repository,
+with skills adapted from Joe's as its instructions; here Claude Code on the web, and
+Codex and others work the same way. An isolated cloud machine,
 with tools that read files, run R and write logs, and the model outside it, which
 decides the next step. [click] Into the machine goes a copy of the product's repository,
 with my review skills as its instructions: what you type is one sentence, "review the
@@ -294,7 +331,7 @@ Still in development.
 :::
 
 ::: notes
-[8:15–9:00] What the agent adds over the script. [click] It runs the code: it
+[9:15–10:00] What the agent adds over the script. [click] It runs the code: it
 re-renders the product, recomputes the printed numbers and re-runs the simulations,
 which no reader can. [click] It challenges its own findings: an agent that did not
 write a finding checks it, in a fresh context. [click] Where patient data cannot be
@@ -387,7 +424,7 @@ the consistency review.
 :::
 
 ::: notes
-[9:00–10:00] And you can try all three. The skill, in a chat: download its ZIP from
+[10:00–11:00] And you can try all three. The skill, in a chat: download its ZIP from
 stats_review, the repository with my review skills, in the folder chat-skills; upload
 it in Claude, with code execution on; attach the product's PDF and its Quarto source,
 and type one sentence. It runs on your Claude plan. [click] The review document is in
@@ -416,7 +453,7 @@ estimations with planted issues and an answer key, so you can score what they fi
 :::
 
 ::: notes
-[10:00–20:00] To discuss. What would you need to see before you sign a product an AI
+[11:00–20:00] To discuss. What would you need to see before you sign a product an AI
 reviewed? Could our review become result-oriented: the AI goes through every line,
 every number and every re-run, and we check that it tested enough, that each chunk,
 section and analysis does what it says, and that the approach and the interpretation
@@ -428,12 +465,10 @@ every number traceable to the code that makes it? Certify, from Gary King, Yiqin
 Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun a
 replication package on your computer, and certifies that rerunning the code produces
 the results to be published: should our products carry such a certificate? Should we
-build our own tools at all? Sutton's bitter lesson: hand-built machinery keeps losing to
-general methods that use more computation. Rex Douglass, on the day Google launched Deep
-Review, said he never built a review tool because "one of the big three does it and
-it's over"; Joe Francis retired Reviewer 2 as obsolete; my own prototype dates with every
-new model, and my skills will too. What carries over: test cases with known answers, review
-standards, data rules (backup slide in the appendix). And how will junior statisticians
+build our own tools at all, after the bitter lesson? My own prototype dates with every
+new model, and my skills will too. What carries over to every new model: test cases with
+known answers, standards for what a review must check, rules for what data may go
+where. And how will junior statisticians
 learn to review, if the AI does the line-by-line work? The preprint's last author calls
 human-only review dangerous for clinical trials; is AI-only review? Thank you; the
 links are in the appendix.
@@ -483,41 +518,6 @@ Not a blind test: I wrote the skills and the test case in the same week, and the
 skills already describe two of the planted issue types. The chat on its own and the
 script come next on this table. That is what test cases are for: every new tool and
 every new model is scored on the same case.
-:::
-
-## The bitter lesson
-
-::: quote
-"… general methods that leverage computation are ultimately the most effective, and by
-a large margin."
-:::
-
-::: attribution
-Rich Sutton, The Bitter Lesson, 2019
-:::
-
-```{=html}
-<div class="pop fragment fade-in-then-out" data-fragment-index="1"><img src="assets/shot-deep-review.png" style="width: 940px" alt="Rex Douglass on X, 15 October: For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over. Quoting News from Google, 14 October: Today Google Research is launching Deep Review, an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication."></div>
-<div class="pop fragment fade-in-then-out" data-fragment-index="2"><img src="assets/shot-reviewer2-retired.png" style="width: 600px" alt="Joseph Francis on X, 26 October 2026: Reviewer 2, he dead. The final version of the Reviewer 2 system is no longer available at isitcredible.com but is open source here: github.com/isitcredible/r... I will also be open sourcing a better system shortly. A reply asks: No more paid product? Now free but no longer updated? He answers: Yes, I decided it was obsolete. Something better and free coming shortly."></div>
-```
-
-::: {.fragment fragment-index=3}
-::: {.tight}
-- What carries over: test cases with known answers, review standards, data rules
-:::
-:::
-
-::: notes
-Backup for "Build our own tools, or wait for the next model?". Sutton's lesson from 70 years of AI
-research: hand-built machinery keeps losing to general methods that use more
-computation, and review tools are no exception. [click] Rex Douglass, on the day Google
-launched Deep Review: he had thought about building a review tool twice a day for three
-years, and didn't, because "one of the big three does it and it's over". [click] Later
-that month Joe Francis retired Reviewer 2: he decided it was obsolete, and he now begins
-his reviews with skills. My own prototype dates with every new model, and my skills will
-too: tools are obsolete before they are finished. [click] What carries over to every new
-model: test cases with known answers, standards for what a review must check, and rules
-for what data may go where.
 :::
 
 ## The Agent SDK

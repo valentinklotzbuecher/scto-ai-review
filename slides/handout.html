@@ -2211,11 +2211,11 @@ vertical-align: -.125em;
   <ul class="collapse">
   <li><a href="#paste-it-into-the-chat" id="toc-paste-it-into-the-chat" class="nav-link" data-scroll-target="#paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</a></li>
   <li><a href="#your-own-script" id="toc-your-own-script" class="nav-link" data-scroll-target="#your-own-script"><span class="num">02</span>Your own script</a></li>
-  <li><a href="#review-services" id="toc-review-services" class="nav-link" data-scroll-target="#review-services"><span class="num">03</span>Review services</a></li>
+  <li><a href="#review-services-as-templates" id="toc-review-services-as-templates" class="nav-link" data-scroll-target="#review-services-as-templates"><span class="num">03</span>Review services as templates</a></li>
+  <li><a href="#the-bitter-lesson" id="toc-the-bitter-lesson" class="nav-link" data-scroll-target="#the-bitter-lesson">The bitter lesson</a></li>
   <li><a href="#a-coding-agent-in-the-repository" id="toc-a-coding-agent-in-the-repository" class="nav-link" data-scroll-target="#a-coding-agent-in-the-repository"><span class="num">04</span>A coding agent in the repository</a></li>
   <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
   </ul></li>
-  <li><a href="#the-bitter-lesson" id="toc-the-bitter-lesson" class="nav-link" data-scroll-target="#the-bitter-lesson">The bitter lesson</a></li>
   <li><a href="#questions-to-discuss" id="toc-questions-to-discuss" class="nav-link" data-scroll-target="#questions-to-discuss">Questions to discuss</a></li>
   <li><a href="#the-demo" id="toc-the-demo" class="nav-link" data-scroll-target="#the-demo">The demo</a></li>
   <li><a href="#data-rules" id="toc-data-rules" class="nav-link" data-scroll-target="#data-rules">Data rules</a></li>
@@ -2487,8 +2487,8 @@ vertical-align: -.125em;
 <p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api">tools/2-api</a>: <code>review.qmd</code>, <code>prompt.md</code> and the folder <code>to_be_reviewed/</code></p>
 </div>
 </section>
-<section id="review-services" class="level3">
-<h3 data-anchor-id="review-services"><span class="num">03</span>Review services</h3>
+<section id="review-services-as-templates" class="level3">
+<h3 data-anchor-id="review-services-as-templates"><span class="num">03</span>Review services as templates</h3>
 <div class="dg-wrap">
 <svg class="dg" style="max-height: 230px" viewbox="0 0 760 200" role="img" aria-label="You upload the PDF to a third-party service, which runs a fixed chain of 30 or more model calls with prompts written by the vendor and returns a report.">
   <defs><marker id="m3" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
@@ -2518,10 +2518,27 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>Others have built exactly such pipelines, with many more calls, and offer them as services. You upload the PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you get a report. Some are paid (refine.ink, up to $50 a review; reviewer3.com), some free (paperreview.ai from Stanford, openaireview.org from Chicago, Google’s Deep Review for two reviews a week), and two are open source (Joe Francis’s Reviewer 2, coarse.ink). All are built for research papers, and all but the open-source ones mean uploading to a third party. One could build a more advanced pipeline of one’s own, along the lines of the open-source Reviewer 2; I went another way, to an agent.</p>
+<p>Others have built such pipelines, with many more calls, and offer them as services; for a script of your own, they are templates. You upload the PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you get a report. Refine (refine.ink), the oldest, founded by the Northwestern economist Benjamin Golub and Yann Calvó López, is seen as the gold standard and costs up to $50 a review; reviewer3.com is paid too; paperreview.ai from Stanford, openaireview.org from Chicago and Google’s Deep Review (two reviews a week) are free; and two are open source: coarse.ink, apparently reverse-engineered from Refine, and Joe Francis’s Reviewer 2. Reviewer 2 chains more than 30 model calls, which take 15–45 minutes and cost a few dollars: its first stage, The Breaker, takes “a sledgehammer to academic texts”, and a verification cascade removes what the aggression invents. All are built for research papers, and all but the open-source ones mean uploading to a third party. I was planning to fork Reviewer 2, to improve it or to learn from it for my own script.</p>
 <div class="starter">
 <p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-services">tools/3-services</a>: the list, with links and sources</p>
 </div>
+</section>
+<section id="the-bitter-lesson" class="level3">
+<h3 data-anchor-id="the-bitter-lesson">The bitter lesson</h3>
+<blockquote class="blockquote">
+<p>… general methods that leverage computation are ultimately the most effective, and by a large margin.</p>
+</blockquote>
+<div class="attribution">
+<p>Rich Sutton, The Bitter Lesson, 2019</p>
+</div>
+<p>Hand-built machinery keeps losing to general methods that use more computation, and review tools are no exception. So how much more to build, when tools become obsolete this fast? On the day Google launched Deep Review, Rex Douglass wrote that for about three years he had thought about building such a tool at least twice a day, and didn’t, because “one of the big three does it and it’s over”. Later that month Joe Francis retired the hosted Reviewer 2, which he had decided was obsolete: “Something better and free coming shortly.” The same day he released his skills; mine, which the agent below follows, are adapted from them. My own prototype dates with every new model, and my skills will too.</p>
+<p>What carries over to every new model:</p>
+<ul>
+<li>test cases with known answers, to see what a tool finds and what it misses;</li>
+<li>standards for what a review must check;</li>
+<li>rules for what data may go where.</li>
+</ul>
+<p>A shared set of test cases, written by different people and kept out of every review, would let anyone measure any tool, and every new model; the <a href="#the-demo">demo</a> is a first one.</p>
 </section>
 <section id="a-coding-agent-in-the-repository" class="level3">
 <h3 data-anchor-id="a-coding-agent-in-the-repository"><span class="num">04</span>A coding agent in the repository</h3>
@@ -2580,7 +2597,7 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>The last step: a coding agent, such as Claude Code or Codex, with the skills as its instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a copy of the product’s repository and the review skills. You type one sentence. The model decides the next step, its tools read files, run R and write logs, and the result goes back, until it is done; the review and its logs are pushed to a branch.</p>
+<p>What I did based on that: a coding agent, such as Claude Code or Codex, with my skills, adapted from Joe Francis’s, as its instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a copy of the product’s repository and the review skills. You type one sentence. The model decides the next step, its tools read files, run R and write logs, and the result goes back, until it is done; the review and its logs are pushed to a branch.</p>
 <p>It never touches your computer, and it runs on your Claude plan, without API credits; what it reads still goes to the provider. The same agent can be started from a script, with the Agent SDK in Python or TypeScript, or with <code>claude -p</code> from R: to run it over test cases with known answers, for batch runs, with guardrails in code. That runs on an API key, billed per token, and one review does not need it.</p>
 <p><strong>What it adds</strong> over the script:</p>
 <ul>
@@ -2620,23 +2637,6 @@ vertical-align: -.125em;
 </ol>
 <p>Start with the <a href="#the-demo">demo</a>: a two-page sample size estimation with six planted issues and an answer key.</p>
 </section>
-</section>
-<section id="the-bitter-lesson" class="level2">
-<h2 data-anchor-id="the-bitter-lesson">The bitter lesson</h2>
-<blockquote class="blockquote">
-<p>… general methods that leverage computation are ultimately the most effective, and by a large margin.</p>
-</blockquote>
-<div class="attribution">
-<p>Rich Sutton, The Bitter Lesson, 2019</p>
-</div>
-<p>Hand-built machinery keeps losing to general methods that use more computation, and review tools are no exception. On the day Google launched Deep Review, Rex Douglass wrote that for about three years he had thought about building such a tool at least twice a day, and didn’t, because “one of the big three does it and it’s over”. Later that month Joe Francis retired the hosted Reviewer 2, which he had decided was obsolete; he now begins his reviews with skills. My own prototype dates with every new model, and my skills will too.</p>
-<p>What carries over to every new model:</p>
-<ul>
-<li>test cases with known answers, to see what a tool finds and what it misses;</li>
-<li>standards for what a review must check;</li>
-<li>rules for what data may go where.</li>
-</ul>
-<p>A shared set of test cases, written by different people and kept out of every review, would let anyone measure any tool, and every new model; the demo below is a first one.</p>
 </section>
 <section id="questions-to-discuss" class="level2">
 <h2 data-anchor-id="questions-to-discuss">Questions to discuss</h2>
