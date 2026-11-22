@@ -200,7 +200,9 @@ If you re-render one, re-run every tool on the new PDF.
   1.11.3, chat-dots, file-earmark-code and robot (MIT licence, The Bootstrap Authors),
   as inline paths in `slides/diagrams/_overview.qmd` and `slides/website.scss`
 - The QR code to the kit, `slides/assets/qr-kit.svg`: made with segno 1.6.6 for
-  https://github.com/valentinklotzbuecher/scto-ai-review (error correction M) and
-  decoded back from the rendered slides before use
+  https://github.com/valentinklotzbuecher/scto-ai-review (error correction M), its
+  two-module border cropped from the viewBox so that the code's edge lines up with the
+  text (the slide's paper is its quiet zone), and decoded back from the rendered slides
+  before use
 - Costs and times of the demo runs: `demo/runs/`, each with the session record
   summarised in its `SCORE.md`

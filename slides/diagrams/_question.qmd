@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 300px; margin-top: 40px" viewBox="0 0 1100 200" role="img" aria-label="Sample size estimations, analysis plans and reports go to a second statistician, who checks their methods, numbers and code. Then two question marks: AI before the second statistician, or alongside them? Where it belongs is open.">
+<svg class="dg dg-question" style="max-height: 300px" viewBox="29 30 1006 140" role="img" aria-label="Sample size estimations, analysis plans and reports go to a second statistician, who checks their methods, numbers and code. Then two question marks: AI before the second statistician, or alongside them? Where it belongs is open.">
   <defs><marker id="mq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <path class="doc" d="M30 40 h56 l18 18 v84 h-74 z"/><path class="fold" d="M86 40 v18 h18"/>
   <text class="mono" x="67" y="112" font-size="16" text-anchor="middle">SSE</text>

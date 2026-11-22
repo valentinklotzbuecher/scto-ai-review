@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 530px" viewBox="0 0 885 444" role="img" aria-label="A coding agent, such as Claude Code or Codex, in three parts: the product's repository, with the skills as its instructions; tools that read its files, run R and write logs; and the coding agent, Claude Code or Codex on your subscription: its model decides the next step, and it runs the code, challenges its findings and works on synthetic data. Then the arrows: the agent and the tools pass steps and results back and forth in a loop until done. Then the isolated cloud VM around the repository and the tools, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Last, the Agent SDK: the same agent, started from a script.">
+<svg class="dg" style="max-height: 530px" viewBox="-1 0 967 393" role="img" aria-label="A coding agent, such as Claude Code or Codex, in three parts: the product's repository, with the skills as its instructions; tools that read its files, run R and write logs; and the coding agent, Claude Code or Codex on your subscription: its model decides the next step, and it runs the code, challenges its findings and works on synthetic data. Then the arrows: the agent and the tools pass steps and results back and forth in a loop until done. Then the isolated cloud VM around the repository and the tools, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Last, the Agent SDK: the same agent, started from a script.">
   <defs>
     <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker>
     <marker id="m5s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E"/></marker>
@@ -8,49 +8,49 @@
   <text class="strong" x="260" y="126" font-size="21" text-anchor="middle">repository</text>
   <text class="file" x="260" y="158" font-size="14" text-anchor="middle">.qmd · PDF · R</text>
   <text class="file" x="260" y="180" font-size="14" text-anchor="middle">skills: instructions</text>
-  <rect class="tool" x="345" y="215" width="165" height="110"/>
-  <text class="strong" x="427" y="251" font-size="21" text-anchor="middle">tools</text>
-  <text x="427" y="277" font-size="16" text-anchor="middle">read files, run R,</text>
-  <text x="427" y="299" font-size="16" text-anchor="middle">write logs</text>
-  <rect class="model" x="635" y="130" width="240" height="195"/>
-  <text class="strong" x="655" y="165" font-size="21">coding agent</text>
-  <text x="655" y="194" font-size="16">its model decides</text>
-  <text x="655" y="215" font-size="16">the next step</text>
-  <circle cx="660" cy="245" r="3.5" fill="#5A317E"/>
-  <text x="672" y="250" font-size="16">runs the code</text>
-  <circle cx="660" cy="271" r="3.5" fill="#5A317E"/>
-  <text x="672" y="276" font-size="16">challenges its findings</text>
-  <circle cx="660" cy="297" r="3.5" fill="#5A317E"/>
-  <text x="672" y="302" font-size="16">works on synthetic data</text>
-  <text class="mono" x="755" y="346" font-size="12" text-anchor="middle">CLAUDE CODE, CODEX …</text>
-  <text class="mono" x="755" y="364" font-size="12" text-anchor="middle">ON YOUR SUBSCRIPTION</text>
+  <rect class="tool" x="435" y="83" width="165" height="112"/>
+  <text class="strong" x="517" y="122" font-size="21" text-anchor="middle">tools</text>
+  <text x="517" y="150" font-size="16" text-anchor="middle">read files, run R,</text>
+  <text x="517" y="172" font-size="16" text-anchor="middle">write logs</text>
+  <rect class="model" x="725" y="83" width="240" height="195"/>
+  <text class="strong" x="745" y="118" font-size="21">coding agent</text>
+  <text x="745" y="147" font-size="16">its model decides</text>
+  <text x="745" y="168" font-size="16">the next step</text>
+  <circle cx="750" cy="198" r="3.5" fill="#5A317E"/>
+  <text x="762" y="203" font-size="16">runs the code</text>
+  <circle cx="750" cy="224" r="3.5" fill="#5A317E"/>
+  <text x="762" y="229" font-size="16">challenges its findings</text>
+  <circle cx="750" cy="250" r="3.5" fill="#5A317E"/>
+  <text x="762" y="255" font-size="16">works on synthetic data</text>
+  <text class="mono" x="845" y="299" font-size="12" text-anchor="middle">CLAUDE CODE, CODEX …</text>
+  <text class="mono" x="845" y="317" font-size="12" text-anchor="middle">ON YOUR SUBSCRIPTION</text>
   <g class="fragment" data-fragment-index="2">
-  <rect class="frame" x="140" y="20" width="390" height="330"/>
+  <rect class="frame" x="140" y="20" width="480" height="200"/>
   <text class="mono" x="156" y="46" font-size="13">ISOLATED CLOUD VM</text>
-  <rect class="box" x="0" y="150" width="110" height="72"/>
-  <text x="55" y="181" font-size="17" text-anchor="middle">your</text>
-  <text x="55" y="204" font-size="17" text-anchor="middle">computer</text>
-  <line class="arrow cut" x1="110" y1="186" x2="140" y2="186"/>
-  <text class="accent" x="125" y="193" font-size="22" text-anchor="middle">×</text>
-  <text class="mono" x="55" y="246" font-size="12" text-anchor="middle">NO ACCESS</text>
+  <rect class="box" x="0" y="103" width="110" height="72"/>
+  <text x="55" y="134" font-size="17" text-anchor="middle">your</text>
+  <text x="55" y="157" font-size="17" text-anchor="middle">computer</text>
+  <line class="arrow cut" x1="110" y1="139" x2="140" y2="139"/>
+  <text class="accent" x="125" y="146" font-size="22" text-anchor="middle">×</text>
+  <text class="mono" x="55" y="199" font-size="12" text-anchor="middle">NO ACCESS</text>
   </g>
   <g class="fragment" data-fragment-index="1">
-  <line class="arrow" x1="318" y1="199" x2="358" y2="212" marker-start="url(#m5)" marker-end="url(#m5)"/>
-  <line class="arrow" x1="633" y1="232" x2="514" y2="232" marker-end="url(#m5)"/>
-  <line class="arrow" x1="512" y1="312" x2="631" y2="312" marker-end="url(#m5)"/>
-  <path class="arrow loop" d="M 602 262 A 14 14 0 1 1 588 248" marker-end="url(#m5s)"/>
-  <text class="mono" x="588" y="296" font-size="11" text-anchor="middle">UNTIL DONE</text>
+  <line class="arrow" x1="364" y1="139" x2="431" y2="139" marker-start="url(#m5)" marker-end="url(#m5)"/>
+  <line class="arrow" x1="721" y1="105" x2="604" y2="105" marker-end="url(#m5)"/>
+  <line class="arrow" x1="604" y1="180" x2="721" y2="180" marker-end="url(#m5)"/>
+  <path class="arrow loop" d="M 686 134 A 14 14 0 1 1 672 120" marker-end="url(#m5s)"/>
+  <text class="mono" x="672" y="167" font-size="12" text-anchor="middle">UNTIL DONE</text>
   </g>
   <g class="fragment" data-fragment-index="3">
-  <line class="arrow" x1="210" y1="197" x2="210" y2="364" marker-end="url(#m5)"/>
-  <rect class="out" x="125" y="368" width="170" height="50"/>
-  <text x="210" y="392" font-size="17" text-anchor="middle">review + logs</text>
-  <text class="mono" x="210" y="410" font-size="11" text-anchor="middle">PUSHED TO A BRANCH</text>
+  <line class="arrow" x1="210" y1="197" x2="210" y2="246" marker-end="url(#m5)"/>
+  <rect class="out" x="120" y="250" width="180" height="50"/>
+  <text x="210" y="274" font-size="17" text-anchor="middle">review + logs</text>
+  <text class="mono" x="210" y="292" font-size="12" text-anchor="middle">PUSHED TO A BRANCH</text>
   </g>
   <g class="fragment" data-fragment-index="4">
-  <rect class="ghost" x="580" y="384" width="295" height="54"/>
-  <text class="strong" x="598" y="406" font-size="17">Agent SDK</text>
-  <text class="soft" x="598" y="427" font-size="14">the same agent, started from a script</text>
+  <rect class="ghost" x="670" y="337" width="295" height="54"/>
+  <text class="strong" x="688" y="359" font-size="17">Agent SDK</text>
+  <text class="soft" x="688" y="380" font-size="14">the same agent, started from a script</text>
   </g>
 </svg>
 ```

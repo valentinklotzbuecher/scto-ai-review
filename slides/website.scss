@@ -139,7 +139,10 @@ $code-color: $ink;
   font-weight: 700;
   color: $mauve;
   margin-top: 0.6em;
+  text-wrap: balance;
 }
+/* No lone last word on a wrapped line */
+.reveal p, .reveal li { text-wrap: pretty; }
 .reveal ul li::marker { color: $mauve; }
 .reveal .tight li { margin: 0.18em 0; }
 .reveal .links { font-size: 0.56em; }
@@ -147,7 +150,7 @@ $code-color: $ink;
 .reveal .linkset li { margin: 0.35em 0; }
 .reveal .links p { margin: 0.5em 0 0.15em 0; }
 .reveal .links li { margin: 0.1em 0; }
-.reveal .compact { font-size: 0.85em; }
+.reveal .compact { font-size: 0.8em; }
 
 /* Links: in the ink, marked by a faint rule; mauve on hover */
 .reveal a {
@@ -159,13 +162,15 @@ $code-color: $ink;
 }
 .reveal a:hover { color: $mauve; text-decoration-color: $mauve; }
 
-/* Quotation: a mauve hairline, mono attribution */
+/* Quotation: a mauve hairline, mono attribution. The indent and the margins are in
+   px, not em, so that quotes of different sizes start on one line and every
+   attribution sits under its quote's text */
 .reveal .quote {
   font-size: 1.05em;
   line-height: 1.4;
   border-left: 2px solid $mauve;
-  padding: 0.1em 0 0.1em 0.8em;
-  margin: 0.4em 0 0.3em 0;
+  padding: 3px 0 3px 24px;
+  margin: 12px 0 10px 0;
 }
 .reveal .attribution {
   font-family: $font-family-monospace;
@@ -173,7 +178,7 @@ $code-color: $ink;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: $ink-soft;
-  margin-left: 1.8em;
+  margin-left: 26px;
 }
 
 /* Tables: ruled rows, mono column labels */
@@ -198,9 +203,15 @@ $code-color: $ink;
 }
 .reveal table td:first-child { font-weight: 700; }
 
-/* Code: paper-tinted, square */
+/* Code: paper-tinted, square. The pre carries the box and fills its column; the
+   wrapper around highlighted code has no border of its own and cannot scroll, so no
+   scrollbar shows where scrollbars are always drawn (Windows). Plain and highlighted
+   blocks have the same inner margin */
 .reveal pre, .reveal pre code { border-radius: 0; }
 .reveal pre { border: 1px solid rgba(44, 58, 47, 0.18); box-shadow: none; }
+.reveal div.sourceCode { border: 0; background: transparent; overflow: visible; }
+.reveal div.sourceCode pre, .reveal .columns pre.text { width: auto; }
+.reveal pre.text code { padding: 6px 9px; }
 /* Commands on "Try it yourself": larger, inside their column, one look for both */
 .reveal .columns pre { font-size: 0.68em; }
 .reveal .cmd pre { font-size: 0.74em; }
@@ -221,7 +232,13 @@ $code-color: $ink;
   color: $ink-soft;
   margin: -0.3em 0 0.5em 0;
 }
-.reveal .columns pre.text { width: calc(100% - 12px); background-color: $code-paper !important; }
+.reveal .columns pre.text { background-color: $code-paper !important; }
+/* "Try it yourself": the three commands in boxes of one height (three lines), so the
+   lists under them start on one line */
+.reveal .tryit pre.text { min-height: calc(3 * 1.45em + 14px); }
+/* "How it is set up": the list's first line shares a baseline with the first line of
+   the code beside it */
+.reveal .beside-code { margin-top: 35px; }
 .reveal .columns pre.text code { background: transparent; }
 
 /* A figure mounted like a plate photograph */
@@ -232,7 +249,7 @@ $code-color: $ink;
   max-height: 470px;
   width: auto;
   display: block;
-  margin: 0 auto;
+  margin: 0;     /* flush left, under its label and over its caption */
 }
 
 /* Verdict labels on the result-oriented slide */
@@ -249,8 +266,15 @@ $code-color: $ink;
 .reveal .verdict.narrow { border-color: $mauve; color: $mauve; }
 .reveal .verdict.no { border-color: $mauve; background: $mauve; color: $paper-raised; }
 
-/* Diagrams: inline SVG in the same ink, paper and mauve */
+/* Diagrams: inline SVG in the same ink, paper and mauve. A diagram that fills the width
+   is cropped to its drawing, so it runs from the heading's left edge to the end of the
+   heading's rule; a narrower one is centred. A diagram alone on its slide sits a little
+   above the middle of the space under the heading (the offsets are here, not in the
+   SVG, because the handout includes the same files) */
 .reveal svg.dg { width: 100%; height: auto; display: block; overflow: visible; }
+.reveal svg.dg-question { margin-top: 170px; }
+.reveal svg.dg-overview { margin-top: 130px; }
+.reveal svg.dg-chat { margin-top: 36px; }
 .reveal svg.dg text { font-family: $font-family-sans-serif; fill: $ink; }
 .reveal svg.dg .mono { font-family: $font-family-monospace; fill: $ink-soft; letter-spacing: 0.08em; }
 .reveal svg.dg .file { font-family: $font-family-monospace; fill: $ink; }
@@ -336,7 +360,7 @@ $code-color: $ink;
 .reveal .rust { margin-top: 0.4em; }
 .reveal .rust .quote { font-size: 0.85em; }
 .reveal .posts .quote { font-size: 0.82em; }
-.reveal .posts .attribution { margin: 0 0 0.8em 1.8em !important; }
+.reveal .posts .attribution { margin: 0 0 0.8em 26px !important; }
 
 /* Appendix divider: the site's fleuron */
 .reveal .slides section.divider h1::after {
@@ -354,7 +378,11 @@ $code-color: $ink;
   background: transparent;
   font-size: 0.45em;
 }
+.reveal .slide-number a { text-decoration: none; }
 .reveal .progress span { background: $mauve; }
+/* The menu button: there, but quiet */
+.slide-menu-button { opacity: 0.3; }
+.slide-menu-button:hover { opacity: 1; }
 .reveal .controls { color: $mauve; }
 
 /* An icon for each approach, in the colour of its text: on the crumbs and on the
@@ -380,6 +408,8 @@ $code-color: $ink;
 /* Printed with ?print-pdf: each slide's last step, as in the handout */
 html.print-pdf .reveal .fragment.fade-out { display: none !important; }
 
-/* The kit's QR code: beside the repositories, and under the first links slide's list */
-.reveal img.qr { width: 128px; height: 128px; margin: 0.2em 0 0 auto; display: block; }
+/* The kit's QR code. Beside the repositories it runs from the top of the capitals of
+   the line above them to the baseline of the last one, flush with the right margin;
+   under the first links slide's list it starts at the left margin */
+.reveal img.qr { width: 108px; height: 108px; margin: 34px 0 0 auto; display: block; }
 .reveal img.qr.below { width: 150px; height: 150px; margin: 0.8em 0 0 0; }

@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 440px" viewBox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /stats-document-check: a folder, stats-document-check, of reusable instructions, checklists and scripts, which the model loads.">
+<svg class="dg dg-chat" style="max-height: 440px" viewBox="0 0 640 282" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort, such as the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, reads them and answers. Or you call a skill by name, Please review this using /stats-document-check: a folder, stats-document-check, of reusable instructions, checklists and scripts, which the model loads.">
   <defs><marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <g class="fragment fade-out" data-fragment-index="3">
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>

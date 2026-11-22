@@ -51,8 +51,8 @@ King and Worthington, working paper, 28 October 2026, Fig. 1: the AI judge on 13
 
 ::: {.fragment .rust}
 ::: quote
-"From now on I won't do any peer review without AI. For clinical trials, I'd even call
-human-only review dangerous."
+"From now on I won't do any peer review without AI.\
+For clinical trials, I'd even call human-only review dangerous."
 :::
 
 ::: attribution
@@ -177,7 +177,7 @@ The price is code that talks to one provider at one point in time.
 :::
 
 :::: {.columns}
-::: {.column width="53%"}
+::: {.column width="51%"}
 ::: where
 review.qmd · the first chunk
 :::
@@ -194,11 +194,11 @@ cfg <- list(
 ```
 :::
 
-::: {.column width="4%"}
+::: {.column width="2%"}
 :::
 
-::: {.column width="43%"}
-::: {.incremental .tight .compact}
+::: {.column width="47%"}
+::: {.incremental .tight .compact .beside-code}
 - **Put** the .qmd and PDF in to_be_reviewed/
 - **Set** cfg: files, questions, model, effort
 - **Edit** prompt.md if you like: a checklist per product type
@@ -367,7 +367,7 @@ run took 34 minutes, about ten dollars at API list prices. A second test case is
 
 ## Try it yourself
 
-:::: {.columns}
+:::: {.columns .tryit}
 ::: {.column width="31%"}
 ::: {.punchline .ico .chat}
 The skill, in a chat

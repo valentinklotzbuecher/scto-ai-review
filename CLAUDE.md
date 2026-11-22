@@ -40,7 +40,13 @@ page.
 ## The kit
 
 - The deck and the handout include the same diagrams from `slides/diagrams/`; change
-  one there, and re-render both.
+  one there, and re-render both. A diagram's SVG holds no slide-only spacing: where it
+  sits on its slide is set in `slides/website.scss`, by its `dg-…` class.
+- Alignment on the slides: text, figures and code hang from the left margin, the
+  heading's left edge; a diagram either fills the width, its `viewBox` cropped to the
+  drawing so that it ends where the heading's rule ends, or is centred; arrows run
+  level or upright. Columns that sit side by side start their boxes and lists on one
+  line.
 - The kit links to the review skills at a fixed version, tag `skills-v0.4.0` in
   `stats_review`. For a newer version, update the links in `tools/1-chat`,
   `tools/3-agent`, the handout and the deck's Links slides.
@@ -55,7 +61,8 @@ page.
 ## Rendering and checking
 
 - `quarto render slides/index.qmd`, then look at every slide at 1280×720 with all
-  fragments shown; nothing may run past the bottom edge. Commit the rendered
+  fragments shown; nothing may run past the bottom edge, and no box may hold more than
+  it shows (a code block that scrolls draws a scrollbar on Windows). Commit the rendered
   `slides/index.html`: one self-contained file that fetches nothing, to be shared on
   its own. Print `slides/index.pdf` from `slides/index.html?print-pdf` (each slide's
   last step on one page) and commit it too.
