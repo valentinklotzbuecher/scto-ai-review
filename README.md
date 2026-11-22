@@ -10,7 +10,7 @@ recommendation.
 
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
-- **The slides**, [`slides/index.html`](slides/index.html): twelve slides and an
+- **The slides**, [`slides/index.html`](slides/index.html): eleven slides and an
   appendix; press S for the speaker notes.
 - **A starter for each way**, in [`tools/`](tools/):
 

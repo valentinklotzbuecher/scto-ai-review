@@ -289,56 +289,33 @@ based on that is the agent.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[7:00–8:30] What I did instead: a coding agent working in the product's repository,
+[7:00–9:00] What I did instead: a coding agent working in the product's repository,
 with skills adapted from Joe's as its instructions; here Claude Code on the web, and
 Codex and others work the same way. It starts from the product's repository, with my
 review skills in it as the agent's instructions: what you type is one sentence, "review
 the product with dkf-review, then write the consistency review"; the skills hold the
 rest. [click] Tools read the files, run R and write logs. [click] The agent decides the
 next step, with its model, which runs at the provider; the tools carry it out, and the
-result comes back, again and again, until it is done. It runs on your Claude subscription, no API credits. So it does what no reader
-can: it runs the code, recomputes the numbers and re-runs the simulations, and agents
-that did not write a finding challenge it. [click] The repository and the tools sit in
-an isolated cloud machine, with the model outside; it never touches your computer. What
-it reads still goes to the provider, under your plan's terms. [click] The output is the
-review, with a log behind every number, pushed to a branch. [click] And the same agent
-can be started from a script, with the Agent SDK in Python or TypeScript, or with claude
--p from R: to run it over test cases with known answers, for batch runs, with
-guardrails in code. That runs on an API key, billed per token; for one review you don't
-need it.
-:::
-
-## The agent in practice
-
-::: crumbs
-<span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span>
-:::
-
-::: {.incremental .tight}
-- **Runs the code:** re-renders the product, recomputes the numbers, re-runs the
-  simulations
-- **Challenges its findings:** a fresh agent checks each one
-- **Synthetic data** when patient data cannot be shared, so the code still runs
-- **Version-controlled:** all scripts and results, ready for a replication package
-:::
-
-::: {.fragment .punchline}
-Still in development.
-:::
-
-::: notes
-[8:30–9:15] What the agent adds over the script. [click] It runs the code: it
-re-renders the product, recomputes the printed numbers and re-runs the simulations,
-which no reader can. [click] It challenges its own findings: an agent that did not
-write a finding checks it, in a fresh context. [click] Where patient data cannot be
-shared, it builds synthetic data from the code, so the code runs and does what the text
-says, though it never confirms a printed number. [click] And everything it writes, every
-script, log and result, is committed with the product under version control, so it
-could become part of the product's replication package. [click] I am still developing
-this. The skills are at version 0.3.1, so far tested on one synthetic test case, a
-two-page sample size estimation with six planted issues: every run found all six, and
-said by how much the five that matter change the sample size or the power; the quick
-run took 34 minutes, about ten dollars at API list prices. A second test case is next.
+result comes back, again and again, until it is done. It runs on your Claude
+subscription, no API credits. [click] The repository and the tools sit in an isolated
+cloud machine, with the model outside; it never touches your computer. What it reads
+still goes to the provider, under your plan's terms. [click] The output is the review,
+with a log behind every number, pushed to a branch. [click] And the same agent can be
+started from a script, with the Agent SDK in Python or TypeScript, or with claude -p
+from R: to run it over test cases with known answers, for batch runs, with guardrails in
+code. That runs on an API key, billed per token; for one review you don't need it.
+[click] What it adds over the script. It runs the code: it re-renders the product,
+recomputes the printed numbers and re-runs the simulations, which no reader can. It
+challenges its own findings: an agent that did not write a finding checks it, in a
+fresh context. Where patient data cannot be shared, it builds synthetic data from the
+code, so the code runs and does what the text says, though it never confirms a printed
+number. And everything it writes, every script, log and result, is committed with the
+product under version control, so it could become part of the product's replication
+package. I am still developing this. The skills are at version 0.3.1, so far tested on
+one synthetic test case, a two-page sample size estimation with six planted issues:
+every run found all six, and said by how much the five that matter change the sample
+size or the power; the quick run took 34 minutes, about ten dollars at API list
+prices. A second test case is next.
 :::
 
 ## Try it yourself
@@ -422,7 +399,7 @@ the consistency review.
 :::
 
 ::: notes
-[9:15–10:15] And you can try all three. The skill, in a chat: download its ZIP from
+[9:00–10:00] And you can try all three. The skill, in a chat: download its ZIP from
 stats_review, the repository with my review skills, in the folder chat-skills; upload
 it in Claude, with code execution on; attach the product's PDF and its Quarto source,
 and type one sentence. It runs on your Claude plan. [click] The review document is in
@@ -458,7 +435,7 @@ Thinking further ahead
 :::
 
 ::: notes
-[10:15–20:00] To discuss. First, here and now: how should AI complement our internal
+[10:00–20:00] To discuss. First, here and now: how should AI complement our internal
 review? For whom: the author, as a check before the second statistician, the reviewer,
 alongside the review, or both? And how deep: one call that reads, or an agent that runs
 everything? Could our review become result-oriented: the AI goes through every line,

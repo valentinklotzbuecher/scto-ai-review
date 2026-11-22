@@ -1434,7 +1434,7 @@ display:block!important;
 <div class="crumbs">
 <p><span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span></p>
 </div>
-<svg class="dg" style="max-height: 530px" viewbox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. The product&#39;s repository, with the skills as its instructions; tools that read its files, run R and write logs; the agent, Claude Code or Codex on your subscription, whose model decides the next step, the agent and the tools passing steps and results back and forth in a loop until done. The repository and the tools sit in an isolated cloud VM, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Last, the Agent SDK: the same agent, started from a script.">
+<svg class="dg" style="max-height: 530px" viewbox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. The product&#39;s repository, with the skills as its instructions; tools that read its files, run R and write logs; the agent, Claude Code or Codex on your subscription, whose model decides the next step, the agent and the tools passing steps and results back and forth in a loop until done. The repository and the tools sit in an isolated cloud VM, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Then the Agent SDK: the same agent, started from a script. Last, what it adds: it runs the code, challenges its findings, works on synthetic data and is version-controlled; still in development.">
   <defs>
     <marker id="m5" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker>
     <marker id="m5s" viewbox="0 0 10 10" refx="8" refy="5" markerwidth="5" markerheight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E" /></marker>
@@ -1484,39 +1484,21 @@ display:block!important;
   <text class="strong" x="488" y="406" font-size="17">Agent SDK</text>
   <text class="soft" x="488" y="427" font-size="14">the same agent, started from a script</text>
   </g>
+  <g class="fragment" data-fragment-index="6">
+  <text class="mono" x="548" y="32" font-size="12">WHAT IT ADDS</text>
+  <circle cx="553" cy="51" r="3.5" fill="#5A317E"></circle>
+  <text x="564" y="56" font-size="16">runs the code</text>
+  <circle cx="553" cy="74" r="3.5" fill="#5A317E"></circle>
+  <text x="564" y="79" font-size="16">challenges its findings</text>
+  <circle cx="553" cy="97" r="3.5" fill="#5A317E"></circle>
+  <text x="564" y="102" font-size="16">works on synthetic data</text>
+  <circle cx="553" cy="120" r="3.5" fill="#5A317E"></circle>
+  <text x="564" y="125" font-size="16">version-controlled</text>
+  <text class="accent" x="548" y="151" font-size="16">still in development</text>
+  </g>
 </svg>
 <aside class="notes">
-<p>[7:00–8:30] What I did instead: a coding agent working in the product’s repository, with skills adapted from Joe’s as its instructions; here Claude Code on the web, and Codex and others work the same way. It starts from the product’s repository, with my review skills in it as the agent’s instructions: what you type is one sentence, “review the product with dkf-review, then write the consistency review”; the skills hold the rest. [click] Tools read the files, run R and write logs. [click] The agent decides the next step, with its model, which runs at the provider; the tools carry it out, and the result comes back, again and again, until it is done. It runs on your Claude subscription, no API credits. So it does what no reader can: it runs the code, recomputes the numbers and re-runs the simulations, and agents that did not write a finding challenge it. [click] The repository and the tools sit in an isolated cloud machine, with the model outside; it never touches your computer. What it reads still goes to the provider, under your plan’s terms. [click] The output is the review, with a log behind every number, pushed to a branch. [click] And the same agent can be started from a script, with the Agent SDK in Python or TypeScript, or with claude -p from R: to run it over test cases with known answers, for batch runs, with guardrails in code. That runs on an API key, billed per token; for one review you don’t need it.</p>
-<style type="text/css">
-span.MJX_Assistive_MathML {
-position:absolute!important;
-clip: rect(1px, 1px, 1px, 1px);
-padding: 1px 0 0 0!important;
-border: 0!important;
-height: 1px!important;
-width: 1px!important;
-overflow: hidden!important;
-display:block!important;
-}</style></aside>
-</section>
-<section class="slide level2">
-<h2>The agent in practice</h2>
-<div class="crumbs">
-<p><span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span></p>
-</div>
-<div class="tight">
-<ul>
-<li class="fragment"><strong>Runs the code:</strong> re-renders the product, recomputes the numbers, re-runs the simulations</li>
-<li class="fragment"><strong>Challenges its findings:</strong> a fresh agent checks each one</li>
-<li class="fragment"><strong>Synthetic data</strong> when patient data cannot be shared, so the code still runs</li>
-<li class="fragment"><strong>Version-controlled:</strong> all scripts and results, ready for a replication package</li>
-</ul>
-</div>
-<div class="fragment punchline">
-<p>Still in development.</p>
-</div>
-<aside class="notes">
-<p>[8:30–9:15] What the agent adds over the script. [click] It runs the code: it re-renders the product, recomputes the printed numbers and re-runs the simulations, which no reader can. [click] It challenges its own findings: an agent that did not write a finding checks it, in a fresh context. [click] Where patient data cannot be shared, it builds synthetic data from the code, so the code runs and does what the text says, though it never confirms a printed number. [click] And everything it writes, every script, log and result, is committed with the product under version control, so it could become part of the product’s replication package. [click] I am still developing this. The skills are at version 0.3.1, so far tested on one synthetic test case, a two-page sample size estimation with six planted issues: every run found all six, and said by how much the five that matter change the sample size or the power; the quick run took 34 minutes, about ten dollars at API list prices. A second test case is next.</p>
+<p>[7:00–9:00] What I did instead: a coding agent working in the product’s repository, with skills adapted from Joe’s as its instructions; here Claude Code on the web, and Codex and others work the same way. It starts from the product’s repository, with my review skills in it as the agent’s instructions: what you type is one sentence, “review the product with dkf-review, then write the consistency review”; the skills hold the rest. [click] Tools read the files, run R and write logs. [click] The agent decides the next step, with its model, which runs at the provider; the tools carry it out, and the result comes back, again and again, until it is done. It runs on your Claude subscription, no API credits. [click] The repository and the tools sit in an isolated cloud machine, with the model outside; it never touches your computer. What it reads still goes to the provider, under your plan’s terms. [click] The output is the review, with a log behind every number, pushed to a branch. [click] And the same agent can be started from a script, with the Agent SDK in Python or TypeScript, or with claude -p from R: to run it over test cases with known answers, for batch runs, with guardrails in code. That runs on an API key, billed per token; for one review you don’t need it. [click] What it adds over the script. It runs the code: it re-renders the product, recomputes the printed numbers and re-runs the simulations, which no reader can. It challenges its own findings: an agent that did not write a finding checks it, in a fresh context. Where patient data cannot be shared, it builds synthetic data from the code, so the code runs and does what the text says, though it never confirms a printed number. And everything it writes, every script, log and result, is committed with the product under version control, so it could become part of the product’s replication package. I am still developing this. The skills are at version 0.3.1, so far tested on one synthetic test case, a two-page sample size estimation with six planted issues: every run found all six, and said by how much the five that matter change the sample size or the power; the quick run took 34 minutes, about ten dollars at API list prices. A second test case is next.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1592,7 +1574,7 @@ the consistency review.</code></pre>
 <strong>github.com/valentinklotzbuecher/stats_review</strong>: the review skills</p>
 </div>
 <aside class="notes">
-<p>[9:15–10:15] And you can try all three. The skill, in a chat: download its ZIP from stats_review, the repository with my review skills, in the folder chat-skills; upload it in Claude, with code execution on; attach the product’s PDF and its Quarto source, and type one sentence. It runs on your Claude plan. [click] The review document is in the kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in RStudio, put the product in to_be_reviewed, set the settings, run the chunks and render. You need an API key, paid per use. [click] And the agent, still in development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start a session with your product’s repository and stats_review, at the tag skills-v0.3.1; its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type one sentence, and the review lands on a branch of your product’s repository, where you merge it. Try all three on the test cases first: synthetic sample size estimations with planted issues and an answer key, so you can score what they find. [click] Both repositories, with a handout that walks through each step.</p>
+<p>[9:00–10:00] And you can try all three. The skill, in a chat: download its ZIP from stats_review, the repository with my review skills, in the folder chat-skills; upload it in Claude, with code execution on; attach the product’s PDF and its Quarto source, and type one sentence. It runs on your Claude plan. [click] The review document is in the kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in RStudio, put the product in to_be_reviewed, set the settings, run the chunks and render. You need an API key, paid per use. [click] And the agent, still in development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start a session with your product’s repository and stats_review, at the tag skills-v0.3.1; its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type one sentence, and the review lands on a branch of your product’s repository, where you merge it. Try all three on the test cases first: synthetic sample size estimations with planted issues and an answer key, so you can score what they find. [click] Both repositories, with a handout that walks through each step.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1626,7 +1608,7 @@ display:block!important;
 </ul>
 </div>
 <aside class="notes">
-<p>[10:15–20:00] To discuss. First, here and now: how should AI complement our internal review? For whom: the author, as a check before the second statistician, the reviewer, alongside the review, or both? And how deep: one call that reads, or an agent that runs everything? Could our review become result-oriented: the AI goes through every line, every number and every re-run, and we check that it tested enough, that each chunk, section and analysis does what it says, and that the approach and the interpretation hold? Even the author of the skills I build on says the results come from robots and should be verified by humans. And what would you need to see before you sign a product an AI reviewed? Then, thinking further ahead. If an AI reads our products first, should we write them for it: the estimand in full, every assumption in the text and not only in the code, every number traceable to the code that makes it? Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun a replication package on your computer, and certifies that rerunning the code produces the results to be published: should our products carry such a certificate? Should we build our own tools at all, after the bitter lesson? My own prototype dates with every new model, and my skills will too. What carries over to every new model: test cases with known answers, standards for what a review must check, rules for what data may go where. And the implications: for teaching, how will junior statisticians learn to review if the AI does the line-by-line work; how do we train our staff; and how fast should we adopt? The preprint’s last author calls human-only review dangerous for clinical trials; is AI-only review? Thank you; the links are in the appendix.</p>
+<p>[10:00–20:00] To discuss. First, here and now: how should AI complement our internal review? For whom: the author, as a check before the second statistician, the reviewer, alongside the review, or both? And how deep: one call that reads, or an agent that runs everything? Could our review become result-oriented: the AI goes through every line, every number and every re-run, and we check that it tested enough, that each chunk, section and analysis does what it says, and that the approach and the interpretation hold? Even the author of the skills I build on says the results come from robots and should be verified by humans. And what would you need to see before you sign a product an AI reviewed? Then, thinking further ahead. If an AI reads our products first, should we write them for it: the estimand in full, every assumption in the text and not only in the code, every number traceable to the code that makes it? Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun a replication package on your computer, and certifies that rerunning the code produces the results to be published: should our products carry such a certificate? Should we build our own tools at all, after the bitter lesson? My own prototype dates with every new model, and my skills will too. What carries over to every new model: test cases with known answers, standards for what a review must check, rules for what data may go where. And the implications: for teaching, how will junior statisticians learn to review if the AI does the line-by-line work; how do we train our staff; and how fast should we adopt? The preprint’s last author calls human-only review dangerous for clinical trials; is AI-only review? Thank you; the links are in the appendix.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
