@@ -198,6 +198,8 @@ $code-color: $ink;
 .reveal pre { border: 1px solid rgba(44, 58, 47, 0.18); box-shadow: none; }
 /* Commands on "Try it yourself": larger, inside their column, one look for both */
 .reveal .columns pre { font-size: 0.68em; }
+.reveal .cmd pre { font-size: 0.74em; }
+.reveal .cmd div.sourceCode { width: calc(100% - 4px); }
 .reveal .where {
   font-family: $font-family-monospace;
   font-size: 0.58em;

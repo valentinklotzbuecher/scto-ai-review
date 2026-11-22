@@ -104,15 +104,15 @@ All of it is my own exploration, not something DKF runs or recommends.
 {{< include diagrams/_overview.qmd >}}
 
 ::: notes
-[3:00–3:30] Four approaches. The chat: paste and ask. [click] Review services: someone
-else's pipeline. [click] Your own pipeline, a script through the API. [click] And then
+[3:00–3:30] Four approaches. The chat: paste and ask. [click] Your own pipeline, a script
+through the API. [click] Review services: someone else's pipeline. [click] And then
 something different: an agent that runs the code in the repository.
 :::
 
 ## Paste it into the chat
 
 ::: crumbs
-<span class="on">Chat</span><span>Services</span><span>Script</span><span>Agent</span>
+<span class="on">Chat</span><span>Script</span><span>Services</span><span>Agent</span>
 :::
 
 {{< include diagrams/_chat.qmd >}}
@@ -136,7 +136,7 @@ Francis (research_skills, MIT licence).
 ## What's in a skill
 
 ::: crumbs
-<span class="on">Chat</span><span>Services</span><span>Script</span><span>Agent</span>
+<span class="on">Chat</span><span>Script</span><span>Services</span><span>Agent</span>
 :::
 
 ::: quote
@@ -175,10 +175,72 @@ skills until a request matches, then loads the rest. Mine is adapted from the sk
 Francis released; the agent's skills are built the same way.
 :::
 
+## Your own script
+
+::: crumbs
+<span>Chat</span><span class="on">Script</span><span>Services</span><span>Agent</span>
+:::
+
+{{< include diagrams/_api.qmd >}}
+
+::: notes
+[5:00–5:45] Instead of pasting by hand: the same through the API, from a script, for many
+documents. [click] The script, in R with the ellmer package or in Python with the
+providers' SDK libraries, sends each document with the same system prompt; mine reads
+like a senior reviewer's checklist, the statistical methods first, then the numbers,
+the code and the interpretation. [click] The model answers, and you pay per use.
+[click] You collect a table of issues and a log of every run: model, tokens, cost. My
+review prototype did this for our SSEs for under a dollar fifty. You also get the API's
+commercial data terms. [click] And that is the real reason to script it: you can test
+it. Run the same script on test cases with known answers and score every run; in R, the
+vitals package does this next to ellmer, a port of Inspect, the Python framework for
+evaluating language models. So you compare prompts, models and effort settings on cases
+you know. The price is code that talks to one provider at one point in time.
+:::
+
+## The script in practice
+
+::: crumbs
+<span>Chat</span><span class="on">Script</span><span>Services</span><span>Agent</span>
+:::
+
+::: cmd
+```bash
+Rscript review.R product.pdf
+```
+:::
+
+::: {.incremental .tight .compact}
+- **prompt.md:** a senior biostatistician's review, in a fixed order: methods, numbers,
+  code against text, interpretation
+- **schema.json:** the same answer every time: a decision, a summary, and each issue
+  with where, what, its consequence and a fix
+- **issues.csv, runs.csv:** every issue in one table; every run logged with model,
+  tokens and cost
+:::
+
+::: {.fragment .scope}
+So every run is comparable, and can be tested on cases with known answers.
+:::
+
+::: notes
+[5:45–6:30] What is in the script starter, in the kit's tools/2-api. One command per
+product, in R or in Python. [click] The prompt: a senior biostatistician's consistency
+review, in a fixed order: the methods first, then the numbers, the code against the
+text, and the interpretation; and since it cannot run the code, it lists the questions
+that need a run. [click] The answer comes back in the same format every time: a
+decision, a summary, and each issue with severity, area, location, problem,
+consequence, fix and whether it was verified by arithmetic. [click] What you keep: a
+table with one row per issue across all products, and a log of every run with the
+model, the effort, which prompt, the tokens and the cost. [click] So every run is
+comparable: run it on test cases with known answers, compare prompts and models, keep
+what works.
+:::
+
 ## Review services
 
 ::: crumbs
-<span>Chat</span><span class="on">Services</span><span>Script</span><span>Agent</span>
+<span>Chat</span><span>Script</span><span class="on">Services</span><span>Agent</span>
 :::
 
 {{< include diagrams/_services.qmd >}}
@@ -197,92 +259,50 @@ Francis released; the agent's skills are built the same way.
 ```
 
 ::: notes
-[5:00–5:45] Others have built whole review pipelines and offer them as services. You
-upload the PDF. [click] Behind it run fixed chains of model calls, with prompts the
-vendor wrote; Reviewer 2's first stage, The Breaker, takes a sledgehammer to the text,
-and later stages filter out what the aggression invents. [click] You get a report.
-[click] There are more every month: Refine and Reviewer3 are paid, Refine up to fifty
-dollars a paper; paperreview.ai from Stanford and openaireview from Chicago are free; Joe
-Francis's Reviewer 2 and coarse.ink are open source; and in October Google launched Deep
-Review, free for two reviews a week. All built for research papers, and you upload to a
-third party. Or you build your own.
-:::
-
-## Your own script
-
-::: crumbs
-<span>Chat</span><span>Services</span><span class="on">Script</span><span>Agent</span>
-:::
-
-{{< include diagrams/_api.qmd >}}
-
-::: notes
-[5:45–6:30] Your own pipeline: a script through the API, for many documents. [click] The
-script, in R with the ellmer package or in Python with the providers' SDK libraries,
-sends each document with the same system prompt; mine reads like a senior reviewer's
-checklist, the statistical methods first, then the numbers, the code and the
-interpretation. [click] The model answers, and you pay per use. [click] You collect a
-table, one row per document, with a log of every run: model, tokens, cost. My review
-prototype did this for our SSEs for under a dollar fifty. You also get the API's
-commercial data terms. [click] And that is the real reason to script it: you can test
-it. Run the same script on test cases with known answers and score every run; in R, the
-vitals package does this next to ellmer, a port of Inspect, the Python framework for
-evaluating language models. So you compare prompts, models and effort settings on cases
-you know. The price is code that talks to one provider at one point in time.
-:::
-
-## The script in practice
-
-::: crumbs
-<span>Chat</span><span>Services</span><span class="on">Script</span><span>Agent</span>
-:::
-
-{{< include diagrams/_script-layers.qmd >}}
-
-::: notes
-[6:30–7:15] What is in the script starter, in the kit's tools/3-api. One command per
-product, in R or in Python. The prompt: a senior biostatistician's consistency review,
-in a fixed order: the methods first, then the numbers, the code against the text, and
-the interpretation; and since it cannot run the code, it lists the questions that need
-a run. [click] The answer comes back in the same format every time: a decision, a
-summary, the issues, each with severity, area, location, problem, consequence, fix and
-whether it was verified by arithmetic. [click] What you keep: a table with one row per
-issue across all products, and a log of every run with the model, the effort, which
-prompt, the tokens and the cost. That is what makes it testable: run it on test cases
-with known answers, compare prompts and models, keep what works.
+[6:30–7:15] Others have built exactly such pipelines, with many more calls, and offer
+them as services. You upload the PDF. [click] Behind it run fixed chains of model calls,
+with prompts the vendor wrote; Reviewer 2's first stage, The Breaker, takes a
+sledgehammer to the text, and later stages filter out what the aggression invents.
+[click] You get a report. [click] There are more every month: Refine and Reviewer3 are
+paid, Refine up to fifty dollars a paper; paperreview.ai from Stanford and openaireview
+from Chicago are free; Joe Francis's Reviewer 2 and coarse.ink are open source; and in
+October Google launched Deep Review, free for two reviews a week. All built for research
+papers, and you upload to a third party. One could now build a more advanced pipeline of
+one's own, along the lines of the open-source Reviewer 2. I went another way: an agent.
 :::
 
 ## A coding agent in the repository
 
 ::: crumbs
-<span>Chat</span><span>Services</span><span>Script</span><span class="on">Agent</span>
+<span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span>
 :::
 
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
 [7:15–8:45] The last step: a coding agent working in the product's repository, here
-Claude Code on the web; Codex and others work the same way. The skills come back as its instructions: what you type is one
-sentence, "review the product with dkf-review, then write the consistency review"; the
-skills hold the rest. It runs in an isolated cloud machine, with a copy of the
-repository and the skills. [click] It has tools: read files, run the R code, write logs.
-[click] The model decides the next step; the tools carry it out, and the result
-comes back. [click] Again and again, until it is done. So it does what no reader can: it
-runs the code, recomputes the numbers and re-runs the simulations, and agents that did
-not write a finding challenge it. [click] The output is a draft of the
-consistency-review form with a log behind every number, pushed to a branch. [click] And
-it never touches your computer. It runs on your Claude subscription, no API credits.
-What it reads still goes to the provider, under your plan's terms. [click] And the same
-agent can be started from a script, with the Agent SDK in Python or TypeScript, or with
-claude -p from R: to run it over test cases with known answers, for batch runs, with
-guardrails in code. That runs on an API key, billed per token; for one review you don't
-need it (appendix).
+Claude Code on the web; Codex and others work the same way. An isolated cloud machine,
+with tools that read files, run R and write logs, and the model outside it, which
+decides the next step. [click] Into the machine goes a copy of the product's repository,
+with my review skills as its instructions: what you type is one sentence, "review the
+product with dkf-review, then write the consistency review"; the skills hold the rest.
+[click] The model decides the next step; the tools carry it out, and the result comes
+back. [click] Again and again, until it is done. So it does what no reader can: it runs
+the code, recomputes the numbers and re-runs the simulations, and agents that did not
+write a finding challenge it. [click] The output is the review, in the DKF
+consistency-review form, with a log behind every number, pushed to a branch. [click]
+And it never touches your computer. It runs on your Claude subscription, no API
+credits. What it reads still goes to the provider, under your plan's terms. [click] And
+the same agent can be started from a script, with the Agent SDK in Python or
+TypeScript, or with claude -p from R: to run it over test cases with known answers, for
+batch runs, with guardrails in code. That runs on an API key, billed per token; for one
+review you don't need it (appendix).
 :::
 
 ## The agent in practice
 
 ::: crumbs
-<span>Chat</span><span>Services</span><span>Script</span><span class="on">Agent</span>
+<span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span>
 :::
 
 :::: {.columns}
@@ -346,7 +366,7 @@ Your own script
 :::
 
 ::: where
-scto-ai-review · tools/3-api
+scto-ai-review · tools/2-api
 :::
 
 ```bash
@@ -394,7 +414,7 @@ then write the consistency review.
 
 ::: notes
 [9:45–10:30] And you can try both. The script is in the kit, the repository
-scto-ai-review, in the folder tools/3-api: the R or the Python starter sends a product
+scto-ai-review, in the folder tools/2-api: the R or the Python starter sends a product
 through the API with my prompt and answer format. One command, and you get a table of
 issues and a log of tokens and cost; you need an API key, paid per use. Run it on the
 demo first: a two-page sample size estimation with six planted issues and an answer

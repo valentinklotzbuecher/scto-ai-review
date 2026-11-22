@@ -2210,8 +2210,8 @@ vertical-align: -.125em;
   <li><a href="#four-approaches" id="toc-four-approaches" class="nav-link" data-scroll-target="#four-approaches">Four approaches</a>
   <ul class="collapse">
   <li><a href="#paste-it-into-the-chat" id="toc-paste-it-into-the-chat" class="nav-link" data-scroll-target="#paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</a></li>
-  <li><a href="#review-services" id="toc-review-services" class="nav-link" data-scroll-target="#review-services"><span class="num">02</span>Review services</a></li>
-  <li><a href="#your-own-script" id="toc-your-own-script" class="nav-link" data-scroll-target="#your-own-script"><span class="num">03</span>Your own script</a></li>
+  <li><a href="#your-own-script" id="toc-your-own-script" class="nav-link" data-scroll-target="#your-own-script"><span class="num">02</span>Your own script</a></li>
+  <li><a href="#review-services" id="toc-review-services" class="nav-link" data-scroll-target="#review-services"><span class="num">03</span>Review services</a></li>
   <li><a href="#a-coding-agent-in-the-repository" id="toc-a-coding-agent-in-the-repository" class="nav-link" data-scroll-target="#a-coding-agent-in-the-repository"><span class="num">04</span>A coding agent in the repository</a></li>
   <li><a href="#try-it-yourself" id="toc-try-it-yourself" class="nav-link" data-scroll-target="#try-it-yourself">Try it yourself</a></li>
   </ul></li>
@@ -2337,20 +2337,20 @@ vertical-align: -.125em;
 <section id="four-approaches" class="level2">
 <h2 data-anchor-id="four-approaches">Four approaches</h2>
 <div class="dg-wrap">
-<svg class="dg" style="margin-top: 56px" viewbox="0 0 1100 250" role="img" aria-label="Four ways to an AI review, in the order of the talk: a chat, where you paste and ask; a review service, someone else&#39;s pipeline; an API script, your own pipeline; and, after a dividing line, an agent that runs the code in the repository.">
+<svg class="dg" style="margin-top: 56px" viewbox="0 0 1100 250" role="img" aria-label="Four approaches, in the order of the talk: a chat, where you paste and ask; an API script, your own pipeline; a review service, someone else&#39;s pipeline; and, after a dividing line, an agent that runs the code in the repository.">
   <rect class="box" x="45" y="30" width="230" height="190" />
   <text class="strong" x="67" y="102" font-size="36">Chat</text>
   <text class="soft" x="67" y="146" font-size="22">paste and ask</text>
   <g class="fragment" data-fragment-index="1">
   <rect class="box" x="295" y="30" width="230" height="190" />
-  <text class="strong" x="317" y="102" font-size="36">Service</text>
-  <text class="soft" x="317" y="146" font-size="22">someone else&#39;s</text>
+  <text class="strong" x="317" y="102" font-size="36">API script</text>
+  <text class="soft" x="317" y="146" font-size="22">your own</text>
   <text class="soft" x="317" y="174" font-size="22">pipeline</text>
   </g>
   <g class="fragment" data-fragment-index="2">
   <rect class="box" x="545" y="30" width="230" height="190" />
-  <text class="strong" x="567" y="102" font-size="36">API script</text>
-  <text class="soft" x="567" y="146" font-size="22">your own</text>
+  <text class="strong" x="567" y="102" font-size="36">Service</text>
+  <text class="soft" x="567" y="146" font-size="22">someone else&#39;s</text>
   <text class="soft" x="567" y="174" font-size="22">pipeline</text>
   </g>
   <g class="fragment" data-fragment-index="3">
@@ -2362,7 +2362,7 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>The chat; review services, which are someone else’s pipeline; your own pipeline, a script through the API; and, after a dividing line, an agent that runs the code in the repository. Skills, your checklist as a folder, come up twice: in the chat, and as the agent’s instructions.</p>
+<p>The chat; your own pipeline, a script through the API; review services, which are someone else’s pipeline; and, after a dividing line, an agent that runs the code in the repository. Skills, your checklist as a folder, come up twice: in the chat, and as the agent’s instructions.</p>
 <section id="paste-it-into-the-chat" class="level3">
 <h3 data-anchor-id="paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</h3>
 <div class="dg-wrap">
@@ -2411,8 +2411,59 @@ vertical-align: -.125em;
 <p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat">tools/1-chat</a>: the prompt, the settings, the skill, the data rules</p>
 </div>
 </section>
+<section id="your-own-script" class="level3">
+<h3 data-anchor-id="your-own-script"><span class="num">02</span>Your own script</h3>
+<div class="dg-wrap">
+<svg class="dg" style="max-height: 360px" viewbox="0 0 700 266" role="img" aria-label="A script, in R with ellmer or in Python with the providers&#39; SDK libraries, sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run. Run on test cases with known answers, the same script gives scores, in R with vitals.">
+  <defs><marker id="m2" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
+  <path class="doc" d="M10 30 h46 l16 16 v62 h-62 z" />
+  <path class="doc" d="M24 44 h46 l16 16 v62 h-62 z" />
+  <path class="doc" d="M38 58 h46 l16 16 v62 h-62 z" /><path class="fold" d="M84 58 v16 h16" />
+  <text class="mono" x="69" y="112" font-size="13" text-anchor="middle">DOC N</text>
+  <text class="mono" x="58" y="170" font-size="13" text-anchor="middle">MANY DOCUMENTS</text>
+  <g class="fragment" data-fragment-index="1">
+  <line class="arrow" x1="110" y1="97" x2="160" y2="97" marker-end="url(#m2)"></line>
+  <rect class="tool" x="166" y="52" width="160" height="92" />
+  <text class="strong" x="246" y="84" font-size="22" text-anchor="middle">script</text>
+  <text x="246" y="110" font-size="16" text-anchor="middle">R: ellmer</text>
+  <text x="246" y="132" font-size="16" text-anchor="middle">Python: SDKs</text>
+  <path class="arrow" d="M205 52 C 205 18, 287 18, 287 48" marker-end="url(#m2)" />
+  <text class="mono" x="246" y="14" font-size="12" text-anchor="middle">SAME PROMPT, EACH DOCUMENT</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
+  <line class="arrow" x1="326" y1="97" x2="372" y2="97" marker-end="url(#m2)"></line>
+  <rect class="model" x="378" y="57" width="120" height="80" />
+  <text class="strong" x="438" y="104" font-size="22" text-anchor="middle">model</text>
+  <text class="mono" x="438" y="46" font-size="12" text-anchor="middle">PAY PER USE</text>
+  </g>
+  <g class="fragment" data-fragment-index="3">
+  <line class="arrow" x1="498" y1="97" x2="548" y2="97" marker-end="url(#m2)"></line>
+  <rect class="out" x="554" y="47" width="140" height="100" />
+  <text class="strong" x="624" y="104" font-size="20" text-anchor="middle">table + log</text>
+  </g>
+  <g class="fragment" data-fragment-index="4">
+  <line class="arrow" x1="624" y1="147" x2="624" y2="180" marker-end="url(#m2)"></line>
+  <rect class="out" x="554" y="186" width="140" height="74" />
+  <text class="strong" x="624" y="211" font-size="18" text-anchor="middle">scores</text>
+  <text x="624" y="231" font-size="15" text-anchor="middle">on test cases</text>
+  <text class="soft" x="624" y="251" font-size="15" text-anchor="middle">R: vitals</text>
+  </g>
+</svg>
+</div>
+<p>Instead of pasting by hand, your own pipeline: a script sends each document through the API with the same prompt and answer format, collects one table of issues, and logs every run with model, tokens and cost. In R with ellmer, in Python with the provider’s SDK; paid per use with an API key, under the API’s terms. The price is code that talks to one provider at one point in time.</p>
+<p>What is in the starter, <code>tools/2-api</code>, run with <code>Rscript review.R product.pdf</code>:</p>
+<ul>
+<li><strong>prompt.md:</strong> a senior biostatistician’s review, in a fixed order: methods, numbers, code against text, interpretation.</li>
+<li><strong>schema.json:</strong> the same answer every time: a decision, a summary, and each issue with where, what, its consequence and a fix.</li>
+<li><strong>issues.csv, runs.csv:</strong> every issue in one table; every run logged with model, tokens and cost.</li>
+</ul>
+<p>And because it is a script, you can test it: run it on test cases with known answers and score every run. In R, the <a href="https://vitals.tidyverse.org">vitals</a> package does this next to ellmer; it is a port of Inspect, a Python framework for evaluating language models. So you can compare prompts, models and effort settings on cases you know, such as the demo below.</p>
+<div class="starter">
+<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api">tools/2-api</a>: <code>review.R</code> (ellmer) and <code>review.py</code> (Anthropic SDK), the prompt and the answer format</p>
+</div>
+</section>
 <section id="review-services" class="level3">
-<h3 data-anchor-id="review-services"><span class="num">02</span>Review services</h3>
+<h3 data-anchor-id="review-services"><span class="num">03</span>Review services</h3>
 <div class="dg-wrap">
 <svg class="dg" style="max-height: 230px" viewbox="0 0 760 200" role="img" aria-label="You upload the PDF to a third-party service, which runs a fixed chain of 30 or more model calls with prompts written by the vendor and returns a report.">
   <defs><marker id="m3" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
@@ -2442,120 +2493,40 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>Others have built whole review pipelines and offer them as services. You upload the PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you get a report. Some are paid (refine.ink, up to $50 a review; reviewer3.com), some free (paperreview.ai from Stanford, openaireview.org from Chicago, Google’s Deep Review for two reviews a week), and two are open source (Joe Francis’s Reviewer 2, coarse.ink). All are built for research papers, and all but the open-source ones mean uploading to a third party. Or you build your own.</p>
+<p>Others have built exactly such pipelines, with many more calls, and offer them as services. You upload the PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you get a report. Some are paid (refine.ink, up to $50 a review; reviewer3.com), some free (paperreview.ai from Stanford, openaireview.org from Chicago, Google’s Deep Review for two reviews a week), and two are open source (Joe Francis’s Reviewer 2, coarse.ink). All are built for research papers, and all but the open-source ones mean uploading to a third party. One could build a more advanced pipeline of one’s own, along the lines of the open-source Reviewer 2; I went another way, to an agent.</p>
 <div class="starter">
-<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-services">tools/2-services</a>: the list, with links and sources</p>
-</div>
-</section>
-<section id="your-own-script" class="level3">
-<h3 data-anchor-id="your-own-script"><span class="num">03</span>Your own script</h3>
-<div class="dg-wrap">
-<svg class="dg" style="max-height: 360px" viewbox="0 0 700 250" role="img" aria-label="A script, in R with ellmer and vitals or in Python with the providers&#39; SDK libraries, sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run. Run on test cases with known answers, the same script gives scores.">
-  <defs><marker id="m2" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
-  <path class="doc" d="M10 30 h46 l16 16 v62 h-62 z" />
-  <path class="doc" d="M24 44 h46 l16 16 v62 h-62 z" />
-  <path class="doc" d="M38 58 h46 l16 16 v62 h-62 z" /><path class="fold" d="M84 58 v16 h16" />
-  <text class="mono" x="69" y="112" font-size="13" text-anchor="middle">DOC N</text>
-  <text class="mono" x="58" y="170" font-size="13" text-anchor="middle">MANY DOCUMENTS</text>
-  <g class="fragment" data-fragment-index="1">
-  <line class="arrow" x1="110" y1="97" x2="160" y2="97" marker-end="url(#m2)"></line>
-  <rect class="tool" x="166" y="52" width="160" height="92" />
-  <text class="strong" x="246" y="84" font-size="22" text-anchor="middle">script</text>
-  <text x="246" y="110" font-size="16" text-anchor="middle">R: ellmer, vitals</text>
-  <text x="246" y="132" font-size="16" text-anchor="middle">Python: SDKs</text>
-  <path class="arrow" d="M205 52 C 205 18, 287 18, 287 48" marker-end="url(#m2)" />
-  <text class="mono" x="246" y="14" font-size="12" text-anchor="middle">SAME PROMPT, EACH DOCUMENT</text>
-  </g>
-  <g class="fragment" data-fragment-index="2">
-  <line class="arrow" x1="326" y1="97" x2="372" y2="97" marker-end="url(#m2)"></line>
-  <rect class="model" x="378" y="57" width="120" height="80" />
-  <text class="strong" x="438" y="104" font-size="22" text-anchor="middle">model</text>
-  <text class="mono" x="438" y="46" font-size="12" text-anchor="middle">PAY PER USE</text>
-  </g>
-  <g class="fragment" data-fragment-index="3">
-  <line class="arrow" x1="498" y1="97" x2="548" y2="97" marker-end="url(#m2)"></line>
-  <rect class="out" x="554" y="47" width="140" height="100" />
-  <text class="strong" x="624" y="84" font-size="19" text-anchor="middle">table + log</text>
-  <text x="624" y="110" font-size="15" text-anchor="middle">one row per</text>
-  <text x="624" y="130" font-size="15" text-anchor="middle">document</text>
-  </g>
-  <g class="fragment" data-fragment-index="4">
-  <line class="arrow" x1="624" y1="147" x2="624" y2="180" marker-end="url(#m2)"></line>
-  <rect class="out" x="554" y="186" width="140" height="58" />
-  <text class="strong" x="624" y="211" font-size="18" text-anchor="middle">scores</text>
-  <text x="624" y="233" font-size="15" text-anchor="middle">on test cases</text>
-  </g>
-</svg>
-</div>
-<p>Your own pipeline: a script sends each document through the API with the same prompt and answer format, collects one table of issues, and logs every run with model, tokens and cost. In R with ellmer, in Python with the provider’s SDK; paid per use with an API key, under the API’s terms. The price is code that talks to one provider at one point in time.</p>
-<p>What is in the starter, <code>tools/3-api</code>:</p>
-<div class="dg-wrap">
-<svg class="dg" viewbox="0 0 1100 392" role="img" aria-label="Inside the script starter in tools/3-api, in three layers. The prompt, prompt.md: a senior biostatistician&#39;s consistency review, in the order methods, numbers, code against text, interpretation. The answer, schema.json, the same format every time: a decision, a summary, the issues, and what needs the code run; each issue with severity, area, location, problem, consequence, fix, and whether it was verified. What you keep: issues.csv, one row per issue across products, and runs.csv, with model, effort, prompt, tokens and cost of every run.">
-  <text class="file" x="0" y="20" font-size="19">Rscript review.R product.pdf</text>
-  <rect class="model" x="0" y="36" width="1100" height="102" />
-  <text class="mono" x="20" y="70" font-size="14">THE PROMPT</text>
-  <text class="strong" x="250" y="72" font-size="22">prompt.md: a senior biostatistician&#39;s review</text>
-  <text x="250" y="104" font-size="18">in this order: 1 Methods · 2 Numbers · 3 Code against text · 4 Interpretation</text>
-  <text class="soft" x="250" y="128" font-size="17">“You cannot run the code: list the questions that need it to be run.”</text>
-  <g class="fragment" data-fragment-index="1">
-  <rect class="tool" x="0" y="152" width="1100" height="108" />
-  <text class="mono" x="20" y="186" font-size="14">THE ANSWER</text>
-  <text class="strong" x="250" y="188" font-size="22">schema.json: the same format every time</text>
-  <text x="250" y="218" font-size="18">a decision · a summary · the issues · what needs the code run</text>
-  <text x="250" y="243" font-size="18">each issue: severity · area · location · problem · consequence · fix · verified</text>
-  </g>
-  <g class="fragment" data-fragment-index="2">
-  <rect class="box" x="0" y="274" width="1100" height="108" />
-  <text class="mono" x="20" y="308" font-size="14">WHAT YOU KEEP</text>
-  <text class="file" x="250" y="310" font-size="17">issues.csv</text>
-  <text x="400" y="310" font-size="18">one row per issue, across products</text>
-  <text class="file" x="250" y="350" font-size="17">runs.csv</text>
-  <text x="400" y="350" font-size="18">model, effort, prompt, tokens and cost of every run</text>
-  </g>
-</svg>
-</div>
-<p>And because it is a script, you can test it: run it on test cases with known answers and score every run. In R, the <a href="https://vitals.tidyverse.org">vitals</a> package does this next to ellmer; it is a port of Inspect, a Python framework for evaluating language models. So you can compare prompts, models and effort settings on cases you know, such as the demo below.</p>
-<div class="starter">
-<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api">tools/3-api</a>: <code>review.R</code> (ellmer) and <code>review.py</code> (Anthropic SDK), the prompt and the answer format</p>
+<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-services">tools/3-services</a>: the list, with links and sources</p>
 </div>
 </section>
 <section id="a-coding-agent-in-the-repository" class="level3">
 <h3 data-anchor-id="a-coding-agent-in-the-repository"><span class="num">04</span>A coding agent in the repository</h3>
 <div class="dg-wrap">
-<svg class="dg" style="max-height: 530px" viewbox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. Inside an isolated cloud VM: a copy of the repository with the skills as its instructions, and tools that read files, run R and write logs. The model, outside the VM and on your subscription, decides the next step; the tools run it and send back the result, in a loop until done. The draft form and logs are pushed to a branch. Your computer is not connected. Last, the Agent SDK: the same agent, started from a script.">
+<svg class="dg" style="max-height: 530px" viewbox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. An isolated cloud VM with tools that read files, run R and write logs, and the model outside it, on your subscription, which decides the next step. A copy of the repository goes into the VM, with the skills as its instructions. The model and the tools pass steps and results back and forth, in a loop until done. The review and the logs are pushed to a branch. Your computer is not connected. Last, the Agent SDK: the same agent, started from a script.">
   <defs>
     <marker id="m5" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker>
     <marker id="m5s" viewbox="0 0 10 10" refx="8" refy="5" markerwidth="5" markerheight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E" /></marker>
   </defs>
-  <g class="fragment" data-fragment-index="5">
-  <rect class="box" x="0" y="150" width="110" height="72" />
-  <text x="55" y="181" font-size="17" text-anchor="middle">your</text>
-  <text x="55" y="204" font-size="17" text-anchor="middle">computer</text>
-  <line class="arrow cut" x1="110" y1="186" x2="140" y2="186"></line>
-  <text class="accent" x="125" y="193" font-size="22" text-anchor="middle">×</text>
-  <text class="mono" x="55" y="246" font-size="12" text-anchor="middle">NO ACCESS</text>
-  </g>
   <rect class="frame" x="140" y="20" width="390" height="330" />
   <text class="mono" x="156" y="46" font-size="13">ISOLATED CLOUD VM</text>
-  <path class="tool" d="M160 70 h62 l11 13 h127 v112 h-200 z" />
-  <text x="260" y="114" font-size="18" text-anchor="middle">copy of the</text>
-  <text x="260" y="137" font-size="18" text-anchor="middle">repository</text>
-  <text class="file" x="260" y="163" font-size="14" text-anchor="middle">.qmd · PDF · R</text>
-  <text class="file" x="260" y="184" font-size="14" text-anchor="middle">skills: instructions</text>
-  <g class="fragment" data-fragment-index="1">
   <rect class="tool" x="345" y="215" width="165" height="110" />
   <text class="strong" x="427" y="251" font-size="21" text-anchor="middle">tools</text>
   <text x="427" y="277" font-size="16" text-anchor="middle">read files, run R,</text>
   <text x="427" y="299" font-size="16" text-anchor="middle">write logs</text>
-  <line class="arrow" x1="318" y1="199" x2="358" y2="212" marker-start="url(#m5)" marker-end="url(#m5)"></line>
-  </g>
-  <g class="fragment" data-fragment-index="2">
   <rect class="model" x="635" y="165" width="130" height="160" />
   <text class="strong" x="700" y="208" font-size="21" text-anchor="middle">model</text>
   <text x="700" y="236" font-size="16" text-anchor="middle">decides the</text>
   <text x="700" y="258" font-size="16" text-anchor="middle">next step</text>
   <text class="mono" x="700" y="346" font-size="12" text-anchor="middle">CLAUDE CODE, CODEX …</text>
   <text class="mono" x="700" y="364" font-size="12" text-anchor="middle">ON YOUR SUBSCRIPTION</text>
+  <g class="fragment" data-fragment-index="1">
+  <path class="tool" d="M160 70 h62 l11 13 h127 v112 h-200 z" />
+  <text x="260" y="114" font-size="18" text-anchor="middle">copy of the</text>
+  <text x="260" y="137" font-size="18" text-anchor="middle">repository</text>
+  <text class="file" x="260" y="163" font-size="14" text-anchor="middle">.qmd · PDF · R</text>
+  <text class="file" x="260" y="184" font-size="14" text-anchor="middle">skills: instructions</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
+  <line class="arrow" x1="318" y1="199" x2="358" y2="212" marker-start="url(#m5)" marker-end="url(#m5)"></line>
   <line class="arrow" x1="633" y1="232" x2="514" y2="232" marker-end="url(#m5)"></line>
   <line class="arrow" x1="512" y1="312" x2="631" y2="312" marker-end="url(#m5)"></line>
   </g>
@@ -2566,8 +2537,16 @@ vertical-align: -.125em;
   <g class="fragment" data-fragment-index="4">
   <line class="arrow" x1="210" y1="197" x2="210" y2="364" marker-end="url(#m5)"></line>
   <rect class="out" x="125" y="368" width="170" height="50" />
-  <text x="210" y="392" font-size="17" text-anchor="middle">draft form + logs</text>
+  <text x="210" y="392" font-size="17" text-anchor="middle">review + logs</text>
   <text class="mono" x="210" y="410" font-size="11" text-anchor="middle">PUSHED TO A BRANCH</text>
+  </g>
+  <g class="fragment" data-fragment-index="5">
+  <rect class="box" x="0" y="150" width="110" height="72" />
+  <text x="55" y="181" font-size="17" text-anchor="middle">your</text>
+  <text x="55" y="204" font-size="17" text-anchor="middle">computer</text>
+  <line class="arrow cut" x1="110" y1="186" x2="140" y2="186"></line>
+  <text class="accent" x="125" y="193" font-size="22" text-anchor="middle">×</text>
+  <text class="mono" x="55" y="246" font-size="12" text-anchor="middle">NO ACCESS</text>
   </g>
   <g class="fragment" data-fragment-index="6">
   <rect class="ghost" x="470" y="384" width="295" height="54" />
@@ -2591,9 +2570,9 @@ vertical-align: -.125em;
 </section>
 <section id="try-it-yourself" class="level3">
 <h3 data-anchor-id="try-it-yourself">Try it yourself</h3>
-<p><strong>Your own script</strong> is in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">scto-ai-review</a>, in the folder <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api"><code>tools/3-api</code></a>: <code>review.R</code> (ellmer), <code>review.py</code> (Anthropic SDK), the prompt and the answer format. One command per product, from the kit’s top folder, with an API key:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> tools/3-api/review.R product.pdf</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/3-api/review.py product.pdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong>Your own script</strong> is in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">scto-ai-review</a>, in the folder <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api"><code>tools/2-api</code></a>: <code>review.R</code> (ellmer), <code>review.py</code> (Anthropic SDK), the prompt and the answer format. One command per product, from the kit’s top folder, with an API key:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> tools/2-api/review.R product.pdf</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/2-api/review.py product.pdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You get a table of issues and a log of tokens and cost in <code>review-results/</code>.</p>
 <p><strong>The agent</strong> runs on the review skills in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, at the tag <code>skills-v0.3.1</code>; the steps are in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent"><code>tools/4-agent</code></a>.</p>
 <ol type="1">

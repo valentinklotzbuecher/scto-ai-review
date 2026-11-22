@@ -17,9 +17,9 @@ recommendation.
 | | Way | Starter |
 |---|---|---|
 | 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `dkf-document-check`, a skill for Claude chat |
-| 2 | [Review services](tools/2-services/README.md) | the list, paid, free and open source, with sources |
-| 3 | [Your own script](tools/3-api/README.md) | `review.R` (ellmer) and `review.py` (Anthropic SDK), with the prompt and the answer format |
-| 4 | [An agent in the repository](tools/4-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions |
+| 2 | [Your own script](tools/2-api/README.md) | `review.R` (ellmer) and `review.py` (Anthropic SDK), with the prompt and the answer format |
+| 3 | [Review services](tools/3-services/README.md) | the list, paid, free and open source, with sources |
+| 4 | [A coding agent in the repository](tools/4-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions |
 
 - **The demo**, [`demo/`](demo/README.md): a two-page synthetic SSE with six planted
   issues, its answer key and the recorded runs. Give a tool only `demo/sse/`; the rest
@@ -41,17 +41,19 @@ had, then King and Worthington's finding that AI reviews beat paid expert review
 sorts the field into three kinds of review (peer review of papers; statistics and
 methods; code) and turns to our internal consistency review, which needs all three,
 leaving open whether AI belongs before the second statistician or alongside. Then four
-approaches: a chat at maximum effort, with a slide on using a skill (the request as
-typed, and what its SKILL.md holds); review services, someone else's pipeline; and the
-two tools of this kit, each shown in practice. Your own script through the API, in R
-(ellmer, with vitals to score it on test cases) or Python: its prompt, its answer format
-and what you keep. A coding agent in the product's repository, such as Claude Code or
-Codex, with the skills as its instructions and the Agent SDK to start it from a script:
-what you choose (depth; data, including synthetic), the review form it writes, and its
-result on the test case (all six planted issues in 34 minutes). One slide shows how to
-try both. It ends on one slide of items to discuss; the full results table and Sutton's
-bitter lesson are backup slides in the appendix. The talk takes about ten and a half
-minutes, which leaves the rest of the slot for the discussion.
+approaches. A chat at maximum effort, with a slide on using a skill (the request as
+typed, and what its SKILL.md holds). Your own pipeline, a script through the API in R
+(ellmer, with vitals to score it on test cases) or Python, shown in practice: its
+prompt, its answer format and what you keep. Review services, someone else's pipeline,
+paid, free or open source; rather than build a more advanced pipeline along the lines of
+the open-source Reviewer 2, the talk turns to an agent. A coding agent in the product's
+repository, such as Claude Code or Codex, with the skills as its instructions and the
+Agent SDK to start it from a script, shown in practice: what you choose (depth; data,
+including synthetic), the review form it writes, and its result on the test case (all
+six planted issues in 34 minutes). One slide shows how to try the script and the agent.
+It ends on one slide of items to discuss; the full results table and Sutton's bitter
+lesson are backup slides in the appendix. The talk takes about ten and a half minutes,
+which leaves the rest of the slot for the discussion.
 
 ## Contents
 
@@ -64,7 +66,7 @@ slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: 
 slides/handout.scss     the same style for the handout
 slides/assets/          the preprint's forest plot, and shot-*.png: the screenshot cards,
                         cut from the posts in material/ (see material/README.md)
-tools/                  one folder per way, each with a README; tools/3-api has the scripts
+tools/                  one folder per way, each with a README; tools/2-api has the scripts
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
 demo/answer-key.md      the six planted issues, their consequences, the scoring rules
 demo/answer-key.R       recomputes every number in the answer key
@@ -146,7 +148,7 @@ If you re-render one, re-run every tool on the new PDF.
   API documentation, November 2026; ellmer 0.5.2's `chat_anthropic()` and
   `type_from_schema()`
 - The prompts are our own: "Please check if this is consistent." on the chat slide;
-  `tools/3-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
+  `tools/2-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
   instruction in `stats_review`; the earlier prototype's prompt on the archived deck's
   backup slide
 - "Since o1 pro" (December 2024) is the speaker's own experience, said as such

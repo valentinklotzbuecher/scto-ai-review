@@ -28,7 +28,7 @@ here, one grid point a minute or two.
   ([`../tools/1-chat`](../tools/1-chat/README.md)). The skill does not run the product's
   code.
 - API script: sends the PDF and its `.qmd`, not the code in `R/` and `sim/`
-  ([`../tools/3-api`](../tools/3-api/README.md)).
+  ([`../tools/2-api`](../tools/2-api/README.md)).
 - Agent: from a clone of stats_review, never from this kit
   ([`../tools/4-agent`](../tools/4-agent/README.md)), where R and lme4 are installed (on
   Debian or Ubuntu: `apt-get install -y r-base r-cran-lme4`):

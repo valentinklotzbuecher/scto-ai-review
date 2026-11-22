@@ -12,7 +12,7 @@ page.
   review a demo from inside this repository (the `dkf-review` skill, a chat, Claude
   Code), and never copy `demo/answer-key.*`, `demo-crt/answer-key.*`, `slides/`,
   `archive/` or this file into a review job or a prompt. The API starters in
-  `tools/3-api/` send only the files named on their command line, so they may run on
+  `tools/2-api/` send only the files named on their command line, so they may run on
   either `sse/` from here.
 - Review a demo with the agent from a clone of `stats_review`, with `new_job.py
   --product <this repo>/demo/sse/` (or `demo-crt/sse/`).

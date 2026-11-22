@@ -155,7 +155,7 @@ Evaluation". Description:
 > engineering, tool usage, multi-turn dialog, and model graded evaluations.
 
 Used on "Your own script" (the script box and the notes), in the handout and in
-`tools/3-api`: scripted calls can be scored on test cases with known answers.
+`tools/2-api`: scripted calls can be scored on test cases with known answers.
 
 ## Just Ask the Model, our Unjournal working paper (read 19 November 2026)
 

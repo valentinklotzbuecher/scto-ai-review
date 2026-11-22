@@ -100,8 +100,8 @@ The four approaches below are what I explored, as a basis for the discussion.
 {{< include diagrams/_overview.qmd >}}
 :::
 
-The chat; review services, which are someone else's pipeline; your own pipeline, a
-script through the API; and, after a dividing line, an agent that runs the code in the
+The chat; your own pipeline, a script through the API; review services, which are
+someone else's pipeline; and, after a dividing line, an agent that runs the code in the
 repository. Skills, your checklist as a folder, come up twice: in the chat, and as the
 agent's instructions.
 
@@ -141,41 +141,26 @@ research_skills, released by Joe Francis.
 Starter: [tools/1-chat](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat): the prompt, the settings, the skill, the data rules
 :::
 
-### [02]{.num}Review services
-
-::: dg-wrap
-{{< include diagrams/_services.qmd >}}
-:::
-
-Others have built whole review pipelines and offer them as services. You upload the
-PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you
-get a report. Some are paid (refine.ink, up to $50 a review; reviewer3.com), some free
-(paperreview.ai from Stanford, openaireview.org from Chicago, Google's Deep Review for
-two reviews a week), and two are open source (Joe Francis's Reviewer 2, coarse.ink). All
-are built for research papers, and all but the open-source ones mean uploading to a
-third party. Or you build your own.
-
-::: starter
-Starter: [tools/2-services](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-services): the list, with links and sources
-:::
-
-### [03]{.num}Your own script
+### [02]{.num}Your own script
 
 ::: dg-wrap
 {{< include diagrams/_api.qmd >}}
 :::
 
-Your own pipeline: a script sends each document through the API with the same prompt
+Instead of pasting by hand, your own pipeline: a script sends each document through the API with the same prompt
 and answer format, collects one table of issues, and logs every run with model, tokens
 and cost. In R with ellmer, in Python with the provider's SDK; paid per use with an API
 key, under the API's terms. The price is code that talks to one provider at one point
 in time.
 
-What is in the starter, `tools/3-api`:
+What is in the starter, `tools/2-api`, run with `Rscript review.R product.pdf`:
 
-::: dg-wrap
-{{< include diagrams/_script-layers.qmd >}}
-:::
+- **prompt.md:** a senior biostatistician's review, in a fixed order: methods, numbers,
+  code against text, interpretation.
+- **schema.json:** the same answer every time: a decision, a summary, and each issue with
+  where, what, its consequence and a fix.
+- **issues.csv, runs.csv:** every issue in one table; every run logged with model, tokens
+  and cost.
 
 And because it is a script, you can test it: run it on test cases with known answers
 and score every run. In R, the [vitals](https://vitals.tidyverse.org) package does this
@@ -184,7 +169,27 @@ models. So you can compare prompts, models and effort settings on cases you know
 as the demo below.
 
 ::: starter
-Starter: [tools/3-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api): `review.R` (ellmer) and `review.py` (Anthropic SDK), the prompt and the answer format
+Starter: [tools/2-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.R` (ellmer) and `review.py` (Anthropic SDK), the prompt and the answer format
+:::
+
+### [03]{.num}Review services
+
+::: dg-wrap
+{{< include diagrams/_services.qmd >}}
+:::
+
+Others have built exactly such pipelines, with many more calls, and offer them as
+services. You upload the
+PDF, a fixed chain of model calls with prompts the vendor wrote runs behind it, and you
+get a report. Some are paid (refine.ink, up to $50 a review; reviewer3.com), some free
+(paperreview.ai from Stanford, openaireview.org from Chicago, Google's Deep Review for
+two reviews a week), and two are open source (Joe Francis's Reviewer 2, coarse.ink). All
+are built for research papers, and all but the open-source ones mean uploading to a
+third party. One could build a more advanced pipeline of one's own, along the lines of
+the open-source Reviewer 2; I went another way, to an agent.
+
+::: starter
+Starter: [tools/3-services](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-services): the list, with links and sources
 :::
 
 ### [04]{.num}A coding agent in the repository
@@ -232,13 +237,13 @@ Starter: [tools/4-agent](https://github.com/valentinklotzbuecher/scto-ai-review/
 ### Try it yourself
 
 **Your own script** is in the kit, [scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review), in the folder
-[`tools/3-api`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api): `review.R` (ellmer), `review.py`
+[`tools/2-api`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.R` (ellmer), `review.py`
 (Anthropic SDK), the prompt and the answer format. One command per product, from the
 kit's top folder, with an API key:
 
 ```bash
-Rscript tools/3-api/review.R product.pdf
-python tools/3-api/review.py product.pdf
+Rscript tools/2-api/review.R product.pdf
+python tools/2-api/review.py product.pdf
 ```
 
 You get a table of issues and a log of tokens and cost in `review-results/`.

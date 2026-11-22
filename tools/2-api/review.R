@@ -6,8 +6,8 @@
 #
 #   install.packages(c("ellmer", "jsonlite"))   # ellmer 0.5.2 or later
 #   Sys.setenv(ANTHROPIC_API_KEY = "...")        # an API key: billed per use, not your subscription
-#   Rscript tools/3-api/review.R demo/sse/DEMO-TKA_SSE.pdf
-#   Rscript tools/3-api/review.R --dry-run demo/sse/DEMO-TKA_SSE.pdf   # shows the request, sends nothing
+#   Rscript tools/2-api/review.R demo/sse/DEMO-TKA_SSE.pdf
+#   Rscript tools/2-api/review.R --dry-run demo/sse/DEMO-TKA_SSE.pdf   # shows the request, sends nothing
 #
 # Each PDF is reviewed together with the Quarto source of the same name beside it, if
 # there is one. Only send documents your data rules allow; never patient-level data.
@@ -26,7 +26,7 @@ pdfs    <- setdiff(args, "--dry-run")
 if (!length(pdfs)) stop("Give one or more rendered products (PDF), e.g. demo/sse/DEMO-TKA_SSE.pdf")
 
 file_arg <- grep("^--file=", commandArgs(), value = TRUE)
-here <- if (length(file_arg)) dirname(normalizePath(sub("^--file=", "", file_arg))) else "tools/3-api"
+here <- if (length(file_arg)) dirname(normalizePath(sub("^--file=", "", file_arg))) else "tools/2-api"
 prompt <- paste(readLines(file.path(here, "prompt.md"), warn = FALSE), collapse = "\n")
 prompt_md5 <- substr(unname(tools::md5sum(file.path(here, "prompt.md"))), 1, 12)   # which prompt a run used
 answer_type <- type_from_schema(path = file.path(here, "schema.json"))

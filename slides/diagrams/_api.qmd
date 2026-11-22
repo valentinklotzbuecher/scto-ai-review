@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 360px" viewBox="0 0 700 250" role="img" aria-label="A script, in R with ellmer and vitals or in Python with the providers' SDK libraries, sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run. Run on test cases with known answers, the same script gives scores.">
+<svg class="dg" style="max-height: 360px" viewBox="0 0 700 266" role="img" aria-label="A script, in R with ellmer or in Python with the providers' SDK libraries, sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run. Run on test cases with known answers, the same script gives scores, in R with vitals.">
   <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <path class="doc" d="M10 30 h46 l16 16 v62 h-62 z"/>
   <path class="doc" d="M24 44 h46 l16 16 v62 h-62 z"/>
@@ -10,7 +10,7 @@
   <line class="arrow" x1="110" y1="97" x2="160" y2="97" marker-end="url(#m2)"/>
   <rect class="tool" x="166" y="52" width="160" height="92"/>
   <text class="strong" x="246" y="84" font-size="22" text-anchor="middle">script</text>
-  <text x="246" y="110" font-size="16" text-anchor="middle">R: ellmer, vitals</text>
+  <text x="246" y="110" font-size="16" text-anchor="middle">R: ellmer</text>
   <text x="246" y="132" font-size="16" text-anchor="middle">Python: SDKs</text>
   <path class="arrow" d="M205 52 C 205 18, 287 18, 287 48" marker-end="url(#m2)"/>
   <text class="mono" x="246" y="14" font-size="12" text-anchor="middle">SAME PROMPT, EACH DOCUMENT</text>
@@ -24,15 +24,14 @@
   <g class="fragment" data-fragment-index="3">
   <line class="arrow" x1="498" y1="97" x2="548" y2="97" marker-end="url(#m2)"/>
   <rect class="out" x="554" y="47" width="140" height="100"/>
-  <text class="strong" x="624" y="84" font-size="19" text-anchor="middle">table + log</text>
-  <text x="624" y="110" font-size="15" text-anchor="middle">one row per</text>
-  <text x="624" y="130" font-size="15" text-anchor="middle">document</text>
+  <text class="strong" x="624" y="104" font-size="20" text-anchor="middle">table + log</text>
   </g>
   <g class="fragment" data-fragment-index="4">
   <line class="arrow" x1="624" y1="147" x2="624" y2="180" marker-end="url(#m2)"/>
-  <rect class="out" x="554" y="186" width="140" height="58"/>
+  <rect class="out" x="554" y="186" width="140" height="74"/>
   <text class="strong" x="624" y="211" font-size="18" text-anchor="middle">scores</text>
-  <text x="624" y="233" font-size="15" text-anchor="middle">on test cases</text>
+  <text x="624" y="231" font-size="15" text-anchor="middle">on test cases</text>
+  <text class="soft" x="624" y="251" font-size="15" text-anchor="middle">R: vitals</text>
   </g>
 </svg>
 ```

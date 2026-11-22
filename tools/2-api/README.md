@@ -1,4 +1,4 @@
-# 3 · Your own script
+# 2 · Your own script
 
 Your own pipeline instead of a service's: a review sent from a script through the API,
 with the same prompt and the same answer format for every product, the issues collected
@@ -21,11 +21,11 @@ install.packages(c("ellmer", "jsonlite"))
 ```
 
 ```bash
-Rscript tools/3-api/review.R --dry-run demo/sse/DEMO-TKA_SSE.pdf
+Rscript tools/2-api/review.R --dry-run demo/sse/DEMO-TKA_SSE.pdf
 ```
 
 ```bash
-ANTHROPIC_API_KEY=... Rscript tools/3-api/review.R demo/sse/DEMO-TKA_SSE.pdf
+ANTHROPIC_API_KEY=... Rscript tools/2-api/review.R demo/sse/DEMO-TKA_SSE.pdf
 ```
 
 Python:
@@ -35,11 +35,11 @@ pip install anthropic
 ```
 
 ```bash
-python tools/3-api/review.py --dry-run demo/sse/DEMO-TKA_SSE.pdf
+python tools/2-api/review.py --dry-run demo/sse/DEMO-TKA_SSE.pdf
 ```
 
 ```bash
-ANTHROPIC_API_KEY=... python tools/3-api/review.py demo/sse/DEMO-TKA_SSE.pdf
+ANTHROPIC_API_KEY=... python tools/2-api/review.py demo/sse/DEMO-TKA_SSE.pdf
 ```
 
 `--dry-run` shows the request and sends nothing. Each PDF is sent with the Quarto source

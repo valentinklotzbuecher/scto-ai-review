@@ -15,7 +15,7 @@ brings your checklist along.
    > Please check if this is consistent.
 
    Or, for an answer in a fixed order (methods, numbers, code against text,
-   interpretation), paste the review prompt from [`../3-api/prompt.md`](../3-api/prompt.md)
+   interpretation), paste the review prompt from [`../2-api/prompt.md`](../2-api/prompt.md)
    first.
 
 Try it on the demo: attach the two files in [`../../demo/sse/`](../../demo/sse/) and

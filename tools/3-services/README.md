@@ -1,4 +1,4 @@
-# 2 · Review services
+# 3 · Review services
 
 Others built whole review pipelines: you upload the PDF, a fixed chain of model calls
 with prompts the vendor wrote runs behind it, and you get a report. All are built for
@@ -33,7 +33,7 @@ upload anything unpublished.
 ## Or build your own
 
 The pipelines behind the services are scripts that call a model through its API. The
-next step, [`../3-api`](../3-api/README.md), is a script of your own.
+next step, [`../2-api`](../2-api/README.md), is a script of your own.
 
 Sources: Joseph Francis, *Yell at It: Prompt Engineering for Automated Peer Review*,
 `paper/yellatit.pdf` in the Reviewer 2 repository, pp. 6–7 (refine.ink, reviewer3.com,
