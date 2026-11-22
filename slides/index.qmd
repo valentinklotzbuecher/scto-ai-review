@@ -61,27 +61,6 @@ by three former journal editors, who preferred the AI review in 26 of 30 judgmen
 Also a working paper. Or as one researcher put it: "It's been true for a year at least."
 :::
 
-## Three kinds of review
-
-{{< include diagrams/_review-kinds.qmd >}}
-
-::: {.fragment fragment-index=3 .punchline}
-Our internal consistency review needs all three.
-:::
-
-::: notes
-[1:45–2:30] More systematically, three kinds of review are changing. Peer review of
-papers, for journals: King and Worthington's AI reviews beat paid expert reviews.
-[click] The review of statistics and methods: the design, the estimand, the numbers.
-That is what the preprint tested: methodological errors in trial reports, where every
-model found more than the human reviewers. [click] And code: does it run, and does it do
-what the text says? The preprint's authors say it themselves: errors in data handling or
-analysis code are not visible in the text. There the AI has to run the code: Certify,
-from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant rerun a
-replication package and certifies that it reproduces the results. [click] Our internal
-consistency review needs all three.
-:::
-
 ## Internal consistency review
 
 ::: big
@@ -91,8 +70,10 @@ Sample size estimations, analysis plans, reports
 {{< include diagrams/_question.qmd >}}
 
 ::: notes
-[2:30–3:00] Our internal consistency review: sample size estimations, analysis plans and
+[1:45–2:15] Our internal consistency review: sample size estimations, analysis plans and
 reports go to a second statistician, who checks the methods, the numbers and the code.
+Both studies read only the text; errors in data handling or analysis code, the
+preprint's authors note, are not visible there.
 [click] Where could AI come in? Before the second statistician, as a check the author
 runs first, or alongside the reviewer? That is open. I have tried a few things, and I'll
 show them, so that we can discuss this with some experience rather than in the abstract.
@@ -104,7 +85,7 @@ All of it is my own exploration, not something DKF runs or recommends.
 {{< include diagrams/_overview.qmd >}}
 
 ::: notes
-[3:00–3:30] Four approaches. The chat: paste and ask. [click] Your own pipeline, a script
+[2:15–2:45] Four approaches. The chat: paste and ask. [click] Your own pipeline, a script
 through the API. [click] Review services: someone else's pipeline. [click] And then
 something different: an agent that runs the code in the repository.
 :::
@@ -118,7 +99,7 @@ something different: an agent that runs the code in the repository.
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[3:30–4:30] The simplest way is what the preprint tested. Paste the PDF and the source
+[2:45–3:45] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
@@ -147,7 +128,7 @@ way.
 {{< include diagrams/_api.qmd >}}
 
 ::: notes
-[4:30–5:15] Instead of pasting by hand: the same through the API, from a Quarto
+[3:45–4:30] Instead of pasting by hand: the same through the API, from a Quarto
 document, my review prototype. It takes the product's Quarto source and its PDF. Its
 chunks hold the settings, in R; the prompt, from a text file; and the request, sent
 with the Python SDK through reticulate. ellmer could send it too; the SDK gives me the
@@ -201,7 +182,7 @@ cfg <- list(
 ::::
 
 ::: notes
-[5:15–6:00] How it is set up. On the left, the first chunk: which files, the assignment,
+[4:30–5:15] How it is set up. On the left, the first chunk: which files, the assignment,
 that is the questions the review must answer, the model and the effort. [click] You put
 the product's Quarto source and PDF in the folder to_be_reviewed. [click] You set the
 settings. [click] The prompt is a text file: a senior biostatistician's first pass,
@@ -235,7 +216,7 @@ run is marked not completed.
 ```
 
 ::: notes
-[6:00–7:00] Others have built such pipelines, with many more calls, and offer them as
+[5:15–6:15] Others have built such pipelines, with many more calls, and offer them as
 services; for the script I just showed, they are templates. You upload the PDF.
 [click] Behind it runs a fixed chain of model calls, with prompts the vendor wrote.
 [click] You get a report. [click] There are more every month. Refine is the oldest:
@@ -286,7 +267,7 @@ How much more to build, when tools become obsolete this fast?
 ```
 
 ::: notes
-[7:00–7:45] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
+[6:15–7:00] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
 offline: he decided it was obsolete, and something better and free was coming shortly.
 [click] That is the bitter lesson, Rich Sutton's, from seventy years of AI research:
 hand-built machinery keeps losing to general methods that use more computation. Or, as
@@ -308,7 +289,7 @@ based on that is the agent.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[7:45–9:15] What I did instead: a coding agent working in the product's repository,
+[7:00–8:30] What I did instead: a coding agent working in the product's repository,
 with skills adapted from Joe's as its instructions; here Claude Code on the web, and
 Codex and others work the same way. An isolated cloud machine,
 with tools that read files, run R and write logs, and the model outside it, which
@@ -325,7 +306,7 @@ credits. What it reads still goes to the provider, under your plan's terms. [cli
 the same agent can be started from a script, with the Agent SDK in Python or
 TypeScript, or with claude -p from R: to run it over test cases with known answers, for
 batch runs, with guardrails in code. That runs on an API key, billed per token; for one
-review you don't need it (appendix).
+review you don't need it.
 :::
 
 ## The agent in practice
@@ -339,7 +320,7 @@ review you don't need it (appendix).
   simulations
 - **Challenges its findings:** a fresh agent checks each one
 - **Synthetic data** when patient data cannot be shared, so the code still runs
-- **A log behind every number**, and the scripts that produced it
+- **Version-controlled:** all scripts and results, ready for a replication package
 :::
 
 ::: {.fragment .punchline}
@@ -347,16 +328,18 @@ Still in development.
 :::
 
 ::: notes
-[9:15–10:00] What the agent adds over the script. [click] It runs the code: it
+[8:30–9:15] What the agent adds over the script. [click] It runs the code: it
 re-renders the product, recomputes the printed numbers and re-runs the simulations,
 which no reader can. [click] It challenges its own findings: an agent that did not
 write a finding checks it, in a fresh context. [click] Where patient data cannot be
 shared, it builds synthetic data from the code, so the code runs and does what the text
-says, though it never confirms a printed number. [click] Every number in the review has
-a log behind it, and the scripts that produced it. [click] I am still
-developing this. The skills are at version 0.3.1, so far tested on one synthetic test
-case, where every run found all six planted issues (appendix); a second test case is
-next.
+says, though it never confirms a printed number. [click] And everything it writes, every
+script, log and result, is committed with the product under version control, so it
+could become part of the product's replication package. [click] I am still developing
+this. The skills are at version 0.3.1, so far tested on one synthetic test case, a
+two-page sample size estimation with six planted issues: every run found all six, and
+said by how much the five that matter change the sample size or the power; the quick
+run took 34 minutes, about ten dollars at API list prices. A second test case is next.
 :::
 
 ## Try it yourself
@@ -440,7 +423,7 @@ the consistency review.
 :::
 
 ::: notes
-[10:00–11:00] And you can try all three. The skill, in a chat: download its ZIP from
+[9:15–10:15] And you can try all three. The skill, in a chat: download its ZIP from
 stats_review, the repository with my review skills, in the folder chat-skills; upload
 it in Claude, with code execution on; attach the product's PDF and its Quarto source,
 and type one sentence. It runs on your Claude plan. [click] The review document is in
@@ -469,7 +452,7 @@ estimations with planted issues and an answer key, so you can score what they fi
 :::
 
 ::: notes
-[11:00–20:00] To discuss. What would you need to see before you sign a product an AI
+[10:15–20:00] To discuss. What would you need to see before you sign a product an AI
 reviewed? Could our review become result-oriented: the AI goes through every line,
 every number and every re-run, and we check that it tested enough, that each chunk,
 section and analysis does what it says, and that the approach and the interpretation
@@ -491,58 +474,6 @@ links are in the appendix.
 :::
 
 # Appendix {.divider}
-
-## A test case with a known answer
-
-::: scope
-A synthetic sample size estimation of two pages with six planted issues: two in the
-text, two only in the code, two that need a calculation or a re-run.
-:::
-
-| | Found | Consequence stated | Time | Cost |
-|:---|:-:|:-:|:-:|:-:|
-| Chat | · | · | · | · |
-| Chat with the skill | 6 of 6 | 5 of 5 | — | — |
-| Your own script | · | · | · | · |
-| Agent, quick | 6 of 6 | 5 of 5 | 34 min | $10 |
-| Agent, standard | 6 of 6 | 5 of 5 | 3.4 h | $72 |
-
-::: {.tiny .muted}
-· not yet run; — not recorded. Quick: start to finished form; standard: model time.
-Cost at API list prices; all runs were on a subscription. Not a blind test: the skills
-and the test case were written in the same week.
-:::
-
-::: {.fragment .punchline}
-All six found, and for the five that change the sample size or the power, by how much.
-:::
-
-::: notes
-Backup for "The agent in practice". Does it work? I wrote a test case with a known answer: a synthetic sample
-size estimation of two pages, with six planted issues, two in the text, two only in
-the code, and two that need a calculation or a re-run. The agent found all six, in
-every run, and so did the chat with the skill. [click] And for the five that change the
-sample size or the power, they said by how much: at the correlation the code uses, the
-design as written needs 80 evaluable participants per group, not 55. At quick depth
-the agent took 34 minutes from start to the finished form, about ten dollars at API
-list prices, on the subscription; the first run, at standard depth, three and a half
-hours of model time, and it caught an error in my own answer key. The chat with the
-skill never ran the product's code: its own arithmetic and small simulations were
-enough here, because every planted issue can be derived from the print and the
-source. A case where an error shows only when the code runs would separate the two.
-Not a blind test: I wrote the skills and the test case in the same week, and the
-skills already describe two of the planted issue types. The chat on its own and the
-script come next on this table. That is what test cases are for: every new tool and
-every new model is scored on the same case.
-:::
-
-## The Agent SDK
-
-- Claude Code as a library (Python, TypeScript): the same tools, agent loop and skills
-- Worth it for evals over many test cases, batch runs, and hard guardrails in code
-- Not needed for one review; it does not fine-tune the model
-- Runs on an API key, billed per token, unlike Claude Code on a subscription
-- From R, the command-line `claude -p` does the same
 
 ## Links
 

@@ -10,7 +10,7 @@ recommendation.
 
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
-- **The slides**, [`slides/index.html`](slides/index.html): thirteen slides and an
+- **The slides**, [`slides/index.html`](slides/index.html): twelve slides and an
   appendix; press S for the speaker notes.
 - **A starter for each way**, in [`tools/`](tools/):
 
@@ -38,9 +38,9 @@ It opens with Ruslan Rust's post (from now on no peer review without AI; for cli
 trials, human-only review dangerous) and his preprint, in which every one of 15 language
 models found more of the errors inserted into trial reports than human peer reviewers
 had, then King and Worthington's finding that AI reviews beat paid expert reviews. It
-sorts the field into three kinds of review (peer review of papers; statistics and
-methods; code) and turns to our internal consistency review, which needs all three,
-leaving open whether AI belongs before the second statistician or alongside. Then four
+turns to our internal consistency review (methods, numbers and code; errors in code are
+not visible in the text), leaving open whether AI belongs before the second statistician
+or alongside. Then four
 approaches. A chat at maximum effort, and with a skill: the request as typed, and the
 folder it calls (SKILL.md, references, scripts). Your own pipeline: my review
 prototype, a Quarto document that sends the product through the API (settings in R, the
@@ -53,11 +53,11 @@ build when tools become obsolete this fast, and the skills Francis released the 
 day. What I did based on that: a coding agent in the product's repository, such as Claude Code or Codex, with skills
 adapted from his as its instructions and the Agent SDK to start it from a script, and
 what it adds over the script: it runs the code, challenges its findings, works on
-synthetic data and keeps a log behind every number; still in development. One slide
+synthetic data and keeps its scripts and results under version control, ready for a
+replication package; still in development. One slide
 shows how to try the chat skill, the review document and the agent. It ends on one
-slide of items to discuss; the results on the test case are a backup slide in the
-appendix. The talk takes about eleven minutes, which leaves the rest of the slot for
-the discussion.
+slide of items to discuss; the appendix holds the links. The talk takes about ten
+minutes, which leaves the rest of the slot for the discussion.
 
 ## Contents
 

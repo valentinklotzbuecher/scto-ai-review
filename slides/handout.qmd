@@ -69,21 +69,6 @@ The preprint's last author, Ruslan Rust, on X:
 
 So the question is less whether to use these tools than how.
 
-## Three kinds of review
-
-::: dg-wrap
-{{< include diagrams/_review-kinds.qmd >}}
-:::
-
-Peer review of papers, for journals, where King and Worthington's AI reviews beat paid
-expert reviews. The review of statistics and methods (the design, the estimand, the
-numbers), where the models in the preprint found more of the methodological errors in
-trial reports than human reviewers did. And code: does it run, and does it do what the
-text says? Errors in analysis code are not visible in the text, as the preprint's
-authors note; there the AI has to run the code, as Certify, from Gary King, Yiqing Xu
-and Leo Yang at Harvard, has your own AI assistant do to certify a replication package.
-Our internal consistency review needs all three.
-
 ## Internal consistency review
 
 ::: dg-wrap
@@ -91,7 +76,9 @@ Our internal consistency review needs all three.
 :::
 
 Sample size estimations, analysis plans and reports go to a second statistician, who
-checks the methods, the numbers and the code. Where could AI come in: before the second
+checks the methods, the numbers and the code. Both studies read only the text; errors in
+data handling or analysis code, the preprint's authors note, are not visible there.
+Where could AI come in: before the second
 statistician, as a check the author runs first, or alongside the reviewer? That is open.
 The four approaches below are what I explored, as a basis for the discussion.
 
@@ -278,8 +265,9 @@ API key, billed per token, and one review does not need it.
 - **Synthetic data** when patient data cannot be shared: dummy data built from the code
   or from a codebook made locally, so the code runs. It shows that the code runs and
   does what the text says, never a printed number.
-- **A log behind every number**, with the scripts that produced it, and REVIEW comments
-  in a copy of the `.qmd`.
+- **Version-controlled:** every script, log and result is committed with the product, so
+  it could become part of its replication package; REVIEW comments go into a copy of the
+  `.qmd`.
 
 **Still in development.** The skills are at version 0.3.1, tested so far on one
 synthetic test case, the [demo](#the-demo), where every run found all six planted

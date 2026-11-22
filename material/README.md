@@ -12,7 +12,8 @@
 
 ## Claude Agent SDK (documentation, read 18 November 2026)
 
-code.claude.com/docs/en/agent-sdk/overview, quoted for the appendix slide "The Agent SDK":
+code.claude.com/docs/en/agent-sdk/overview, quoted in the notes of "A coding agent in the
+repository" (its Agent SDK box):
 
 - "The Agent SDK gives you the same tools, agent loop, and context management that
   power Claude Code, programmable in Python and TypeScript."
@@ -188,8 +189,8 @@ In the deck (`slides/index.qmd`):
 - The intro slide, "Models find more errors than reviewers did": Rust's words, then the
   27% against 53–96% and Fig. 1b. The caveats (preprint, 2004 human reviewers, LLM
   judges, flags on unmodified reports) are in its notes.
-- "Three kinds of review" (notes): King and Worthington; Brian et al.'s methodological
-  errors and the boundary sentence above, on errors in analysis code; Certify.
+- "Internal consistency review" (notes): the boundary sentence above, on errors in data
+  handling or analysis code.
 - The discussion slide, "To discuss": the preprint's last author, as the bookend, in its
   notes.
 - The posts are shown as screenshots, cut from the files above into
