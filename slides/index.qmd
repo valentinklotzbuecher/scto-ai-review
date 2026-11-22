@@ -294,18 +294,18 @@ with skills adapted from Joe's as its instructions; here Claude Code on the web,
 Codex and others work the same way. It starts from the product's repository, with my
 review skills in it as the agent's instructions: what you type is one sentence, "review
 the product with dkf-review, then write the consistency review"; the skills hold the
-rest. [click] The repository goes into an isolated cloud machine. [click] There, tools
-read files, run R and write logs. [click] It never touches your computer. [click] The
-model sits outside the machine and decides the next step; the tools carry it out, and
-the result comes back, again and again, until it is done. It runs on your Claude
-subscription, no API credits; what it reads still goes to the provider, under your
-plan's terms. So it does what no reader can: it runs the code, recomputes the numbers
-and re-runs the simulations, and agents that did not write a finding challenge it.
-[click] The output is the review, with a log behind every number, pushed to a branch.
-[click] And the same agent can be started from a script, with the Agent SDK in Python
-or TypeScript, or with claude -p from R: to run it over test cases with known answers,
-for batch runs, with guardrails in code. That runs on an API key, billed per token; for
-one review you don't need it.
+rest. [click] Tools read the files, run R and write logs. [click] The agent decides the
+next step, with its model, which runs at the provider; the tools carry it out, and the
+result comes back, again and again, until it is done. It runs on your Claude subscription, no API credits. So it does what no reader
+can: it runs the code, recomputes the numbers and re-runs the simulations, and agents
+that did not write a finding challenge it. [click] The repository and the tools sit in
+an isolated cloud machine, with the model outside; it never touches your computer. What
+it reads still goes to the provider, under your plan's terms. [click] The output is the
+review, with a log behind every number, pushed to a branch. [click] And the same agent
+can be started from a script, with the Agent SDK in Python or TypeScript, or with claude
+-p from R: to run it over test cases with known answers, for batch runs, with
+guardrails in code. That runs on an API key, billed per token; for one review you don't
+need it.
 :::
 
 ## The agent in practice
