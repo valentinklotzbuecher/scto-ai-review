@@ -56,7 +56,9 @@ page.
 
 - `quarto render slides/index.qmd`, then look at every slide at 1280×720 with all
   fragments shown; nothing may run past the bottom edge. Commit the rendered
-  `slides/index.html`.
+  `slides/index.html`: one self-contained file that fetches nothing, to be shared on
+  its own. Print `slides/index.pdf` from `slides/index.html?print-pdf` (each slide's
+  last step on one page) and commit it too.
 - `quarto render slides/handout.qmd`, then check it at desktop and phone width: the
   page never scrolls sideways. Commit the rendered `slides/handout.html`.
 - `quarto render demo/sse/DEMO-TKA_SSE.qmd` and `quarto render

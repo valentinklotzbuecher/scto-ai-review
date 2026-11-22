@@ -11,6 +11,8 @@ format:
     margin: 0.06
     slide-number: c/t
     embed-resources: true
+    html-math-method: plain
+    pdf-separate-fragments: false
     transition: fade
     transition-speed: fast
     hash-type: number
@@ -18,7 +20,7 @@ format:
     code-line-numbers: false
 ---
 
-## Models find more errors than reviewers did
+## How well does AI review research papers?
 
 :::: {.columns}
 ::: {.column width="31%" .plate}
@@ -64,6 +66,10 @@ setting, judged by another model and by three former journal editors, who prefer
 AI review in 26 of 30 judgments. Also a working paper. Or as one researcher put it:
 "It's been true for a year at least." [click] And Rust's own conclusion: from now on he
 won't review without AI, and for clinical trials he calls human-only review dangerous.
+And it is not only about the code we wrote by hand. More and more code is written by
+AI, and review has to keep up with it: in one industry report, telemetry from over
+10,000 developers, teams with high AI adoption merged 98% more pull requests, and the
+time in review rose 91%; the bottleneck, it says, is human approval.
 :::
 
 ## Internal consistency review
@@ -235,11 +241,11 @@ fifty dollars a paper. Reviewer3 is paid as well; paperreview.ai from Stanford a
 openaireview from Chicago are free; coarse.ink is open source, apparently
 reverse-engineered from Refine; and in October Google launched Deep Review, free for
 two reviews a week. Reviewer 2, by Joe Francis, is open source: more than thirty
-chained calls, fifteen to forty-five minutes and a few dollars a paper. [click] What
+chained calls, fifteen to forty-five minutes and a few dollars a paper. What
 they do: you upload the PDF, and behind it runs a fixed chain of model calls, with
 prompts the vendor wrote. Reviewer 2's first stage, The Breaker, takes a sledgehammer
 to the text, and a verification cascade then removes what the aggression invents.
-[click] You get a report. All are built for research papers, and all but the
+You get a report. All are built for research papers, and all but the
 open-source ones mean uploading to a third party. And they are no magic: as Aniket
 Panjwani worked out on X, if one Refine review costs fifty dollars and ten cost three
 hundred, its inference costs at most about thirty dollars a review, while a ChatGPT Pro
@@ -312,7 +318,7 @@ more should I build on my script, when tools become obsolete this fast? What I d
 based on that is the agent.
 :::
 
-## In development: agentic review
+## Agentic review
 
 ::: crumbs
 <span>Chat</span><span>Script</span><span class="on">Agent</span>
@@ -326,9 +332,14 @@ with skills adapted from Joe's as its instructions; here Claude Code on the web,
 Codex and others work the same way. It starts from the product's repository, with my
 review skills in it as the agent's instructions: what you type is one sentence, "review
 the product with stats-review, then write the consistency review"; the skills hold the
-rest. [click] Tools read the files, run R and write logs. [click] The agent decides the
-next step, with its model, which runs at the provider; the tools carry it out, and the
-result comes back, again and again, until it is done. It runs on your Claude
+rest. [click] Tools read the files, run R and write logs. [click] The coding agent
+decides the next step, with its model, which runs at the provider; the tools carry it
+out, and the result comes back, again and again, until it is done. What it adds over the
+script: it runs the code: it re-renders the product, recomputes the printed numbers and
+re-runs the simulations, which no reader can. It challenges its own findings: an agent
+that did not write a finding checks it, in a fresh context. And where patient data
+cannot be shared, it builds synthetic data from the code, so the code runs and does what
+the text says, though it never confirms a printed number. It runs on your Claude
 subscription, no API credits. [click] The repository and the tools sit in an isolated
 cloud machine, with the model outside; it never touches your computer. What it reads
 still goes to the provider, under your plan's terms. [click] The output is the review,
@@ -336,12 +347,7 @@ with a log behind every number, pushed to a branch. [click] And the same agent c
 started from a script, with the Agent SDK in Python or TypeScript, or with claude -p
 from R: to run it over test cases with known answers, for batch runs, with guardrails in
 code. That runs on an API key, billed per token; for one review you don't need it.
-[click] Still in development, and what it adds over the script. It runs the code: it
-re-renders the product, recomputes the printed numbers and re-runs the simulations,
-which no reader can. It challenges its own findings: an agent that did not write a
-finding checks it, in a fresh context. Where patient data cannot be shared, it builds
-synthetic data from the code, so the code runs and does what the text says, though it
-never confirms a printed number. The skills are at version 0.4.0, so far tested on one
+All of this is a first shot. The skills are at version 0.4.0, so far tested on one
 synthetic test case, a two-page sample size estimation with six planted issues: every
 run found all six, and said by how much the five that matter change the sample size or
 the power; the quick run took 34 minutes, about ten dollars at API list prices. A
@@ -352,7 +358,7 @@ second test case is next.
 
 :::: {.columns}
 ::: {.column width="31%"}
-::: punchline
+::: {.punchline .ico .chat}
 The skill, in a chat
 :::
 
@@ -376,7 +382,7 @@ Please review this using
 :::
 
 ::: {.column width="31%" .fragment fragment-index=1}
-::: punchline
+::: {.punchline .ico .script}
 The review document
 :::
 
@@ -400,7 +406,7 @@ to_be_reviewed/
 :::
 
 ::: {.column width="31%" .fragment fragment-index=2}
-::: punchline
+::: {.punchline .ico .agent}
 The agent
 :::
 
@@ -502,11 +508,9 @@ known answers, standards for what a review must check, rules for what data may g
 where. [click] And if an AI reads our products first, should we write them for it: the
 estimand in full, every assumption in the text and not only in the code, every number
 traceable to the code that makes it? The preprint's last author calls human-only review
-dangerous for clinical trials; is AI-only review? Thank you; the links are in the
-appendix.
+dangerous for clinical trials; is AI-only review? Thank you; the links are on the last
+two slides.
 :::
-
-# Appendix {.divider}
 
 ## Links: the talk and its tools
 
@@ -519,7 +523,7 @@ appendix.
 - **Certify**, replication certificates run by your own AI assistant (King, Xu and Yang, Harvard): [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
 :::
 
-## Links: studies
+## Links: studies and learning
 
 :::: {.columns}
 ::: {.column width="49%"}
@@ -531,6 +535,7 @@ appendix.
 - Liu et al., learned checklists against the reviewer lottery: [arXiv 2610.28666](https://arxiv.org/abs/2610.28666)
 - Ghosh et al., AI reviews biased towards the appendix: [arXiv 2611.17811](https://arxiv.org/abs/2611.17811)
 - Sutton, [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html), 2019
+- Faros Research, the review bottleneck with AI-written code: [The AI Productivity Paradox Report 2025](https://www.faros.ai/blog/ai-productivity-paradox-report-2025)
 
 **Projects I am (to some extent) involved in**
 
@@ -545,28 +550,15 @@ appendix.
 
 ::: {.column width="49%"}
 ::: links
-**AI in peer review**
+**Also worth reading**
 
 - Thakkar et al., randomized LLM feedback to reviewers: [Nature Machine Intelligence 2026](https://doi.org/10.1038/s42256-026-01188-x)
-- Kim et al., a randomized experiment at ICML 2026: [arXiv 2609.19420](https://arxiv.org/abs/2609.19420)
-- Biswas et al., the AAAI-26 AI review pilot: [arXiv 2604.13940](https://arxiv.org/abs/2604.13940)
 - Zancanaro et al., LLM and human reviews compared blind in a cardiology journal: [EHJ Imaging Methods and Practice 2026](https://doi.org/10.1093/ehjimp/qyag097)
-- Russo Latona et al., the AI review lottery: [arXiv 2405.02150](https://doi.org/10.48550/arXiv.2405.02150)
 - Choi et al., invisible text injection: [JAMA Network Open 2026](https://doi.org/10.1001/jamanetworkopen.2025.52099)
-
-**Analysis and reproducibility**
-
 - Asher et al., do Claude Code and Codex p-hack? 2026: [replication archive](https://github.com/janetmalzahn/llm-phacking)
-- Xu and Yang, AI-assisted reanalysis at scale: [2026](https://yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf)
-- Kohler et al., agentic reproduction from the methods section: [arXiv 2604.21965](https://arxiv.org/abs/2604.21965)
-- Son et al., FLAWS, finding errors in papers: [arXiv 2511.21843](https://arxiv.org/abs/2511.21843)
-:::
-:::
-::::
 
-## Links: learning
+**Learning**
 
-::: {.small .tight}
 - [Anthropic Academy](https://anthropic.skilljar.com/), free courses: Building with the Anthropic SDK; Claude Code in Action
 - Hadley Wickham, [Using LLMs with ellmer](https://sites.google.com/view/dariia-mykhailyshyna/main/r-workshops-for-ukraine) (R Workshops for Ukraine), and its scripts, [github.com/hadley/workshop-llm-hackathon](https://github.com/hadley/workshop-llm-hackathon)
 - Paul Goldsmith-Pinkham, [Claude Code for applied economists](https://bcf.princeton.edu/events/paul-goldsmith-pinkham-mini-series-on-claude-code-for-applied-economists/) (Princeton, a mini-series)
@@ -574,3 +566,5 @@ appendix.
 - [reproai.org](https://reproai.org/): reproducibility and AI in research
 - Ethan Mollick, [One Useful Thing](https://www.oneusefulthing.org/), to stay current
 :::
+:::
+::::

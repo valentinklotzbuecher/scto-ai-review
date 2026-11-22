@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 530px" viewBox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. The product's repository, with the skills as its instructions; tools that read its files, run R and write logs; the agent, Claude Code or Codex on your subscription, whose model decides the next step, the agent and the tools passing steps and results back and forth in a loop until done. The repository and the tools sit in an isolated cloud VM, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Then the Agent SDK: the same agent, started from a script. Last: still in development, it runs the code, challenges its findings and works on synthetic data.">
+<svg class="dg" style="max-height: 530px" viewBox="0 0 885 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. The product's repository, with the skills as its instructions; tools that read its files, run R and write logs; the coding agent, Claude Code or Codex on your subscription: its model decides the next step, and it runs the code, challenges its findings and works on synthetic data. The agent and the tools pass steps and results back and forth in a loop until done. The repository and the tools sit in an isolated cloud VM, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Then the Agent SDK: the same agent, started from a script.">
   <defs>
     <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker>
     <marker id="m5s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E"/></marker>
@@ -16,13 +16,18 @@
   <line class="arrow" x1="318" y1="199" x2="358" y2="212" marker-start="url(#m5)" marker-end="url(#m5)"/>
   </g>
   <g class="fragment" data-fragment-index="2">
-  <rect class="model" x="635" y="165" width="130" height="160"/>
-  <text class="strong" x="700" y="206" font-size="21" text-anchor="middle">agent</text>
-  <text x="700" y="236" font-size="16" text-anchor="middle">its model</text>
-  <text x="700" y="258" font-size="16" text-anchor="middle">decides the</text>
-  <text x="700" y="280" font-size="16" text-anchor="middle">next step</text>
-  <text class="mono" x="700" y="346" font-size="12" text-anchor="middle">CLAUDE CODE, CODEX …</text>
-  <text class="mono" x="700" y="364" font-size="12" text-anchor="middle">ON YOUR SUBSCRIPTION</text>
+  <rect class="model" x="635" y="130" width="240" height="195"/>
+  <text class="strong" x="655" y="165" font-size="21">coding agent</text>
+  <text x="655" y="194" font-size="16">its model decides</text>
+  <text x="655" y="215" font-size="16">the next step</text>
+  <circle cx="660" cy="245" r="3.5" fill="#5A317E"/>
+  <text x="672" y="250" font-size="16">runs the code</text>
+  <circle cx="660" cy="271" r="3.5" fill="#5A317E"/>
+  <text x="672" y="276" font-size="16">challenges its findings</text>
+  <circle cx="660" cy="297" r="3.5" fill="#5A317E"/>
+  <text x="672" y="302" font-size="16">works on synthetic data</text>
+  <text class="mono" x="755" y="346" font-size="12" text-anchor="middle">CLAUDE CODE, CODEX …</text>
+  <text class="mono" x="755" y="364" font-size="12" text-anchor="middle">ON YOUR SUBSCRIPTION</text>
   <line class="arrow" x1="633" y1="232" x2="514" y2="232" marker-end="url(#m5)"/>
   <line class="arrow" x1="512" y1="312" x2="631" y2="312" marker-end="url(#m5)"/>
   <path class="arrow loop" d="M 602 262 A 14 14 0 1 1 588 248" marker-end="url(#m5s)"/>
@@ -45,18 +50,9 @@
   <text class="mono" x="210" y="410" font-size="11" text-anchor="middle">PUSHED TO A BRANCH</text>
   </g>
   <g class="fragment" data-fragment-index="5">
-  <rect class="ghost" x="470" y="384" width="295" height="54"/>
-  <text class="strong" x="488" y="406" font-size="17">Agent SDK</text>
-  <text class="soft" x="488" y="427" font-size="14">the same agent, started from a script</text>
-  </g>
-  <g class="fragment" data-fragment-index="6">
-  <text class="accent" x="548" y="40" font-size="17">still in development</text>
-  <circle cx="553" cy="64" r="3.5" fill="#5A317E"/>
-  <text x="564" y="69" font-size="16">runs the code</text>
-  <circle cx="553" cy="88" r="3.5" fill="#5A317E"/>
-  <text x="564" y="93" font-size="16">challenges its findings</text>
-  <circle cx="553" cy="112" r="3.5" fill="#5A317E"/>
-  <text x="564" y="117" font-size="16">works on synthetic data</text>
+  <rect class="ghost" x="580" y="384" width="295" height="54"/>
+  <text class="strong" x="598" y="406" font-size="17">Agent SDK</text>
+  <text class="soft" x="598" y="427" font-size="14">the same agent, started from a script</text>
   </g>
 </svg>
 ```

@@ -18,7 +18,7 @@ recommendation.
 |---|---|---|
 | 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `stats-document-check`, a skill for Claude chat |
 | 2 | [An API review prototype](tools/2-api/README.md) | my review prototype, a Quarto document (`review.qmd`): settings in R, the request through the Anthropic Python SDK, every run kept, the review rendered with its prompt and cost |
-| 3 | [In development: agentic review](tools/3-agent/README.md) | Claude Code on the web with the review skills as its instructions; still in development |
+| 3 | [Agentic review](tools/3-agent/README.md) | Claude Code on the web with the review skills as its instructions; still in development |
 
 - **The services**, [`tools/services/`](tools/services/README.md): the list, paid, free
   and open source, with sources; templates for a script of your own.
@@ -35,10 +35,12 @@ version 0.4.0 (tag `skills-v0.4.0`).
 
 ## The talk
 
-It opens with Ruslan Rust's post (from now on no peer review without AI; for clinical
-trials, human-only review dangerous) and his preprint, in which every one of 15 language
-models found more of the errors inserted into trial reports than human peer reviewers
-had, then King and Worthington's finding that AI reviews beat paid expert reviews. It
+It opens with a question, how well AI reviews research papers: Ruslan Rust's preprint,
+in which every one of 15 language models found more of the errors inserted into trial
+reports than human peer reviewers had, and King and Worthington's finding that AI
+reviews beat paid expert reviews; then Rust's post (from now on no peer review without
+AI; for clinical trials, human-only review dangerous). Its notes add that review must
+also keep up with code that AI writes. It
 turns to our internal consistency review (methods, numbers and code; errors in code are
 not visible in the text), leaving open whether AI belongs before the second statistician
 or alongside. Then three
@@ -52,18 +54,18 @@ Refine and the open-source Reviewer 2, which I was planning to fork. Then the bi
 Reviewer 2 for something better and free, Sutton's quote, the question how much more to
 build when tools become obsolete this fast, and the skills Francis released the same
 day. What I did based on that: a coding agent in the product's repository, such as Claude Code or Codex, with skills
-adapted from his as its instructions and the Agent SDK to start it from a script, and
-what it adds over the script: it runs the code, challenges its findings, works on
-synthetic data and keeps its scripts and results under version control, ready for a
-replication package; still in development. One slide
+adapted from his as its instructions and the Agent SDK to start it from a script, and,
+in the agent's box, what it adds over the script: it runs the code, challenges its
+findings and works on synthetic data; a first shot. One slide
 shows how to try the chat skill, the review document and the agent. It ends on one
-slide of items to discuss; the appendix holds the links. The talk takes about ten
+slide of items to discuss, followed by two slides of links. The talk takes about ten
 minutes, which leaves the rest of the slot for the discussion.
 
 ## Contents
 
 ```
-slides/index.qmd        the deck (Quarto reveal.js), with speaker notes; index.html rendered
+slides/index.qmd        the deck (Quarto reveal.js), with speaker notes; index.html rendered,
+                        one self-contained file; index.pdf, a printed backup
 slides/handout.qmd      the handout (Quarto HTML); handout.html rendered
 slides/diagrams/        the diagrams as inline SVG, included by the deck and the handout
 slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: ivory,
@@ -95,6 +97,12 @@ quarto render demo-crt/sse/DEMO-CRT_SSE.qmd  # reads the saved results; runs no 
 Rscript demo-crt/answer-key.R              # needs lme4; about 20 minutes on four cores
 Rscript archive/assets/make-figures.R      # the earlier deck's power figure (base R)
 ```
+
+`slides/index.html` is one self-contained file: fonts, figures, icons and scripts are
+embedded and it fetches nothing, so it can be shared on its own and opens in a browser
+offline. `slides/index.pdf` is the backup, each slide's last step on one page; to print
+it again, open `slides/index.html?print-pdf` in Chrome and save it as PDF, with no
+margins and background graphics on.
 
 The rendered PDFs in `demo/sse/` and `demo-crt/sse/` are the ones every tool reviews.
 If you re-render one, re-run every tool on the new PDF.
@@ -132,6 +140,11 @@ If you re-render one, re-run every tool on the new PDF.
 - Certify (Gary King, Yiqing Xu and Leo Yang, Harvard), replication certificates run by
   your own AI assistant: certify.iq.harvard.edu, quoted in `material/README.md`; in the
   discussion slide's notes, the handout and `tools/3-agent`
+- The review bottleneck, in the notes of the intro slide: Faros Research, *The AI
+  Productivity Paradox Report 2025*, 23 July 2025,
+  faros.ai/blog/ai-productivity-paradox-report-2025 (telemetry from over 10,000
+  developers in 1,255 teams; within each company, the change from the two quarters with
+  the lowest AI adoption to the two with the highest); quoted in `material/README.md`
 - Rich Sutton, *The Bitter Lesson*, 13 March 2019,
   incompleteideas.net/IncIdeas/BitterLesson.html
 - Reviewer 2: github.com/isitcredible/reviewer2 (README: 30+ chained calls, 15–45
@@ -180,5 +193,8 @@ If you re-render one, re-run every tool on the new PDF.
   llm-uj-research-eval), and Brodeur et al. in PNAS 2026 (doi:10.1073/pnas.2524747123,
   title and issue from Crossref); every link was checked to answer on 22 November 2026 (the
   journal pages through their DOI, the GitHub repositories through GitHub's search)
+- Icons for the three approaches (overview, crumbs, "Try it yourself"): Bootstrap Icons
+  1.11.3, chat-dots, file-earmark-code and robot (MIT licence, The Bootstrap Authors),
+  as inline paths in `slides/diagrams/_overview.qmd` and `slides/website.scss`
 - Costs and times of the demo runs: `demo/runs/`, each with the session record
   summarised in its `SCORE.md`

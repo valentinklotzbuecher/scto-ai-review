@@ -1,7 +1,6 @@
 ```{=html}
 <svg class="dg" style="max-height: 230px" viewBox="0 0 760 200" role="img" aria-label="You upload the PDF to a third-party service, which runs a fixed chain of 30 or more model calls with prompts written by the vendor and returns a report.">
   <defs><marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
-  <g class="fragment" data-fragment-index="1">
   <path class="doc" d="M0 62 h46 l16 16 v62 h-62 z"/><path class="fold" d="M46 62 v16 h16"/>
   <text class="mono" x="31" y="118" font-size="15" text-anchor="middle">PDF</text>
   <line class="arrow" x1="72" y1="101" x2="128" y2="101" marker-end="url(#m3)"/>
@@ -19,11 +18,8 @@
   <rect class="model" x="454" y="76" width="96" height="50"/>
   <text x="502" y="108" font-size="19" text-anchor="middle">call 30+</text>
   <text class="soft" x="370" y="160" font-size="17" text-anchor="middle">fixed steps and prompts, written by the vendor</text>
-  </g>
-  <g class="fragment" data-fragment-index="2">
   <line class="arrow" x1="605" y1="101" x2="642" y2="101" marker-end="url(#m3)"/>
   <rect class="out" x="648" y="71" width="104" height="60"/>
   <text x="700" y="108" font-size="22" text-anchor="middle">report</text>
-  </g>
 </svg>
 ```

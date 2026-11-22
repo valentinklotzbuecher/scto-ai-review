@@ -1,4 +1,4 @@
-# 3 · In development: agentic review
+# 3 · Agentic review
 
 An agent works in a copy of the product's repository. It reads the files, runs the R
 code, recomputes the numbers, re-runs the simulations, has its findings challenged by

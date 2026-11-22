@@ -23,7 +23,7 @@
   <text x="567" y="123" font-size="21" text-anchor="middle">answer</text>
   </g>
   <g class="fragment" data-fragment-index="3">
-  <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please review this using /stats-document-check.”</text>
+  <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please review this using <tspan class="hl">/stats-document-check</tspan>.”</text>
   <path class="tool" d="M200 200 h60 l10 12 h216 v62 h-286 z"/>
   <text class="file" x="343" y="240" font-size="18" text-anchor="middle">stats-document-check</text>
   <text class="soft" x="343" y="264" font-size="16" text-anchor="middle">SKILL.md · references · scripts</text>

@@ -32,7 +32,7 @@ for the API, and the review skills for the agent, still in development; and ther
 list of review services. It is my own exploration, not a DKF
 service or recommendation.
 
-## Models find more errors than reviewers did
+## How well does AI review research papers?
 
 In the largest experiment of its kind, Schroter and colleagues gave 607 reviewers of a
 general medical journal three reports of randomised trials with 9 major and 5 minor
@@ -251,7 +251,7 @@ A shared set of test cases, written by different people and kept out of every re
 would let anyone measure any tool, and every new model; the [demo](#the-demo) is a first
 one.
 
-### [03]{.num}In development: agentic review
+### [03]{.num}Agentic review
 
 ::: dg-wrap
 {{< include diagrams/_agent.qmd >}}
