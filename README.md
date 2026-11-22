@@ -199,8 +199,7 @@ If you re-render one, re-run every tool on the new PDF.
   1.11.3, chat-dots, file-earmark-code and robot (MIT licence, The Bootstrap Authors),
   as inline paths in `slides/diagrams/_overview.qmd` and `slides/website.scss`
 - The logo on the title slide, `slides/assets/third-pair-of-eyes.svg`: drawn for this
-  kit, in code; its wordmark is outlines of IBM Plex Mono Medium (SIL Open Font
-  License). The same file is the logo of the skills' repository
+  kit, in code. The same file is the logo of the skills' repository
 - The QR code to the kit, `slides/assets/qr-kit.svg`: made with segno 1.6.6 for
   https://github.com/valentinklotzbuecher/scto-ai-review (error correction M), its
   two-module border cropped from the viewBox so that the code's edge lines up with the
