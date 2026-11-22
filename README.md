@@ -130,8 +130,8 @@ If you re-render one, re-run every tool on the new PDF.
   research.google/blog/analyzing-technical-documents-with-deep-review/, quoted in
   `material/README.md`
 - King and Worthington's Figure 1 on the intro slide: cropped from page 6 of the version
-  of 28 October 2026 (the speaker's copy; noted in `material/README.md`); no licence is
-  stated, so ask the authors before the kit goes public
+  of 28 October 2026 (the speaker's copy; noted in `material/README.md`); the paper
+  states no licence, and the figure is shown with its source, as part of the talk
 - Liu, Guo, Hartline and Hullman, *Learning Checklists to Reduce Lottery Effects in
   Scientific Peer Review*, arXiv:2610.28666, 14 October 2026 (CC BY 4.0, in `material/`),
   and Ghosh, Saim and Jiang, *AI Reviews Are Biased Towards the Appendix*,

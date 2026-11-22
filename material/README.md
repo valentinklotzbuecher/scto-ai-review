@@ -269,8 +269,8 @@ Peer Reviews at Their Best: Evidence and Policy Choices*, dated 28 October 2026,
 dpi. Caption: "The figure summarizes evaluations of 134 pairs of human and AI reviews of
 the same manuscript. The top reports overall evaluations by AI and by three (human)
 editors of major journals; the bottom summarizes results for seven separate review
-characteristics." The paper states no licence: the figure is shown with its source, for
-the talk; ask the authors before the kit goes public. The PDF is not kept here.
+characteristics." The paper states no licence: the figure is shown with its source, as
+part of the talk. The PDF is not kept here.
 
 ## Two arXiv papers for the discussion (read 22 November 2026)
 
