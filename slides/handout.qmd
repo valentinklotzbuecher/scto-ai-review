@@ -148,6 +148,12 @@ and cost. In R with ellmer, in Python with the provider's SDK; paid per use with
 key, under the API's terms. The price is code that talks to one provider at one point
 in time.
 
+What is in the starter, `tools/3-api`:
+
+::: dg-wrap
+{{< include diagrams/_script-layers.qmd >}}
+:::
+
 And because it is a script, you can test it: run it on test cases with known answers
 and score every run. In R, the [vitals](https://vitals.tidyverse.org) package does this
 next to ellmer; it is a port of Inspect, a Python framework for evaluating language
@@ -158,14 +164,14 @@ as the demo below.
 Starter: [tools/3-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-api): `review.R` (ellmer) and `review.py` (Anthropic SDK), the prompt and the answer format
 :::
 
-### [04]{.num}An agent in the repository
+### [04]{.num}A coding agent in the repository
 
 ::: dg-wrap
 {{< include diagrams/_agent.qmd >}}
 :::
 
-The last step, with the skills as its instructions. Claude Code on the web works in an
-isolated cloud VM, with a copy of the product's repository and the review skills. You
+The last step: a coding agent, such as Claude Code or Codex, with the skills as its
+instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a copy of the product's repository and the review skills. You
 type one sentence. The model decides the next step, its tools read files, run R and
 write logs, and the result goes back, until it is done. So it does what no reader can:
 it runs the code, recomputes the numbers, re-runs the simulations, and has agents that
@@ -320,6 +326,12 @@ What the planning values support: with the stated two-sided 5% level the ANCOVA 
 80 evaluable participants per group, and with 20% loss to follow-up 100 per group, 200
 in total, against the SSE's 132. As planned, the trial has about 62% power for the
 two-sided test.
+
+The quick run's form, the first lines (the 5 November run, `demo/runs/2026-11-05_agent/`):
+
+::: {.shot}
+![](assets/consistency-review.png){fig-alt="Excerpt of the quick demo run's consistency review: all five Decision boxes ticked; general comments saying the planned 55 evaluable and 66 randomised participants per group do not give the stated 80% power, and that the ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the one-sided rejection rule, the noisy choice of N and the dropout allowance, with code lines and fixes." width="640"}
+:::
 
 One finding, traced: the first version of the key said 79 per group, treating the
 baseline as fixed. The agent's first review said 80: it computed the power with a random

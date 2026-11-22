@@ -40,22 +40,17 @@ models found more of the errors inserted into trial reports than human peer revi
 had, then King and Worthington's finding that AI reviews beat paid expert reviews. It
 then asks what this means for our internal review, where a second statistician checks
 the methods, numbers and code of sample size estimations, analysis plans and reports,
-and shows four ways I explored, each drawn as a diagram: a chat at maximum effort, with
-a slide on what is inside a skill (the real files of dkf-document-check, in the order
-the model reads them); review services, someone else's pipeline, paid, free or open
-source; your own pipeline, a script through the API in R (ellmer, with vitals to score
-it on test cases with known answers) or Python (the SDKs); and an agent in the product's
-repository, with the skills as its instructions and the Agent SDK to start it from a
-script, followed by what you choose for it: depth, data (none, synthetic, shared) and
-what you get, and by what it found on the demo, a test case with a known answer: all six
-planted issues, as did the chat with the skill, with the chat on its own and the script
-still to run. One slide shows
-how to try the script and the agent from this kit. It ends
-on one slide of items to discuss: signing off an AI-reviewed product, reviewing results
-rather than lines, the checks that stay with us, writing for an AI reader, replication
-certificates, building our own tools or waiting for the next model (Sutton's bitter
-lesson, with a backup slide in the appendix), and how juniors will learn to review. The
-talk takes about ten minutes, which leaves the rest of the slot for the discussion.
+and shows four ways I explored: a chat at maximum effort, with a slide on what is inside
+a skill; review services, someone else's pipeline; and the two tools of this kit, each
+shown in practice. Your own script through the API, in R (ellmer, with vitals to score
+it on test cases) or Python: its prompt, its answer format and what you keep. A coding
+agent in the product's repository, such as Claude Code or Codex, with the skills as its
+instructions and the Agent SDK to start it from a script: what you choose (depth; data,
+including synthetic), the review form it writes, and its result on the test case (all
+six planted issues in 34 minutes). One slide shows how to try both. It ends on one slide
+of items to discuss; the full results table and Sutton's bitter lesson are backup slides
+in the appendix. The talk takes about ten and a half minutes, which leaves the rest of
+the slot for the discussion.
 
 ## Contents
 

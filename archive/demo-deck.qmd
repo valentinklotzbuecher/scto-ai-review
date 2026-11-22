@@ -396,7 +396,7 @@ the end.)
 :::
 
 ::: {.column width="60%" .screenshot}
-![](assets/consistency-review.png){fig-alt="Excerpt of the quick demo run's consistency review: all five Decision boxes ticked; general comments saying the planned 55 evaluable and 66 randomised participants per group do not give the stated 80% power, and that the ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the one-sided rejection rule, the noisy choice of N and the dropout allowance, with code lines and fixes."}
+![](../slides/assets/consistency-review.png){fig-alt="Excerpt of the quick demo run's consistency review: all five Decision boxes ticked; general comments saying the planned 55 evaluable and 66 randomised participants per group do not give the stated 80% power, and that the ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the one-sided rejection rule, the noisy choice of N and the dropout allowance, with code lines and fixes."}
 
 ::: {.tiny .muted}
 The quick run's form, excerpt: 3 major and 3 minor issues, about 1,100 words.

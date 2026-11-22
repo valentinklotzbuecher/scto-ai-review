@@ -290,6 +290,10 @@ $code-color: $ink;
 }
 .reveal .opts .o { font-size: 0.68em; line-height: 1.3; margin: 0.45em 0 0.55em 0; }
 .reveal .opts .k { display: block; font-weight: 700; color: $mauve; }
+.reveal .opts.v { grid-template-columns: 1fr; gap: 0.5em 0; margin-top: 0.2em; }
+.reveal .opts.v .o { margin: 0.3em 0 0.4em 0; }
+/* The review form: a plate photograph, kept short enough for the line below it */
+.reveal .shot.form img { max-height: 400px; width: auto; max-width: 100%; }
 
 /* Scope line under the first heading */
 .reveal .scope { font-size: 0.8em; color: $ink-soft; margin: -0.1em 0 0.4em 0; }

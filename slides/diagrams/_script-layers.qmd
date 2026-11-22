@@ -1,0 +1,25 @@
+```{=html}
+<svg class="dg" viewBox="0 0 1100 392" role="img" aria-label="Inside the script starter in tools/3-api, in three layers. The prompt, prompt.md: a senior biostatistician's consistency review, in the order methods, numbers, code against text, interpretation. The answer, schema.json, the same format every time: a decision, a summary, the issues, and what needs the code run; each issue with severity, area, location, problem, consequence, fix, and whether it was verified. What you keep: issues.csv, one row per issue across products, and runs.csv, with model, effort, prompt, tokens and cost of every run.">
+  <text class="file" x="0" y="20" font-size="19">Rscript review.R product.pdf</text>
+  <rect class="model" x="0" y="36" width="1100" height="102"/>
+  <text class="mono" x="20" y="70" font-size="14">THE PROMPT</text>
+  <text class="strong" x="250" y="72" font-size="22">prompt.md: a senior biostatistician's review</text>
+  <text x="250" y="104" font-size="18">in this order: 1 Methods · 2 Numbers · 3 Code against text · 4 Interpretation</text>
+  <text class="soft" x="250" y="128" font-size="17">“You cannot run the code: list the questions that need it to be run.”</text>
+  <g class="fragment" data-fragment-index="1">
+  <rect class="tool" x="0" y="152" width="1100" height="108"/>
+  <text class="mono" x="20" y="186" font-size="14">THE ANSWER</text>
+  <text class="strong" x="250" y="188" font-size="22">schema.json: the same format every time</text>
+  <text x="250" y="218" font-size="18">a decision · a summary · the issues · what needs the code run</text>
+  <text x="250" y="243" font-size="18">each issue: severity · area · location · problem · consequence · fix · verified</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
+  <rect class="box" x="0" y="274" width="1100" height="108"/>
+  <text class="mono" x="20" y="308" font-size="14">WHAT YOU KEEP</text>
+  <text class="file" x="250" y="310" font-size="17">issues.csv</text>
+  <text x="400" y="310" font-size="18">one row per issue, across products</text>
+  <text class="file" x="250" y="350" font-size="17">runs.csv</text>
+  <text x="400" y="350" font-size="18">model, effort, prompt, tokens and cost of every run</text>
+  </g>
+</svg>
+```

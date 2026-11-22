@@ -8,7 +8,7 @@ what the human reviewer gets. Kept for the demo; the talk is now `../slides/inde
 demo-deck.qmd, .html   the deck (Quarto reveal.js), rendered self-contained
 reveal_lilac.scss      its base theme; talk.scss on top
 assets/                its own figures: the SSE's page 2, the power figure and the
-                       script that draws it, the review-form screenshot
+                       script that draws it (the review-form screenshot is in ../slides/assets/)
 ```
 
 ```bash
@@ -32,7 +32,8 @@ Images on its slides:
   (`assets/demo-sse-page2.png`: `pdftoppm -r 220 -f 2 -l 2 -png`, cropped from the top
   of the page to "132 in total"). Re-render the SSE, and redo the crop.
 - "What the reviewer gets" shows the 5 November run's `CONSISTENCY_REVIEW.html`
-  (`assets/consistency-review.png`: Chromium at 900 px wide, light colour scheme, twice
+  (`../slides/assets/consistency-review.png`, also on the talk's "The agent in practice":
+  Chromium at 900 px wide, light colour scheme, twice
   the pixel density, cropped from Decision to the first major issue).
 - The power figure is drawn by `assets/make-figures.R` (base R) from the SSE's own
   simulation; the committed figure used Liberation Sans as the default sans-serif font.

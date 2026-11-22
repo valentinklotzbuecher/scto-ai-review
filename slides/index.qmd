@@ -101,7 +101,7 @@ Strongest model, maximum effort
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[2:45–3:45] The simplest way is what the preprint tested. Paste the PDF and the source
+[2:45–3:30] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
@@ -125,7 +125,7 @@ Francis (research_skills, MIT licence).
 {{< include diagrams/_skill-layers.qmd >}}
 
 ::: notes
-[3:45–4:30] What a skill is, concretely: a folder. Mine for the chat is called
+[3:30–4:15] What a skill is, concretely: a folder. Mine for the chat is called
 dkf-document-check. The model always sees only its name and description, which says
 when to use it: when asked to check, review or consistency-review a statistical
 document. [click] When a task matches, it reads SKILL.md, the checklist: the rules,
@@ -159,7 +159,7 @@ the skills Joe Francis released; the agent's skills are built the same way.
 ```
 
 ::: notes
-[4:30–5:30] Others have built whole review pipelines and offer them as services. You
+[4:15–5:00] Others have built whole review pipelines and offer them as services. You
 upload the PDF. [click] Behind it run fixed chains of model calls, with prompts the
 vendor wrote; Reviewer 2's first stage, The Breaker, takes a sledgehammer to the text,
 and later stages filter out what the aggression invents. [click] You get a report.
@@ -179,7 +179,7 @@ third party. Or you build your own.
 {{< include diagrams/_api.qmd >}}
 
 ::: notes
-[5:30–6:30] Your own pipeline: a script through the API, for many documents. [click] The
+[5:00–6:00] Your own pipeline: a script through the API, for many documents. [click] The
 script, in R with the ellmer package or in Python with the providers' SDK libraries,
 sends each document with the same system prompt; mine reads like a senior reviewer's
 checklist, the statistical methods first, then the numbers, the code and the
@@ -193,7 +193,28 @@ evaluating language models. So you compare prompts, models and effort settings o
 you know. The price is code that talks to one provider at one point in time.
 :::
 
-## An agent in the repository
+## The script in practice
+
+::: crumbs
+<span>Chat</span><span>Services</span><span class="on">Script</span><span>Agent</span>
+:::
+
+{{< include diagrams/_script-layers.qmd >}}
+
+::: notes
+[6:00–7:00] What is in the script starter, in the kit's tools/3-api. One command per
+product, in R or in Python. The prompt: a senior biostatistician's consistency review,
+in a fixed order: the methods first, then the numbers, the code against the text, and
+the interpretation; and since it cannot run the code, it lists the questions that need
+a run. [click] The answer comes back in the same format every time: a decision, a
+summary, the issues, each with severity, area, location, problem, consequence, fix and
+whether it was verified by arithmetic. [click] What you keep: a table with one row per
+issue across all products, and a log of every run with the model, the effort, which
+prompt, the tokens and the cost. That is what makes it testable: run it on test cases
+with known answers, compare prompts and models, keep what works.
+:::
+
+## A coding agent in the repository
 
 ::: crumbs
 <span>Chat</span><span>Services</span><span>Script</span><span class="on">Agent</span>
@@ -202,12 +223,12 @@ you know. The price is code that talks to one provider at one point in time.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[6:30–8:00] The last step: an agent working in the product's repository, here Claude
-Code on the web. The skills come back as its instructions: what you type is one
+[7:00–8:30] The last step: a coding agent working in the product's repository, here
+Claude Code on the web; Codex and others work the same way. The skills come back as its instructions: what you type is one
 sentence, "review the product with dkf-review, then write the consistency review"; the
 skills hold the rest. It runs in an isolated cloud machine, with a copy of the
 repository and the skills. [click] It has tools: read files, run the R code, write logs.
-[click] Claude, the model, decides the next step; the tools carry it out, and the result
+[click] The model decides the next step; the tools carry it out, and the result
 comes back. [click] Again and again, until it is done. So it does what no reader can: it
 runs the code, recomputes the numbers and re-runs the simulations, and agents that did
 not write a finding challenge it. [click] The output is a draft of the
@@ -220,103 +241,62 @@ guardrails in code. That runs on an API key, billed per token; for one review yo
 need it (appendix).
 :::
 
-## The agent: what you choose
+## The agent in practice
 
 ::: crumbs
 <span>Chat</span><span>Services</span><span>Script</span><span class="on">Agent</span>
 :::
 
-::: scope
-In the job's assignment, with the product, its protocol and SAP, and your questions:
-:::
-
+:::: {.columns}
+::: {.column width="40%"}
 ```{=html}
-<div class="opts">
+<div class="opts v">
   <div>
     <div class="h">Depth</div>
     <div class="o"><span class="k">quick</span>two agents, for a short SSE</div>
     <div class="o"><span class="k">standard</span>an agent per stage, and a challenge</div>
     <div class="o"><span class="k">full</span>adds an audit</div>
   </div>
-  <div class="fragment" data-fragment-index="1">
+  <div>
     <div class="h">Data</div>
     <div class="o"><span class="k">none</span>documents and code</div>
     <div class="o"><span class="k">synthetic</span>dummy data, so the code runs</div>
     <div class="o"><span class="k">shared</span>patient data, with a clearance</div>
   </div>
-  <div class="fragment" data-fragment-index="2">
-    <div class="h">You get</div>
-    <div class="o"><span class="k">the form</span>the DKF consistency review</div>
-    <div class="o"><span class="k">comments</span>in a copy of the .qmd</div>
-    <div class="o"><span class="k">logs</span>behind every number</div>
-  </div>
 </div>
 ```
+:::
 
-::: {.fragment fragment-index=3 .scope}
-Twelve clinical modules: sample size, simulation, estimand, RCT, missing data,
-time-to-event, multiplicity, regression, observational, prediction, Bayesian, small
-samples.
+::: {.column width="60%" .fragment fragment-index=1}
+```{=html}
+<div class="shot form"><img src="assets/consistency-review.png" alt="Excerpt of the quick demo run's consistency review: all five Decision boxes ticked; general comments saying the planned 55 evaluable and 66 randomised participants per group do not give the stated 80% power, and that the ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the one-sided rejection rule, the noisy choice of N and the dropout allowance, with code lines and fixes."></div>
+```
+:::
+::::
+
+::: {.fragment fragment-index=2 .punchline}
+On the test case: all six planted issues, in 34 minutes, about $10.
 :::
 
 ::: notes
-[8:00–9:00] What you choose for the agent, in the job's assignment file, next to the
-product, the documents it depends on, such as the protocol and the SAP, and your
-questions to the reviewer. The depth: quick is two agents, for a short SSE or a
-re-review; on the demo it took 34 minutes. Standard is one agent per stage, and a fresh
-agent challenges every finding. Full adds an audit, for high-risk products. [click] The
-data: by default none, only documents and code. Synthetic: the agent builds dummy data
-from the code's data contract, or from a codebook you make locally, so the code runs
-without patient data; that shows that the code runs and does what the text says, and
-that its estimators recover known effects, but never a printed number. Shared:
-patient-level data, only with a recorded clearance. [click] What you get: the DKF
-consistency-review form with the decision boxes filled in, REVIEW comments in a copy of
-the Quarto source, and a log behind every number. [click] And twelve clinical modules
-come in when the product needs them.
-:::
-
-## A test case with a known answer
-
-::: scope
-A synthetic sample size estimation of two pages with six planted issues: two in the
-text, two only in the code, two that need a calculation or a re-run.
-:::
-
-| | Found | Consequence stated | Time | Cost |
-|:---|:-:|:-:|:-:|:-:|
-| Chat | · | · | · | · |
-| Chat with the skill | 6 of 6 | 5 of 5 | — | — |
-| Your own script | · | · | · | · |
-| Agent, quick | 6 of 6 | 5 of 5 | 34 min | $10 |
-| Agent, standard | 6 of 6 | 5 of 5 | 3.4 h | $72 |
-
-::: {.tiny .muted}
-· not yet run; — not recorded. Quick: start to finished form; standard: model time.
-Cost at API list prices; all runs were on a subscription. Not a blind test: the skills
-and the test case were written in the same week.
-:::
-
-::: {.fragment .punchline}
-All six found, and for the five that change the sample size or the power, by how much.
-:::
-
-::: notes
-[9:00–9:45] Does it work? I wrote a test case with a known answer: a synthetic sample
-size estimation of two pages, with six planted issues, two in the text, two only in
-the code, and two that need a calculation or a re-run. The agent found all six, in
-every run, and so did the chat with the skill. [click] And for the five that change the
-sample size or the power, they said by how much: at the correlation the code uses, the
-design as written needs 80 evaluable participants per group, not 55. At quick depth
-the agent took 34 minutes from start to the finished form, about ten dollars at API
-list prices, on the subscription; the first run, at standard depth, three and a half
-hours of model time, and it caught an error in my own answer key. The chat with the
-skill never ran the product's code: its own arithmetic and small simulations were
-enough here, because every planted issue can be derived from the print and the
-source. A case where an error shows only when the code runs would separate the two.
-Not a blind test: I wrote the skills and the test case in the same week, and the
-skills already describe two of the planted issue types. The chat on its own and the
-script come next on this table. That is what test cases are for: every new tool and
-every new model is scored on the same case.
+[8:30–9:45] In practice you choose two things in the job's assignment, next to the
+product, its protocol and SAP, and your questions. The depth: quick is two agents, for a
+short SSE or a re-review; standard is one agent per stage, and a fresh agent challenges
+every finding; full adds an audit, for high-risk products. And the data: none by
+default, only documents and code; synthetic, dummy data built from the code or from a
+codebook you make locally, so the code runs without patient data, which shows that the
+code runs and does what the text says, but never a printed number; shared, patient data,
+only with a recorded clearance. Twelve clinical modules come in when the product needs
+them. [click] What you get: the DKF consistency-review form, here from the quick run on
+my test case, with the decision boxes filled in, the general comments, and each issue
+with where it is, its numbers and a fix; plus REVIEW comments in a copy of the Quarto
+source and a log behind every number. [click] The test case is a two-page sample size
+estimation with six planted issues. Every agent run found all six and said by how much
+the five that matter change the sample size or the power; the quick run took 34
+minutes from start to finished form, about ten dollars at API list prices, on the
+subscription. The chat with the skill found all six too, without running the product's
+code. Not a blind test: I wrote the skills and the test case in the same week. The full
+table is in the appendix.
 :::
 
 ## Try it yourself
@@ -425,6 +405,50 @@ links are in the appendix.
 :::
 
 # Appendix {.divider}
+
+## A test case with a known answer
+
+::: scope
+A synthetic sample size estimation of two pages with six planted issues: two in the
+text, two only in the code, two that need a calculation or a re-run.
+:::
+
+| | Found | Consequence stated | Time | Cost |
+|:---|:-:|:-:|:-:|:-:|
+| Chat | · | · | · | · |
+| Chat with the skill | 6 of 6 | 5 of 5 | — | — |
+| Your own script | · | · | · | · |
+| Agent, quick | 6 of 6 | 5 of 5 | 34 min | $10 |
+| Agent, standard | 6 of 6 | 5 of 5 | 3.4 h | $72 |
+
+::: {.tiny .muted}
+· not yet run; — not recorded. Quick: start to finished form; standard: model time.
+Cost at API list prices; all runs were on a subscription. Not a blind test: the skills
+and the test case were written in the same week.
+:::
+
+::: {.fragment .punchline}
+All six found, and for the five that change the sample size or the power, by how much.
+:::
+
+::: notes
+Backup for "The agent in practice". Does it work? I wrote a test case with a known answer: a synthetic sample
+size estimation of two pages, with six planted issues, two in the text, two only in
+the code, and two that need a calculation or a re-run. The agent found all six, in
+every run, and so did the chat with the skill. [click] And for the five that change the
+sample size or the power, they said by how much: at the correlation the code uses, the
+design as written needs 80 evaluable participants per group, not 55. At quick depth
+the agent took 34 minutes from start to the finished form, about ten dollars at API
+list prices, on the subscription; the first run, at standard depth, three and a half
+hours of model time, and it caught an error in my own answer key. The chat with the
+skill never ran the product's code: its own arithmetic and small simulations were
+enough here, because every planted issue can be derived from the print and the
+source. A case where an error shows only when the code runs would separate the two.
+Not a blind test: I wrote the skills and the test case in the same week, and the
+skills already describe two of the planted issue types. The chat on its own and the
+script come next on this table. That is what test cases are for: every new tool and
+every new model is scored on the same case.
+:::
 
 ## The bitter lesson
 

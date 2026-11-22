@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 530px" viewBox="0 0 770 444" role="img" aria-label="Inside an isolated cloud VM: a copy of the repository with the skills as its instructions, and tools that read files, run R and write logs. Claude, outside the VM and on your subscription, decides the next step; the tools run it and send back the result, in a loop until done. The draft form and logs are pushed to a branch. Your computer is not connected. Last, the Agent SDK: the same agent, started from a script.">
+<svg class="dg" style="max-height: 530px" viewBox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. Inside an isolated cloud VM: a copy of the repository with the skills as its instructions, and tools that read files, run R and write logs. The model, outside the VM and on your subscription, decides the next step; the tools run it and send back the result, in a loop until done. The draft form and logs are pushed to a branch. Your computer is not connected. Last, the Agent SDK: the same agent, started from a script.">
   <defs>
     <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker>
     <marker id="m5s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E"/></marker>
@@ -28,10 +28,10 @@
   </g>
   <g class="fragment" data-fragment-index="2">
   <rect class="model" x="635" y="165" width="130" height="160"/>
-  <text class="strong" x="700" y="208" font-size="21" text-anchor="middle">Claude</text>
+  <text class="strong" x="700" y="208" font-size="21" text-anchor="middle">model</text>
   <text x="700" y="236" font-size="16" text-anchor="middle">decides the</text>
   <text x="700" y="258" font-size="16" text-anchor="middle">next step</text>
-  <text class="mono" x="700" y="346" font-size="12" text-anchor="middle">THE MODEL</text>
+  <text class="mono" x="700" y="346" font-size="12" text-anchor="middle">CLAUDE CODE, CODEX …</text>
   <text class="mono" x="700" y="364" font-size="12" text-anchor="middle">ON YOUR SUBSCRIPTION</text>
   <line class="arrow" x1="633" y1="232" x2="514" y2="232" marker-end="url(#m5)"/>
   <line class="arrow" x1="512" y1="312" x2="631" y2="312" marker-end="url(#m5)"/>
