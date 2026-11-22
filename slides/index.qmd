@@ -441,35 +441,44 @@ estimations with planted issues and an answer key, so you can score what they fi
 ## To discuss
 
 ::: {.tight}
-- What would you need to see before you sign a product an AI reviewed?
+- How should AI complement our review? For the author, the reviewer or both? How deep?
 - Review results, not lines?
-- Which checks stay with us: the estimand, the design?
-- Should we write our products for an AI reader?
+- What would you need to see before you sign a product an AI reviewed?
+:::
+
+::: group
+Thinking further ahead
+:::
+
+::: {.tight}
+- Should we write our products for AI readers?
 - A replication certificate with every product?
 - Build our own tools, or wait for the next model?
-- How will junior statisticians learn to review?
+- Implications for teaching: how to train staff, how fast to adopt?
 :::
 
 ::: notes
-[10:15–20:00] To discuss. What would you need to see before you sign a product an AI
-reviewed? Could our review become result-oriented: the AI goes through every line,
+[10:15–20:00] To discuss. First, here and now: how should AI complement our internal
+review? For whom: the author, as a check before the second statistician, the reviewer,
+alongside the review, or both? And how deep: one call that reads, or an agent that runs
+everything? Could our review become result-oriented: the AI goes through every line,
 every number and every re-run, and we check that it tested enough, that each chunk,
 section and analysis does what it says, and that the approach and the interpretation
 hold? Even the author of the skills I build on says the results come from robots and
-should be verified by humans. Which checks stay with us: the choice of estimand, the
-clinical relevance, the design? If an AI reads our products first, should we write them
-for it: the estimand in full, every assumption in the text and not only in the code,
-every number traceable to the code that makes it? Certify, from Gary King, Yiqing Xu and
-Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun a
-replication package on your computer, and certifies that rerunning the code produces
+should be verified by humans. And what would you need to see before you sign a product
+an AI reviewed? Then, thinking further ahead. If an AI reads our products first, should
+we write them for it: the estimand in full, every assumption in the text and not only in
+the code, every number traceable to the code that makes it? Certify, from Gary King,
+Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun
+a replication package on your computer, and certifies that rerunning the code produces
 the results to be published: should our products carry such a certificate? Should we
 build our own tools at all, after the bitter lesson? My own prototype dates with every
 new model, and my skills will too. What carries over to every new model: test cases with
 known answers, standards for what a review must check, rules for what data may go
-where. And how will junior statisticians
-learn to review, if the AI does the line-by-line work? The preprint's last author calls
-human-only review dangerous for clinical trials; is AI-only review? Thank you; the
-links are in the appendix.
+where. And the implications: for teaching, how will junior statisticians learn to review
+if the AI does the line-by-line work; how do we train our staff; and how fast should we
+adopt? The preprint's last author calls human-only review dangerous for clinical
+trials; is AI-only review? Thank you; the links are in the appendix.
 :::
 
 # Appendix {.divider}

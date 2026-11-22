@@ -200,6 +200,16 @@ $code-color: $ink;
 .reveal .columns pre { font-size: 0.68em; }
 .reveal .cmd pre { font-size: 0.74em; }
 .reveal .cmd div.sourceCode { width: calc(100% - 4px); }
+.reveal .group {
+  font-family: $font-family-monospace;
+  font-size: 0.5em;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: $ink-soft;
+  margin: 1.1em 0 0.3em 0;
+  padding-top: 0.6em;
+  border-top: 1px solid $hairline;
+}
 .reveal .where {
   font-family: $font-family-monospace;
   font-size: 0.58em;

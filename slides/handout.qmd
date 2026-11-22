@@ -328,7 +328,9 @@ issues and an answer key.
 The preprint's last author won't review without AI any more, and calls human-only review
 dangerous for clinical trials. And AI-only review?
 
-1. **What would you need to see before you sign a product an AI reviewed?**
+1. **How should AI complement our review?** For whom: the author, as a check before the
+   second statistician, the reviewer, alongside the review, or both? And how deep: one
+   call that reads, or an agent that runs everything?
 2. **Review results, not lines?** In a result-oriented review the AI goes through every
    line, every number and every re-run, and keeps its tests and logs. The human checks
    that the AI tested enough, that each chunk, section, preparation step and analysis
@@ -336,8 +338,11 @@ dangerous for clinical trials. And AI-only review?
    of the skills mine build on says: "When using them, you should remember that the
    results have been produced by robots and should be verified by humans" (Joe Francis
    on X, 26 October 2026).
-3. **Which checks stay with us?** The estimand, the clinical relevance, the design?
-4. **Should we write our products for an AI reader?** The estimand in full, every
+3. **What would you need to see before you sign a product an AI reviewed?**
+
+### Thinking further ahead
+
+4. **Should we write our products for AI readers?** The estimand in full, every
    assumption in the text and not only in the code, every number traceable to the code
    that makes it?
 5. **A replication certificate with every product?** Certify, from Gary King, Yiqing Xu
@@ -346,7 +351,9 @@ dangerous for clinical trials. And AI-only review?
    that rerunning the code produces the results to be published."
 6. **Build our own tools, or wait for the next model?** See the bitter lesson above:
    what carries over is test cases, review standards and data rules.
-7. **How will junior statisticians learn to review,** if the AI does the line work?
+7. **Implications for teaching: how to train staff, how fast to adopt?** If the AI does
+   the line work, how will junior statisticians learn to review? How do we train our
+   staff, and how fast should we adopt?
 
 ## The demo
 
