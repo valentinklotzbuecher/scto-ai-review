@@ -163,8 +163,8 @@ exact stop reason and a check that the model read the whole source. [click] One
 request, paid per use, under the API's commercial data terms. [click] Every run is
 saved, as Markdown and JSON, with its settings, its tokens and hashes of the prompt and
 the inputs, and never overwritten. [click] Rendering the document shows the latest
-review, with the prompt and the cost; for our SSEs, under a dollar fifty. [click] And that is the real reason to script it: you can test
-it. Run it on test cases with known answers and score every run; in R, the vitals
+review, with the prompt and the cost. [click] And that is the real reason to script
+it: you can test it. Run it on test cases with known answers and score every run; in R, the vitals
 package does this with ellmer, a port of Inspect, the Python framework for evaluating
 language models. So you compare prompts, models and effort settings on cases you know.
 The price is code that talks to one provider at one point in time.
