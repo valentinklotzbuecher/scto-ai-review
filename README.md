@@ -43,7 +43,8 @@ AI; for clinical trials, human-only review dangerous). Its notes add that review
 also keep up with code that AI writes. It
 turns to our internal consistency review (methods, numbers and code; errors in code are
 not visible in the text), leaving open whether AI belongs before the second statistician
-or alongside. Then three
+or alongside. Then a two-line puzzle from the demo, "Do these agree?": the text states a
+two-sided test, the simulation tests one-sided, and every recorded AI run found it. Then three
 approaches. A chat at maximum effort, and with a skill: the request as typed, and the
 folder it calls (SKILL.md, references, scripts). An API review prototype: my
 review prototype, a Quarto document that sends the product through the API (settings in R, the
@@ -56,9 +57,7 @@ build when tools become obsolete this fast, and the skills Francis released the 
 day. What I did based on that: a coding agent in the product's repository, such as Claude Code or Codex, with skills
 adapted from his as its instructions and the Agent SDK to start it from a script, and,
 in the agent's box, what it adds over the script: it runs the code, challenges its
-findings and works on synthetic data; a first shot. One slide shows one finding on the
-demo and how it was checked: the planted one-sided test, the review's words, the
-recomputation and the consequence. One slide
+findings and works on synthetic data; a first shot. One slide
 shows how to try the chat skill, the review document and the agent, first on the test
 cases, then on your own work. It ends on one
 slide of items to discuss, followed by two slides of links. The talk takes about ten
@@ -74,8 +73,9 @@ slides/diagrams/        the diagrams as inline SVG, included by the deck and the
 slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: ivory,
                         spruce-green ink, mauve; Zen Kaku Gothic New and IBM Plex Mono
 slides/handout.scss     the same style for the handout
-slides/assets/          the preprint's Fig. 1b, King and Worthington's Fig. 1, and the
-                        excerpt of the demo run's review; the posts are quoted as text
+slides/assets/          the preprint's Fig. 1b, King and Worthington's Fig. 1, the
+                        excerpt of the demo run's review and the QR code to the kit;
+                        the posts are quoted as text
 tools/                  one folder per way, each with a README; tools/2-api has the review
                         document
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
@@ -200,9 +200,12 @@ If you re-render one, re-run every tool on the new PDF.
 - Icons for the three approaches (overview, crumbs, "Try it yourself"): Bootstrap Icons
   1.11.3, chat-dots, file-earmark-code and robot (MIT licence, The Bootstrap Authors),
   as inline paths in `slides/diagrams/_overview.qmd` and `slides/website.scss`
-- The example slide, "One finding, and how it was checked": the quick agent run's Major
-  issue 1 (`demo/runs/2026-11-05_agent/CONSISTENCY_REVIEW.md`) and the chat run's D1
-  (`demo/runs/2026-11-20_chat_skill/SCORE.md`); the check's numbers (64.2% power at 55
-  per group, 80 evaluable per group) from `Rscript demo/answer-key.R`
+- The puzzle, "Do these agree?": Table 1, the text and the simulation code of
+  `demo/sse/DEMO-TKA_SSE.qmd`; found in every recorded run (`demo/runs/`: the quick agent
+  run's Major issue 1, the chat run's D1); the numbers (64% power at 55 per group, 80
+  per group two-sided) from `Rscript demo/answer-key.R`
+- The QR code to the kit, `slides/assets/qr-kit.svg`: made with segno 1.6.6 for
+  https://github.com/valentinklotzbuecher/scto-ai-review (error correction M) and
+  decoded back from the rendered slides before use
 - Costs and times of the demo runs: `demo/runs/`, each with the session record
   summarised in its `SCORE.md`

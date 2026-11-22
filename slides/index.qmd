@@ -103,12 +103,67 @@ show them, so that we can discuss this with some experience rather than in the a
 All of it is my own exploration, not something DKF runs or recommends.
 :::
 
+## Do these agree?
+
+:::: {.columns}
+::: {.column width="40%" .puzzle}
+::: where
+DEMO-TKA, the text
+:::
+
+-------------------- ------------------------
+Significance level   5%, two-sided
+Power                80%
+Sample size          55 evaluable per group
+-------------------- ------------------------
+:::
+
+::: {.column width="4%"}
+:::
+
+::: {.column width="56%"}
+::: where
+DEMO-TKA, the simulation
+:::
+
+```r
+alpha <- 0.05
+# …
+rejected[i] <- pt(t_arm, df = fit$df.residual,
+                  lower.tail = FALSE) < alpha
+```
+:::
+::::
+
+::: {.fragment}
+::: punchline
+The code tests one-sided: at 55 per group, the stated two-sided test has 64% power, not 80%.
+:::
+
+::: scope
+Every recorded AI run on this test case found it. Recomputed in R: two-sided, the trial
+needs 80 per group.
+:::
+:::
+
+::: notes
+[2:30–3:15] A small test before the tools. A sample size estimation, our test case: the
+text says a 5% significance level, two-sided, 80% power, and 55 evaluable participants
+per group. On the right, the code that simulates the power. Do they agree? [click] The
+code tests one-sided: the upper tail only, at 5%. At 55 per group the two-sided test the
+text states has 64% power, not 80%; two-sided, the trial needs 80 per group. That is the
+kind of thing a second statistician looks for, and every recorded AI run on this test
+case found it, in the chat and with the agent; we recomputed it in R. It is one of six
+issues planted in a two-page test case, the demo in the kit. So how do you get such a
+review? Three approaches.
+:::
+
 ## Three approaches
 
 {{< include diagrams/_overview.qmd >}}
 
 ::: notes
-[2:30–3:00] Three approaches. The chat: paste and ask. [click] A script through the
+[3:15–3:45] Three approaches. The chat: paste and ask. [click] A script through the
 API, here my review prototype; the review services, someone else's pipeline, come in
 as templates for it. [click] And then something different: an agent that runs the code in
 the repository.
@@ -123,7 +178,7 @@ the repository.
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[3:00–4:00] The simplest way is what the preprint tested. Paste the PDF and the source
+[3:45–4:45] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, and set its
 effort to maximum.
@@ -153,7 +208,7 @@ way.
 {{< include diagrams/_api.qmd >}}
 
 ::: notes
-[4:00–4:45] Instead of pasting by hand: the same through the API, from a Quarto
+[4:45–5:30] Instead of pasting by hand: the same through the API, from a Quarto
 document, my review prototype. This is how it started for me: in our Unjournal project
 we send research papers through the API and compare the model's evaluations with the
 expert evaluations The Unjournal commissions; the working paper is in the links. It takes the product's Quarto source and its PDF. Its
@@ -209,7 +264,7 @@ cfg <- list(
 ::::
 
 ::: notes
-[4:45–5:30] How it is set up. On the left, the first chunk: which files, the assignment,
+[5:30–6:15] How it is set up. On the left, the first chunk: which files, the assignment,
 that is the questions the review must answer, best a specific one, the model and the
 effort. [click] You put
 the product's Quarto source and PDF in the folder to_be_reviewed. [click] You set the
@@ -244,7 +299,7 @@ run is marked not completed.
 {{< include diagrams/_services.qmd >}}
 
 ::: notes
-[5:30–6:30] How could the prototype grow? Others have built such pipelines, with many
+[6:15–7:15] How could the prototype grow? Others have built such pipelines, with many
 more calls, and offer them as services; for the prototype, they are templates. There
 are more every month. Refine is the oldest: founded by Ben Golub, an economist at
 Northwestern, and Yann Calvó López; it is seen as the gold standard, and costs up to
@@ -316,7 +371,7 @@ How much more to build, when tools become obsolete this fast?
 ::::
 
 ::: notes
-[6:30–7:15] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
+[7:15–8:00] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
 offline: he decided it was obsolete, and something better and free was coming shortly.
 [click] The same day, he released the skills he begins his reviews with: point your
 agent at a folder with an article, its supplementary material and replication package,
@@ -338,7 +393,7 @@ based on that is the agent.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[7:15–9:00] So: a coding agent working in the product's repository, with skills adapted
+[8:00–9:45] So: a coding agent working in the product's repository, with skills adapted
 from Joe's as its instructions; here Claude Code on the web, and Codex and others work
 the same way. Three parts. The product's repository, with my review skills in it as the
 agent's instructions: what you type is one sentence, "review the product with
@@ -349,12 +404,12 @@ recomputes the printed numbers and re-runs the simulations, which no reader can.
 challenges its own findings: an agent that did not write a finding checks it, in a
 fresh context. And where patient data cannot be shared, it builds synthetic data from
 the code, so the code runs and does what the text says, though it never confirms a
-printed number. It runs on your Claude subscription, no API credits. [click] The
-repository and the tools sit in an isolated cloud machine, with the model outside; it
-never touches your computer. What it reads still goes to the provider, under your plan's
-terms. [click] Then the loop: the agent decides the next step, with its model, which
-runs at the provider; the tools carry it out, and the result comes back, again and
-again, until it is done. [click] The output is the review, with a log behind every
+printed number. It runs on your Claude subscription, no API credits. [click] Then the
+loop: the agent decides the next step, with its model, which runs at the provider; the
+tools carry it out, and the result comes back, again and again, until it is done.
+[click] The repository and the tools sit in an isolated cloud machine, with the model
+outside; it never touches your computer. What it reads still goes to the provider,
+under your plan's terms. [click] The output is the review, with a log behind every
 number, pushed to a branch. [click] And the same agent can be started from a script,
 with the Agent SDK in Python or TypeScript, or with claude -p from R: to run it over
 test cases with known answers, for batch runs, with guardrails in code. That runs on an
@@ -363,64 +418,6 @@ shot. The skills are at version 0.4.0, so far tested on one synthetic test case,
 two-page sample size estimation with six planted issues: every run found all six, and
 said by how much the five that matter change the sample size or the power; the quick
 run took 34 minutes, about ten dollars at API list prices. A second test case is next.
-:::
-
-## One finding, and how it was checked
-
-:::::: {.case}
-::::: {.row}
-:::: k
-The product
-::::
-:::: v
-DEMO-TKA, a synthetic SSE. Table 1: significance level "5%, two-sided". The
-simulation's rejection rule: `pt(t_arm, df = fit$df.residual, lower.tail = FALSE) < alpha`
-::::
-:::::
-
-::::: {.row .fragment}
-:::: k
-The review
-::::
-:::: v
-"The rejection rule … is a one-sided 5% test, while Table 1 and the Sample size section
-state '5%, two-sided'. … 55 per group gives 64.2% power."
-
-[The agent's quick run, Major issue 1; the chat skill found it too]{.src}
-::::
-:::::
-
-::::: {.row .fragment}
-:::: k
-Our check
-::::
-:::: v
-Recomputed in R, apart from any review: 64.2% power at 55 per group; 80 evaluable per
-group for 80%.
-::::
-:::::
-
-::::: {.row .fragment}
-:::: k
-The consequence
-::::
-:::: v
-A major issue: 80 evaluable per group, not 55. The fix is one line:\
-`2 * pt(abs(t_arm), …) < alpha`
-::::
-:::::
-::::::
-
-::: notes
-[9:00–9:45] What does a finding look like? One from the test case, the two-page
-synthetic sample size estimation. Table 1 says the significance level is 5%, two-sided;
-the simulation's rejection rule tests one-sided. [click] The review found it, gave the
-line, and sized it: at 55 per group the stated two-sided test has 64% power. Every
-recorded run found it, the agent's and the chat skill's. [click] The check stays with us:
-our own calculation, apart from any review, gives the same 64.2%, and 80 evaluable per
-group for 80% power. [click] So a major issue: 80 per group, not 55, and the fix is one
-line of code. That is one planted error in a test case we built; what counts is how it
-does on your own work.
 :::
 
 ## Try it yourself
@@ -500,6 +497,8 @@ the consistency review.
 ::::
 
 ::: {.fragment fragment-index=3}
+:::: {.columns}
+::: {.column width="84%"}
 ::: punchline
 Start on the test cases, then on your own work.
 :::
@@ -508,6 +507,12 @@ Start on the test cases, then on your own work.
 [**github.com/valentinklotzbuecher/scto-ai-review**](https://github.com/valentinklotzbuecher/scto-ai-review): the kit, a handout, two test cases\
 [**github.com/valentinklotzbuecher/stats_review**](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0): the review skills
 :::
+:::
+
+::: {.column width="16%"}
+![](assets/qr-kit.svg){.qr fig-alt="QR code for github.com/valentinklotzbuecher/scto-ai-review, the kit"}
+:::
+::::
 :::
 
 ::: notes
@@ -597,6 +602,8 @@ two slides.
 - **Open source:** [Reviewer 2](https://github.com/isitcredible/reviewer2) and [research_skills](https://github.com/isitcredible/research_skills), by Joe Francis
 - **Certify**, replication certificates run by your own AI assistant (King, Xu and Yang, Harvard): [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
 :::
+
+![](assets/qr-kit.svg){.qr .below .nostretch fig-alt="QR code for github.com/valentinklotzbuecher/scto-ai-review, the kit"}
 
 ## Links: studies and learning
 

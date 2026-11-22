@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 530px" viewBox="0 0 885 444" role="img" aria-label="A coding agent, such as Claude Code or Codex, in three parts: the product's repository, with the skills as its instructions; tools that read its files, run R and write logs; and the coding agent, Claude Code or Codex on your subscription: its model decides the next step, and it runs the code, challenges its findings and works on synthetic data. Then the isolated cloud VM around the repository and the tools, with the model outside it; your computer is not connected. Then the arrows: the agent and the tools pass steps and results back and forth in a loop until done. The review and the logs are pushed to a branch. Last, the Agent SDK: the same agent, started from a script.">
+<svg class="dg" style="max-height: 530px" viewBox="0 0 885 444" role="img" aria-label="A coding agent, such as Claude Code or Codex, in three parts: the product's repository, with the skills as its instructions; tools that read its files, run R and write logs; and the coding agent, Claude Code or Codex on your subscription: its model decides the next step, and it runs the code, challenges its findings and works on synthetic data. Then the arrows: the agent and the tools pass steps and results back and forth in a loop until done. Then the isolated cloud VM around the repository and the tools, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Last, the Agent SDK: the same agent, started from a script.">
   <defs>
     <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker>
     <marker id="m5s" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#5A317E"/></marker>
@@ -24,7 +24,7 @@
   <text x="672" y="302" font-size="16">works on synthetic data</text>
   <text class="mono" x="755" y="346" font-size="12" text-anchor="middle">CLAUDE CODE, CODEX …</text>
   <text class="mono" x="755" y="364" font-size="12" text-anchor="middle">ON YOUR SUBSCRIPTION</text>
-  <g class="fragment" data-fragment-index="1">
+  <g class="fragment" data-fragment-index="2">
   <rect class="frame" x="140" y="20" width="390" height="330"/>
   <text class="mono" x="156" y="46" font-size="13">ISOLATED CLOUD VM</text>
   <rect class="box" x="0" y="150" width="110" height="72"/>
@@ -34,7 +34,7 @@
   <text class="accent" x="125" y="193" font-size="22" text-anchor="middle">×</text>
   <text class="mono" x="55" y="246" font-size="12" text-anchor="middle">NO ACCESS</text>
   </g>
-  <g class="fragment" data-fragment-index="2">
+  <g class="fragment" data-fragment-index="1">
   <line class="arrow" x1="318" y1="199" x2="358" y2="212" marker-start="url(#m5)" marker-end="url(#m5)"/>
   <line class="arrow" x1="633" y1="232" x2="514" y2="232" marker-end="url(#m5)"/>
   <line class="arrow" x1="512" y1="312" x2="631" y2="312" marker-end="url(#m5)"/>
