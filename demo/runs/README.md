@@ -27,4 +27,9 @@ run to `scoreboard.csv`:
 | `minutes`, `cost_usd` | wall-clock time, or model time for a run that waited for usage limits (elapsed time in `notes`); API cost, or `subscription` |
 | `notes` | anything that affects the comparison |
 
+The skills' repository was named stats_review until 22 November 2026 and is now
+third-pair-of-eyes; the records of earlier runs keep the old name. A commit ID of
+stats_review in a record is from its history before that was rewritten for publication,
+and is not in the public repository.
+
 Only `demo/sse/` goes to an approach; see `../../CLAUDE.md`.

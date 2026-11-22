@@ -30,8 +30,8 @@ recommendation.
   only running its code sizes. Give a tool only `demo-crt/sse/`.
 
 The review skills live in their own repository,
-[stats_review](https://github.com/valentinklotzbuecher/stats_review); this kit links to
-version 0.4.0 (tag `skills-v0.4.0`).
+[third-pair-of-eyes](https://github.com/valentinklotzbuecher/third-pair-of-eyes); this kit links to
+version 0.4.1 (tag `skills-v0.4.1`).
 
 ## The talk
 
@@ -183,7 +183,7 @@ If you re-render one, re-run every tool on the new PDF.
   with current models and its prompt in `tools/2-api/prompt.md`
 - The prompts are our own: "Please check if this is consistent." on the chat slide;
   `tools/2-api/prompt.md`; `chat-skills/stats-document-check/SKILL.md` and the agent
-  instruction in `stats_review`; the earlier prototype's prompt on the archived deck's
+  instruction in `third-pair-of-eyes`; the earlier prototype's prompt on the archived deck's
   backup slide
 - ChatGPT's Pro series (GPT-6 Pro, on the Pro plans): OpenAI's help centre,
   help.openai.com/en/articles/20001354, November 2026; Claude Opus 5.5 and Fable 5.2:

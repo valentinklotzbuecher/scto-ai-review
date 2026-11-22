@@ -4,11 +4,11 @@ An agent works in a copy of the product's repository. It reads the files, runs t
 code, recomputes the numbers, re-runs the simulations, has its findings challenged by
 agents that did not write them, and writes a draft review with a
 log behind every number. Here: Claude Code on the web with the review skills from
-[stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0)
-(version 0.4.0). The skills are its instructions, the same format as the skill for the
+[third-pair-of-eyes](https://github.com/valentinklotzbuecher/third-pair-of-eyes/tree/skills-v0.4.1)
+(version 0.4.1). The skills are its instructions, the same format as the skill for the
 chat in [`../1-chat`](../1-chat/README.md): you type one sentence, and they hold the rest.
 
-**Still in development.** The skills are at version 0.4.0, tested so far on one
+**Still in development.** The skills are at version 0.4.1, tested so far on one
 synthetic test case, the [demo](../../demo/README.md), where every run found all six
 planted issues. Expect them to change from version to version.
 
@@ -32,8 +32,8 @@ read 18 November 2026.
 
 1. Connect GitHub at claude.ai/connect-github. The Claude GitHub App must be installed on
    the product's repository.
-2. Create a cloud environment and paste stats_review's
-   [`tools/web_setup.sh`](https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.4.0/tools/web_setup.sh)
+2. Create a cloud environment and paste third-pair-of-eyes's
+   [`tools/web_setup.sh`](https://github.com/valentinklotzbuecher/third-pair-of-eyes/blob/skills-v0.4.1/tools/web_setup.sh)
    as its setup script. It installs R with knitr and rmarkdown, Quarto, Poppler and
    mistune; add the product's R packages there.
 3. Allow package managers and github.com under network access.
@@ -42,11 +42,11 @@ read 18 November 2026.
 
 ## Each review
 
-1. Start a session in that environment with the product's repository and stats_review.
+1. Start a session in that environment with the product's repository and third-pair-of-eyes.
 2. Create the job beside the product, or ask Claude to:
 
    ```bash
-   python3 ../stats_review/.claude/skills/stats-review/scripts/new_job.py review/2026-11-19_quick \
+   python3 ../third-pair-of-eyes/.claude/skills/stats-review/scripts/new_job.py review/2026-11-19_quick \
      --product my_sse.qmd my_sse.pdf
    ```
 
@@ -62,7 +62,7 @@ read 18 November 2026.
 5. Merge the session's branch in the product's repository. The human reviewer starts
    from the job's `REVIEWER.md`.
 
-The full guide is stats_review's README.
+The full guide is third-pair-of-eyes's README.
 
 ## What you choose
 

@@ -316,7 +316,7 @@ number, pushed to a branch. [click] And the same agent can be started from a scr
 with the Agent SDK in Python or TypeScript, or with claude -p from R: to run it over
 test cases with known answers, for batch runs, with guardrails in code. That runs on an
 API key, billed per token; for one review you don't need it. All of this is a first
-shot. The skills are at version 0.4.0, so far tested on one synthetic test case, a
+shot. The skills are at version 0.4.1, so far tested on one synthetic test case, a
 two-page sample size estimation with six planted issues: every run found all six, and
 said by how much the five that matter change the sample size or the power; the quick
 run took 34 minutes, about ten dollars at API list prices. A second test case is next.
@@ -331,7 +331,7 @@ The skill, in a chat
 :::
 
 ::: where
-stats_review · chat-skills
+third-pair-of-eyes · chat-skills
 :::
 
 ```text
@@ -380,7 +380,7 @@ The agent
 :::
 
 ::: where
-stats_review · skills-v0.4.0
+third-pair-of-eyes · skills-v0.4.1
 :::
 
 ```text
@@ -391,7 +391,7 @@ the consistency review.
 
 ::: {.tight .compact}
 - claude.ai/code, on your plan
-- your repo + stats_review
+- your repo + third-pair-of-eyes
 - setup: tools/web_setup.sh
 - still in development
 :::
@@ -407,7 +407,7 @@ Use it on your own work.
 
 ::: scope
 [**github.com/valentinklotzbuecher/scto-ai-review**](https://github.com/valentinklotzbuecher/scto-ai-review): the kit, a handout, two test cases\
-[**github.com/valentinklotzbuecher/stats_review**](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0): the review skills
+[**github.com/valentinklotzbuecher/third-pair-of-eyes**](https://github.com/valentinklotzbuecher/third-pair-of-eyes/tree/skills-v0.4.1): the review skills
 :::
 :::
 
@@ -419,14 +419,14 @@ Use it on your own work.
 
 ::: notes
 [8:30–9:15] And you can try all three. The skill, in a chat: download its ZIP from
-stats_review, the repository with my review skills, in the folder chat-skills; upload
+third-pair-of-eyes, the repository with my review skills, in the folder chat-skills; upload
 it in Claude, with code execution on; attach the product's PDF and its Quarto source,
 and type one sentence. It runs on your Claude plan. [click] The review document is in
 the kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in
 RStudio, put the product in to_be_reviewed, set the settings, run the chunks and
 render. You need an API key, paid per use. [click] And the agent, still in
 development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start
-a session with your product's repository and stats_review, at the tag skills-v0.4.0;
+a session with your product's repository and third-pair-of-eyes, at the tag skills-v0.4.1;
 its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You
 type one sentence, and the review lands on a branch of your product's repository,
 where you merge it. [click] Use them on your own work: best a product that has already
@@ -501,7 +501,7 @@ two slides.
 ## Links: the talk and its tools
 
 ::: {.linkset .tight}
-- **This talk**, with a handout, the review document and two test cases: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0)
+- **This talk**, with a handout, the review document and two test cases: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/third-pair-of-eyes](https://github.com/valentinklotzbuecher/third-pair-of-eyes/tree/skills-v0.4.1)
 - **Agents:** [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web); the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
 - **The API:** [Claude models, effort and prices](https://platform.claude.com/docs/en/about-claude/models/overview); in R, [ellmer](https://ellmer.tidyverse.org), [vitals](https://vitals.tidyverse.org) (evaluations), [ragnar](https://ragnar.tidyverse.org) (retrieval) and [reticulate](https://rstudio.github.io/reticulate/) (Python from R)
 - **Services:** [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), Google's [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/), [QED Science](https://www.qedscience.com/)

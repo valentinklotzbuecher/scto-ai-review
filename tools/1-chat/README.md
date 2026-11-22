@@ -38,8 +38,8 @@ matches, so the checklist comes along and you no longer paste a prompt. The same
 are the agent's instructions in [`../3-agent`](../3-agent/README.md).
 
 `stats-document-check` is the first stage of the DKF consistency review on its own, for
-Claude chat (version 0.2.0, following the review skills 0.4.0 in
-[stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0/chat-skills)).
+Claude chat (version 0.2.1, following the review skills 0.4.1 in
+[third-pair-of-eyes](https://github.com/valentinklotzbuecher/third-pair-of-eyes/tree/skills-v0.4.1/chat-skills)).
 It reads the product as an argument before any code, with four questions:
 
 - Is it the document it says it is, and does it agree with the documents that govern it
@@ -66,8 +66,8 @@ It returns findings, a consistency table, a check log and leads for the code rev
 does not run the product's code, and nobody challenges its findings in a fresh context;
 for those, the agent.
 
-1. Download `stats-document-check.zip` from stats_review's
-   [`chat-skills/`](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0/chat-skills).
+1. Download `stats-document-check.zip` from third-pair-of-eyes's
+   [`chat-skills/`](https://github.com/valentinklotzbuecher/third-pair-of-eyes/tree/skills-v0.4.1/chat-skills).
 2. In Claude, open Customize, then Skills, choose "+", create a skill and upload the
    ZIP. Code execution must be on. An uploaded skill is yours only.
 3. In a new chat, attach the rendered product (PDF) and, if you like, its Quarto source

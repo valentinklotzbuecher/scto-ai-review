@@ -27,7 +27,7 @@ read the answer key, and then finds the issues without doing the review.
 - The API review prototype: copy the two files into the review document's `to_be_reviewed/`;
   it sends only the `.qmd` and PDF it finds there
   ([`../tools/2-api`](../tools/2-api/README.md)).
-- Agent: from a clone of stats_review, never from this kit
+- Agent: from a clone of third-pair-of-eyes, never from this kit
   ([`../tools/3-agent`](../tools/3-agent/README.md)):
 
   ```bash

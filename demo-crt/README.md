@@ -30,7 +30,7 @@ here, one grid point a minute or two.
 - The API review prototype: copy the PDF and its `.qmd` into the review document's
   `to_be_reviewed/`; it sends those two, not the code in `R/` and `sim/`
   ([`../tools/2-api`](../tools/2-api/README.md)).
-- Agent: from a clone of stats_review, never from this kit
+- Agent: from a clone of third-pair-of-eyes, never from this kit
   ([`../tools/3-agent`](../tools/3-agent/README.md)), where R and lme4 are installed (on
   Debian or Ubuntu: `apt-get install -y r-base r-cran-lme4`):
 

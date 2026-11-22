@@ -14,7 +14,7 @@ page.
   `archive/` or this file into a review job or a prompt. The review document in
   `tools/2-api/` sends only the `.qmd` and PDF it finds in its `to_be_reviewed/` (or
   names in `cfg`), so either demo's two files may be copied there.
-- Review a demo with the agent from a clone of `stats_review`, with `new_job.py
+- Review a demo with the agent from a clone of `third-pair-of-eyes`, with `new_job.py
   --product <this repo>/demo/sse/` (or `demo-crt/sse/`).
 - Never add hints to `demo/sse/` or `demo-crt/sse/`: no comments, file names or text
   that point at the planted issues.
@@ -47,8 +47,8 @@ page.
   drawing so that it ends where the heading's rule ends, or is centred; arrows run
   level or upright. Columns that sit side by side start their boxes and lists on one
   line.
-- The kit links to the review skills at a fixed version, tag `skills-v0.4.0` in
-  `stats_review`. For a newer version, update the links in `tools/1-chat`,
+- The kit links to the review skills at a fixed version, tag `skills-v0.4.1` in
+  `third-pair-of-eyes`. For a newer version, update the links in `tools/1-chat`,
   `tools/3-agent`, the handout and the deck's Links slides.
 - `tools/2-api/review.qmd` is the speaker's review prototype, ported from
   `02-review-prototype.qmd` in dkf-llm-explorations with current models. Both read the
