@@ -3,6 +3,7 @@ title: "A Third Pair of Eyes?"
 subtitle: "AI-Assisted Review of Statistical Reports and Code"
 author: "Valentin Klotzbücher · DKF Basel"
 date: today
+date-format: "D MMMM YYYY"
 format:
   revealjs:
     theme: [website.scss]
@@ -327,7 +328,7 @@ based on that is the agent.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[7:15–9:15] What I did instead: a coding agent working in the product's repository,
+[7:15–9:15] So: a coding agent working in the product's repository,
 with skills adapted from Joe's as its instructions; here Claude Code on the web, and
 Codex and others work the same way. It starts from the product's repository, with my
 review skills in it as the agent's instructions: what you type is one sentence, "review
@@ -466,10 +467,9 @@ Thinking further ahead
 :::
 
 ::: {.tight .incremental}
+- Build our own tools, or wait for the next model?
 - A checklist learned from our past reviews?
 - A replication certificate with every product?
-- Implications for teaching?
-- Build our own tools, or wait for the next model?
 - Should we write our products for AI readers?
 :::
 
@@ -491,21 +491,18 @@ since the newest models came out. The authors' advice: use them as a tool for ch
 the details, not as the judge of what matters most. That judgement stays with us. Even
 the author of the skills I build on says the results come from robots and should be
 verified by humans. And what would you need to see before you sign a product an AI
-reviewed? [click] Then, thinking further ahead. [click] Liu, Guo, Hartline and Hullman
-turned a corpus of past reviews into a checklist of criticisms: with language-model
+reviewed? [click] Then, thinking further ahead. [click] Should we build our own tools at
+all, after the bitter lesson? My own prototype dates with every new model, and my
+skills will too. What carries over to every new model: test cases with known answers,
+standards for what a review must check, rules for what data may go where. [click] Liu,
+Guo, Hartline and Hullman turned a corpus of past reviews into a checklist of criticisms: with language-model
 reviewers it cut the error of a three-reviewer committee by 58% on NeurIPS and 21% on
 ICLR, and in a small study with 20 people it more than halved the error of a paper
 ranking. Could our own archive of review forms become such a checklist, for the human
 reviewer and the AI alike? [click] Certify, from Gary King, Yiqing Xu and Leo Yang at
 Harvard, has your own AI assistant, Claude Code or Codex, rerun a replication package on
 your computer, and certifies that rerunning the code produces the results to be
-published: should our products carry such a certificate? [click] The implications for
-teaching: how will junior statisticians learn to review if the AI does the line-by-line
-work? How do we train our staff, and how fast should we adopt? [click] Should we build
-our own tools at all, after the bitter lesson? My own prototype dates with every new
-model, and my skills will too. What carries over to every new model: test cases with
-known answers, standards for what a review must check, rules for what data may go
-where. [click] And if an AI reads our products first, should we write them for it: the
+published: should our products carry such a certificate? [click] And if an AI reads our products first, should we write them for it: the
 estimand in full, every assumption in the text and not only in the code, every number
 traceable to the code that makes it? The preprint's last author calls human-only review
 dangerous for clinical trials; is AI-only review? Thank you; the links are on the last
@@ -514,7 +511,7 @@ two slides.
 
 ## Links: the talk and its tools
 
-::: {.small .tight}
+::: {.linkset .tight}
 - **This talk**, with a handout, the review document and two test cases: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0)
 - **Agents:** [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web); the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
 - **The API:** [Claude models, effort and prices](https://platform.claude.com/docs/en/about-claude/models/overview); in R, [ellmer](https://ellmer.tidyverse.org), [vitals](https://vitals.tidyverse.org) (evaluations), [ragnar](https://ragnar.tidyverse.org) (retrieval) and [reticulate](https://rstudio.github.io/reticulate/) (Python from R)

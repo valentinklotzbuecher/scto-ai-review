@@ -364,22 +364,19 @@ dangerous for clinical trials. And AI-only review?
 
 ### Thinking further ahead
 
-4. **A checklist learned from our past reviews?** Liu and colleagues turned a corpus of
+4. **Build our own tools, or wait for the next model?** See the bitter lesson above:
+   what carries over is test cases, review standards and data rules.
+5. **A checklist learned from our past reviews?** Liu and colleagues turned a corpus of
    past reviews into a checklist of criticisms: with language-model reviewers it cut the
    error of a three-reviewer committee by 58% on NeurIPS and 21% on ICLR, and in a study
    with 20 people it lowered the error of a paper ranking from 0.48 to 0.22. Could our
    archive of review forms become such a checklist, for the human reviewer and the AI
    alike?
-5. **A replication certificate with every product?** Certify, from Gary King, Yiqing Xu
+6. **A replication certificate with every product?** Certify, from Gary King, Yiqing Xu
    and Leo Yang at Harvard (a beta), has your own AI assistant, such as Claude Code or
    Codex, rerun a replication package on your computer; the certificate adds "evidence
    that rerunning the code produces the results to be published."
-6. **Implications for teaching?** If the AI does the line work, how will junior
-   statisticians learn to review? How do we train our staff, and how fast should we
-   adopt?
-7. **Build our own tools, or wait for the next model?** See the bitter lesson above:
-   what carries over is test cases, review standards and data rules.
-8. **Should we write our products for AI readers?** The estimand in full, every
+7. **Should we write our products for AI readers?** The estimand in full, every
    assumption in the text and not only in the code, every number traceable to the code
    that makes it?
 
