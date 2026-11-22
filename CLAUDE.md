@@ -11,9 +11,9 @@ page.
 - Only `demo/sse/` and `demo-crt/sse/` are reviewable. Never let an agent or a chat
   review a demo from inside this repository (the `dkf-review` skill, a chat, Claude
   Code), and never copy `demo/answer-key.*`, `demo-crt/answer-key.*`, `slides/`,
-  `archive/` or this file into a review job or a prompt. The API starters in
-  `tools/2-api/` send only the files named on their command line, so they may run on
-  either `sse/` from here.
+  `archive/` or this file into a review job or a prompt. The review document in
+  `tools/2-api/` sends only the `.qmd` and PDF it finds in its `to_be_reviewed/` (or
+  names in `cfg`), so either demo's two files may be copied there.
 - Review a demo with the agent from a clone of `stats_review`, with `new_job.py
   --product <this repo>/demo/sse/` (or `demo-crt/sse/`).
 - Never add hints to `demo/sse/` or `demo-crt/sse/`: no comments, file names or text
@@ -44,9 +44,11 @@ page.
 - The kit links to the review skills at a fixed version, tag `skills-v0.3.1` in
   `stats_review`. For a newer version, update the links in `tools/1-chat`,
   `tools/4-agent`, the handout and the deck's Links slide.
-- The two API starters send the same prompt, answer format, model and effort, and write
-  the same files; keep them in step, and check both with `--dry-run`, which sends
-  nothing.
+- `tools/2-api/review.qmd` is the speaker's review prototype, ported from
+  `02-review-prototype.qmd` in dkf-llm-explorations with current models and the prompt
+  in `prompt.md`. Keep its request chunk `eval=FALSE`, so rendering sends nothing, and
+  check a change by rendering it with a demo in `to_be_reviewed/`. Of that folder only
+  its README is committed; never a product, a rendered review or `review_results/`.
 - No API keys, no patient data and no real product in this repository.
 
 ## Rendering and checking

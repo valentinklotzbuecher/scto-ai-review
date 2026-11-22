@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Valentin Klotzbücher · DKF Basel">
-<meta name="dcterms.date" content="2026-11-19">
+<meta name="dcterms.date" content="2026-11-22">
 
 <title>A Third Pair of Eyes?</title>
 <style>
@@ -2245,7 +2245,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Updated</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">19 November 2026</p>
+      <p class="date">22 November 2026</p>
     </div>
   </div>
   
@@ -2258,7 +2258,7 @@ vertical-align: -.125em;
 
 
 <p>The handout to the talk, to read later: what two studies found this autumn, four ways to get an AI review of a statistical product, why building more tools may not pay, the questions for the discussion, and a test case to try the tools on. A statistical product here is a sample size estimation, an analysis plan or a report, and the review covers all of it: the statistical methods, the numbers and the code.</p>
-<p>Each of the four ways has a starter in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>: a prompt to paste and a skill for the chat, a list of services, R and Python scripts for the API, and the review skills for the agent. It is my own exploration, not a DKF service or recommendation.</p>
+<p>Each of the four ways has a starter in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>: a prompt to paste and a skill for the chat, my review prototype as a Quarto document for the API, a list of services, and the review skills for the agent, still in development. It is my own exploration, not a DKF service or recommendation.</p>
 <section id="models-find-more-errors-than-reviewers-did" class="level2">
 <h2 data-anchor-id="models-find-more-errors-than-reviewers-did">Models find more errors than reviewers did</h2>
 <p>In the largest experiment of its kind, Schroter and colleagues gave 607 reviewers of a general medical journal three reports of randomised trials with 9 major and 5 minor errors inserted (BMJ 2004; J R Soc Med 2008). This autumn, Brian et al. gave the same three reports to 15 language models, without tools or web access, and scored every review against the same answer key. The human reviewers had found 27% of the major errors. Every model found more: 53% (Haiku 4.5) to 96% (Opus 5.5). On 58 trials published in 2026, with the same kinds of error inserted, the models found 46% to 93%.</p>
@@ -2414,52 +2414,74 @@ vertical-align: -.125em;
 <section id="your-own-script" class="level3">
 <h3 data-anchor-id="your-own-script"><span class="num">02</span>Your own script</h3>
 <div class="dg-wrap">
-<svg class="dg" style="max-height: 360px" viewbox="0 0 700 266" role="img" aria-label="A script, in R with ellmer or in Python with the providers&#39; SDK libraries, sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run. Run on test cases with known answers, the same script gives scores, in R with vitals.">
+<svg class="dg" style="max-height: 420px" viewbox="0 0 744 272" role="img" aria-label="The review document, review.qmd, takes a product&#39;s Quarto source and PDF. Its chunks hold the settings, in R; the prompt, from prompt.md; and the request, sent with the Python SDK. One request goes to the model, paid per use. Every run is saved as .md and .json and kept. Rendering shows the latest run as the review in the DKF form. Runs on test cases with known answers give scores, in R with vitals.">
   <defs><marker id="m2" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
-  <path class="doc" d="M10 30 h46 l16 16 v62 h-62 z" />
-  <path class="doc" d="M24 44 h46 l16 16 v62 h-62 z" />
-  <path class="doc" d="M38 58 h46 l16 16 v62 h-62 z" /><path class="fold" d="M84 58 v16 h16" />
-  <text class="mono" x="69" y="112" font-size="13" text-anchor="middle">DOC N</text>
-  <text class="mono" x="58" y="170" font-size="13" text-anchor="middle">MANY DOCUMENTS</text>
+  <path class="doc" d="M12 40 h48 l16 16 v66 h-64 z" /><path class="fold" d="M60 40 v16 h16" />
+  <text class="mono" x="44" y="98" font-size="14" text-anchor="middle">QMD</text>
+  <path class="doc" d="M12 140 h48 l16 16 v66 h-64 z" /><path class="fold" d="M60 140 v16 h16" />
+  <text class="mono" x="44" y="198" font-size="14" text-anchor="middle">PDF</text>
+  <text class="mono" x="44" y="246" font-size="12" text-anchor="middle">THE PRODUCT</text>
+  <line class="arrow" x1="86" y1="131" x2="142" y2="131" marker-end="url(#m2)"></line>
+  <rect class="tool" x="148" y="26" width="210" height="216" />
+  <text class="file" x="253" y="58" font-size="18" text-anchor="middle">review.qmd</text>
+  <rect class="box" x="164" y="76" width="178" height="44" />
+  <text class="strong" x="176" y="104" font-size="18">settings</text>
+  <text class="soft" x="330" y="104" font-size="15" text-anchor="end">R</text>
+  <rect class="box" x="164" y="128" width="178" height="44" />
+  <text class="strong" x="176" y="156" font-size="18">prompt</text>
+  <text class="soft" x="330" y="156" font-size="14" text-anchor="end">prompt.md</text>
+  <rect class="box" x="164" y="180" width="178" height="44" />
+  <text class="strong" x="176" y="208" font-size="18">request</text>
+  <text class="soft" x="330" y="208" font-size="15" text-anchor="end">Python</text>
   <g class="fragment" data-fragment-index="1">
-  <line class="arrow" x1="110" y1="97" x2="160" y2="97" marker-end="url(#m2)"></line>
-  <rect class="tool" x="166" y="52" width="160" height="92" />
-  <text class="strong" x="246" y="84" font-size="22" text-anchor="middle">script</text>
-  <text x="246" y="110" font-size="16" text-anchor="middle">R: ellmer</text>
-  <text x="246" y="132" font-size="16" text-anchor="middle">Python: SDKs</text>
-  <path class="arrow" d="M205 52 C 205 18, 287 18, 287 48" marker-end="url(#m2)" />
-  <text class="mono" x="246" y="14" font-size="12" text-anchor="middle">SAME PROMPT, EACH DOCUMENT</text>
+  <line class="arrow" x1="358" y1="202" x2="404" y2="202" marker-end="url(#m2)"></line>
+  <rect class="model" x="410" y="162" width="110" height="80" />
+  <text class="strong" x="465" y="209" font-size="22" text-anchor="middle">model</text>
+  <text class="mono" x="465" y="262" font-size="12" text-anchor="middle">PAY PER USE</text>
   </g>
   <g class="fragment" data-fragment-index="2">
-  <line class="arrow" x1="326" y1="97" x2="372" y2="97" marker-end="url(#m2)"></line>
-  <rect class="model" x="378" y="57" width="120" height="80" />
-  <text class="strong" x="438" y="104" font-size="22" text-anchor="middle">model</text>
-  <text class="mono" x="438" y="46" font-size="12" text-anchor="middle">PAY PER USE</text>
+  <line class="arrow" x1="520" y1="202" x2="564" y2="202" marker-end="url(#m2)"></line>
+  <rect class="out" x="570" y="162" width="166" height="80" />
+  <text class="strong" x="653" y="196" font-size="19" text-anchor="middle">.md + .json</text>
+  <text x="653" y="222" font-size="15" text-anchor="middle">every run, kept</text>
   </g>
   <g class="fragment" data-fragment-index="3">
-  <line class="arrow" x1="498" y1="97" x2="548" y2="97" marker-end="url(#m2)"></line>
-  <rect class="out" x="554" y="47" width="140" height="100" />
-  <text class="strong" x="624" y="104" font-size="20" text-anchor="middle">table + log</text>
+  <line class="arrow" x1="653" y1="162" x2="653" y2="128" marker-end="url(#m2)"></line>
+  <text class="mono" x="664" y="150" font-size="12">RENDER</text>
+  <rect class="out" x="570" y="42" width="166" height="80" />
+  <text class="strong" x="653" y="76" font-size="19" text-anchor="middle">review</text>
+  <text x="653" y="102" font-size="15" text-anchor="middle">in the DKF form</text>
   </g>
   <g class="fragment" data-fragment-index="4">
-  <line class="arrow" x1="624" y1="147" x2="624" y2="180" marker-end="url(#m2)"></line>
-  <rect class="out" x="554" y="186" width="140" height="74" />
-  <text class="strong" x="624" y="211" font-size="18" text-anchor="middle">scores</text>
-  <text x="624" y="231" font-size="15" text-anchor="middle">on test cases</text>
-  <text class="soft" x="624" y="251" font-size="15" text-anchor="middle">R: vitals</text>
+  <line class="arrow" x1="570" y1="82" x2="526" y2="82" marker-end="url(#m2)"></line>
+  <rect class="out" x="410" y="38" width="110" height="88" />
+  <text class="strong" x="465" y="68" font-size="18" text-anchor="middle">scores</text>
+  <text x="465" y="91" font-size="15" text-anchor="middle">on test cases</text>
+  <text class="soft" x="465" y="113" font-size="15" text-anchor="middle">R: vitals</text>
   </g>
 </svg>
 </div>
-<p>Instead of pasting by hand, your own pipeline: a script sends each document through the API with the same prompt and answer format, collects one table of issues, and logs every run with model, tokens and cost. In R with ellmer, in Python with the provider’s SDK; paid per use with an API key, under the API’s terms. The price is code that talks to one provider at one point in time.</p>
-<p>What is in the starter, <code>tools/2-api</code>, run with <code>Rscript review.R product.pdf</code>:</p>
-<ul>
-<li><strong>prompt.md:</strong> a senior biostatistician’s review, in a fixed order: methods, numbers, code against text, interpretation.</li>
-<li><strong>schema.json:</strong> the same answer every time: a decision, a summary, and each issue with where, what, its consequence and a fix.</li>
-<li><strong>issues.csv, runs.csv:</strong> every issue in one table; every run logged with model, tokens and cost.</li>
-</ul>
-<p>And because it is a script, you can test it: run it on test cases with known answers and score every run. In R, the <a href="https://vitals.tidyverse.org">vitals</a> package does this next to ellmer; it is a port of Inspect, a Python framework for evaluating language models. So you can compare prompts, models and effort settings on cases you know, such as the demo below.</p>
+<p>Instead of pasting by hand, your own pipeline: my review prototype, a Quarto document that sends the product through the API. It takes the product’s Quarto source and its PDF. Its chunks hold the settings, in R; the prompt, from a text file; and the request, sent with the Anthropic Python SDK through reticulate. ellmer could send it too; the SDK gives the exact stop reason and lets the document check that the model read the whole source. One request per run, paid per use with an API key, under the API’s terms. Every run is saved as Markdown and JSON, with its settings, its tokens and hashes of the prompt and the inputs, and never overwritten. Rendering the document shows the latest review in the DKF consistency-review form, with the prompt and the cost. The price is code that talks to one provider at one point in time.</p>
+<p>How it is set up, in the kit’s <code>tools/2-api</code>:</p>
+<ol type="1">
+<li><p>Put the product’s <code>.qmd</code> and PDF in <code>to_be_reviewed/</code>.</p></li>
+<li><p>Set <code>cfg</code> in the first chunk, <code>runtime-params</code>: the files, the assignment (the questions the review must answer), the model and its effort.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>cfg <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">review_folder    =</span> <span class="st">&quot;to_be_reviewed&quot;</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">qmd_file         =</span> <span class="st">&quot;DEMO-TKA_SSE.qmd&quot;</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pdf_file         =</span> <span class="st">&quot;DEMO-TKA_SSE.pdf&quot;</span>,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">assignment       =</span> <span class="st">&quot;Is the sample size right?&quot;</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">anthropic_model  =</span> <span class="st">&quot;claude-opus-5-5&quot;</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">anthropic_effort =</span> <span class="st">&quot;high&quot;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Edit <code>prompt.md</code> if you like: a senior biostatistician’s first pass, with a checklist for each product type (sample size estimation, analysis report, data preparation).</p></li>
+<li><p>Run the chunks <code>runtime-params</code>, <code>setup-r</code> and <code>setup-py</code>, then <code>anthropic-review-manual</code>, which sends the request. It is <code>eval=FALSE</code>: rendering never sends anything.</p></li>
+<li><p>Render: the latest review, the prompt as sent and the cost.</p></li>
+</ol>
+<p>The review comes in the DKF form: <strong>Decision</strong> (five boxes and a provisional rationale), <strong>General comments</strong>, <strong>Major issues</strong> (each Confirmed, Likely or Clarification required, with location, finding, why it matters and a suggested action), <strong>Minor issues</strong>, and <strong>Answers to the issues listed in the assignment</strong>. A run whose model did not confirm reading the whole source is marked not completed.</p>
+<p>And because it is a script, you can test it: run it on test cases with known answers and score every run. In R, the <a href="https://vitals.tidyverse.org">vitals</a> package does this with ellmer; it is a port of Inspect, a Python framework for evaluating language models. So you can compare prompts, models and effort settings on cases you know, such as the demo below.</p>
 <div class="starter">
-<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api">tools/2-api</a>: <code>review.R</code> (ellmer) and <code>review.py</code> (Anthropic SDK), the prompt and the answer format</p>
+<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api">tools/2-api</a>: <code>review.qmd</code>, <code>prompt.md</code> and the folder <code>to_be_reviewed/</code></p>
 </div>
 </section>
 <section id="review-services" class="level3">
@@ -2555,35 +2577,35 @@ vertical-align: -.125em;
   </g>
 </svg>
 </div>
-<p>The last step: a coding agent, such as Claude Code or Codex, with the skills as its instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a copy of the product’s repository and the review skills. You type one sentence. The model decides the next step, its tools read files, run R and write logs, and the result goes back, until it is done. So it does what no reader can: it runs the code, recomputes the numbers, re-runs the simulations, and has agents that did not write a finding challenge it. The output is a draft of the consistency-review form with a log behind every number, pushed to a branch.</p>
+<p>The last step: a coding agent, such as Claude Code or Codex, with the skills as its instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a copy of the product’s repository and the review skills. You type one sentence. The model decides the next step, its tools read files, run R and write logs, and the result goes back, until it is done; the review and its logs are pushed to a branch.</p>
 <p>It never touches your computer, and it runs on your Claude plan, without API credits; what it reads still goes to the provider. The same agent can be started from a script, with the Agent SDK in Python or TypeScript, or with <code>claude -p</code> from R: to run it over test cases with known answers, for batch runs, with guardrails in code. That runs on an API key, billed per token, and one review does not need it.</p>
-<p><strong>What you choose</strong>, in the job’s assignment, next to the product, its protocol and SAP, and your questions:</p>
+<p><strong>What it adds</strong> over the script:</p>
 <ul>
-<li><strong>Depth:</strong> <code>quick</code>, two agents, for a short SSE or a re-review (34 minutes on the demo); <code>standard</code>, one agent per stage and a fresh agent that challenges every finding; <code>full</code>, which adds an audit, for high-risk products.</li>
-<li><strong>Data:</strong> <code>none</code>, documents and code only (the default); <code>synthetic</code>, dummy data built from the code’s data contract or from a codebook made locally, so the code runs without patient data (it shows that the code runs and does what the text says, never a printed number); <code>shared</code>, patient-level data, only with a recorded clearance.</li>
-<li><strong>What you get:</strong> the DKF consistency-review form with the decision boxes filled in, REVIEW comments in a copy of the <code>.qmd</code>, a log behind every number, and a file for the human reviewer’s decisions.</li>
-<li><strong>Modules:</strong> twelve clinical modules come in when the product needs them: sample size, simulation, estimand, RCT, missing data, time-to-event, multiplicity and subgroups, regression models, observational comparisons, prediction models, Bayesian analyses, small samples.</li>
+<li><strong>It runs the code:</strong> it re-renders the product, recomputes the printed numbers and re-runs the simulations.</li>
+<li><strong>It challenges its findings:</strong> an agent that did not write a finding checks it, in a fresh context.</li>
+<li><strong>Synthetic data</strong> when patient data cannot be shared: dummy data built from the code or from a codebook made locally, so the code runs. It shows that the code runs and does what the text says, never a printed number.</li>
+<li><strong>A log behind every number</strong>, and the review in the DKF consistency-review form, with REVIEW comments in a copy of the <code>.qmd</code>.</li>
 </ul>
+<p><strong>Still in development.</strong> The skills are at version 0.3.1, tested so far on one synthetic test case, the <a href="#the-demo">demo</a>, where every run found all six planted issues.</p>
 <div class="starter">
-<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent">tools/4-agent</a>: the set-up, the one sentence, the data modes; the skills are in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, version 0.3.1</p>
+<p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent">tools/4-agent</a>: the set-up, the one sentence, the depth and the data modes; the skills are in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, version 0.3.1</p>
 </div>
 </section>
 <section id="try-it-yourself" class="level3">
 <h3 data-anchor-id="try-it-yourself">Try it yourself</h3>
-<p><strong>Your own script</strong> is in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">scto-ai-review</a>, in the folder <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api"><code>tools/2-api</code></a>: <code>review.R</code> (ellmer), <code>review.py</code> (Anthropic SDK), the prompt and the answer format. One command per product, from the kit’s top folder, with an API key:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> tools/2-api/review.R product.pdf</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> tools/2-api/review.py product.pdf</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>You get a table of issues and a log of tokens and cost in <code>review-results/</code>.</p>
-<p><strong>The agent</strong> runs on the review skills in <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">stats_review</a>, at the tag <code>skills-v0.3.1</code>; the steps are in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent"><code>tools/4-agent</code></a>.</p>
-<ol type="1">
-<li><p>At <a href="https://claude.ai/code">claude.ai/code</a>, on your Claude plan, create a cloud environment with stats_review’s <a href="https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.3.1/tools/web_setup.sh"><code>tools/web_setup.sh</code></a> as its setup script; it installs R and Quarto.</p></li>
-<li><p>Start a session with your product’s repository and stats_review.</p></li>
-<li><p>Type one sentence:</p>
+<p><strong>The skill, in a chat.</strong> Download <code>dkf-document-check.zip</code> from stats_review’s <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1/chat-skills"><code>chat-skills/</code></a> and upload it in Claude (Customize, then Skills, then “+”; code execution must be on). In a new chat, attach the product’s PDF and its Quarto source, and ask:</p>
 <blockquote class="blockquote">
-<p>Review the product with dkf-review, then write the consistency review.</p>
-</blockquote></li>
-<li><p>The review lands on a branch of your product’s repository; merge it there.</p></li>
+<p>Please review this using /dkf-document-check.</p>
+</blockquote>
+<p>It runs on your Claude plan; the steps are in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat"><code>tools/1-chat</code></a>.</p>
+<p><strong>The review document</strong> is in the kit, <a href="https://github.com/valentinklotzbuecher/scto-ai-review">scto-ai-review</a>, in the folder <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api"><code>tools/2-api</code></a>. With an API key in <code>~/.Renviron</code>:</p>
+<ol type="1">
+<li><p>Put the product in <code>to_be_reviewed/</code>; for the demo, from the kit’s top folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> demo/sse/DEMO-TKA_SSE.qmd demo/sse/DEMO-TKA_SSE.pdf tools/2-api/to_be_reviewed/</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+<li><p>Open <code>review.qmd</code> in RStudio, set <code>cfg</code>, run the chunks, and render.</p></li>
 </ol>
+<p>Every run is kept in <code>review_results/prototype_runs/</code>.</p>
+<p><strong>The agent’s skills</strong> are in stats_review too, at the tag <code>skills-v0.3.1</code>, while I develop them; the set-up is in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent"><code>tools/4-agent</code></a>.</p>
 <p>Start with the <a href="#the-demo">demo</a>: a two-page sample size estimation with six planted issues and an answer key.</p>
 </section>
 </section>
@@ -2595,7 +2617,7 @@ vertical-align: -.125em;
 <div class="attribution">
 <p>Rich Sutton, The Bitter Lesson, 2019</p>
 </div>
-<p>Hand-built machinery keeps losing to general methods that use more computation, and review tools are no exception. On the day Google launched Deep Review, Rex Douglass wrote that for about three years he had thought about building such a tool at least twice a day, and didn’t, because “one of the big three does it and it’s over”. Later that month Joe Francis retired the hosted Reviewer 2, which he had decided was obsolete; he now begins his reviews with skills. My own prototype went the same way, and my skills will too.</p>
+<p>Hand-built machinery keeps losing to general methods that use more computation, and review tools are no exception. On the day Google launched Deep Review, Rex Douglass wrote that for about three years he had thought about building such a tool at least twice a day, and didn’t, because “one of the big three does it and it’s over”. Later that month Joe Francis retired the hosted Reviewer 2, which he had decided was obsolete; he now begins his reviews with skills. My own prototype dates with every new model, and my skills will too.</p>
 <p>What carries over to every new model:</p>
 <ul>
 <li>test cases with known answers, to see what a tool finds and what it misses;</li>
@@ -2667,7 +2689,7 @@ vertical-align: -.125em;
 </tr>
 </tbody>
 </table>
-<p>All three ran on a subscription; the costs are what the same tokens cost through the API. Five of the six issues have a consequence in participants or power. Not a blind test: the skills and the demo were written in the same week, and the skills already describe two of the planted issue types. The chat with the skill also found all six and stated the five consequences (20 November 2026), running only its own scripts. Runs of the chat on its own and of the API script are still to do.</p>
+<p>All three ran on a subscription; the costs are what the same tokens cost through the API. Five of the six issues have a consequence in participants or power. Not a blind test: the skills and the demo were written in the same week, and the skills already describe two of the planted issue types. The chat with the skill also found all six and stated the five consequences (20 November 2026), running only its own scripts. Runs of the chat on its own and of the review document are still to do.</p>
 <div class="callout callout-style-default callout-warning callout-titled" title="Spoilers: the six planted issues">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -2755,7 +2777,7 @@ vertical-align: -.125em;
 <li>Services: <a href="https://refine.ink">refine.ink</a>, <a href="https://reviewer3.com">reviewer3.com</a>, <a href="https://paperreview.ai">paperreview.ai</a>, <a href="https://openaireview.org">openaireview.org</a>, <a href="https://coarse.ink">coarse.ink</a>, Google’s <a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a></li>
 <li>Joe Francis: <a href="https://github.com/isitcredible/reviewer2">Reviewer 2</a> and its paper <em>Yell at It</em> (<code>paper/yellatit.pdf</code> there); <a href="https://github.com/isitcredible/research_skills">research_skills</a></li>
 <li>Certify, replication certificates (King, Xu and Yang, Harvard): <a href="https://certify.iq.harvard.edu/">certify.iq.harvard.edu</a></li>
-<li><a href="https://ellmer.tidyverse.org">ellmer</a> and <a href="https://vitals.tidyverse.org">vitals</a>, the <a href="https://github.com/anthropics/anthropic-sdk-python">Anthropic Python SDK</a>, <a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code on the web</a>, the <a href="https://code.claude.com/docs/en/agent-sdk/overview">Agent SDK</a></li>
+<li><a href="https://ellmer.tidyverse.org">ellmer</a> and <a href="https://vitals.tidyverse.org">vitals</a>, <a href="https://rstudio.github.io/reticulate/">reticulate</a>, the <a href="https://github.com/anthropics/anthropic-sdk-python">Anthropic Python SDK</a>, <a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code on the web</a>, the <a href="https://code.claude.com/docs/en/agent-sdk/overview">Agent SDK</a></li>
 <li>The kit: <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>; the review skills: <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">github.com/valentinklotzbuecher/stats_review</a></li>
 <li>The posts on X by Ruslan Rust (28 October), Rex Douglass (15 and 23 October) and Joe Francis (26 October 2026): screenshots and transcriptions in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/material"><code>material/</code></a></li>
 </ul>

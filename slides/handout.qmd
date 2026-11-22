@@ -2,7 +2,7 @@
 title: "A Third Pair of Eyes?"
 subtitle: "AI-Assisted Review of Statistical Reports and Code"
 author: "Valentin Klotzbücher · DKF Basel"
-date: 2026-11-19
+date: 2026-11-22
 date-format: "D MMMM YYYY"
 lang: en-GB
 language:
@@ -27,8 +27,9 @@ all of it: the statistical methods, the numbers and the code.
 
 Each of the four ways has a starter in the kit,
 [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review):
-a prompt to paste and a skill for the chat, a list of services, R and Python scripts for
-the API, and the review skills for the agent. It is my own exploration, not a DKF
+a prompt to paste and a skill for the chat, my review prototype as a Quarto document
+for the API, a list of services, and the review skills for the agent, still in
+development. It is my own exploration, not a DKF
 service or recommendation.
 
 ## Models find more errors than reviewers did
@@ -147,29 +148,55 @@ Starter: [tools/1-chat](https://github.com/valentinklotzbuecher/scto-ai-review/t
 {{< include diagrams/_api.qmd >}}
 :::
 
-Instead of pasting by hand, your own pipeline: a script sends each document through the API with the same prompt
-and answer format, collects one table of issues, and logs every run with model, tokens
-and cost. In R with ellmer, in Python with the provider's SDK; paid per use with an API
-key, under the API's terms. The price is code that talks to one provider at one point
-in time.
+Instead of pasting by hand, your own pipeline: my review prototype, a Quarto document
+that sends the product through the API. It takes the product's Quarto source and its
+PDF. Its chunks hold the settings, in R; the prompt, from a text file; and the request,
+sent with the Anthropic Python SDK through reticulate. ellmer could send it too; the SDK
+gives the exact stop reason and lets the document check that the model read the whole
+source. One request per run, paid per use with an API key, under the API's terms. Every
+run is saved as Markdown and JSON, with its settings, its tokens and hashes of the
+prompt and the inputs, and never overwritten. Rendering the document shows the latest
+review in the DKF consistency-review form, with the prompt and the cost. The price is
+code that talks to one provider at one point in time.
 
-What is in the starter, `tools/2-api`, run with `Rscript review.R product.pdf`:
+How it is set up, in the kit's `tools/2-api`:
 
-- **prompt.md:** a senior biostatistician's review, in a fixed order: methods, numbers,
-  code against text, interpretation.
-- **schema.json:** the same answer every time: a decision, a summary, and each issue with
-  where, what, its consequence and a fix.
-- **issues.csv, runs.csv:** every issue in one table; every run logged with model, tokens
-  and cost.
+1. Put the product's `.qmd` and PDF in `to_be_reviewed/`.
+2. Set `cfg` in the first chunk, `runtime-params`: the files, the assignment (the
+   questions the review must answer), the model and its effort.
+
+   ```r
+   cfg <- list(
+     review_folder    = "to_be_reviewed",
+     qmd_file         = "DEMO-TKA_SSE.qmd",
+     pdf_file         = "DEMO-TKA_SSE.pdf",
+     assignment       = "Is the sample size right?",
+     anthropic_model  = "claude-opus-5-5",
+     anthropic_effort = "high"
+   )
+   ```
+
+3. Edit `prompt.md` if you like: a senior biostatistician's first pass, with a checklist
+   for each product type (sample size estimation, analysis report, data preparation).
+4. Run the chunks `runtime-params`, `setup-r` and `setup-py`, then
+   `anthropic-review-manual`, which sends the request. It is `eval=FALSE`: rendering
+   never sends anything.
+5. Render: the latest review, the prompt as sent and the cost.
+
+The review comes in the DKF form: **Decision** (five boxes and a provisional rationale),
+**General comments**, **Major issues** (each Confirmed, Likely or Clarification
+required, with location, finding, why it matters and a suggested action), **Minor
+issues**, and **Answers to the issues listed in the assignment**. A run whose model did
+not confirm reading the whole source is marked not completed.
 
 And because it is a script, you can test it: run it on test cases with known answers
 and score every run. In R, the [vitals](https://vitals.tidyverse.org) package does this
-next to ellmer; it is a port of Inspect, a Python framework for evaluating language
+with ellmer; it is a port of Inspect, a Python framework for evaluating language
 models. So you can compare prompts, models and effort settings on cases you know, such
 as the demo below.
 
 ::: starter
-Starter: [tools/2-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.R` (ellmer) and `review.py` (Anthropic SDK), the prompt and the answer format
+Starter: [tools/2-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.qmd`, `prompt.md` and the folder `to_be_reviewed/`
 :::
 
 ### [03]{.num}Review services
@@ -199,12 +226,10 @@ Starter: [tools/3-services](https://github.com/valentinklotzbuecher/scto-ai-revi
 :::
 
 The last step: a coding agent, such as Claude Code or Codex, with the skills as its
-instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a copy of the product's repository and the review skills. You
-type one sentence. The model decides the next step, its tools read files, run R and
-write logs, and the result goes back, until it is done. So it does what no reader can:
-it runs the code, recomputes the numbers, re-runs the simulations, and has agents that
-did not write a finding challenge it. The output is a draft of the consistency-review
-form with a log behind every number, pushed to a branch.
+instructions. Here Claude Code on the web, which works in an isolated cloud VM, with a
+copy of the product's repository and the review skills. You type one sentence. The
+model decides the next step, its tools read files, run R and write logs, and the result
+goes back, until it is done; the review and its logs are pushed to a branch.
 
 It never touches your computer, and it runs on your Claude plan, without API credits;
 what it reads still goes to the provider. The same agent can be started from a script,
@@ -212,55 +237,56 @@ with the Agent SDK in Python or TypeScript, or with `claude -p` from R: to run i
 test cases with known answers, for batch runs, with guardrails in code. That runs on an
 API key, billed per token, and one review does not need it.
 
-**What you choose**, in the job's assignment, next to the product, its protocol and SAP,
-and your questions:
+**What it adds** over the script:
 
-- **Depth:** `quick`, two agents, for a short SSE or a re-review (34 minutes on the
-  demo); `standard`, one agent per stage and a fresh agent that challenges every
-  finding; `full`, which adds an audit, for high-risk products.
-- **Data:** `none`, documents and code only (the default); `synthetic`, dummy data built
-  from the code's data contract or from a codebook made locally, so the code runs
-  without patient data (it shows that the code runs and does what the text says, never
-  a printed number); `shared`, patient-level data, only with a recorded clearance.
-- **What you get:** the DKF consistency-review form with the decision boxes filled in,
-  REVIEW comments in a copy of the `.qmd`, a log behind every number, and a file for the
-  human reviewer's decisions.
-- **Modules:** twelve clinical modules come in when the product needs them: sample size,
-  simulation, estimand, RCT, missing data, time-to-event, multiplicity and subgroups,
-  regression models, observational comparisons, prediction models, Bayesian analyses,
-  small samples.
+- **It runs the code:** it re-renders the product, recomputes the printed numbers and
+  re-runs the simulations.
+- **It challenges its findings:** an agent that did not write a finding checks it, in a
+  fresh context.
+- **Synthetic data** when patient data cannot be shared: dummy data built from the code
+  or from a codebook made locally, so the code runs. It shows that the code runs and
+  does what the text says, never a printed number.
+- **A log behind every number**, and the review in the DKF consistency-review form, with
+  REVIEW comments in a copy of the `.qmd`.
+
+**Still in development.** The skills are at version 0.3.1, tested so far on one
+synthetic test case, the [demo](#the-demo), where every run found all six planted
+issues.
 
 ::: starter
-Starter: [tools/4-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent): the set-up, the one sentence, the data modes; the skills are in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), version 0.3.1
+Starter: [tools/4-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent): the set-up, the one sentence, the depth and the data modes; the skills are in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), version 0.3.1
 :::
 
 ### Try it yourself
 
-**Your own script** is in the kit, [scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review), in the folder
-[`tools/2-api`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.R` (ellmer), `review.py`
-(Anthropic SDK), the prompt and the answer format. One command per product, from the
-kit's top folder, with an API key:
+**The skill, in a chat.** Download `dkf-document-check.zip` from stats_review's
+[`chat-skills/`](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1/chat-skills)
+and upload it in Claude (Customize, then Skills, then "+"; code execution must be on).
+In a new chat, attach the product's PDF and its Quarto source, and ask:
 
-```bash
-Rscript tools/2-api/review.R product.pdf
-python tools/2-api/review.py product.pdf
-```
+> Please review this using /dkf-document-check.
 
-You get a table of issues and a log of tokens and cost in `review-results/`.
+It runs on your Claude plan; the steps are in the kit's
+[`tools/1-chat`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat).
 
-**The agent** runs on the review skills in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), at the
-tag `skills-v0.3.1`; the steps are in the kit's [`tools/4-agent`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent).
+**The review document** is in the kit,
+[scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review), in the folder
+[`tools/2-api`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api).
+With an API key in `~/.Renviron`:
 
-1. At [claude.ai/code](https://claude.ai/code), on your Claude plan, create a cloud
-   environment with stats_review's
-   [`tools/web_setup.sh`](https://github.com/valentinklotzbuecher/stats_review/blob/skills-v0.3.1/tools/web_setup.sh) as its setup
-   script; it installs R and Quarto.
-2. Start a session with your product's repository and stats_review.
-3. Type one sentence:
+1. Put the product in `to_be_reviewed/`; for the demo, from the kit's top folder:
 
-   > Review the product with dkf-review, then write the consistency review.
+   ```bash
+   cp demo/sse/DEMO-TKA_SSE.qmd demo/sse/DEMO-TKA_SSE.pdf tools/2-api/to_be_reviewed/
+   ```
 
-4. The review lands on a branch of your product's repository; merge it there.
+2. Open `review.qmd` in RStudio, set `cfg`, run the chunks, and render.
+
+Every run is kept in `review_results/prototype_runs/`.
+
+**The agent's skills** are in stats_review too, at the tag `skills-v0.3.1`, while I
+develop them; the set-up is in the kit's
+[`tools/4-agent`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent).
 
 Start with the [demo](#the-demo): a two-page sample size estimation with six planted
 issues and an answer key.
@@ -279,8 +305,8 @@ review tools are no exception. On the day Google launched Deep Review, Rex Dougl
 wrote that for about three years he had thought about building such a tool at least
 twice a day, and didn't, because "one of the big three does it and it's over". Later
 that month Joe Francis retired the hosted Reviewer 2, which he had decided was
-obsolete; he now begins his reviews with skills. My own prototype went the same way,
-and my skills will too.
+obsolete; he now begins his reviews with skills. My own prototype dates with every new
+model, and my skills will too.
 
 What carries over to every new model:
 
@@ -337,7 +363,7 @@ API. Five of the six issues have a consequence in participants or power. Not a b
 test: the skills and the demo were written in the same week, and the skills already
 describe two of the planted issue types. The chat with the skill also found all six
 and stated the five consequences (20 November 2026), running only its own scripts.
-Runs of the chat on its own and of the API script are still to do.
+Runs of the chat on its own and of the review document are still to do.
 
 ::: {.callout-warning collapse="true" title="Spoilers: the six planted issues"}
 
@@ -399,7 +425,8 @@ about half a participant per group. The agent was right, and the key was correct
   [research_skills](https://github.com/isitcredible/research_skills)
 - Certify, replication certificates (King, Xu and Yang, Harvard):
   [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
-- [ellmer](https://ellmer.tidyverse.org) and [vitals](https://vitals.tidyverse.org), the
+- [ellmer](https://ellmer.tidyverse.org) and [vitals](https://vitals.tidyverse.org),
+  [reticulate](https://rstudio.github.io/reticulate/), the
   [Anthropic Python SDK](https://github.com/anthropics/anthropic-sdk-python),
   [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web), the
   [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)

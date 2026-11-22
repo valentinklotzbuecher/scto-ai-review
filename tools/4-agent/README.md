@@ -8,6 +8,10 @@ log behind every number. Here: Claude Code on the web with the DKF review skills
 (version 0.3.1). The skills are its instructions, the same format as the skill for the
 chat in [`../1-chat`](../1-chat/README.md): you type one sentence, and they hold the rest.
 
+**Still in development.** The skills are at version 0.3.1, tested so far on one
+synthetic test case, the [demo](../../demo/README.md), where every run found all six
+planted issues. Expect them to change from version to version.
+
 ## Why this way
 
 - **It runs the code**, which no reader can.

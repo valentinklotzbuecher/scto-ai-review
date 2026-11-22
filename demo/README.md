@@ -24,7 +24,8 @@ read the answer key, and then finds the issues without doing the review.
 
 - Chat, with or without the skill: attach the two files
   ([`../tools/1-chat`](../tools/1-chat/README.md)).
-- API script: `review.R` or `review.py` send only the files named on the command line
+- Your own script: copy the two files into the review document's `to_be_reviewed/`;
+  it sends only the `.qmd` and PDF it finds there
   ([`../tools/2-api`](../tools/2-api/README.md)).
 - Agent: from a clone of stats_review, never from this kit
   ([`../tools/4-agent`](../tools/4-agent/README.md)):

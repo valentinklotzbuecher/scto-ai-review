@@ -1,0 +1,1471 @@
+---
+title: "Review prototype"
+subtitle: "A first pass through the API, before the human review"
+format:
+  html:
+    toc: true
+    code-fold: true
+    code-summary: "Show code"
+    code-tools: true
+    embed-resources: true
+execute:
+  eval: true
+  warning: false
+  message: false
+---
+
+
+::: {.callout-note title="Using the prototype" collapse="true"}
+
+Place one `.qmd` file, one `.pdf` file, or both in `to_be_reviewed/`. Set the filenames, assignment, and one model in `runtime-params`; then run `runtime-params`, `setup-r`, `setup-py`, and `anthropic-review-manual`. Render the report to display the latest saved review. The review instructions are in `prompt.md`, next to this file.
+
+The output is a first pass before the required human product review. It can identify likely issues and questions, but it does not approve the product. Checks that depend on an RAP/SAP, source data, or other material are limited to what is supplied.
+
+Rendering never starts an API request because the request chunk is `eval=FALSE`.
+
+**Model**
+
+Set exactly one value in `anthropic_model`:
+
+- `claude-opus-5-5`
+- `claude-fable-5-2`
+
+Only the selected model is run and displayed. `anthropic_effort = "high"` is the standard setting; use `xhigh` or `max` only when the review warrants the additional token use.
+
+Claude Fable 5.2 requires 30-day data retention and is not available under zero data retention. Use it only in an approved workspace and for material permitted under the applicable institutional arrangements.
+
+**API key**
+
+The Anthropic Python SDK reads `ANTHROPIC_API_KEY` from the environment. Never share API keys or commit them to version control. In RStudio, the key can be stored in `~/.Renviron`:
+
+```bash
+cat >> ~/.Renviron <<'EOF'
+ANTHROPIC_API_KEY=sk-ant-...
+EOF
+```
+
+```{r api-key-check, echo=FALSE}
+
+mask_key <- function(x) {
+  if (is.null(x) || !nzchar(x)) return("(missing)")
+  n <- nchar(x)
+  if (n <= 8) return(strrep("*", n))
+  paste0(substr(x, 1, 4), strrep("*", n - 8), substr(x, n - 3, n))
+}
+
+anthropic_key <- Sys.getenv("ANTHROPIC_API_KEY", unset = "")
+
+key_df <- data.frame(
+  Variable = "ANTHROPIC_API_KEY",
+  Status = ifelse(nzchar(anthropic_key), "found", "missing"),
+  Preview = mask_key(anthropic_key),
+  stringsAsFactors = FALSE
+)
+
+knitr::kable(key_df, align = c("l", "l", "l"))
+```
+
+**Main settings**
+
+| Setting | Meaning |
+|---|---|
+| `review_folder` | Folder containing the current review set. Default: `to_be_reviewed`. |
+| `pdf_file` | Optional PDF filename. Leave blank only when at most one `.pdf` is present. |
+| `qmd_file` | Optional QMD filename. Leave blank only when at most one `.qmd` is present. |
+| `assignment` | Optional issues or questions to answer explicitly. |
+| `code_context_mode` | Source context: `code_only`, `full_text`, or `none`. |
+| `max_code_chars` | Hard safety ceiling for the complete selected QMD context. Set `0` for no ceiling. If the ceiling is exceeded, setup stops; the source is never clipped. |
+| `prompt_addendum` | Extra instructions appended to the generated prompt. |
+| `prompt_override` | Replaces the review instructions in `prompt.md` when non-empty. Assignment and source-integrity blocks are still appended. |
+| `anthropic_model` | The single model used for the review. |
+| `anthropic_stream` | Whether to stream the response interactively; required when `max_output_tokens` exceeds 21,333. |
+| `anthropic_effort` | `low`, `medium`, `high`, `xhigh`, or `max`. |
+| `anthropic_display` | Thinking summary display: `summarized` or `omitted`. |
+| `max_output_tokens` | Output cap including thinking and visible response. |
+| `pricing_usd_per_1m` | Rates used for the cost estimate. |
+
+The default `full_text` mode includes the complete raw QMD. With `code_context_mode = "code_only"`, every executable code chunk is included in full, together with its original header, chunk options, and source-line range; only QMD prose is intentionally omitted. `none` intentionally sends no QMD source context. A positive `max_code_chars` value is a hard preflight limit: the setup stops rather than cutting a function or chunk. For a supplied QMD, the prompt ends with a completion token that the model must return and the runner verifies before the review is marked complete. A supplied PDF is attached in all three modes.
+:::
+
+## Setup
+
+
+```{r runtime-params, include=FALSE}
+
+cfg <- list(
+  review_folder = "to_be_reviewed",
+  pdf_file = "",
+  qmd_file = "",
+
+  assignment = "",
+
+  # Options: "code_only", "full_text", "none"
+  # full_text is the safest default: the complete raw QMD is submitted.
+  code_context_mode = "full_text",
+
+  # 0 = no character ceiling. A positive value is a hard limit:
+  # setup stops instead of truncating the QMD context.
+  max_code_chars = 0,
+
+  prompt_addendum = "",
+  prompt_override = "",
+
+  # Choose exactly one model for the review:
+  # "claude-opus-5-5" or "claude-fable-5-2"
+  anthropic_model = "claude-opus-5-5",
+  anthropic_stream = TRUE,
+  anthropic_effort = "high",
+  anthropic_display = "summarized",
+
+  max_output_tokens = 64000,
+
+  # Standard API rates in USD per 1M tokens (list prices, November 2026).
+  pricing_usd_per_1m = data.frame(
+    model = c(
+      "claude-opus-5-5",
+      "claude-fable-5-2"
+    ),
+    input = c(4, 8),
+    output = c(20, 40),
+    stringsAsFactors = FALSE
+  )
+)
+```
+
+```{r setup-r, include=FALSE}
+
+# Use reticulate's managed Python environment.
+Sys.setenv(RETICULATE_PYTHON = "managed")
+
+library(reticulate)
+
+# Python dependency for the review request.
+py_require(
+  packages = c(
+    "anthropic"
+  ),
+  python_version = ">=3.10,<3.13",
+  exclude_newer = "2026-07-09",
+  action = "set"
+)
+
+
+# py_require()
+
+if (!exists("cfg") || !is.list(cfg)) {
+  stop("cfg not found. Run the 'runtime-params' chunk first.")
+}
+
+if (!dir.exists(cfg$review_folder)) {
+  ok <- dir.create(cfg$review_folder, recursive = TRUE, showWarnings = FALSE)
+  if (!ok && !dir.exists(cfg$review_folder)) {
+    stop("review_folder not found and could not be created: ", cfg$review_folder)
+  }
+}
+
+resolve_optional_file <- function(folder, param_file, pattern, label, cfg_name) {
+  if (!is.null(param_file) && nzchar(trimws(param_file))) {
+    path <- file.path(folder, param_file)
+    if (!file.exists(path)) {
+      stop(label, " not found: ", path)
+    }
+    return(normalizePath(path))
+  }
+
+  matches <- list.files(
+    folder,
+    pattern = pattern,
+    full.names = TRUE,
+    ignore.case = TRUE
+  )
+  if (length(matches) == 0) {
+    return(NA_character_)
+  }
+
+  info <- file.info(matches)
+  matches <- matches[!is.na(info$isdir) & !info$isdir]
+  matches <- sort(matches)
+
+  if (length(matches) == 0) {
+    return(NA_character_)
+  }
+  if (length(matches) > 1) {
+    stop(
+      "Multiple ", label, " files found in ", folder, ": ",
+      paste(basename(matches), collapse = ", "),
+      ". Set cfg$", cfg_name, " explicitly in 'runtime-params'."
+    )
+  }
+
+  normalizePath(matches[[1]])
+}
+
+pdf_path <- resolve_optional_file(
+  cfg$review_folder, cfg$pdf_file, "\\.pdf$", "PDF", "pdf_file"
+)
+qmd_path <- resolve_optional_file(
+  cfg$review_folder, cfg$qmd_file, "\\.qmd$", "QMD", "qmd_file"
+)
+
+no_input_mode <- is.na(qmd_path) && is.na(pdf_path)
+if (no_input_mode) {
+  doc_name <- "no_input_selected"
+} else if (!is.na(qmd_path)) {
+  doc_name <- tools::file_path_sans_ext(basename(qmd_path))
+} else {
+  doc_name <- tools::file_path_sans_ext(basename(pdf_path))
+}
+```
+
+```{r, echo=FALSE, results="asis"}
+
+read_latest_meta <- function(provider, doc_name, expected_model = "") {
+  if (isTRUE(no_input_mode)) return(NULL)
+  if (!requireNamespace("jsonlite", quietly = TRUE)) return(NULL)
+  slug <- tolower(gsub("[^A-Za-z0-9]+", "_", doc_name))
+  slug <- gsub("^_+|_+$", "", slug)
+  runs_dir_local <- file.path("review_results", "prototype_runs")
+  if (!dir.exists(runs_dir_local)) return(NULL)
+  pattern <- paste0("^", slug, "_", provider, "_.*\\.json$")
+  files <- list.files(runs_dir_local, pattern = pattern, full.names = TRUE)
+  if (length(files) == 0) return(NULL)
+
+  info <- file.info(files)
+  files <- rownames(info)[order(info$mtime, decreasing = TRUE)]
+
+  expected_model <- trimws(as.character(expected_model %||% ""))
+  if (nzchar(expected_model)) {
+    for (f in files) {
+      meta <- tryCatch(jsonlite::fromJSON(f), error = function(e) NULL)
+      if (is.null(meta)) next
+      model_val <- if (is.null(meta$model) || length(meta$model) == 0 || is.na(meta$model[[1]])) {
+        ""
+      } else {
+        as.character(meta$model[[1]])
+      }
+      if (identical(trimws(model_val), expected_model)) return(meta)
+    }
+    return(NULL)
+  }
+
+  tryCatch(jsonlite::fromJSON(files[[1]]), error = function(e) NULL)
+}
+
+estimate_cost <- function(meta, pricing_tbl) {
+  if (is.null(meta)) return(NA_real_)
+  model <- as.character(meta$model %||% "")
+  in_tok <- suppressWarnings(as.numeric(meta$input_tokens %||% NA))
+  out_tok <- suppressWarnings(as.numeric(meta$output_tokens %||% NA))
+  stop_reason <- as.character(meta$stop_reason %||% "")
+  row <- pricing_tbl[pricing_tbl$model == model, , drop = FALSE]
+  if (nrow(row) == 0 || is.na(in_tok) || is.na(out_tok)) return(NA_real_)
+  input_rate <- suppressWarnings(as.numeric(row$input[1]))
+  output_rate <- suppressWarnings(as.numeric(row$output[1]))
+  if (is.na(input_rate) || is.na(output_rate)) return(NA_real_)
+  if (identical(stop_reason, "refusal") && out_tok == 0) return(0)
+  (in_tok / 1e6) * input_rate + (out_tok / 1e6) * output_rate
+}
+
+`%||%` <- function(x, y) {
+  if (is.null(x) || length(x) == 0) return(y)
+  v <- x[[1]]
+  if (is.na(v)) return(y)
+  if (is.character(v) && !nzchar(trimws(v))) return(y)
+  v
+}
+
+anthropic_meta <- read_latest_meta("anthropic", doc_name, cfg$anthropic_model)
+total_cost <- estimate_cost(anthropic_meta, cfg$pricing_usd_per_1m)
+total_cost_text <- if (is.finite(total_cost) && total_cost >= 0) sprintf("$%.4f", total_cost) else "(n/a)"
+doc_display <- if (isTRUE(no_input_mode)) {
+  "(no input selected)"
+} else {
+  paste(na.omit(c(basename(qmd_path), basename(pdf_path))), collapse = " + ")
+}
+anthropic_model_display <- cfg$anthropic_model
+anthropic_effort_display <- cfg$anthropic_effort %||% "(default)"
+assignment_display <- trimws(as.character(cfg$assignment %||% ""))
+
+if (knitr::is_html_output()) {
+  html_escape <- function(x) {
+    x <- gsub("&", "&amp;", x, fixed = TRUE)
+    x <- gsub("<", "&lt;", x, fixed = TRUE)
+    x <- gsub(">", "&gt;", x, fixed = TRUE)
+    x
+  }
+  cat("<div class='run-summary-strip'>\n")
+  cat("<div class='run-summary-item'><span class='run-summary-label'><i class='bi bi-file-earmark-text' aria-hidden='true'></i> Document: </span><span class='run-summary-value'>", html_escape(doc_display), "</span></div>\n", sep = "")
+  cat("<div class='run-summary-item'><span class='run-summary-label'><i class='bi bi-lightning-charge' aria-hidden='true'></i> Model: </span><span class='run-summary-value'>", html_escape(anthropic_model_display), "</span></div>\n", sep = "")
+  cat("<div class='run-summary-item'><span class='run-summary-label'><i class='bi bi-speedometer2' aria-hidden='true'></i> Effort: </span><span class='run-summary-value'>", html_escape(anthropic_effort_display), "</span></div>\n", sep = "")
+  cat("<div class='run-summary-item'><span class='run-summary-label'><i class='bi bi-cash-stack' aria-hidden='true'></i> Estimated cost: </span><span class='run-summary-value'>", html_escape(total_cost_text), "</span></div>\n", sep = "")
+  cat("</div>\n")
+  if (nzchar(assignment_display)) {
+    assignment_html <- gsub("\n", "<br>", html_escape(assignment_display), fixed = TRUE)
+    cat("<div class='run-summary-extra'>\n")
+    cat("<span class='run-summary-extra-label'><i class='bi bi-chat-left-text' aria-hidden='true'></i> Assignment</span>\n")
+    cat("<div class='run-summary-extra-value'>", assignment_html, "</div>\n", sep = "")
+    cat("</div>\n")
+  }
+} else {
+  run_summary_df <- data.frame(
+    Field = c("Document", "Model", "Effort", "Estimated cost"),
+    Value = c(doc_display, anthropic_model_display, anthropic_effort_display, total_cost_text),
+    stringsAsFactors = FALSE
+  )
+  if (nzchar(assignment_display)) {
+    run_summary_df <- rbind(
+      run_summary_df,
+      data.frame(
+        Field = "Assignment",
+        Value = assignment_display,
+        stringsAsFactors = FALSE
+      )
+    )
+  }
+  print(knitr::kable(run_summary_df, align = c("l", "l")))
+}
+
+if (isTRUE(no_input_mode)) {
+  cat("\n::: {.callout-warning title='No Input Document Found'}\n")
+  cat("No `.qmd` or `.pdf` file was found in `", cfg$review_folder, "`. The report rendered in preview mode with no provider output loaded.\n", sep = "")
+  cat("Set `review_folder` plus `qmd_file` and/or `pdf_file` in `runtime-params`, then re-run `runtime-params`, `setup-r`, and `setup-py`.\n")
+  cat(":::\n")
+}
+
+```
+
+
+```{r python-env-check, include=FALSE}
+
+cat("Python requirements declared:\n")
+print(py_require())
+
+cat("\nPython configuration:\n")
+print(py_config())
+
+cat("\nAnthropic SDK available:\n")
+print(py_module_available("anthropic"))
+
+cat("\nANTHROPIC_API_KEY available:\n")
+print(nzchar(Sys.getenv("ANTHROPIC_API_KEY")))
+```
+
+
+::: {.callout-note title="API requests" collapse="true"}
+
+These chunks define helper functions, prompt assembly, and provider API persistence logic.
+Provider API chunks remain `eval=FALSE` during document render. Chunk labels/options are kept in the opening chunk headers for RStudio compatibility.
+
+**Python Helpers and Prompt Assembly**
+
+```{python setup-py}
+
+import json
+import re
+import inspect
+import hashlib
+from datetime import datetime, timezone
+from pathlib import Path
+
+
+def now_utc_stamp() -> str:
+    return datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S_%f")
+
+
+def now_utc_iso() -> str:
+    return datetime.now(timezone.utc).isoformat()
+
+
+def slug(text: str) -> str:
+    return re.sub(r"[^a-zA-Z0-9]+", "_", text).strip("_").lower()
+
+
+def sha256_text(text: str) -> str:
+    return hashlib.sha256((text or "").encode("utf-8")).hexdigest()
+
+
+def sha256_file(path: Path | None):
+    if path is None or not path.exists():
+        return None
+    h = hashlib.sha256()
+    with path.open("rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
+def obj_to_dict(obj):
+    if isinstance(obj, dict):
+        return obj
+    for attr in ("model_dump", "to_dict", "dict"):
+        if hasattr(obj, attr):
+            try:
+                out = getattr(obj, attr)()
+                if isinstance(out, dict):
+                    return out
+            except Exception:
+                pass
+    return {"_raw": str(obj)}
+
+
+def _dedupe_keep_order(items):
+    out = []
+    for x in items:
+        k = str(x).strip()
+        if not k:
+            continue
+        if k != "[redacted_thinking]":
+            # Drop low-information fragment leftovers (e.g., single trailing words).
+            if len(k) < 12:
+                continue
+            if len(k) < 20 and not re.search(r"\s|[.!?:;,\-]", k):
+                continue
+        out.append(k)
+    return out
+
+
+def normalize_reasoning_text(text) -> str:
+    s = str(text) if text is not None else ""
+    s = s.replace("\r\n", "\n").replace("\r", "\n")
+    s = re.sub(r"[\x00-\x08\x0b\x0c\x0e-\x1f]", "", s)
+    s = re.sub(r"[ \t]+\n", "\n", s)
+    s = re.sub(r"\n{3,}", "\n\n", s)
+    return s.strip()
+
+
+def extract_anthropic_reasoning(resp) -> list:
+    """Best-effort extraction of reasoning snippets from Anthropic response content blocks."""
+    snippets = []
+    for block in getattr(resp, "content", []):
+        b = obj_to_dict(block)
+        btype = b.get("type", getattr(block, "type", None))
+        if btype == "thinking":
+            txt = (
+                b.get("thinking") or b.get("summary") or b.get("text") or
+                getattr(block, "thinking", None) or getattr(block, "summary", None) or getattr(block, "text", None)
+            )
+            if isinstance(txt, str):
+                snippets.append(txt)
+            elif isinstance(txt, list):
+                for part in txt:
+                    if isinstance(part, str):
+                        snippets.append(part)
+                    elif isinstance(part, dict):
+                        if isinstance(part.get("text"), str):
+                            snippets.append(part.get("text"))
+                        elif isinstance(part.get("thinking"), str):
+                            snippets.append(part.get("thinking"))
+            elif txt:
+                snippets.append(str(txt))
+        elif btype == "redacted_thinking":
+            snippets.append("[redacted_thinking]")
+    snippets = [normalize_reasoning_text(s) for s in snippets]
+    return _dedupe_keep_order(snippets)
+
+
+def anthropic_usage_value(usage, name: str) -> int:
+    if usage is None:
+        return 0
+    if isinstance(usage, dict):
+        return int(usage.get(name, 0) or 0)
+    return int(getattr(usage, name, 0) or 0)
+
+
+def count_text_lines(text: str) -> int:
+    if not text:
+        return 0
+    return text.count("\n") + (0 if text.endswith("\n") else 1)
+
+
+def parse_qmd_executable_chunks(qmd_text: str) -> list[dict]:
+    """Return every executable Quarto chunk in full, with source locations.
+
+    The parser never shortens a chunk. It raises an error for an unclosed
+    executable chunk so an incomplete source cannot be submitted silently.
+    """
+    lines = qmd_text.splitlines(keepends=True)
+    chunks = []
+    i = 0
+    start_re = re.compile(r"^\s*(`{3,}|~{3,})\{([^}]*)\}\s*(?:\r?\n)?$")
+
+    while i < len(lines):
+        match = start_re.match(lines[i])
+        if not match:
+            i += 1
+            continue
+
+        fence = match.group(1)
+        spec = match.group(2).strip()
+        first_token = re.split(r"[\s,]+", spec, maxsplit=1)[0] if spec else ""
+
+        # Raw blocks such as ```{=html} are not executable chunks.
+        if not first_token or first_token.startswith(("=", ".")):
+            i += 1
+            continue
+
+        close_re = re.compile(
+            rf"^\s*{re.escape(fence[0])}{{{len(fence)},}}\s*(?:\r?\n)?$"
+        )
+        j = i + 1
+        while j < len(lines) and not close_re.match(lines[j]):
+            j += 1
+
+        if j >= len(lines):
+            raise RuntimeError(
+                f"Unclosed executable QMD chunk beginning at source line {i + 1}: "
+                f"{lines[i].strip()}"
+            )
+
+        main_spec = spec.split(",", 1)[0].strip()
+        spec_parts = main_spec.split()
+        language = spec_parts[0] if spec_parts else first_token
+        label = spec_parts[1] if len(spec_parts) > 1 else f"unnamed_{len(chunks) + 1}"
+        chunk_text = "".join(lines[i : j + 1])
+
+        chunks.append(
+            {
+                "index": len(chunks) + 1,
+                "language": language,
+                "label": label,
+                "start_line": i + 1,
+                "end_line": j + 1,
+                "text": chunk_text,
+            }
+        )
+        i = j + 1
+
+    return chunks
+
+
+def extract_qmd_code_only(qmd_text: str) -> dict:
+    chunks = parse_qmd_executable_chunks(qmd_text)
+    rendered = []
+    total = len(chunks)
+
+    for chunk in chunks:
+        rendered.append(
+            "<!-- QMD CHUNK "
+            f"{chunk['index']}/{total}; "
+            f"label={chunk['label']}; "
+            f"language={chunk['language']}; "
+            f"source_lines={chunk['start_line']}-{chunk['end_line']} -->"
+        )
+        rendered.append(chunk["text"].rstrip("\r\n"))
+        rendered.append("")
+
+    return {
+        "text": "\n".join(rendered).rstrip(),
+        "chunks": chunks,
+    }
+
+# Paths from R setup
+qmd_path_raw = r.qmd_path
+qmd_path = None
+if isinstance(qmd_path_raw, str) and qmd_path_raw not in {"", "NA"}:
+    qmd_path = Path(qmd_path_raw)
+doc_name = str(r.doc_name)
+cfg = r.cfg
+
+if not hasattr(cfg, "get"):
+    raise RuntimeError("cfg is missing or invalid. Run 'runtime-params' then 'setup-r'.")
+
+
+def cfg_required(name: str):
+    if name not in cfg:
+        raise RuntimeError(
+            f"Missing cfg['{name}']. Edit 'runtime-params', then re-run 'setup-r' and 'setup-py'."
+        )
+    return cfg[name]
+
+
+def cfg_str(name: str, allow_empty: bool = True) -> str:
+    val = cfg_required(name)
+    if val is None:
+        if allow_empty:
+            return ""
+        raise RuntimeError(f"cfg['{name}'] is NULL. Set it in 'runtime-params'.")
+    s = str(val)
+    if not allow_empty and not s.strip():
+        raise RuntimeError(f"cfg['{name}'] is empty. Set it in 'runtime-params'.")
+    return s
+
+
+def cfg_int(name: str, min_value: int | None = None) -> int:
+    val = cfg_required(name)
+    try:
+        i = int(val)
+    except Exception as exc:
+        raise RuntimeError(f"cfg['{name}'] must be an integer, got: {val!r}") from exc
+    if min_value is not None and i < min_value:
+        raise RuntimeError(f"cfg['{name}'] must be >= {min_value}, got: {i}")
+    return i
+
+
+def cfg_bool(name: str) -> bool:
+    val = cfg_required(name)
+    if isinstance(val, bool):
+        return val
+    if isinstance(val, (int, float)):
+        return bool(val)
+    s = str(val).strip().lower()
+    if s in {"true", "t", "1", "yes", "y"}:
+        return True
+    if s in {"false", "f", "0", "no", "n"}:
+        return False
+    raise RuntimeError(f"cfg['{name}'] must be TRUE/FALSE, got: {val!r}")
+
+
+# Provider/runtime values (single source of truth = cfg from runtime-params)
+anthropic_model = cfg_str("anthropic_model", allow_empty=False)
+anthropic_stream = cfg_bool("anthropic_stream")
+anthropic_effort = cfg_str("anthropic_effort", allow_empty=True).strip().lower()
+anthropic_display = cfg_str("anthropic_display", allow_empty=True).strip().lower()
+max_output_tokens = cfg_int("max_output_tokens", min_value=1)
+
+allowed_review_models = {"claude-opus-5-5", "claude-fable-5-2"}
+if anthropic_model not in allowed_review_models:
+    allowed = ", ".join(sorted(allowed_review_models))
+    raise RuntimeError(f"cfg['anthropic_model'] must be one of: {allowed}.")
+
+pdf_path_raw = r.pdf_path
+pdf_path = None
+if isinstance(pdf_path_raw, str) and pdf_path_raw not in {"", "NA"}:
+    pdf_path = Path(pdf_path_raw)
+
+# Build QMD context without silent clipping.
+raw_qmd = ""
+if qmd_path is not None and qmd_path.exists():
+    raw_qmd = qmd_path.read_text(encoding="utf-8")
+
+qmd_sha256 = sha256_file(qmd_path)
+pdf_sha256 = sha256_file(pdf_path)
+context_mode = cfg_str("code_context_mode", allow_empty=False).lower()
+max_code_chars = cfg_int("max_code_chars", min_value=0)
+
+if context_mode not in {"code_only", "full_text", "none"}:
+    raise RuntimeError("cfg['code_context_mode'] must be one of: code_only, full_text, none.")
+
+parsed_qmd = extract_qmd_code_only(raw_qmd) if raw_qmd else {"text": "", "chunks": []}
+qmd_chunks_total = len(parsed_qmd["chunks"])
+qmd_chunks_included = 0
+qmd_context_scope = "not supplied"
+qmd_context_status = "not_applicable"
+qmd_context_required = qmd_path is not None and context_mode != "none"
+
+if qmd_path is None:
+    code_context = ""
+elif context_mode == "none":
+    code_context = ""
+    qmd_context_scope = "intentionally omitted by code_context_mode='none'"
+    qmd_context_status = "intentionally_omitted"
+elif context_mode == "full_text":
+    code_context = raw_qmd
+    qmd_chunks_included = qmd_chunks_total
+    qmd_context_scope = "complete raw QMD: prose, chunk headers/options, and code"
+    qmd_context_status = "complete"
+else:
+    code_context = parsed_qmd["text"]
+    qmd_chunks_included = qmd_chunks_total
+    qmd_context_scope = "all executable QMD chunks in full; prose intentionally omitted"
+    qmd_context_status = "complete"
+
+if qmd_context_required:
+    if max_code_chars > 0 and len(code_context) > max_code_chars:
+        raise RuntimeError(
+            "Complete QMD context is "
+            f"{len(code_context):,} characters, exceeding cfg['max_code_chars']="
+            f"{max_code_chars:,}. Nothing was submitted and no source was truncated. "
+            "Set max_code_chars = 0 or increase the limit, then re-run setup-py."
+        )
+
+    if context_mode == "code_only" and qmd_chunks_total == 0 and pdf_path is None:
+        raise RuntimeError(
+            "code_context_mode='code_only' found no executable chunks and no PDF was supplied. "
+            "Use code_context_mode='full_text' or provide the rendered PDF."
+        )
+
+    if qmd_chunks_included != qmd_chunks_total:
+        raise RuntimeError(
+            f"QMD source preflight failed: included {qmd_chunks_included} of "
+            f"{qmd_chunks_total} executable chunks. Nothing was submitted."
+        )
+
+qmd_raw_chars = len(raw_qmd)
+qmd_raw_lines = count_text_lines(raw_qmd)
+qmd_context_chars = len(code_context)
+qmd_context_lines = count_text_lines(code_context)
+
+source_completion_token = ""
+if qmd_context_required:
+    source_completion_token = sha256_text(
+        "|".join(
+            [
+                str(qmd_sha256 or ""),
+                context_mode,
+                str(qmd_context_chars),
+                str(qmd_chunks_total),
+                code_context,
+            ]
+        )
+    )[:32].upper()
+
+assignment_text = cfg_str("assignment", allow_empty=True).strip()
+assignment_block = (
+    "\nIssues listed in 'Assignment':\n"
+    "=== BEGIN ASSIGNMENT ===\n"
+    f"{assignment_text}\n"
+    "=== END ASSIGNMENT ===\n"
+    if assignment_text else ""
+)
+source_manifest_block = ""
+source_context_block = ""
+
+if qmd_path is not None:
+    source_manifest_block = (
+        "\nQMD source integrity manifest:\n"
+        f"- file: {qmd_path.name}\n"
+        f"- sha256: {qmd_sha256}\n"
+        f"- raw characters: {qmd_raw_chars}\n"
+        f"- raw lines: {qmd_raw_lines}\n"
+        f"- context mode: {context_mode}\n"
+        f"- declared scope: {qmd_context_scope}\n"
+        f"- context status: {qmd_context_status}\n"
+        f"- context characters: {qmd_context_chars}\n"
+        f"- context lines: {qmd_context_lines}\n"
+        f"- executable chunks included: {qmd_chunks_included}/{qmd_chunks_total}\n"
+    )
+
+if qmd_context_required:
+    source_context_block = (
+        "\n=== BEGIN COMPLETE QMD SOURCE CONTEXT ===\n"
+        f"{code_context}\n"
+        "=== END COMPLETE QMD SOURCE CONTEXT ===\n"
+        f"QMD_SOURCE_COMPLETION_TOKEN: {source_completion_token}"
+    )
+prompt_addendum_text = cfg_str("prompt_addendum", allow_empty=True).strip()
+prompt_addendum_block = (
+    f"\nAdditional reviewer instructions:\n{prompt_addendum_text}\n"
+    if prompt_addendum_text else ""
+)
+prompt_override_text = cfg_str("prompt_override", allow_empty=True).strip()
+
+prompt_version = "dkf_pre_human_review_v4"
+
+source_integrity_instruction_block = """Source integrity requirements:
+- When a QMD source block is supplied, read through its final `QMD_SOURCE_COMPLETION_TOKEN`.
+- If that token is absent, the source block ends unexpectedly, or the manifest does not say `context status: complete`, do not perform a substantive review. Return only `## Review not completed`, one sentence stating that the QMD source could not be verified as complete, and the hidden marker `<!-- QMD_SOURCE_STATUS: INCOMPLETE -->`.
+- When the complete QMD source token is visible, append `<!-- QMD_SOURCE_VERIFIED: TOKEN -->` as the final line of the response, replacing `TOKEN` with the exact token from the source footer.
+- Do not mention this integrity check elsewhere in the visible review.
+
+"""
+
+# The review instructions live in prompt.md, next to this file; edit them there.
+prompt_file = Path("prompt.md")
+if not prompt_file.exists():
+    raise RuntimeError("prompt.md not found next to review.qmd. Nothing was submitted.")
+prompt_text = prompt_file.read_text(encoding="utf-8")
+
+review_instructions = prompt_override_text if prompt_override_text else prompt_text
+prompt_text = (
+    source_integrity_instruction_block
+    + review_instructions
+    + assignment_block
+    + prompt_addendum_block
+    + source_manifest_block
+    + source_context_block
+)
+
+if prompt_text is None:
+    prompt_text = ""
+if not isinstance(prompt_text, str):
+    prompt_text = str(prompt_text)
+
+
+prompt_sha256 = sha256_text(prompt_text)
+results_root = Path("review_results")
+jobs_dir = results_root / "prototype_jobs"
+runs_dir = results_root / "prototype_runs"
+
+jobs_dir.mkdir(parents=True, exist_ok=True)
+runs_dir.mkdir(parents=True, exist_ok=True)
+
+doc_slug = slug(doc_name)
+```
+
+**Review request**
+
+The manual chunk streams the selected model when supported and saves a matching Markdown and JSON record.
+
+```{python anthropic-review-manual, eval=FALSE}
+
+import base64
+from anthropic import Anthropic
+
+model = anthropic_model
+use_stream = anthropic_stream
+effort = anthropic_effort
+display = anthropic_display
+max_tokens = max_output_tokens
+
+if qmd_path is None and pdf_path is None:
+    raise RuntimeError(
+        "No input selected. Set `review_folder` plus `qmd_file` and/or `pdf_file` "
+        "in `runtime-params`, then re-run the setup chunks."
+    )
+
+if effort not in {"", "low", "medium", "high", "xhigh", "max"}:
+    raise RuntimeError(
+        "cfg['anthropic_effort'] must be one of: low, medium, high, xhigh, max, or ''."
+    )
+if display not in {"", "summarized", "omitted"}:
+    raise RuntimeError(
+        "cfg['anthropic_display'] must be '', 'summarized', or 'omitted'."
+    )
+if max_tokens > 21333 and not use_stream:
+    raise RuntimeError(
+        "Set cfg['anthropic_stream'] = TRUE when max_output_tokens exceeds 21,333."
+    )
+
+if qmd_context_required:
+    expected_footer = f"QMD_SOURCE_COMPLETION_TOKEN: {source_completion_token}"
+    if qmd_context_status != "complete":
+        raise RuntimeError(
+            f"QMD source preflight failed with status: {qmd_context_status}. Nothing was submitted."
+        )
+    if prompt_text.count(expected_footer) != 1 or not prompt_text.rstrip().endswith(expected_footer):
+        raise RuntimeError(
+            "QMD completion footer is missing or misplaced in the assembled prompt. "
+            "Nothing was submitted."
+        )
+    print(
+        "QMD source preflight passed: "
+        f"{qmd_chunks_included}/{qmd_chunks_total} executable chunks, "
+        f"{qmd_context_chars:,} context characters, no truncation."
+    )
+
+content = []
+if pdf_path is not None:
+    pdf_b64 = base64.standard_b64encode(pdf_path.read_bytes()).decode("utf-8")
+    content.append(
+        {
+            "type": "document",
+            "source": {
+                "type": "base64",
+                "media_type": "application/pdf",
+                "data": pdf_b64,
+            },
+        }
+    )
+content.append({"type": "text", "text": prompt_text})
+
+client = Anthropic()
+anthropic_args = {
+    "model": model,
+    "max_tokens": max_tokens,
+    "messages": [{"role": "user", "content": content}],
+    "thinking": {
+        "type": "adaptive",
+        **({"display": display} if display else {}),
+    },
+}
+
+if effort:
+    output_config = {"effort": effort}
+    create_params = inspect.signature(client.messages.create).parameters
+    stream_params = inspect.signature(client.messages.stream).parameters
+    if "output_config" in create_params and "output_config" in stream_params:
+        anthropic_args["output_config"] = output_config
+    else:
+        anthropic_args["extra_body"] = {"output_config": output_config}
+
+response = None
+review_text = ""
+
+if use_stream:
+    print(f"Streaming review from {model} (effort={effort or 'default'}):")
+    streamed = []
+    try:
+        with client.messages.stream(**anthropic_args) as stream:
+            for chunk in stream.text_stream:
+                streamed.append(chunk)
+                print(chunk, end="", flush=True)
+            print()
+            response = stream.get_final_message()
+        review_text = "".join(streamed).strip()
+    except AttributeError as exc:
+        if max_tokens > 21333:
+            raise RuntimeError(
+                "This SDK does not expose streaming, but the configured max_output_tokens requires it."
+            ) from exc
+        print("Streaming is unavailable in this SDK; using a non-streaming request.")
+        use_stream = False
+
+if not use_stream:
+    response = client.messages.create(**anthropic_args)
+
+if response is None:
+    raise RuntimeError("Anthropic returned no final message; no result was saved.")
+
+response_dict = obj_to_dict(response)
+response_id = response_dict.get("id") or getattr(response, "id", None)
+actual_model = response_dict.get("model") or getattr(response, "model", None) or model
+stop_reason = response_dict.get("stop_reason") or getattr(response, "stop_reason", None)
+stop_details_obj = response_dict.get("stop_details") or getattr(response, "stop_details", None)
+stop_details = obj_to_dict(stop_details_obj) if stop_details_obj is not None else None
+
+if not review_text:
+    text_parts = []
+    for block in getattr(response, "content", []):
+        block_dict = obj_to_dict(block)
+        if block_dict.get("type", getattr(block, "type", None)) == "text":
+            text_parts.append(block_dict.get("text") or getattr(block, "text", ""))
+    review_text = "\n".join(text_parts).strip()
+
+raw_review_text = review_text
+source_context_verified = None
+
+if stop_reason == "refusal":
+    category = (stop_details or {}).get("category") or "not specified"
+    explanation = (stop_details or {}).get("explanation") or "No explanation was returned."
+    review_text = (
+        "## Review not completed\n\n"
+        f"The selected model returned a classifier refusal (`{category}`). {explanation}\n\n"
+        "No review conclusion should be inferred from this response."
+    )
+    status = "refused"
+elif stop_reason == "max_tokens":
+    if not review_text:
+        raise RuntimeError("Anthropic stopped at max_tokens without returning usable text.")
+    review_text = (
+        "## Review not completed\n\n"
+        "The model response reached the output-token limit before completion. "
+        "No substantive review should be relied upon from this run."
+    )
+    status = "incomplete_max_tokens"
+else:
+    if not review_text:
+        raise RuntimeError("Anthropic returned no text content; no result was saved.")
+    status = "completed"
+
+if qmd_context_required and status == "completed":
+    verification_marker = f"<!-- QMD_SOURCE_VERIFIED: {source_completion_token} -->"
+    incomplete_marker = "<!-- QMD_SOURCE_STATUS: INCOMPLETE -->"
+
+    if incomplete_marker in review_text:
+        source_context_verified = False
+        review_text = (
+            "## Review not completed\n\n"
+            "The model reported that it could not verify receipt of the complete QMD source. "
+            "No substantive source or code review should be relied upon from this run."
+        )
+        status = "incomplete_source_context"
+    elif verification_marker not in review_text:
+        source_context_verified = False
+        review_text = (
+            "## Review not completed\n\n"
+            "The response did not return the QMD source-completion token, so complete source "
+            "receipt could not be verified. No substantive source or code review should be "
+            "relied upon from this run."
+        )
+        status = "unverified_source_context"
+    else:
+        source_context_verified = True
+        review_text = review_text.replace(verification_marker, "").strip()
+elif qmd_context_required:
+    source_context_verified = False
+
+reasoning_snippets = extract_anthropic_reasoning(response)
+usage = response_dict.get("usage") or getattr(response, "usage", None)
+input_tokens = anthropic_usage_value(usage, "input_tokens")
+output_tokens = anthropic_usage_value(usage, "output_tokens")
+
+stamp = now_utc_stamp()
+base = f"{doc_slug}_anthropic_{slug(model)}_{stamp}"
+md_path = runs_dir / f"{base}.md"
+json_path = runs_dir / f"{base}.json"
+
+md_content = (
+    "# Pre-Human Review Output\n\n"
+    f"- Prompt version: {prompt_version}\n"
+    "- Provider: anthropic\n"
+    f"- Requested model: {model}\n"
+    f"- Served model: {actual_model}\n"
+    f"- response_id: {response_id}\n"
+    f"- status: {status}\n"
+    f"- stop_reason: {stop_reason or '(n/a)'}\n"
+    f"- stream: {use_stream}\n"
+    "- thinking: adaptive\n"
+    f"- display: {display or '(default)'}\n"
+    f"- effort: {effort or '(default)'}\n"
+    f"- max_tokens: {max_tokens}\n"
+    f"- input_tokens: {input_tokens}\n"
+    f"- output_tokens: {output_tokens}\n"
+    f"- prompt_sha256: {prompt_sha256}\n"
+    f"- qmd_sha256: {qmd_sha256 or '(n/a)'}\n"
+    f"- pdf_sha256: {pdf_sha256 or '(n/a)'}\n"
+    f"- qmd_context_mode: {context_mode}\n"
+    f"- qmd_context_status: {qmd_context_status}\n"
+    f"- qmd_context_verified: {source_context_verified if source_context_verified is not None else '(n/a)'}\n"
+    f"- qmd_context_chars: {qmd_context_chars}\n"
+    f"- qmd_chunks_included: {qmd_chunks_included}/{qmd_chunks_total}\n\n"
+    "## Review\n\n"
+    f"{review_text}\n"
+)
+md_path.write_text(md_content, encoding="utf-8")
+
+payload = {
+    "prompt_version": prompt_version,
+    "provider": "anthropic",
+    "requested_model": model,
+    "model": actual_model,
+    "response_id": response_id,
+    "status": status,
+    "stop_reason": stop_reason,
+    "stop_details": stop_details,
+    "stream": use_stream,
+    "thinking": "adaptive",
+    "display": display or None,
+    "effort": effort or None,
+    "max_tokens": max_tokens,
+    "input_tokens": input_tokens,
+    "output_tokens": output_tokens,
+    "prompt_sha256": prompt_sha256,
+    "assignment": assignment_text or None,
+    "qmd_sha256": qmd_sha256,
+    "pdf_sha256": pdf_sha256,
+    "qmd_context_mode": context_mode,
+    "qmd_context_scope": qmd_context_scope,
+    "qmd_context_status": qmd_context_status,
+    "qmd_context_verified": source_context_verified,
+    "qmd_raw_chars": qmd_raw_chars,
+    "qmd_raw_lines": qmd_raw_lines,
+    "qmd_context_chars": qmd_context_chars,
+    "qmd_context_lines": qmd_context_lines,
+    "qmd_chunks_total": qmd_chunks_total,
+    "qmd_chunks_included": qmd_chunks_included,
+    "review_text": review_text,
+    "raw_review_text": raw_review_text if raw_review_text != review_text else None,
+    "reasoning_snippets": reasoning_snippets,
+    "saved_at": now_utc_iso(),
+    "pdf_path": str(pdf_path) if pdf_path else None,
+    "qmd_path": str(qmd_path) if qmd_path else None,
+}
+json_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
+
+print(f"saved markdown: {md_path}")
+print(f"saved json: {json_path}")
+```
+:::
+
+```{=html}
+<style>
+.review-result {
+  border: 1px solid #ddd9ea;
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  margin: 1rem 0 1.2rem 0;
+  background: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.58;
+}
+.review-result.review-box {
+  box-shadow: inset 4px 0 0 #7A4EA0;
+}
+.review-result h2 {
+  font-size: 1.1rem;
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+}
+.review-result h3, .review-result h4, .review-result h5 {
+  font-size: 0.98rem;
+  margin-top: 0.15rem;
+  margin-bottom: 0.25rem;
+}
+.review-label {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  margin-bottom: 0.5rem;
+}
+.review-label .bi {
+  margin-right: 0.28rem;
+}
+.review-box .review-label {
+  color: #9a3412;
+  background: #ffedd5;
+}
+.review-meta {
+  margin: 0.35rem 0 0.85rem 0;
+}
+.review-meta summary {
+  cursor: pointer;
+  font-weight: 600;
+  color: #5A317E;
+  padding: 0.15rem 0;
+}
+.review-meta summary .bi {
+  margin-right: 0.3rem;
+}
+.review-subhead {
+  margin: 0.5rem 0 0.3rem 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a2e;
+}
+.review-subhead .bi {
+  margin-right: 0.35rem;
+  color: #5A317E;
+}
+.meta-table {
+  width: 100%;
+  font-size: 0.88rem;
+}
+.meta-table th,
+.meta-table td {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+.meta-num {
+  display: block;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.run-summary-label .bi,
+.run-summary-extra-label .bi {
+  margin-right: 0.28rem;
+  font-size: 0.72rem;
+  color: #5A317E;
+}
+</style>
+```
+
+```{python load-latest-results, echo=FALSE}
+
+def latest_for(provider: str, expected_model: str = "") -> dict:
+    matches = sorted(
+        runs_dir.glob(f"{doc_slug}_{provider}_*.json"),
+        key=lambda p: p.stat().st_mtime,
+        reverse=True
+    )
+    base = {
+        "path": "",
+        "meta": {},
+        "text": "",
+        "expected_model": expected_model,
+    }
+    if not matches:
+        return base
+
+    expected = str(expected_model or "").strip()
+    for path in matches:
+        meta = json.loads(path.read_text(encoding="utf-8"))
+        model_val = str(meta.get("model", "")).strip()
+        if expected and model_val != expected:
+            continue
+        text = str(meta.get("review_text", "")).strip()
+        return {
+            "path": str(path),
+            "meta": meta,
+            "text": text,
+            "expected_model": expected_model,
+        }
+
+    return base
+
+latest_anthropic = latest_for("anthropic", expected_model=anthropic_model)
+```
+
+## Review Output
+
+```{r show-latest-results, results="asis", echo=FALSE}
+
+show_result <- function(label, py_obj) {
+  path <- py_obj$path
+  expected_model <- if (is.null(py_obj$expected_model)) "" else as.character(py_obj$expected_model)
+
+  if (is.null(path) || path == "") {
+    cat("::: {.review-result .review-box}\n")
+    cat("<span class='review-label'><i class='bi bi-file-earmark-check' aria-hidden='true'></i> ", label, "</span>\n\n", sep = "")
+    if (nzchar(trimws(expected_model))) {
+      cat("_No saved result found for configured model `", expected_model, "`._\n", sep = "")
+    } else {
+      cat("_No saved result found._\n")
+    }
+    cat("\n:::\n\n")
+    return(invisible(NULL))
+  }
+
+  lr <- py_obj$meta
+  review_txt <- py_obj$text
+  val_or <- function(x, default = "(n/a)") {
+    if (is.null(x) || length(x) == 0 || is.na(x[[1]]) || identical(x[[1]], "")) default else x[[1]]
+  }
+
+  extract_major_issue_preview <- function(txt) {
+    if (is.null(txt) || !nzchar(trimws(txt))) return(character(0))
+    lines <- unlist(strsplit(txt, "\n", fixed = TRUE))
+    trimmed <- trimws(lines)
+    start_idx <- grep("^##\\s*Major Issues\\s*$", trimmed, ignore.case = TRUE)
+    if (length(start_idx) == 0) return(character(0))
+    start <- start_idx[1] + 1
+    next_heads <- grep("^##\\s+", trimmed)
+    next_heads <- next_heads[next_heads > start_idx[1]]
+    end <- if (length(next_heads) > 0) next_heads[1] - 1 else length(lines)
+    if (start > end) return(character(0))
+    block <- lines[start:end]
+    items <- block[grepl("^\\s*[0-9]+\\.\\s+", block)]
+    items <- sub("^\\s*[0-9]+\\.\\s+", "", items)
+    items <- trimws(gsub("\\s+", " ", items))
+    items[nzchar(items)]
+  }
+
+  is_html <- knitr::is_html_output()
+  meta_df <- data.frame(
+    Field = c(
+      "File", "Model", "Status", "QMD source", "QMD chunks",
+      "Stop reason", "Response ID", "Input tokens", "Output tokens", "Saved at"
+    ),
+    Value = c(
+      basename(path),
+      val_or(lr$model),
+      val_or(lr$status),
+      if (is.null(lr$qmd_context_verified)) {
+        val_or(lr$qmd_context_status)
+      } else if (isTRUE(lr$qmd_context_verified)) {
+        "complete and verified"
+      } else {
+        "not verified"
+      },
+      paste0(val_or(lr$qmd_chunks_included, "0"), "/", val_or(lr$qmd_chunks_total, "0")),
+      val_or(lr$stop_reason),
+      val_or(lr$response_id),
+      val_or(as.character(lr$input_tokens), "0"),
+      val_or(as.character(lr$output_tokens), "0"),
+      val_or(lr$saved_at)
+    ),
+    stringsAsFactors = FALSE
+  )
+
+  if (is_html) {
+    token_rows <- meta_df$Field %in% c("Input tokens", "Output tokens")
+    meta_df$Value[token_rows] <- paste0("<span class='meta-num'>", meta_df$Value[token_rows], "</span>")
+  }
+
+  major_preview <- extract_major_issue_preview(review_txt)
+
+  cat("::: {.review-result .review-box}\n")
+  cat("<span class='review-label'><i class='bi bi-file-earmark-check' aria-hidden='true'></i> ", label, "</span>\n\n", sep = "")
+
+  if (is_html) {
+    cat("<details class='review-meta'>\n")
+    cat("<summary><i class='bi bi-table' aria-hidden='true'></i> Show metadata</summary>\n\n")
+    print(knitr::kable(
+      meta_df,
+      col.names = c("Field", "Value"),
+      align = c("l", "l"),
+      escape = FALSE,
+      table.attr = "class='meta-table'"
+    ))
+    cat("\n</details>\n\n")
+  } else {
+    print(knitr::kable(meta_df, col.names = c("Field", "Value"), align = c("l", "l")))
+    cat("\n")
+  }
+
+  cat("<div class='review-subhead'><i class='bi bi-exclamation-diamond' aria-hidden='true'></i> Major Issues</div>\n\n")
+  if (length(major_preview) == 0) {
+    cat("_No major issues could be parsed from the saved review._\n\n")
+  } else {
+    for (i in seq_along(major_preview)) cat(i, ". ", major_preview[[i]], "\n", sep = "")
+    cat("\n")
+  }
+
+  cat("<div class='review-subhead'><i class='bi bi-file-earmark-text' aria-hidden='true'></i> Full Review</div>\n\n")
+  if (is.null(review_txt) || !nzchar(trimws(review_txt))) {
+    cat("_The saved review is empty._\n")
+  } else {
+    cat(review_txt, "\n", sep = "")
+  }
+  cat("\n:::\n\n")
+}
+
+```
+
+### Review
+
+```{r show-anthropic-result, results="asis", echo=FALSE}
+
+show_result("Latest Saved Review", py$latest_anthropic)
+```
+
+
+## Appendix
+
+### Prompt
+
+```{r prompt-summary, results="asis", echo=FALSE}
+
+cat("::: {.callout-note title='Review Prompt' collapse='true'}\n")
+if (knitr::is_html_output()) {
+  html_escape <- function(x) {
+    out <- gsub("&", "&amp;", x, fixed = TRUE)
+    out <- gsub("<", "&lt;", out, fixed = TRUE)
+    out <- gsub(">", "&gt;", out, fixed = TRUE)
+    out
+  }
+  cat("<pre style='white-space: pre-wrap; word-break: break-word;'>\n")
+  cat(html_escape(py$prompt_text))
+  cat("\n</pre>\n")
+} else {
+  cat("~~~~text\n")
+  cat(py$prompt_text)
+  cat("\n~~~~\n")
+}
+cat(":::\n")
+```
+
+### Cost Breakdown
+
+```{r cost-estimate, echo=FALSE, results="asis"}
+
+get_cost_row <- function(py_obj) {
+  path <- py_obj$path
+  if (is.null(path) || path == "") return(NULL)
+
+  lr <- py_obj$meta
+  model <- ifelse(is.null(lr$model) || lr$model == "", NA_character_, as.character(lr$model))
+  in_tok <- suppressWarnings(as.numeric(ifelse(is.null(lr$input_tokens), NA, lr$input_tokens)))
+  out_tok <- suppressWarnings(as.numeric(ifelse(is.null(lr$output_tokens), NA, lr$output_tokens)))
+
+  rates <- cfg$pricing_usd_per_1m
+  rate_row <- rates[rates$model == model, , drop = FALSE]
+  input_rate <- if (nrow(rate_row) > 0) as.numeric(rate_row$input[1]) else NA_real_
+  output_rate <- if (nrow(rate_row) > 0) as.numeric(rate_row$output[1]) else NA_real_
+  pricing_found <- !is.na(input_rate) && !is.na(output_rate)
+
+  stop_reason <- ifelse(is.null(lr$stop_reason) || lr$stop_reason == "", "", as.character(lr$stop_reason))
+  pre_output_refusal <- identical(stop_reason, "refusal") && !is.na(out_tok) && out_tok == 0
+
+  input_cost <- if (pre_output_refusal) {
+    0
+  } else if (!is.na(in_tok) && !is.na(input_rate)) {
+    (in_tok / 1e6) * input_rate
+  } else {
+    NA_real_
+  }
+  output_cost <- if (pre_output_refusal) {
+    0
+  } else if (!is.na(out_tok) && !is.na(output_rate)) {
+    (out_tok / 1e6) * output_rate
+  } else {
+    NA_real_
+  }
+  est_cost <- if (!is.na(input_cost) && !is.na(output_cost)) {
+    input_cost + output_cost
+  } else {
+    NA_real_
+  }
+
+  data.frame(
+    Model = model,
+    InputTokens = ifelse(is.na(in_tok), 0, in_tok),
+    OutputTokens = ifelse(is.na(out_tok), 0, out_tok),
+    InputRateUSDper1M = input_rate,
+    OutputRateUSDper1M = output_rate,
+    InputCostUSD = input_cost,
+    OutputCostUSD = output_cost,
+    PricingFound = pricing_found,
+    EstimatedCostUSD = est_cost,
+    stringsAsFactors = FALSE
+  )
+}
+
+cost_rows <- do.call(rbind, Filter(Negate(is.null), list(
+  get_cost_row(py$latest_anthropic)
+)))
+
+if (is.null(cost_rows) || nrow(cost_rows) == 0) {
+  cat("No saved results available yet for cost estimation.")
+} else {
+  missing_models <- unique(cost_rows$Model[!cost_rows$PricingFound])
+  if (length(missing_models) > 0) {
+    cat("Pricing not found for: ", paste(missing_models, collapse = ", "), ". Add these models in `cfg$pricing_usd_per_1m`.\n\n", sep = "")
+  }
+
+  cost_display <- cost_rows
+  cost_display$InputTokens <- format(round(cost_display$InputTokens), big.mark = ",", scientific = FALSE)
+  cost_display$OutputTokens <- format(round(cost_display$OutputTokens), big.mark = ",", scientific = FALSE)
+  cost_display$InputRateUSDper1M <- ifelse(is.na(cost_display$InputRateUSDper1M), "(missing)", sprintf("$%.2f", cost_display$InputRateUSDper1M))
+  cost_display$OutputRateUSDper1M <- ifelse(is.na(cost_display$OutputRateUSDper1M), "(missing)", sprintf("$%.2f", cost_display$OutputRateUSDper1M))
+  cost_display$InputCostUSD <- ifelse(is.na(cost_display$InputCostUSD), "(n/a)", sprintf("$%.4f", cost_display$InputCostUSD))
+  cost_display$OutputCostUSD <- ifelse(is.na(cost_display$OutputCostUSD), "(n/a)", sprintf("$%.4f", cost_display$OutputCostUSD))
+  cost_display$EstimatedCostUSD <- ifelse(is.na(cost_display$EstimatedCostUSD), "(n/a)", sprintf("$%.4f", cost_display$EstimatedCostUSD))
+  cost_display$PricingFound <- NULL
+
+  render_ft <- function(df, header_labels = NULL, right_cols = character(), center_cols = character(), footer_lines = character()) {
+    ft <- flextable::flextable(df)
+    if (!is.null(header_labels)) {
+      valid_headers <- header_labels[names(header_labels) %in% names(df)]
+      if (length(valid_headers) > 0) {
+        ft <- flextable::set_header_labels(ft, values = valid_headers)
+      }
+    }
+    right_cols <- intersect(right_cols, names(df))
+    if (length(right_cols) > 0) {
+      ft <- flextable::align(ft, align = "right", part = "all", j = right_cols)
+    }
+    center_cols <- intersect(center_cols, names(df))
+    if (length(center_cols) > 0) {
+      ft <- flextable::align(ft, align = "center", part = "all", j = center_cols)
+    }
+    ft <- flextable::theme_vanilla(ft)
+    if (length(footer_lines) > 0) {
+      ft <- flextable::add_footer_lines(ft, values = footer_lines)
+      ft <- flextable::fontsize(ft, size = 9, part = "footer")
+      ft <- flextable::align(ft, align = "left", part = "footer")
+    }
+    ft <- flextable::autofit(ft)
+    ft_html <- knitr::knit_print(ft)
+    cat(as.character(ft_html), "\n")
+    invisible(ft)
+  }
+
+  if (knitr::is_html_output() && !requireNamespace("flextable", quietly = TRUE)) {
+    stop("Please install 'flextable' for HTML rendering: install.packages('flextable')")
+  }
+
+  if (knitr::is_html_output()) {
+    render_ft(
+      cost_display,
+      header_labels = c(
+        Model = "Model",
+        InputTokens = "Input Tokens",
+        OutputTokens = "Output Tokens",
+        InputRateUSDper1M = "Input Rate / 1M",
+        OutputRateUSDper1M = "Output Rate / 1M",
+        InputCostUSD = "Input Cost",
+        OutputCostUSD = "Output Cost",
+        EstimatedCostUSD = "Estimated Total"
+      ),
+      right_cols = c("InputTokens", "OutputTokens", "InputRateUSDper1M", "OutputRateUSDper1M", "InputCostUSD", "OutputCostUSD", "EstimatedCostUSD"),
+      footer_lines = character()
+    )
+  } else {
+    print(knitr::kable(
+      cost_display,
+      col.names = c(
+        "Model", "Input Tokens", "Output Tokens",
+        "Input Rate / 1M", "Output Rate / 1M",
+        "Input Cost", "Output Cost", "Estimated Total"
+      ),
+      align = c("l", "r", "r", "r", "r", "r", "r", "r")
+    ))
+  }
+
+}
+```
+

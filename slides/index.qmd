@@ -184,57 +184,79 @@ Francis released; the agent's skills are built the same way.
 {{< include diagrams/_api.qmd >}}
 
 ::: notes
-[5:00–5:45] Instead of pasting by hand: the same through the API, from a script, for many
-documents. [click] The script, in R with the ellmer package or in Python with the
-providers' SDK libraries, sends each document with the same system prompt; mine reads
-like a senior reviewer's checklist, the statistical methods first, then the numbers,
-the code and the interpretation. [click] The model answers, and you pay per use.
-[click] You collect a table of issues and a log of every run: model, tokens, cost. My
-review prototype did this for our SSEs for under a dollar fifty. You also get the API's
-commercial data terms. [click] And that is the real reason to script it: you can test
-it. Run the same script on test cases with known answers and score every run; in R, the
-vitals package does this next to ellmer, a port of Inspect, the Python framework for
-evaluating language models. So you compare prompts, models and effort settings on cases
-you know. The price is code that talks to one provider at one point in time.
+[5:00–5:45] Instead of pasting by hand: the same through the API, from a Quarto
+document, my review prototype. It takes the product's Quarto source and its PDF. Its
+chunks hold the settings, in R; the prompt, from a text file; and the request, sent
+with the Python SDK through reticulate. ellmer could send it too; the SDK gives me the
+exact stop reason and a check that the model read the whole source. [click] One
+request, paid per use, under the API's commercial data terms. [click] Every run is
+saved, as Markdown and JSON, with its settings, its tokens and hashes of the prompt and
+the inputs, and never overwritten. [click] Rendering the document shows the latest
+review, in our consistency-review form, with the prompt and the cost; for our SSEs,
+under a dollar fifty. [click] And that is the real reason to script it: you can test
+it. Run it on test cases with known answers and score every run; in R, the vitals
+package does this with ellmer, a port of Inspect, the Python framework for evaluating
+language models. So you compare prompts, models and effort settings on cases you know.
+The price is code that talks to one provider at one point in time.
 :::
 
-## The script in practice
+## How it is set up
 
 ::: crumbs
 <span>Chat</span><span class="on">Script</span><span>Services</span><span>Agent</span>
 :::
 
-::: cmd
-```bash
-Rscript review.R product.pdf
+:::: {.columns}
+::: {.column width="53%"}
+::: where
+review.qmd · the first chunk
+:::
+
+```r
+cfg <- list(
+  review_folder    = "to_be_reviewed",
+  qmd_file         = "DEMO-TKA_SSE.qmd",
+  pdf_file         = "DEMO-TKA_SSE.pdf",
+  assignment       = "Is the sample size right?",
+  anthropic_model  = "claude-opus-5-5",
+  anthropic_effort = "high"
+)
 ```
 :::
 
-::: {.incremental .tight .compact}
-- **prompt.md:** a senior biostatistician's review, in a fixed order: methods, numbers,
-  code against text, interpretation
-- **schema.json:** the same answer every time: a decision, a summary, and each issue
-  with where, what, its consequence and a fix
-- **issues.csv, runs.csv:** every issue in one table; every run logged with model,
-  tokens and cost
+::: {.column width="4%"}
 :::
 
+::: {.column width="43%"}
+::: {.incremental .tight .compact}
+- **Put** the .qmd and PDF in to_be_reviewed/
+- **Set** cfg: files, questions, model, effort
+- **Edit** prompt.md if you like: a checklist per product type
+- **Run** the chunks; the last one sends the request
+- **Render:** the latest review, its prompt and its cost
+:::
+:::
+::::
+
 ::: {.fragment .scope}
-So every run is comparable, and can be tested on cases with known answers.
+**The DKF form:** Decision · General comments · Major issues · Minor issues · Answers to
+the assignment
 :::
 
 ::: notes
-[5:45–6:30] What is in the script starter, in the kit's tools/2-api. One command per
-product, in R or in Python. [click] The prompt: a senior biostatistician's consistency
-review, in a fixed order: the methods first, then the numbers, the code against the
-text, and the interpretation; and since it cannot run the code, it lists the questions
-that need a run. [click] The answer comes back in the same format every time: a
-decision, a summary, and each issue with severity, area, location, problem,
-consequence, fix and whether it was verified by arithmetic. [click] What you keep: a
-table with one row per issue across all products, and a log of every run with the
-model, the effort, which prompt, the tokens and the cost. [click] So every run is
-comparable: run it on test cases with known answers, compare prompts and models, keep
-what works.
+[5:45–6:30] How it is set up. On the left, the first chunk: which files, the assignment,
+that is the questions the review must answer, the model and the effort. [click] You put
+the product's Quarto source and PDF in the folder to_be_reviewed. [click] You set the
+settings. [click] The prompt is a text file: a senior biostatistician's first pass,
+with a checklist for each product type, the sample size estimation, the analysis
+report, data preparation; and it must say what it could not check. [click] You run the
+chunks; the last one sends the request. It is set to eval false, so rendering never
+sends anything. [click] You render, and see the latest review, the prompt as sent and
+the cost. [click] In our form: the decision boxes, general comments, major issues, each
+confirmed, likely or a clarification, with location, finding, why it matters and a
+suggested action, then minor issues and the answers to the assignment. One thing it
+checks itself: that the model read the whole source, to the last line; otherwise the
+run is marked not completed.
 :::
 
 ## Review services
@@ -305,56 +327,29 @@ review you don't need it (appendix).
 <span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span>
 :::
 
-:::: {.columns}
-::: {.column width="40%"}
-```{=html}
-<div class="opts v">
-  <div>
-    <div class="h">Depth</div>
-    <div class="o"><span class="k">quick</span>two agents, for a short SSE</div>
-    <div class="o"><span class="k">standard</span>an agent per stage, and a challenge</div>
-    <div class="o"><span class="k">full</span>adds an audit</div>
-  </div>
-  <div>
-    <div class="h">Data</div>
-    <div class="o"><span class="k">none</span>documents and code</div>
-    <div class="o"><span class="k">synthetic</span>dummy data, so the code runs</div>
-    <div class="o"><span class="k">shared</span>patient data, with a clearance</div>
-  </div>
-</div>
-```
+::: {.incremental .tight}
+- **Runs the code:** re-renders the product, recomputes the numbers, re-runs the
+  simulations
+- **Challenges its findings:** a fresh agent checks each one
+- **Synthetic data** when patient data cannot be shared, so the code still runs
+- **A log behind every number**, and the review in the DKF form
 :::
 
-::: {.column width="60%" .fragment fragment-index=1}
-```{=html}
-<div class="shot form"><img src="assets/consistency-review.png" alt="Excerpt of the quick demo run's consistency review: all five Decision boxes ticked; general comments saying the planned 55 evaluable and 66 randomised participants per group do not give the stated 80% power, and that the ANCOVA needs 80 evaluable and 100 randomised per group; the first major issue, on the one-sided rejection rule, the noisy choice of N and the dropout allowance, with code lines and fixes."></div>
-```
-:::
-::::
-
-::: {.fragment fragment-index=2 .punchline}
-On the test case: all six planted issues, in 34 minutes, about $10.
+::: {.fragment .punchline}
+Still in development.
 :::
 
 ::: notes
-[8:45–9:45] In practice you choose two things in the job's assignment, next to the
-product, its protocol and SAP, and your questions. The depth: quick is two agents, for a
-short SSE or a re-review; standard is one agent per stage, and a fresh agent challenges
-every finding; full adds an audit, for high-risk products. And the data: none by
-default, only documents and code; synthetic, dummy data built from the code or from a
-codebook you make locally, so the code runs without patient data, which shows that the
-code runs and does what the text says, but never a printed number; shared, patient data,
-only with a recorded clearance. Twelve clinical modules come in when the product needs
-them. [click] What you get: the DKF consistency-review form, here from the quick run on
-my test case, with the decision boxes filled in, the general comments, and each issue
-with where it is, its numbers and a fix; plus REVIEW comments in a copy of the Quarto
-source and a log behind every number. [click] The test case is a two-page sample size
-estimation with six planted issues. Every agent run found all six and said by how much
-the five that matter change the sample size or the power; the quick run took 34
-minutes from start to finished form, about ten dollars at API list prices, on the
-subscription. The chat with the skill found all six too, without running the product's
-code. Not a blind test: I wrote the skills and the test case in the same week. The full
-table is in the appendix.
+[8:45–9:30] What the agent adds over the script. [click] It runs the code: it
+re-renders the product, recomputes the printed numbers and re-runs the simulations,
+which no reader can. [click] It challenges its own findings: an agent that did not
+write a finding checks it, in a fresh context. [click] Where patient data cannot be
+shared, it builds synthetic data from the code, so the code runs and does what the text
+says, though it never confirms a printed number. [click] Every number in the review has
+a log behind it, and the review comes in our consistency-review form. [click] I am still
+developing this. The skills are at version 0.3.1, so far tested on one synthetic test
+case, where every run found all six planted issues (appendix); a second test case is
+next.
 :::
 
 ## Try it yourself
@@ -362,22 +357,22 @@ table is in the appendix.
 :::: {.columns}
 ::: {.column width="47%"}
 ::: punchline
-Your own script
+The skill, in a chat
 :::
 
 ::: where
-scto-ai-review · tools/2-api
+stats_review · chat-skills
 :::
 
-```bash
-Rscript review.R product.pdf
-python review.py product.pdf
+```text
+Please review this using
+/dkf-document-check.
 ```
 
 ::: {.tight .compact}
-- the same prompt for every product
-- a table of issues, a log of tokens and cost
-- an API key, paid per use
+- upload the skill's ZIP in Claude
+- attach the PDF and its .qmd
+- on your plan
 :::
 :::
 
@@ -386,44 +381,42 @@ python review.py product.pdf
 
 ::: {.column width="47%" .fragment fragment-index=1}
 ::: punchline
-The agent
+The review document
 :::
 
 ::: where
-stats_review · tag skills-v0.3.1
+scto-ai-review · tools/2-api
 :::
 
 ```text
-Review the product with dkf-review,
-then write the consistency review.
+review.qmd  prompt.md
+to_be_reviewed/
 ```
 
 ::: {.tight .compact}
-- claude.ai/code, on your plan
-- with your repository and stats_review
-- setup: tools/web_setup.sh
-- the review lands on a branch
+- open review.qmd in RStudio
+- set cfg, run the chunks, render
+- an API key, paid per use
 :::
 :::
 ::::
 
 ::: {.fragment fragment-index=2 .scope}
-**github.com/valentinklotzbuecher/scto-ai-review**: the kit, a handout, a test case\
+**github.com/valentinklotzbuecher/scto-ai-review**: the kit, a handout, two test cases\
 **github.com/valentinklotzbuecher/stats_review**: the review skills
 :::
 
 ::: notes
-[9:45–10:30] And you can try both. The script is in the kit, the repository
-scto-ai-review, in the folder tools/2-api: the R or the Python starter sends a product
-through the API with my prompt and answer format. One command, and you get a table of
-issues and a log of tokens and cost; you need an API key, paid per use. Run it on the
-demo first: a two-page sample size estimation with six planted issues and an answer
-key, so you can score what it finds. [click] The agent: Claude Code on the web, at
-claude.ai/code, on your Claude plan. You start a session with your product's repository
-and stats_review, the repository with my review skills, at the tag skills-v0.3.1; its
-setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type
-one sentence, and the review lands on a branch of your product's repository, where you
-merge it. [click] Both repositories, with a handout that walks through each step.
+[9:30–10:15] And you can try two of them. The skill, in a chat: download its ZIP from
+stats_review, the repository with my review skills, in the folder chat-skills; upload it
+in Claude, with code execution on; attach the product's PDF and its Quarto source, and
+type one sentence. It runs on your Claude plan. [click] The review document is in the
+kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in
+RStudio, put the product in to_be_reviewed, set the settings, run the chunks and
+render. You need an API key, paid per use. Try both on the test cases first: synthetic
+sample size estimations with planted issues and an answer key, so you can score what
+they find. [click] Both repositories, with a handout that walks through each step. The
+agent's skills are in stats_review too, while I develop them.
 :::
 
 ## To discuss
@@ -439,7 +432,7 @@ merge it. [click] Both repositories, with a handout that walks through each step
 :::
 
 ::: notes
-[10:30–20:00] To discuss. What would you need to see before you sign a product an AI
+[10:15–20:00] To discuss. What would you need to see before you sign a product an AI
 reviewed? Could our review become result-oriented: the AI goes through every line,
 every number and every re-run, and we check that it tested enough, that each chunk,
 section and analysis does what it says, and that the approach and the interpretation
@@ -454,8 +447,8 @@ the results to be published: should our products carry such a certificate? Shoul
 build our own tools at all? Sutton's bitter lesson: hand-built machinery keeps losing to
 general methods that use more computation. Rex Douglass, on the day Google launched Deep
 Review, said he never built a review tool because "one of the big three does it and
-it's over"; Joe Francis retired Reviewer 2 as obsolete; my own prototype went the same
-way, and my skills will too. What carries over: test cases with known answers, review
+it's over"; Joe Francis retired Reviewer 2 as obsolete; my own prototype dates with every
+new model, and my skills will too. What carries over: test cases with known answers, review
 standards, data rules (backup slide in the appendix). And how will junior statisticians
 learn to review, if the AI does the line-by-line work? The preprint's last author calls
 human-only review dangerous for clinical trials; is AI-only review? Thank you; the
@@ -537,8 +530,8 @@ computation, and review tools are no exception. [click] Rex Douglass, on the day
 launched Deep Review: he had thought about building a review tool twice a day for three
 years, and didn't, because "one of the big three does it and it's over". [click] Later
 that month Joe Francis retired Reviewer 2: he decided it was obsolete, and he now begins
-his reviews with skills. My own prototype went the same way, and my skills will too:
-tools are obsolete before they are finished. [click] What carries over to every new
+his reviews with skills. My own prototype dates with every new model, and my skills will
+too: tools are obsolete before they are finished. [click] What carries over to every new
 model: test cases with known answers, standards for what a review must check, and rules
 for what data may go where.
 :::
@@ -554,7 +547,7 @@ for what data may go where.
 ## Links
 
 ::: {.small .tight}
-- This talk, with a handout, R and Python starters and the demo: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
+- This talk, with a handout, the review document and two test cases: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
 - Brian et al., medRxiv 2026: [doi.org/10.64898/2026.10.25.26366455](https://doi.org/10.64898/2026.10.25.26366455)
 - King and Worthington, working paper 2026: [gking.harvard.edu/peerless](https://gking.harvard.edu/peerless/)
 - Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), Google's [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/)

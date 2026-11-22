@@ -1,37 +1,48 @@
 ```{=html}
-<svg class="dg" style="max-height: 360px" viewBox="0 0 700 266" role="img" aria-label="A script, in R with ellmer or in Python with the providers' SDK libraries, sends each of many documents to the model with the same prompt, paid per use, and collects a table with one row per document, plus a log of every run. Run on test cases with known answers, the same script gives scores, in R with vitals.">
+<svg class="dg" style="max-height: 420px" viewBox="0 0 744 272" role="img" aria-label="The review document, review.qmd, takes a product's Quarto source and PDF. Its chunks hold the settings, in R; the prompt, from prompt.md; and the request, sent with the Python SDK. One request goes to the model, paid per use. Every run is saved as .md and .json and kept. Rendering shows the latest run as the review in the DKF form. Runs on test cases with known answers give scores, in R with vitals.">
   <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
-  <path class="doc" d="M10 30 h46 l16 16 v62 h-62 z"/>
-  <path class="doc" d="M24 44 h46 l16 16 v62 h-62 z"/>
-  <path class="doc" d="M38 58 h46 l16 16 v62 h-62 z"/><path class="fold" d="M84 58 v16 h16"/>
-  <text class="mono" x="69" y="112" font-size="13" text-anchor="middle">DOC N</text>
-  <text class="mono" x="58" y="170" font-size="13" text-anchor="middle">MANY DOCUMENTS</text>
+  <path class="doc" d="M12 40 h48 l16 16 v66 h-64 z"/><path class="fold" d="M60 40 v16 h16"/>
+  <text class="mono" x="44" y="98" font-size="14" text-anchor="middle">QMD</text>
+  <path class="doc" d="M12 140 h48 l16 16 v66 h-64 z"/><path class="fold" d="M60 140 v16 h16"/>
+  <text class="mono" x="44" y="198" font-size="14" text-anchor="middle">PDF</text>
+  <text class="mono" x="44" y="246" font-size="12" text-anchor="middle">THE PRODUCT</text>
+  <line class="arrow" x1="86" y1="131" x2="142" y2="131" marker-end="url(#m2)"/>
+  <rect class="tool" x="148" y="26" width="210" height="216"/>
+  <text class="file" x="253" y="58" font-size="18" text-anchor="middle">review.qmd</text>
+  <rect class="box" x="164" y="76" width="178" height="44"/>
+  <text class="strong" x="176" y="104" font-size="18">settings</text>
+  <text class="soft" x="330" y="104" font-size="15" text-anchor="end">R</text>
+  <rect class="box" x="164" y="128" width="178" height="44"/>
+  <text class="strong" x="176" y="156" font-size="18">prompt</text>
+  <text class="soft" x="330" y="156" font-size="14" text-anchor="end">prompt.md</text>
+  <rect class="box" x="164" y="180" width="178" height="44"/>
+  <text class="strong" x="176" y="208" font-size="18">request</text>
+  <text class="soft" x="330" y="208" font-size="15" text-anchor="end">Python</text>
   <g class="fragment" data-fragment-index="1">
-  <line class="arrow" x1="110" y1="97" x2="160" y2="97" marker-end="url(#m2)"/>
-  <rect class="tool" x="166" y="52" width="160" height="92"/>
-  <text class="strong" x="246" y="84" font-size="22" text-anchor="middle">script</text>
-  <text x="246" y="110" font-size="16" text-anchor="middle">R: ellmer</text>
-  <text x="246" y="132" font-size="16" text-anchor="middle">Python: SDKs</text>
-  <path class="arrow" d="M205 52 C 205 18, 287 18, 287 48" marker-end="url(#m2)"/>
-  <text class="mono" x="246" y="14" font-size="12" text-anchor="middle">SAME PROMPT, EACH DOCUMENT</text>
+  <line class="arrow" x1="358" y1="202" x2="404" y2="202" marker-end="url(#m2)"/>
+  <rect class="model" x="410" y="162" width="110" height="80"/>
+  <text class="strong" x="465" y="209" font-size="22" text-anchor="middle">model</text>
+  <text class="mono" x="465" y="262" font-size="12" text-anchor="middle">PAY PER USE</text>
   </g>
   <g class="fragment" data-fragment-index="2">
-  <line class="arrow" x1="326" y1="97" x2="372" y2="97" marker-end="url(#m2)"/>
-  <rect class="model" x="378" y="57" width="120" height="80"/>
-  <text class="strong" x="438" y="104" font-size="22" text-anchor="middle">model</text>
-  <text class="mono" x="438" y="46" font-size="12" text-anchor="middle">PAY PER USE</text>
+  <line class="arrow" x1="520" y1="202" x2="564" y2="202" marker-end="url(#m2)"/>
+  <rect class="out" x="570" y="162" width="166" height="80"/>
+  <text class="strong" x="653" y="196" font-size="19" text-anchor="middle">.md + .json</text>
+  <text x="653" y="222" font-size="15" text-anchor="middle">every run, kept</text>
   </g>
   <g class="fragment" data-fragment-index="3">
-  <line class="arrow" x1="498" y1="97" x2="548" y2="97" marker-end="url(#m2)"/>
-  <rect class="out" x="554" y="47" width="140" height="100"/>
-  <text class="strong" x="624" y="104" font-size="20" text-anchor="middle">table + log</text>
+  <line class="arrow" x1="653" y1="162" x2="653" y2="128" marker-end="url(#m2)"/>
+  <text class="mono" x="664" y="150" font-size="12">RENDER</text>
+  <rect class="out" x="570" y="42" width="166" height="80"/>
+  <text class="strong" x="653" y="76" font-size="19" text-anchor="middle">review</text>
+  <text x="653" y="102" font-size="15" text-anchor="middle">in the DKF form</text>
   </g>
   <g class="fragment" data-fragment-index="4">
-  <line class="arrow" x1="624" y1="147" x2="624" y2="180" marker-end="url(#m2)"/>
-  <rect class="out" x="554" y="186" width="140" height="74"/>
-  <text class="strong" x="624" y="211" font-size="18" text-anchor="middle">scores</text>
-  <text x="624" y="231" font-size="15" text-anchor="middle">on test cases</text>
-  <text class="soft" x="624" y="251" font-size="15" text-anchor="middle">R: vitals</text>
+  <line class="arrow" x1="570" y1="82" x2="526" y2="82" marker-end="url(#m2)"/>
+  <rect class="out" x="410" y="38" width="110" height="88"/>
+  <text class="strong" x="465" y="68" font-size="18" text-anchor="middle">scores</text>
+  <text x="465" y="91" font-size="15" text-anchor="middle">on test cases</text>
+  <text class="soft" x="465" y="113" font-size="15" text-anchor="middle">R: vitals</text>
   </g>
 </svg>
 ```

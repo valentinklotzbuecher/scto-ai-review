@@ -1,104 +1,127 @@
 # 2 · Your own script
 
-Your own pipeline instead of a service's: a review sent from a script through the API,
-with the same prompt and the same answer format for every product, the issues collected
-in one table, and every run logged with its tokens and cost. Billed per use with an API
-key, not on a chat plan.
+My review prototype: a Quarto document that sends a product to the model through the API
+with the same review instructions every time, saves every run with its settings, tokens
+and hashes, and renders the review in the DKF form. Billed per use with an API key, not
+on a chat plan. A first pass before the human review, not a replacement for it.
 
 | File | What it is |
 |---|---|
-| [`prompt.md`](prompt.md) | the review prompt: methods, numbers, code against text, interpretation |
-| [`schema.json`](schema.json) | the answer format: a decision, a summary, the issues (severity, area, location, problem, consequence, fix, verified) and the questions that need the code run |
-| [`review.R`](review.R) | R, with [ellmer](https://ellmer.tidyverse.org) |
-| [`review.py`](review.py) | Python, with the [Anthropic SDK](https://github.com/anthropics/anthropic-sdk-python) |
+| [`review.qmd`](review.qmd) | the review document: settings and display in R; the request through the Anthropic Python SDK, run from R with reticulate |
+| [`prompt.md`](prompt.md) | the review instructions: a senior biostatistician's first pass, with checklists for a sample size estimation, an analysis report and data preparation, and the form to answer in |
+| [`to_be_reviewed/`](to_be_reviewed/README.md) | where the product goes: its `.qmd`, its PDF, or both |
 
-## Run it
+## Set it up once
 
-R, with ellmer 0.5.2 or later:
+In R:
 
 ```r
-install.packages(c("ellmer", "jsonlite"))
+install.packages(c("reticulate", "jsonlite", "knitr", "rmarkdown", "flextable"))
 ```
+
+The document sets up its own Python with the Anthropic SDK, through reticulate's
+`py_require()` (tested with reticulate 1.47.0); the first run downloads it. The API key
+goes in `~/.Renviron`, never in the document:
 
 ```bash
-Rscript tools/2-api/review.R --dry-run demo/sse/DEMO-TKA_SSE.pdf
+cat >> ~/.Renviron <<'EOF'
+ANTHROPIC_API_KEY=sk-ant-...
+EOF
 ```
 
-```bash
-ANTHROPIC_API_KEY=... Rscript tools/2-api/review.R demo/sse/DEMO-TKA_SSE.pdf
-```
+## Run a review
 
-Python:
+1. Put the product in `to_be_reviewed/`. For the demo, from the kit's root folder:
 
-```bash
-pip install anthropic
-```
+   ```bash
+   cp demo/sse/DEMO-TKA_SSE.qmd demo/sse/DEMO-TKA_SSE.pdf tools/2-api/to_be_reviewed/
+   ```
 
-```bash
-python tools/2-api/review.py --dry-run demo/sse/DEMO-TKA_SSE.pdf
-```
+2. Open `review.qmd` in RStudio and set `cfg` in the chunk `runtime-params`: the file
+   names (blank when the folder holds one of each), the `assignment` (the questions the
+   review must answer), the model and its effort.
+3. Run the chunks `runtime-params`, `setup-r` and `setup-py`, then
+   `anthropic-review-manual`, the request. The review streams into the console and is
+   saved.
+4. Render `review.qmd`: the latest saved review of that product with that model.
 
-```bash
-ANTHROPIC_API_KEY=... python tools/2-api/review.py demo/sse/DEMO-TKA_SSE.pdf
-```
-
-`--dry-run` shows the request and sends nothing. Each PDF is sent with the Quarto source
-of the same name beside it, if there is one; give several PDFs and each is its own
-request. The demo SSE is synthetic: send nothing else from this kit, the answer key
-least of all.
+Rendering never sends a request: the request chunk is `eval=FALSE`. Render before the
+first run to see what would be sent; the appendix shows the whole prompt.
 
 ## What you get
 
-In `review-results/`, in the folder you run from:
+Every run, never overwritten, in `review_results/prototype_runs/`:
+`<product>_anthropic_<model>_<time>.md` and `.json`, with the review, the model that
+answered, the stop reason, the settings, the tokens, and SHA-256 hashes of the prompt,
+the `.qmd` and the PDF; the `.json` also keeps the model's summarised reasoning.
 
-- `<name>.review.json`: the whole answer
-- `issues.csv`: one row per issue, across products
-- `runs.csv`: one row per run: time, product, model, effort, the prompt's MD5 (which
-  prompt it was), input and output tokens, cost at list price, decision, number of issues
+The review, in the DKF form:
+
+- **Decision:** five boxes (minor or major changes in the text; minor or major changes
+  in the R programming; clarifications required), with a provisional rationale
+- **General comments:** the product type, the overall state, the main risk, the limits
+  of the review
+- **Major issues:** each marked Confirmed, Likely or Clarification required, with
+  location, finding, why it matters and a suggested action
+- **Minor issues**
+- **Answers to the issues listed in the assignment**
+
+The rendered report adds the run's details, the prompt as sent and the cost at list
+prices.
 
 ## Settings
 
-At the top of each script:
+In `cfg`, the chunk `runtime-params`; the document's "Using the prototype" note has the
+full table.
 
-- Model `claude-opus-5-5` at effort `max`, the "maximum effort" of the talk, with up to
-  64,000 tokens for thinking and answer. The request streams, so a long review keeps its
-  connection.
-- Prices for the cost log: US$4 per million input tokens and US$20 per million output
-  tokens (Claude Opus 5.5 list prices, November 2026). Thinking is billed as output.
-- The Python script opts in to server-side fallbacks: if the model declines on a policy
-  ground, the API re-runs the request on another model, and `runs.csv` names the model
-  that answered. The R script leaves this out.
+| Setting | Default | |
+|---|---|---|
+| `review_folder`, `pdf_file`, `qmd_file` | `to_be_reviewed`, blank, blank | what is reviewed |
+| `assignment` | blank | questions the review answers one by one |
+| `code_context_mode` | `full_text` | the whole `.qmd`; `code_only` sends its code chunks, `none` no source. A PDF is always attached |
+| `anthropic_model` | `claude-opus-5-5` | or `claude-fable-5-2`; only the one chosen runs |
+| `anthropic_effort` | `high` | `low` to `max`; `xhigh` or `max` only when the review warrants the tokens |
+| `max_output_tokens` | 64,000 | thinking and review together; the request streams |
+| `pricing_usd_per_1m` | 4 and 20; 8 and 40 | US$ per million input and output tokens, Claude Opus 5.5 and Claude Fable 5.2, list prices, November 2026; thinking is billed as output |
+| `prompt_addendum`, `prompt_override` | blank | add to, or replace, the instructions in `prompt.md` |
 
-Another provider: in R, swap `chat_anthropic()` for that provider's function in ellmer,
-such as `chat_openai()`, and check its model names and effort setting.
+Claude Fable 5.2 requires 30-day data retention; use it only where your arrangements
+allow.
+
+A run that does not finish is saved as not completed, with the reason, and no review:
+
+- the model declined
+- it hit the token limit
+- it did not confirm that it read the whole source: the source ends with a token the
+  review must return
+
+No other model steps in for a declined request. The API can re-run a declined request on
+another model (server-side fallbacks); the prototype leaves this off, so that only the
+chosen model reviews.
 
 ## What it cannot do
 
-- Run the code. The answer lists what needs a code run (`needs_code_run`).
-- Check its own findings. One request per product: no second look in a fresh context,
-  no log of the checks behind an issue. `verified` is the model's claim that it did the
-  arithmetic; check it.
+- Run the code. It reads the `.qmd` and the PDF, nothing else: not R files the `.qmd`
+  sources, not saved results.
+- Check its own findings. One request per run: no second look in a fresh context.
 - Answer the same twice. Two runs on one product can differ; run it twice to see how
   much.
 
 ## Test it on cases with known answers
 
 Because it is a script, you can test it: run it on products whose issues you know, such
-as the demo in [`../../demo/`](../../demo/README.md), and score each run against the
-answer key. In R, [vitals](https://vitals.tidyverse.org) does this next to ellmer: a port
-of Inspect, a Python framework for evaluating language models, aimed at ellmer users. So
+as the demos in [`../../demo/`](../../demo/README.md) and
+[`../../demo-crt/`](../../demo-crt/README.md), and score each run against the answer key.
+In R, [vitals](https://vitals.tidyverse.org), a port of Inspect (a Python framework for
+evaluating language models) for [ellmer](https://ellmer.tidyverse.org) users, does this:
+a dataset of cases, each with what a correct review must flag; the review prompt in an
+ellmer chat as the solver; and a scorer that grades each review against its target. So
 you compare prompts, models and effort settings on cases you know before you trust a
 change.
 
-## With tools in a loop: an agent
-
-Give the model tools, such as "run this R code", and let the library run the loop: the
-model asks for a tool, your code runs it, the result goes back, until the model stops
-asking. In ellmer that is `tool()` and `chat$register_tool()`; in the Python SDK, the
-tool runner. That is the agent of step 4, built by hand; Claude Code
-([`../4-agent`](../4-agent/README.md)) is the ready-made one.
-
 ## Data
 
-What the script sends goes to the provider under its API terms. Send only documents your
-institution allows, and never patient-level data.
+What the document sends goes to the provider under its API terms. Send only documents
+your institution allows, and never patient-level data.
+
+Next: an agent that runs the code, still in development: [`../4-agent`](../4-agent/README.md).

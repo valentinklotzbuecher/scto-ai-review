@@ -154,7 +154,7 @@ Evaluation". Description:
 > of their large language model-based products, the package supports prompt
 > engineering, tool usage, multi-turn dialog, and model graded evaluations.
 
-Used on "Your own script" (the script box and the notes), in the handout and in
+Used on "Your own script" (the scores box and the notes), in the handout and in
 `tools/2-api`: scripted calls can be scored on test cases with known answers.
 
 ## Just Ask the Model, our Unjournal working paper (read 19 November 2026)

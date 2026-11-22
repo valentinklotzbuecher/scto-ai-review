@@ -17,9 +17,9 @@ recommendation.
 | | Way | Starter |
 |---|---|---|
 | 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `dkf-document-check`, a skill for Claude chat |
-| 2 | [Your own script](tools/2-api/README.md) | `review.R` (ellmer) and `review.py` (Anthropic SDK), with the prompt and the answer format |
+| 2 | [Your own script](tools/2-api/README.md) | my review prototype, a Quarto document (`review.qmd`): settings in R, the request through the Anthropic Python SDK, every run kept, the review rendered in the DKF form |
 | 3 | [Review services](tools/3-services/README.md) | the list, paid, free and open source, with sources |
-| 4 | [A coding agent in the repository](tools/4-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions |
+| 4 | [A coding agent in the repository](tools/4-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions; still in development |
 
 - **The demo**, [`demo/`](demo/README.md): a two-page synthetic SSE with six planted
   issues, its answer key and the recorded runs. Give a tool only `demo/sse/`; the rest
@@ -42,18 +42,20 @@ sorts the field into three kinds of review (peer review of papers; statistics an
 methods; code) and turns to our internal consistency review, which needs all three,
 leaving open whether AI belongs before the second statistician or alongside. Then four
 approaches. A chat at maximum effort, with a slide on using a skill (the request as
-typed, and what its SKILL.md holds). Your own pipeline, a script through the API in R
-(ellmer, with vitals to score it on test cases) or Python, shown in practice: its
-prompt, its answer format and what you keep. Review services, someone else's pipeline,
-paid, free or open source; rather than build a more advanced pipeline along the lines of
-the open-source Reviewer 2, the talk turns to an agent. A coding agent in the product's
-repository, such as Claude Code or Codex, with the skills as its instructions and the
-Agent SDK to start it from a script, shown in practice: what you choose (depth; data,
-including synthetic), the review form it writes, and its result on the test case (all
-six planted issues in 34 minutes). One slide shows how to try the script and the agent.
-It ends on one slide of items to discuss; the full results table and Sutton's bitter
-lesson are backup slides in the appendix. The talk takes about ten and a half minutes,
-which leaves the rest of the slot for the discussion.
+typed, and what its SKILL.md holds). Your own pipeline: my review prototype, a Quarto
+document that sends the product through the API (settings in R, the request with the
+Python SDK through reticulate), keeps every run and renders the review in the DKF form,
+shown as it is set up; because it is a script, it can be scored on test cases (in R,
+vitals). Review services, someone else's pipeline, paid, free or open source; rather
+than build a more advanced pipeline along the lines of the open-source Reviewer 2, the
+talk turns to an agent. A coding agent in the product's repository, such as Claude Code
+or Codex, with the skills as its instructions and the Agent SDK to start it from a
+script, and what it adds over the script: it runs the code, challenges its findings,
+works on synthetic data and keeps a log behind every number; still in development. One
+slide shows how to try the chat skill and the review document. It ends on one slide of
+items to discuss; the results on the test case and Sutton's bitter lesson are backup
+slides in the appendix. The talk takes about ten minutes, which leaves the rest of the
+slot for the discussion.
 
 ## Contents
 
@@ -66,7 +68,8 @@ slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: 
 slides/handout.scss     the same style for the handout
 slides/assets/          the preprint's forest plot, and shot-*.png: the screenshot cards,
                         cut from the posts in material/ (see material/README.md)
-tools/                  one folder per way, each with a README; tools/2-api has the scripts
+tools/                  one folder per way, each with a README; tools/2-api has the review
+                        document
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
 demo/answer-key.md      the six planted issues, their consequences, the scoring rules
 demo/answer-key.R       recomputes every number in the answer key
@@ -143,10 +146,12 @@ If you re-render one, re-run every tool on the new PDF.
 - Claude Code on the web: code.claude.com/docs/en/claude-code-on-the-web (runs in an
   isolated cloud VM, not on your machine; counts toward the plan's usage, no separate
   charge; the plans it is on); quoted in `material/README.md`
-- The API starters' settings (model `claude-opus-5-5`, effort, structured output,
-  server-side fallbacks, US$4 and US$20 per million input and output tokens): Anthropic's
-  API documentation, November 2026; ellmer 0.5.2's `chat_anthropic()` and
-  `type_from_schema()`
+- The review document's settings (models `claude-opus-5-5` and `claude-fable-5-2`,
+  effort, adaptive thinking with summaries, streaming; US$4 and US$20, and US$8 and
+  US$40, per million input and output tokens; Claude Fable 5.2's 30-day data retention;
+  server-side fallbacks, left off): Anthropic's API documentation, November 2026;
+  reticulate's `py_require()`. The document itself is the speaker's prototype, ported
+  with current models and its prompt in `tools/2-api/prompt.md`
 - The prompts are our own: "Please check if this is consistent." on the chat slide;
   `tools/2-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
   instruction in `stats_review`; the earlier prototype's prompt on the archived deck's

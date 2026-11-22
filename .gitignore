@@ -3,5 +3,8 @@
 .Rhistory
 .RData
 .DS_Store
-review-results/
+tools/2-api/review_results/
+tools/2-api/review.html
+tools/2-api/to_be_reviewed/*
+!tools/2-api/to_be_reviewed/README.md
 __pycache__/
