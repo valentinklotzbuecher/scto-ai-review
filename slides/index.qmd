@@ -103,67 +103,12 @@ show them, so that we can discuss this with some experience rather than in the a
 All of it is my own exploration, not something DKF runs or recommends.
 :::
 
-## Do these agree?
-
-:::: {.columns}
-::: {.column width="40%" .puzzle}
-::: where
-DEMO-TKA, the text
-:::
-
--------------------- ------------------------
-Significance level   5%, two-sided
-Power                80%
-Sample size          55 evaluable per group
--------------------- ------------------------
-:::
-
-::: {.column width="4%"}
-:::
-
-::: {.column width="56%"}
-::: where
-DEMO-TKA, the simulation
-:::
-
-```r
-alpha <- 0.05
-# …
-rejected[i] <- pt(t_arm, df = fit$df.residual,
-                  lower.tail = FALSE) < alpha
-```
-:::
-::::
-
-::: {.fragment}
-::: punchline
-The code tests one-sided: at 55 per group, the stated two-sided test has 64% power, not 80%.
-:::
-
-::: scope
-Every recorded AI run on this test case found it. Recomputed in R: two-sided, the trial
-needs 80 per group.
-:::
-:::
-
-::: notes
-[2:30–3:15] A small test before the tools. A sample size estimation, our test case: the
-text says a 5% significance level, two-sided, 80% power, and 55 evaluable participants
-per group. On the right, the code that simulates the power. Do they agree? [click] The
-code tests one-sided: the upper tail only, at 5%. At 55 per group the two-sided test the
-text states has 64% power, not 80%; two-sided, the trial needs 80 per group. That is the
-kind of thing a second statistician looks for, and every recorded AI run on this test
-case found it, in the chat and with the agent; we recomputed it in R. It is one of six
-issues planted in a two-page test case, the demo in the kit. So how do you get such a
-review? Three approaches.
-:::
-
 ## Three approaches
 
 {{< include diagrams/_overview.qmd >}}
 
 ::: notes
-[3:15–3:45] Three approaches. The chat: paste and ask. [click] A script through the
+[2:30–3:00] Three approaches. The chat: paste and ask. [click] A script through the
 API, here my review prototype; the review services, someone else's pipeline, come in
 as templates for it. [click] And then something different: an agent that runs the code in
 the repository.
@@ -178,7 +123,7 @@ the repository.
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[3:45–4:45] The simplest way is what the preprint tested. Paste the PDF and the source
+[3:00–4:00] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, the ChatGPT Pro series, Claude Opus 5.5 or Fable 5.2, and set its
 effort to maximum.
@@ -208,7 +153,7 @@ way.
 {{< include diagrams/_api.qmd >}}
 
 ::: notes
-[4:45–5:30] Instead of pasting by hand: the same through the API, from a Quarto
+[4:00–4:45] Instead of pasting by hand: the same through the API, from a Quarto
 document, my review prototype. This is how it started for me: in our Unjournal project
 we send research papers through the API and compare the model's evaluations with the
 expert evaluations The Unjournal commissions; the working paper is in the links. It takes the product's Quarto source and its PDF. Its
@@ -264,7 +209,7 @@ cfg <- list(
 ::::
 
 ::: notes
-[5:30–6:15] How it is set up. On the left, the first chunk: which files, the assignment,
+[4:45–5:30] How it is set up. On the left, the first chunk: which files, the assignment,
 that is the questions the review must answer, best a specific one, the model and the
 effort. [click] You put
 the product's Quarto source and PDF in the folder to_be_reviewed. [click] You set the
@@ -299,7 +244,7 @@ run is marked not completed.
 {{< include diagrams/_services.qmd >}}
 
 ::: notes
-[6:15–7:15] How could the prototype grow? Others have built such pipelines, with many
+[5:30–6:30] How could the prototype grow? Others have built such pipelines, with many
 more calls, and offer them as services; for the prototype, they are templates. There
 are more every month. Refine is the oldest: founded by Ben Golub, an economist at
 Northwestern, and Yann Calvó López; it is seen as the gold standard, and costs up to
@@ -371,7 +316,7 @@ How much more to build, when tools become obsolete this fast?
 ::::
 
 ::: notes
-[7:15–8:00] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
+[6:30–7:15] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
 offline: he decided it was obsolete, and something better and free was coming shortly.
 [click] The same day, he released the skills he begins his reviews with: point your
 agent at a folder with an article, its supplementary material and replication package,
@@ -393,7 +338,7 @@ based on that is the agent.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[8:00–9:45] So: a coding agent working in the product's repository, with skills adapted
+[7:15–9:00] So: a coding agent working in the product's repository, with skills adapted
 from Joe's as its instructions; here Claude Code on the web, and Codex and others work
 the same way. Three parts. The product's repository, with my review skills in it as the
 agent's instructions: what you type is one sentence, "review the product with
@@ -516,7 +461,7 @@ Start on the test cases, then on your own work.
 :::
 
 ::: notes
-[9:45–10:30] And you can try all three. The skill, in a chat: download its ZIP from
+[9:00–9:45] And you can try all three. The skill, in a chat: download its ZIP from
 stats_review, the repository with my review skills, in the folder chat-skills; upload
 it in Claude, with code execution on; attach the product's PDF and its Quarto source,
 and type one sentence. It runs on your Claude plan. [click] The review document is in
@@ -555,7 +500,7 @@ Thinking further ahead
 :::
 
 ::: notes
-[10:30–20:00] To discuss. First, here and now: how should AI complement our internal
+[9:45–20:00] To discuss. First, here and now: how should AI complement our internal
 review? For whom: the author, as a check before the second statistician, the reviewer,
 alongside the review, or both? And how deep: one call that reads, or an agent that runs
 everything? One reason to want it: a single reviewer sees only part of what more

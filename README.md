@@ -43,8 +43,7 @@ AI; for clinical trials, human-only review dangerous). Its notes add that review
 also keep up with code that AI writes. It
 turns to our internal consistency review (methods, numbers and code; errors in code are
 not visible in the text), leaving open whether AI belongs before the second statistician
-or alongside. Then a two-line puzzle from the demo, "Do these agree?": the text states a
-two-sided test, the simulation tests one-sided, and every recorded AI run found it. Then three
+or alongside. Then three
 approaches. A chat at maximum effort, and with a skill: the request as typed, and the
 folder it calls (SKILL.md, references, scripts). An API review prototype: my
 review prototype, a Quarto document that sends the product through the API (settings in R, the
@@ -200,10 +199,6 @@ If you re-render one, re-run every tool on the new PDF.
 - Icons for the three approaches (overview, crumbs, "Try it yourself"): Bootstrap Icons
   1.11.3, chat-dots, file-earmark-code and robot (MIT licence, The Bootstrap Authors),
   as inline paths in `slides/diagrams/_overview.qmd` and `slides/website.scss`
-- The puzzle, "Do these agree?": Table 1, the text and the simulation code of
-  `demo/sse/DEMO-TKA_SSE.qmd`; found in every recorded run (`demo/runs/`: the quick agent
-  run's Major issue 1, the chat run's D1); the numbers (64% power at 55 per group, 80
-  per group two-sided) from `Rscript demo/answer-key.R`
 - The QR code to the kit, `slides/assets/qr-kit.svg`: made with segno 1.6.6 for
   https://github.com/valentinklotzbuecher/scto-ai-review (error correction M) and
   decoded back from the rendered slides before use

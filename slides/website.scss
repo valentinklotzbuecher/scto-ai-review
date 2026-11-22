@@ -380,11 +380,6 @@ $code-color: $ink;
 /* Printed with ?print-pdf: each slide's last step, as in the handout */
 html.print-pdf .reveal .fragment.fade-out { display: none !important; }
 
-/* "Do these agree?": the planning values as a plain two-column table */
-.reveal .puzzle table { font-size: 0.78em; margin: 0.2em 0 0 0; border: none; }
-.reveal .puzzle table td { padding: 0.32em 1.2em 0.32em 0; border-bottom: 1px solid $hairline; }
-.reveal .puzzle table tr:first-child td { border-top: 1px solid $hairline; }
-
 /* The kit's QR code: beside the repositories, and under the first links slide's list */
 .reveal img.qr { width: 128px; height: 128px; margin: 0.2em 0 0 auto; display: block; }
 .reveal img.qr.below { width: 150px; height: 150px; margin: 0.8em 0 0 0; }

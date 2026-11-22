@@ -218,9 +218,6 @@ In the deck (`slides/index.qmd`):
   King and Worthington's Figure 1 side by side, then, on the click, Rust's words. The
   caveats (preprint, 2004 human reviewers, LLM judges, flags on unmodified reports) are
   in its notes, and so is the review bottleneck from Faros's report, below.
-- "Do these agree?": not from these sources, but from the demo: its Table 1, text and
-  simulation code; every recorded run found it (the quick agent run's Major issue 1, the
-  chat run's D1); the numbers from `demo/answer-key.R`.
 - "Internal consistency review" (notes): the boundary sentence above, on errors in data
   handling or analysis code.
 - The discussion slide, "To discuss": the preprint's last author, as the bookend, in its
