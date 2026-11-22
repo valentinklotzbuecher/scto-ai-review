@@ -22,9 +22,14 @@ format:
 
 :::: {.columns}
 ::: {.column width="56%"}
-```{=html}
-<div class="shot"><img src="assets/shot-rust.png" style="width: 100%" alt="Ruslan Rust on X, 28 October 2026: Lots of debate this week on whether journals should ban AI in peer review. We actually tested this in our new preprint, and the results were pretty clear to me. For context, I've reviewed for most of the big journals and evaluated 1,000 human reviews as an editor. I love to read and evaluate science. TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous."></div>
-```
+::: quote
+"From now on I won't do any peer review without AI. For clinical trials, I'd even call
+human-only review dangerous."
+:::
+
+::: attribution
+Ruslan Rust, last author, on X, 28 October 2026
+:::
 
 ::: {.fragment fragment-index=1 .punchline}
 Human reviewers found 27% of the major errors; each of 15 models found more, 53 to 96%.
@@ -41,7 +46,7 @@ Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
 ::::
 
 ```{=html}
-<div class="pop fragment" data-fragment-index="2"><img src="assets/shot-king-worthington.png" style="width: 760px" alt="Rex Douglass on X, 23 October: LoL. I can't believe anyone is surprised by this. It's been true for a year at least. More with some work. Quoting the abstract of King and Worthington: We show that AI-generated article reviews are now better, by every measure we could construct, than reviews written by well-compensated human experts and judged to be of unusually high quality by journal editors and authors. And Gary King's post: New paper, AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices."></div>
+<div class="pop fragment" data-fragment-index="2"><figure class="popfig"><img src="assets/king-worthington-fig1.png" style="width: 820px" alt="King and Worthington, Figure 1: AI reviews dominate human reviews. Of 134 pairs of a human and an AI review of the same manuscript, the AI judge ranked the AI review higher in all 134, and three journal editors in 26 of 30 judgments (87%). By review area the AI review won 92 to 100% of the pairs, and its mean rating from 0 to 10 was higher in every area."><figcaption>King and Worthington, working paper, 28 October 2026, Fig. 1: 134 pairs of a human and an AI review of the same manuscript</figcaption></figure></div>
 ```
 
 ::: notes
@@ -228,17 +233,29 @@ Review, free for two reviews a week. Reviewer 2, by Joe Francis, is open source:
 than thirty chained calls, fifteen to forty-five minutes and a few dollars a paper. Its
 first stage, The Breaker, takes a sledgehammer to the text, and a verification cascade
 then removes what the aggression invents. All are built for research papers, and all but
-the open-source ones mean uploading to a third party. I was planning to fork Reviewer 2,
-to see if I could improve it, or learn from it for my own script.
+the open-source ones mean uploading to a third party. And they are no magic: as Aniket
+Panjwani worked out on X, if one Refine review costs fifty dollars and ten cost three
+hundred, its inference costs at most about thirty dollars a review, while a ChatGPT Pro
+or Claude Max plan buys thousands of dollars' worth of tokens a month at API prices; a
+reasonable set of subagents on your own subscription should do better. The hard part,
+he says, is the evals: well-constructed public test cases would be a public good. I was
+planning to fork Reviewer 2, to see if I could improve it, or learn from it for my own
+script.
 :::
 
 ## The bitter lesson
 
 :::: {.columns}
 ::: {.column width="47%"}
-```{=html}
-<div class="shot"><img src="assets/shot-reviewer2-retired.png" style="max-height: 520px; width: auto; max-width: 100%" alt="Joseph Francis on X, 26 October 2026: Reviewer 2, he dead. The final version of the Reviewer 2 system is no longer available at isitcredible.com but is open source here: github.com/isitcredible/r... I will also be open sourcing a better system shortly. A reply asks: No more paid product? Now free but no longer updated? He answers: Yes, I decided it was obsolete. Something better and free coming shortly."></div>
-```
+::: quote
+"Reviewer 2—he dead. … I will also be open sourcing a better system shortly."
+
+"Yes, I decided it was obsolete. Something better and free coming shortly."
+:::
+
+::: attribution
+Joe Francis on X, 26 October 2026
+:::
 :::
 
 ::: {.column width="5%"}
@@ -263,7 +280,11 @@ How much more to build, when tools become obsolete this fast?
 ::::
 
 ```{=html}
-<div class="pop fragment" data-fragment-index="3"><img src="assets/shot-skills-release.png" style="width: 740px" alt="Joseph Francis on X, 26 October 2026: These are the three skills that I use to begin my reviews, now freely available for anyone to use: /review: point your agent at a folder with an article, its supplementary material, and replication package, and it will assess it. /audit-review: the agent will verify the initial review, checking for accuracy and completeness. /review-digest: the agent will produce a human-readable digest of the review. After a gap: when using them, you should remember that the results have been produced by robots and should be verified by humans. That said, verification steps are included in the skills, and the results tend to be reliable."></div>
+<div class="pop fragment" data-fragment-index="3"><div class="qcard">
+<div class="quote">"These are the three skills that I use to begin my reviews, now freely available for anyone to use: … /review: Point your agent at a folder with an article, its supplementary material, and replication package, and it will assess it."</div>
+<div class="quote">"… the results have been produced by robots and should be verified by humans."</div>
+<div class="attribution">Joe Francis on X, 26 October 2026, releasing his skills</div>
+</div></div>
 ```
 
 ::: notes
@@ -428,6 +449,7 @@ Thinking further ahead
 :::
 
 ::: {.tight}
+- A checklist learned from our past reviews?
 - Should we write our products for AI readers?
 - A replication certificate with every product?
 - Build our own tools, or wait for the next model?
@@ -438,12 +460,26 @@ Thinking further ahead
 [10:00–20:00] To discuss. First, here and now: how should AI complement our internal
 review? For whom: the author, as a check before the second statistician, the reviewer,
 alongside the review, or both? And how deep: one call that reads, or an agent that runs
-everything? Could our review become result-oriented: the AI goes through every line,
-every number and every re-run, and we check that it tested enough, that each chunk,
-section and analysis does what it says, and that the approach and the interpretation
-hold? Even the author of the skills I build on says the results come from robots and
+everything? One reason to want it: a single reviewer sees only part of what
+more reviewers would raise. In the NeurIPS 2021 reviews, one reviewer raised about a fifth
+of the issues that all of a paper's reviewers raised together; an AI that applies the
+same checks to every product takes some of the luck out of who reviews it. Could our
+review become result-oriented: the AI goes through every line, every number and every
+re-run, and we check that it tested enough, that each chunk, section and analysis does
+what it says, and that the approach and the interpretation hold? A caution from this
+month: the latest GPT and Claude models draw about 62% of their review weaknesses from
+the appendix, human reviewers about 8%; they audit every detail and rarely engage with
+the core of the paper; in ICLR's human reviews that share has risen from below 10% to
+28% since the newest models came out. The
+authors' advice: use them as a tool for checking the details, not as the judge of what
+matters most. That judgement stays with us. Even the author of the skills I build on says the results come from robots and
 should be verified by humans. And what would you need to see before you sign a product
-an AI reviewed? Then, thinking further ahead. If an AI reads our products first, should
+an AI reviewed? Then, thinking further ahead. Liu, Guo, Hartline and Hullman
+turned a corpus of past reviews into a checklist of criticisms: with language-model
+reviewers it cut the error of a three-reviewer committee by 58% on NeurIPS and 21% on
+ICLR, and in a small study with 20 people it more than halved the error of a paper
+ranking. Could our own archive of review forms become such a checklist, for the human
+reviewer and the AI alike? If an AI reads our products first, should
 we write them for it: the estimand in full, every assumption in the text and not only in
 the code, every number traceable to the code that makes it? Certify, from Gary King,
 Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun

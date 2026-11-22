@@ -3,12 +3,13 @@
 | File | What it is | Use |
 |---|---|---|
 | `brian-2026-llm-peer-review-medrxiv-v2.pdf` | Brian D, Pereira Hernández XI, Yin H, Koury J, Rust R. *Large language models detect methodological errors that human peer review misses in clinical trials.* medRxiv, version 2 posted 28 October 2026. doi:10.64898/2026.10.25.26366455 | CC BY 4.0: reuse with attribution. `slides/assets/brian2026-fig1b.png` is cropped from its Fig. 1b. Not peer reviewed. |
+| `liu-2026-learning-checklists-arxiv-2610.28666.pdf` | Liu X, Guo Z, Hartline J, Hullman J. *Learning Checklists to Reduce Lottery Effects in Scientific Peer Review.* arXiv:2610.28666, 14 October 2026 | CC BY 4.0. The reviewer lottery and the checklist item on "To discuss" (notes and handout); see below |
 | `rust-2026-10-tweet.png` | Ruslan Rust (last author) on X announcing the preprint; the date is not visible in the screenshot | Source of the quote on the discussion slide, "And in five years?" (on the opening slide of the demo deck) |
-| `francis-2026-10-26-tweet.jpeg` | Joseph Francis on X, 26 October 2026, retiring Reviewer 2 | Source of the card retiring Reviewer 2 on "The bitter lesson" and of "obsolete" in its notes; in the demo deck, of the quotes in the notes of "What carries over" and on the backup slide "Others built review pipelines" |
-| `francis-2026-10-26-skills-tweet.png` | Joseph Francis on X, 26 October 2026, releasing his review skills (/review, /audit-review, /review-digest): "When using them, you should remember that the results have been produced by robots and should be verified by humans." … "this is only how I begin my reviews. Quite a lot of human labour can go into them subsequently." | Source of `slides/assets/shot-skills-release.png`, overlaid on the last click of "The bitter lesson", before the agent; its "verified by humans" sentence is also in the notes of "To discuss" |
-| `rust-2026-10-28-tweet.png` | Ruslan Rust on X, 28 October 2026, with the date visible: "TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous" | Source of the screenshot on "And in five years?"; supersedes the undated `rust-2026-10-tweet.png` |
-| `douglass-2026-10-15-deep-review-tweet.png` | Rex Douglass on X, 15 October 2026, quoting News from Google (14 October): "Today @GoogleResearch is launching Deep Review — an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication. After pilot partnerships analyzing over 15,000 research papers, we're making Deep Review globally" [available]. His comment: "For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over." | Quoted in the notes of "The bitter lesson" (its card, `shot-deep-review.png`, is no longer shown); the source of Deep Review on "Review services as templates" |
-| `douglass-2026-10-23-king-worthington-tweet.png` | Rex Douglass on X, 23 October 2026, quoting Gary King's post on King and Worthington, "AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices" (GaryKing.org/peerless; the paper is noted below), with the abstract: "We show that AI-generated article reviews are now better, by every measure we could construct, than reviews written by well-compensated human experts and judged to be of unusually high quality by journal editors and authors." His comment: "It's been true for a year at least. More with some work." | Source of the card on the intro slide |
+| `francis-2026-10-26-tweet.jpeg` | Joseph Francis on X, 26 October 2026, retiring Reviewer 2 | Source of the quote on "The bitter lesson" ("Reviewer 2—he dead. … I will also be open sourcing a better system shortly"; "Yes, I decided it was obsolete. Something better and free coming shortly"); in the demo deck, of the quotes in the notes of "What carries over" and on the backup slide "Others built review pipelines" |
+| `francis-2026-10-26-skills-tweet.png` | Joseph Francis on X, 26 October 2026, releasing his review skills (/review, /audit-review, /review-digest): "When using them, you should remember that the results have been produced by robots and should be verified by humans." … "this is only how I begin my reviews. Quite a lot of human labour can go into them subsequently." | Source of the quote card on the last click of "The bitter lesson" (the opening sentence, /review, and "… the results have been produced by robots and should be verified by humans"), and of that sentence in the notes of "To discuss" |
+| `rust-2026-10-28-tweet.png` | Ruslan Rust on X, 28 October 2026, with the date visible: "TLDR: From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous" | Source of the quote on the intro slide, "Models find more errors than reviewers did"; supersedes the undated `rust-2026-10-tweet.png` |
+| `douglass-2026-10-15-deep-review-tweet.png` | Rex Douglass on X, 15 October 2026, quoting News from Google (14 October): "Today @GoogleResearch is launching Deep Review — an agentic system designed to stress-test manuscripts, design docs, and complex proposals before submission or publication. After pilot partnerships analyzing over 15,000 research papers, we're making Deep Review globally" [available]. His comment: "For about three years I've thought about building this at least twice a day, and I keep not because it's token expensive, hard to monetize, and easy to enter. And then of course one of the big three does it and it's over." | Quoted in the notes of "The bitter lesson"; the source of Deep Review on "Review services as templates" |
+| `douglass-2026-10-23-king-worthington-tweet.png` | Rex Douglass on X, 23 October 2026, quoting Gary King's post on King and Worthington, "AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices" (GaryKing.org/peerless; the paper is noted below), with the abstract: "We show that AI-generated article reviews are now better, by every measure we could construct, than reviews written by well-compensated human experts and judged to be of unusually high quality by journal editors and authors." His comment: "It's been true for a year at least. More with some work." | Source of "It's been true for a year at least" in the notes of the intro slide |
 
 ## Claude Agent SDK (documentation, read 18 November 2026)
 
@@ -193,24 +194,22 @@ In the deck (`slides/index.qmd`):
   handling or analysis code.
 - The discussion slide, "To discuss": the preprint's last author, as the bookend, in its
   notes.
-- The posts are shown as screenshots, cut from the files above into
-  `slides/assets/shot-*.png`; where a card leaves text out, a dashed rule marks the gap:
-  - intro slide: `shot-rust.png`, the text of `rust-2026-10-28-tweet.png` without its
-    figure (the figure is the next click, from the preprint itself); then, on the last
-    click, `shot-king-worthington.png`, the whole of
-    `douglass-2026-10-23-king-worthington-tweet.png`;
-  - "The bitter lesson", between "Review services as templates" and the agent: from the
-    start, `shot-reviewer2-retired.png`, from `francis-2026-10-26-tweet.jpeg`: the post
-    retiring Reviewer 2 ("I will also be open sourcing a better system shortly"), then
-    a reply's question and his answer ("Yes, I decided it was obsolete. Something
-    better and free coming shortly"); beside it, Sutton's quote and the question how
-    much more to build; on the last click, overlaid, `shot-skills-release.png`, from
-    `francis-2026-10-26-skills-tweet.png`: the post releasing his skills, its first part
-    (the three skills) and, after a dashed rule, its paragraph on verification by
-    humans; it stays on screen into the agent.
+- The posts are quoted as text, from the screenshots above; no screenshot is shown:
+  - intro slide: Rust's "From now on I won't do any peer review without AI. For
+    clinical trials, I'd even call human-only review dangerous" (`rust-2026-10-28-tweet.png`);
+    then the preprint's Fig. 1b; on the last click, overlaid, King and Worthington's
+    Figure 1, `slides/assets/king-worthington-fig1.png` (see below);
+  - "The bitter lesson", between "Review services as templates" and the agent: Francis
+    retiring Reviewer 2 (`francis-2026-10-26-tweet.jpeg`); beside it, Sutton's quote and
+    the question how much more to build; on the last click, overlaid, a quote card from
+    his post releasing his skills (`francis-2026-10-26-skills-tweet.png`), which stays
+    on screen into the agent.
 - The discussion slide's notes quote Francis's "verified by humans" sentence (from
-  `francis-2026-10-26-skills-tweet.png`) as text, describe Certify, and come back to
-  the bitter lesson.
+  `francis-2026-10-26-skills-tweet.png`) as text, describe Certify, come back to the
+  bitter lesson, and use the two arXiv papers below (the reviewer lottery and the
+  checklist item; the appendix bias).
+- "Review services as templates" (notes): Aniket Panjwani's point on Refine's costs and
+  on evals, below.
 
 In the handout (`slides/handout.qmd`) and the tool READMEs (`tools/`), as text, not
 screenshots:
@@ -233,3 +232,63 @@ In the earlier demo deck (`archive/demo-deck.qmd`):
 - "Six planted issues, two at each level" and "What carries over": our demo follows the
   same design (inserted errors, one answer key), extended to code and computation.
 - Backup, "How well one call reads": the 53–96% against 27% again.
+
+## King and Worthington, Figure 1 (the speaker's copy of the paper, version of 28 October 2026)
+
+`slides/assets/king-worthington-fig1.png` is Figure 1 ("AI reviews dominate human
+reviews"), cropped from page 6 (page 7 of the PDF) of *AI Article Reviews Dominate Human
+Peer Reviews at Their Best: Evidence and Policy Choices*, dated 28 October 2026, at 300
+dpi. Caption: "The figure summarizes evaluations of 134 pairs of human and AI reviews of
+the same manuscript. The top reports overall evaluations by AI and by three (human)
+editors of major journals; the bottom summarizes results for seven separate review
+characteristics." The paper states no licence: the figure is shown with its source, for
+the talk; ask the authors before the kit goes public. The PDF is not kept here.
+
+## Two arXiv papers for the discussion (read 22 November 2026)
+
+Liu, Guo, Hartline and Hullman, *Learning Checklists to Reduce Lottery Effects in
+Scientific Peer Review*, arXiv:2610.28666, 14 October 2026, CC BY 4.0
+(`liu-2026-learning-checklists-arxiv-2610.28666.pdf`):
+
+- Abstract (p. 1): "Reviewer lottery error describes error due to a small set of peer
+  reviews attending to only some of the issues with a paper that a larger pool of
+  eligible reviewers would raise. We show this error can be reduced by surfacing a
+  checklist of criticisms learned from a historical review corpus." In simulated review
+  with LLM reviewers, the learned checklist "reduces the mean squared error (MSE) of a
+  three-reviewer committee by 58% on NeurIPS and 21% on ICLR"; in a human study with 20
+  participants it "lowers the MSE of a paper ranking … from 0.48 to 0.22".
+- Appendix B.2 (p. 19), the NeurIPS 2021 reviews (298 papers): "One reviewer covers a
+  fifth of the observed set, and a committee of three or four covers a little over half"
+  (Table 2: one reviewer 19.7%); 81% of issues are raised by a single reviewer (p. 4).
+
+Ghosh, Saim and Jiang, *AI Reviews Are Biased Towards the Appendix*, arXiv:2611.17811,
+13 November 2026 (arXiv's non-exclusive licence: not kept here):
+
+- Abstract (p. 1): the latest GPT and Claude models "draw about 50% or more of their
+  review weaknesses from the appendix. This behavior holds across the API, coding-agent,
+  and web access methods"; humans "draw only 8.4% of their weaknesses from the
+  appendix". Table 1 (p. 7): LLMs 62.00 ± 7.70%, humans 8.40 ± 1.44%. Models: GPT-6-Astra,
+  GPT-6.1-Sol, Claude Opus 5.5 and Claude Sonnet 5.5, through the API, Codex and Claude
+  Code, and the web (p. 3).
+- Figure 1 (p. 1): in human ICLR reviews the share was about 6–10% for years and
+  "nearly tripled to 27.60% in ICLR 2027 reviews".
+- p. 9: LLMs "cross-check the main text against appendix details to find small
+  mismatches" and "repeatedly ask for more experiments and statistical checks … These
+  points are often valid, but they do not engage with the paper's core contribution".
+- p. 10: "An error in a table in Appendix G is still an error … LLM reviewers raise the
+  standard, since they leave no part of the paper unexamined. However, effective
+  reviewing also requires judgment about what matters most"; the advice: use LLMs "as a
+  tool for checking the details, not as the judge of what matters most in a paper."
+
+## Aniket Panjwani on X, on Refine (screenshot shared by the speaker, 22 November 2026)
+
+The date of the post is not visible, and the screenshot is not kept here. Transcribed:
+"1 review costs $50 and 10 reviews cost $300. So, unless they're taking a loss, average
+cost of inference on a Refine review is no more than $30. On a ChatGPT Pro plan, for
+$200/mo, you're getting the equivalent of ~$14k/mo in tokens by API pricing. On a Claude
+Max plan, you're getting ~$8k/mo (see SemiAnalysis study …). So, IMO it should not be
+*that* hard to do better than Refine on your personal ChatGPT/Claude subscription. Like
+just a reasonably semi half assed set of subagents should be able to do better than
+Refine … The actual hard part IMO is creating the evals. It would be a very useful public
+good to have well constructed public evals for the type of thing Refine is doing."
+Used in the notes of "Review services as templates".

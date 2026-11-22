@@ -330,28 +330,42 @@ dangerous for clinical trials. And AI-only review?
 
 1. **How should AI complement our review?** For whom: the author, as a check before the
    second statistician, the reviewer, alongside the review, or both? And how deep: one
-   call that reads, or an agent that runs everything?
+   call that reads, or an agent that runs everything? One reason to want it: a single
+   reviewer sees only part of what more reviewers would raise. In the NeurIPS 2021
+   reviews, one reviewer raised about a fifth of the issues that all of a paper's
+   reviewers raised together (Liu, Guo, Hartline and Hullman, 2026); an AI that applies
+   the same checks to every product takes some of the luck out of who reviews it.
 2. **Review results, not lines?** In a result-oriented review the AI goes through every
    line, every number and every re-run, and keeps its tests and logs. The human checks
    that the AI tested enough, that each chunk, section, preparation step and analysis
    does what it says, and that the approach and the interpretation hold. Even the author
    of the skills mine build on says: "When using them, you should remember that the
    results have been produced by robots and should be verified by humans" (Joe Francis
-   on X, 26 October 2026).
+   on X, 26 October 2026). A caution: the latest GPT and Claude models draw about 62% of
+   their review weaknesses from the appendix, human reviewers about 8%; they audit every
+   detail and rarely engage with the core of the paper. The authors' advice: use them "as
+   a tool for checking the details, not as the judge of what matters most in a paper"
+   (Ghosh, Saim and Jiang, 2026).
 3. **What would you need to see before you sign a product an AI reviewed?**
 
 ### Thinking further ahead
 
-4. **Should we write our products for AI readers?** The estimand in full, every
+4. **A checklist learned from our past reviews?** Liu and colleagues turned a corpus of
+   past reviews into a checklist of criticisms: with language-model reviewers it cut the
+   error of a three-reviewer committee by 58% on NeurIPS and 21% on ICLR, and in a study
+   with 20 people it lowered the error of a paper ranking from 0.48 to 0.22. Could our
+   archive of review forms become such a checklist, for the human reviewer and the AI
+   alike?
+5. **Should we write our products for AI readers?** The estimand in full, every
    assumption in the text and not only in the code, every number traceable to the code
    that makes it?
-5. **A replication certificate with every product?** Certify, from Gary King, Yiqing Xu
+6. **A replication certificate with every product?** Certify, from Gary King, Yiqing Xu
    and Leo Yang at Harvard (a beta), has your own AI assistant, such as Claude Code or
    Codex, rerun a replication package on your computer; the certificate adds "evidence
    that rerunning the code produces the results to be published."
-6. **Build our own tools, or wait for the next model?** See the bitter lesson above:
+7. **Build our own tools, or wait for the next model?** See the bitter lesson above:
    what carries over is test cases, review standards and data rules.
-7. **Implications for teaching: how to train staff, how fast to adopt?** If the AI does
+8. **Implications for teaching: how to train staff, how fast to adopt?** If the AI does
    the line work, how will junior statisticians learn to review? How do we train our
    staff, and how fast should we adopt?
 
@@ -436,6 +450,11 @@ about half a participant per group. The agent was right, and the key was correct
 - Joe Francis: [Reviewer 2](https://github.com/isitcredible/reviewer2) and its paper
   *Yell at It* (`paper/yellatit.pdf` there);
   [research_skills](https://github.com/isitcredible/research_skills)
+- Liu, Guo, Hartline and Hullman, *Learning Checklists to Reduce Lottery Effects in
+  Scientific Peer Review*, arXiv, 14 October 2026:
+  [arxiv.org/abs/2610.28666](https://arxiv.org/abs/2610.28666)
+- Ghosh, Saim and Jiang, *AI Reviews Are Biased Towards the Appendix*, arXiv, 13 November
+  2026: [arxiv.org/abs/2611.17811](https://arxiv.org/abs/2611.17811)
 - Certify, replication certificates (King, Xu and Yang, Harvard):
   [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
 - [ellmer](https://ellmer.tidyverse.org) and [vitals](https://vitals.tidyverse.org),

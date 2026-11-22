@@ -68,8 +68,8 @@ slides/diagrams/        the diagrams as inline SVG, included by the deck and the
 slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: ivory,
                         spruce-green ink, mauve; Zen Kaku Gothic New and IBM Plex Mono
 slides/handout.scss     the same style for the handout
-slides/assets/          the preprint's forest plot, and shot-*.png: the screenshot cards,
-                        cut from the posts in material/ (see material/README.md)
+slides/assets/          the preprint's Fig. 1b, King and Worthington's Fig. 1, and the
+                        excerpt of the demo run's review; the posts are quoted as text
 tools/                  one folder per way, each with a README; tools/2-api has the review
                         document
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
@@ -118,6 +118,16 @@ If you re-render one, re-run every tool on the new PDF.
   post of 14 October 2026,
   research.google/blog/analyzing-technical-documents-with-deep-review/, quoted in
   `material/README.md`
+- King and Worthington's Figure 1 on the intro slide: cropped from page 6 of the version
+  of 28 October 2026 (the speaker's copy; noted in `material/README.md`); no licence is
+  stated, so ask the authors before the kit goes public
+- Liu, Guo, Hartline and Hullman, *Learning Checklists to Reduce Lottery Effects in
+  Scientific Peer Review*, arXiv:2610.28666, 14 October 2026 (CC BY 4.0, in `material/`),
+  and Ghosh, Saim and Jiang, *AI Reviews Are Biased Towards the Appendix*,
+  arXiv:2611.17811, 13 November 2026: in the notes of "To discuss" and in the handout;
+  quoted with pages in `material/README.md`
+- Aniket Panjwani on X, on Refine's costs and on evals (date not visible; transcribed in
+  `material/README.md`): in the notes of "Review services as templates"
 - Certify (Gary King, Yiqing Xu and Leo Yang, Harvard), replication certificates run by
   your own AI assistant: certify.iq.harvard.edu, quoted in `material/README.md`; in the
   discussion slide's notes, the handout and `tools/4-agent`
@@ -128,7 +138,7 @@ If you re-render one, re-run every tool on the new PDF.
   2.0); Joseph Francis on X, 26 October 2026 ("Reviewer 2—he dead", "Yes, I decided it
   was obsolete"; screenshot in `material/`), and the same day releasing his skills
   ("Point your agent at a folder …", "… the results have been produced by robots and
-  should be verified by humans"; screenshot in `material/`, the card on "The bitter
+  should be verified by humans"; screenshot in `material/`, quoted on "The bitter
   lesson"). The prompt quoted for its first stage is
   `src/reviewer2/prompts/01a_breaker.txt`
 - research_skills: github.com/isitcredible/research_skills (MIT, 0.9 first public

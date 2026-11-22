@@ -339,6 +339,21 @@ $code-color: $ink;
 .reveal .pop img { max-width: none; box-shadow: 0 14px 40px rgba(44, 58, 47, 0.22); }
 .reveal .shot { margin: 0.2em 0 0.4em 0; }
 
+/* A figure over the slide, with its source below */
+.reveal .pop figure.popfig { margin: 0; display: flex; flex-direction: column; align-items: center; }
+.reveal .pop figure.popfig figcaption { font-size: 0.45em; color: $ink-soft; margin-top: 0.7em; }
+
+/* A post quoted over the slide, mounted like the plates */
+.reveal .pop .qcard {
+  max-width: 1000px;
+  margin-top: 40px;
+  background: #fff;
+  border: 1px solid $hairline;
+  padding: 1rem 1.6rem 1.1rem 1.6rem;
+  box-shadow: 0 14px 40px rgba(44, 58, 47, 0.22);
+}
+.reveal .pop .qcard .quote { font-size: 0.9em; }
+
 /* Appendix divider: the site's fleuron */
 .reveal .slides section.divider h1::after {
   content: "\2766";
