@@ -353,6 +353,8 @@ $code-color: $ink;
   box-shadow: 0 14px 40px rgba(44, 58, 47, 0.22);
 }
 .reveal .pop .qcard .quote { font-size: 0.9em; }
+.reveal .pop .qcard.solo { max-width: 900px; margin-top: 150px; }
+.reveal .pop .qcard.solo .quote { font-size: 1.15em; }
 
 /* Appendix divider: the site's fleuron */
 .reveal .slides section.divider h1::after {

@@ -21,49 +21,45 @@ format:
 ## Models find more errors than reviewers did
 
 :::: {.columns}
-::: {.column width="56%"}
-::: quote
-"From now on I won't do any peer review without AI. For clinical trials, I'd even call
-human-only review dangerous."
-:::
-
-::: attribution
-Ruslan Rust, last author, on X, 28 October 2026
-:::
-
-::: {.fragment fragment-index=1 .punchline}
-Human reviewers found 27% of the major errors; each of 15 models found more, 53 to 96%.
-:::
-:::
-
-::: {.column width="44%" .plate .fragment fragment-index=1}
+::: {.column width="44%" .plate}
 ![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
 
 ::: {.tiny .muted}
 Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
 :::
 :::
+
+::: {.column width="56%"}
+::: punchline
+Human reviewers found 27% of the major errors; each of 15 models found more, 53 to 96%.
+:::
+:::
 ::::
 
 ```{=html}
-<div class="pop fragment" data-fragment-index="2"><figure class="popfig"><img src="assets/king-worthington-fig1.png" style="width: 820px" alt="King and Worthington, Figure 1: AI reviews dominate human reviews. Of 134 pairs of a human and an AI review of the same manuscript, the AI judge ranked the AI review higher in all 134, and three journal editors in 26 of 30 judgments (87%). By review area the AI review won 92 to 100% of the pairs, and its mean rating from 0 to 10 was higher in every area."><figcaption>King and Worthington, working paper, 28 October 2026, Fig. 1: 134 pairs of a human and an AI review of the same manuscript</figcaption></figure></div>
+<div class="pop fragment fade-in-then-out" data-fragment-index="1"><figure class="popfig"><img src="assets/king-worthington-fig1.png" style="width: 820px" alt="King and Worthington, Figure 1: AI reviews dominate human reviews. Of 134 pairs of a human and an AI review of the same manuscript, the AI judge ranked the AI review higher in all 134, and three journal editors in 26 of 30 judgments (87%). By review area the AI review won 92 to 100% of the pairs, and its mean rating from 0 to 10 was higher in every area."><figcaption>King and Worthington, working paper, 28 October 2026, Fig. 1: 134 pairs of a human and an AI review of the same manuscript</figcaption></figure></div>
+<div class="pop fragment" data-fragment-index="2"><div class="qcard solo">
+<div class="quote">"From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous."</div>
+<div class="attribution">Ruslan Rust, last author, on X, 28 October 2026</div>
+</div></div>
 ```
 
 ::: notes
 [0:30–1:45] The debate this autumn: should journals ban AI in peer review? Ruslan Rust's
-group tested it. His conclusion: from now on he won't review without AI, and for
-clinical trials he calls human-only review dangerous. [click] They repeated the classic
-BMJ experiment: known errors inserted into reports of randomised trials, every review
-scored against the same answer key. Human peer reviewers, in the 2004 study, found
-about a quarter of the major errors. Every one of 15 current models, reading only the
-text, found more: 53 to 96%. Caveats: a preprint, a historical human comparison,
-language models as judges, and models that also flag concerns on clean reports.
-[click] A second study, from Harvard, the same week: King and Worthington compared AI
-reviews with paid human reviews that editors and authors had rated unusually good, and
-the AI reviews were better by every measure they could construct: 124 papers, one review
-each from Claude Opus 4.8 at its maximum reasoning setting, judged by another model and
-by three former journal editors, who preferred the AI review in 26 of 30 judgments.
-Also a working paper. Or as one researcher put it: "It's been true for a year at least."
+group tested it. They repeated the classic BMJ experiment: known errors inserted into
+reports of randomised trials, every review scored against the same answer key. Human
+peer reviewers, in the 2004 study, found about a quarter of the major errors. Every one
+of 15 current models, reading only the text, found more: 53 to 96%. Caveats: a
+preprint, a historical human comparison, language models as judges, and models that
+also flag concerns on clean reports. [click] A second study, from Harvard, the same
+week: King and Worthington compared AI reviews with paid human reviews that editors and
+authors had rated unusually good, and the AI reviews were better by every measure they
+could construct: 124 papers, one review each from Claude Opus 4.8 at its maximum
+reasoning setting, judged by another model and by three former journal editors, who
+preferred the AI review in 26 of 30 judgments. Also a working paper. Or as one
+researcher put it: "It's been true for a year at least." [click] And Rust's own
+conclusion: from now on he won't review without AI, and for clinical trials he calls
+human-only review dangerous.
 :::
 
 ## Internal consistency review
