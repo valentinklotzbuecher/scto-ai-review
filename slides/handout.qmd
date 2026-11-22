@@ -147,7 +147,10 @@ Starter: [tools/1-chat](https://github.com/valentinklotzbuecher/scto-ai-review/t
 :::
 
 Instead of pasting by hand, a script: my review prototype, a Quarto document that sends
-the product through the API. It takes the product's Quarto source and its PDF. Its chunks hold the settings, in R; the prompt, from a text file; and the request,
+the product through the API. It grew out of my first scripted calls, in the Unjournal
+project, where we send research papers through the API and compare the model's
+evaluations with the expert evaluations The Unjournal commissions (*Just Ask the Model*,
+in the links below). It takes the product's Quarto source and its PDF. Its chunks hold the settings, in R; the prompt, from a text file; and the request,
 sent with the Anthropic Python SDK through reticulate. ellmer could send it too; the SDK
 gives the exact stop reason and lets the document check that the model read the whole
 source. One request per run, paid per use with an API key, under the API's terms. Every

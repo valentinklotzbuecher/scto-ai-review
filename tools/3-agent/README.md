@@ -47,7 +47,7 @@ read 18 November 2026.
 
    ```bash
    python3 ../stats_review/.claude/skills/dkf-review/scripts/new_job.py review/2026-11-19_quick \
-     --product SSE001.qmd SSE001.pdf
+     --product my_sse.qmd my_sse.pdf
    ```
 
 3. Fill in `00_ASSIGNMENT.md`: product type, your questions, the documents it depends

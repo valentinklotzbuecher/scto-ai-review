@@ -749,7 +749,7 @@ prompt_addendum_block = (
 )
 prompt_override_text = cfg_str("prompt_override", allow_empty=True).strip()
 
-prompt_version = "dkf_pre_human_review_v4"
+prompt_version = "pre_human_review_v4"
 
 source_integrity_instruction_block = """Source integrity requirements:
 - When a QMD source block is supplied, read through its final `QMD_SOURCE_COMPLETION_TOKEN`.
