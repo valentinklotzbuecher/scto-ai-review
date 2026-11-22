@@ -188,6 +188,8 @@ In the deck (`slides/index.qmd`):
 - The intro slide, "Models find more errors than reviewers did": Rust's words, then the
   27% against 53–96% and Fig. 1b. The caveats (preprint, 2004 human reviewers, LLM
   judges, flags on unmodified reports) are in its notes.
+- "Three kinds of review" (notes): King and Worthington; Brian et al.'s methodological
+  errors and the boundary sentence above, on errors in analysis code; Certify.
 - The discussion slide, "To discuss": the preprint's last author, as the bookend, in its
   notes.
 - The posts are shown as screenshots, cut from the files above into

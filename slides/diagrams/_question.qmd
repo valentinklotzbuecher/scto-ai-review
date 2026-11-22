@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 300px; margin-top: 40px" viewBox="0 0 1000 190" role="img" aria-label="Sample size estimations, analysis plans and reports go to a second statistician, who checks their methods, numbers and code. Then a question mark: where does AI come in?">
+<svg class="dg" style="max-height: 300px; margin-top: 40px" viewBox="0 0 1100 200" role="img" aria-label="Sample size estimations, analysis plans and reports go to a second statistician, who checks their methods, numbers and code. Then two question marks: AI before the second statistician, or alongside them? Where it belongs is open.">
   <defs><marker id="mq" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <path class="doc" d="M30 40 h56 l18 18 v84 h-74 z"/><path class="fold" d="M86 40 v18 h18"/>
   <text class="mono" x="67" y="112" font-size="16" text-anchor="middle">SSE</text>
@@ -7,14 +7,18 @@
   <text class="mono" x="177" y="112" font-size="16" text-anchor="middle">SAP</text>
   <path class="doc" d="M250 40 h56 l18 18 v84 h-74 z"/><path class="fold" d="M306 40 v18 h18"/>
   <text class="mono" x="287" y="112" font-size="14" text-anchor="middle">REPORT</text>
-  <line class="arrow" x1="345" y1="92" x2="420" y2="92" marker-end="url(#mq)"/>
-  <rect class="box" x="428" y="42" width="320" height="100"/>
-  <text class="strong" x="588" y="84" font-size="25" text-anchor="middle">second statistician</text>
-  <text class="soft" x="588" y="118" font-size="20" text-anchor="middle">methods · numbers · code</text>
+  <line class="arrow" x1="345" y1="92" x2="540" y2="92" marker-end="url(#mq)"/>
+  <rect class="box" x="548" y="42" width="320" height="100"/>
+  <text class="strong" x="708" y="84" font-size="25" text-anchor="middle">second statistician</text>
+  <text class="soft" x="708" y="118" font-size="20" text-anchor="middle">methods · numbers · code</text>
   <g class="fragment" data-fragment-index="1">
-  <line class="arrow cut" x1="748" y1="92" x2="800" y2="92"/>
-  <rect class="ghost" x="800" y="42" width="170" height="100"/>
-  <text class="accent" x="885" y="104" font-size="34" text-anchor="middle">AI?</text>
+  <rect class="ghost" x="382" y="52" width="122" height="80" style="fill: #FCFAF4"/>
+  <text class="accent" x="443" y="104" font-size="30" text-anchor="middle">AI?</text>
+  <text class="mono" x="443" y="160" font-size="13" text-anchor="middle">BEFORE</text>
+  <line class="arrow cut" x1="868" y1="92" x2="912" y2="92"/>
+  <rect class="ghost" x="912" y="52" width="122" height="80"/>
+  <text class="accent" x="973" y="104" font-size="30" text-anchor="middle">AI?</text>
+  <text class="mono" x="973" y="160" font-size="13" text-anchor="middle">ALONGSIDE</text>
   </g>
 </svg>
 ```

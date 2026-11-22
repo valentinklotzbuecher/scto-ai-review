@@ -61,7 +61,28 @@ by three former journal editors, who preferred the AI review in 26 of 30 judgmen
 Also a working paper. Or as one researcher put it: "It's been true for a year at least."
 :::
 
-## And our internal review?
+## Three kinds of review
+
+{{< include diagrams/_review-kinds.qmd >}}
+
+::: {.fragment fragment-index=3 .punchline}
+Our internal consistency review needs all three.
+:::
+
+::: notes
+[1:45–2:30] More systematically, three kinds of review are changing. Peer review of
+papers, for journals: King and Worthington's AI reviews beat paid expert reviews.
+[click] The review of statistics and methods: the design, the estimand, the numbers.
+That is what the preprint tested: methodological errors in trial reports, where every
+model found more than the human reviewers. [click] And code: does it run, and does it do
+what the text says? The preprint's authors say it themselves: errors in data handling or
+analysis code are not visible in the text. There the AI has to run the code: Certify,
+from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant rerun a
+replication package and certifies that it reproduces the results. [click] Our internal
+consistency review needs all three.
+:::
+
+## Internal consistency review
 
 ::: big
 Sample size estimations, analysis plans, reports
@@ -70,21 +91,21 @@ Sample size estimations, analysis plans, reports
 {{< include diagrams/_question.qmd >}}
 
 ::: notes
-[1:45–2:15] Journals are one thing. What can these tools do, more specifically, for our
-own review: the consistency review of sample size estimations, analysis plans and
-reports, where a second statistician checks the methods, the numbers and the code? [click]
-Where does AI come in? I have tried a few things, and I'll show them, so that we can discuss this with some
-experience rather than in the abstract. All of it is my own exploration, not something
-DKF runs or recommends.
+[2:30–3:00] Our internal consistency review: sample size estimations, analysis plans and
+reports go to a second statistician, who checks the methods, the numbers and the code.
+[click] Where could AI come in? Before the second statistician, as a check the author
+runs first, or alongside the reviewer? That is open. I have tried a few things, and I'll
+show them, so that we can discuss this with some experience rather than in the abstract.
+All of it is my own exploration, not something DKF runs or recommends.
 :::
 
-## Four ways I explored
+## Four approaches
 
 {{< include diagrams/_overview.qmd >}}
 
 ::: notes
-[2:15–2:45] Four ways. The chat: paste and ask. [click] Review services: someone else's
-pipeline. [click] Your own pipeline, a script through the API. [click] And then
+[3:00–3:30] Four approaches. The chat: paste and ask. [click] Review services: someone
+else's pipeline. [click] Your own pipeline, a script through the API. [click] And then
 something different: an agent that runs the code in the repository.
 :::
 
@@ -94,14 +115,10 @@ something different: an agent that runs the code in the repository.
 <span class="on">Chat</span><span>Services</span><span>Script</span><span>Agent</span>
 :::
 
-::: big
-Strongest model, maximum effort
-:::
-
 {{< include diagrams/_chat.qmd >}}
 
 ::: notes
-[2:45–3:30] The simplest way is what the preprint tested. Paste the PDF and the source
+[3:30–4:15] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
 strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
@@ -122,19 +139,40 @@ Francis (research_skills, MIT licence).
 <span class="on">Chat</span><span>Services</span><span>Script</span><span>Agent</span>
 :::
 
-{{< include diagrams/_skill-layers.qmd >}}
+::: quote
+Please review this using /dkf-document-check.
+:::
+
+::: {.fragment fragment-index=1}
+::: where
+dkf-document-check/SKILL.md
+:::
+
+::: {.tight .compact}
+- **Rules:** only cleared documents; the print decides; no product code runs
+- **1 Documents and versions:** is it what it says, and does it match protocol, SAP,
+  registry?
+- **2 Printed numbers:** do they agree and add up? Each recomputed by a script
+- **3 Design, estimand and method:** do they answer the stated question?
+- **Output:** findings, a consistency table, a check log
+:::
+:::
+
+::: {.fragment fragment-index=2 .scope}
+Next to it: `references/` (estimands, clinical guidelines, product profiles) and
+`scripts/recompute.py`.
+:::
 
 ::: notes
-[3:30–4:15] What a skill is, concretely: a folder. Mine for the chat is called
-dkf-document-check. The model always sees only its name and description, which says
-when to use it: when asked to check, review or consistency-review a statistical
-document. [click] When a task matches, it reads SKILL.md, the checklist: the rules,
-then three checks in order: the documents, their versions and their consistency with
-protocol and SAP; the printed numbers and their arithmetic; and the design, the estimand
-and the method; then what the output looks like. [click] And it opens the rest only when
-needed: references on estimands, clinical guidelines and the kinds of product, and a
-script that recomputes the printed numbers. Plain text and a small script, adapted from
-the skills Joe Francis released; the agent's skills are built the same way.
+[4:15–5:00] How you use a skill: you name it in your request, here with a slash. Please
+review this using /dkf-document-check. [click] What it holds is plain text, SKILL.md:
+the rules, only documents you may share, the print decides, the product's code never
+runs; then three checks in order: the documents and their versions against protocol,
+SAP and registry; the printed numbers, each recomputed by a script; and the design, the
+estimand and the method; and what the output looks like. [click] Next to it, reference
+files and the small script. The model reads only the names and descriptions of its
+skills until a request matches, then loads the rest. Mine is adapted from the skills Joe
+Francis released; the agent's skills are built the same way.
 :::
 
 ## Review services
@@ -159,7 +197,7 @@ the skills Joe Francis released; the agent's skills are built the same way.
 ```
 
 ::: notes
-[4:15–5:00] Others have built whole review pipelines and offer them as services. You
+[5:00–5:45] Others have built whole review pipelines and offer them as services. You
 upload the PDF. [click] Behind it run fixed chains of model calls, with prompts the
 vendor wrote; Reviewer 2's first stage, The Breaker, takes a sledgehammer to the text,
 and later stages filter out what the aggression invents. [click] You get a report.
@@ -179,7 +217,7 @@ third party. Or you build your own.
 {{< include diagrams/_api.qmd >}}
 
 ::: notes
-[5:00–6:00] Your own pipeline: a script through the API, for many documents. [click] The
+[5:45–6:30] Your own pipeline: a script through the API, for many documents. [click] The
 script, in R with the ellmer package or in Python with the providers' SDK libraries,
 sends each document with the same system prompt; mine reads like a senior reviewer's
 checklist, the statistical methods first, then the numbers, the code and the
@@ -202,7 +240,7 @@ you know. The price is code that talks to one provider at one point in time.
 {{< include diagrams/_script-layers.qmd >}}
 
 ::: notes
-[6:00–7:00] What is in the script starter, in the kit's tools/3-api. One command per
+[6:30–7:15] What is in the script starter, in the kit's tools/3-api. One command per
 product, in R or in Python. The prompt: a senior biostatistician's consistency review,
 in a fixed order: the methods first, then the numbers, the code against the text, and
 the interpretation; and since it cannot run the code, it lists the questions that need
@@ -223,7 +261,7 @@ with known answers, compare prompts and models, keep what works.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[7:00–8:30] The last step: a coding agent working in the product's repository, here
+[7:15–8:45] The last step: a coding agent working in the product's repository, here
 Claude Code on the web; Codex and others work the same way. The skills come back as its instructions: what you type is one
 sentence, "review the product with dkf-review, then write the consistency review"; the
 skills hold the rest. It runs in an isolated cloud machine, with a copy of the
@@ -279,7 +317,7 @@ On the test case: all six planted issues, in 34 minutes, about $10.
 :::
 
 ::: notes
-[8:30–9:45] In practice you choose two things in the job's assignment, next to the
+[8:45–9:45] In practice you choose two things in the job's assignment, next to the
 product, its protocol and SAP, and your questions. The depth: quick is two agents, for a
 short SSE or a re-review; standard is one agent per stage, and a fresh agent challenges
 every finding; full adds an audit, for high-risk products. And the data: none by

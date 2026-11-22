@@ -1,5 +1,5 @@
 ```{=html}
-<svg class="dg" style="max-height: 430px" viewBox="0 0 640 262" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; one model at maximum effort reads them and answers. A skill, a folder with your checklist, can go into the chat too.">
+<svg class="dg" style="max-height: 430px" viewBox="0 0 640 262" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort reads them and answers. A skill, a folder with your checklist, can go into the chat too.">
   <defs><marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>
   <path class="doc" d="M10 70 h52 l18 18 v68 h-70 z"/><path class="fold" d="M62 70 v18 h18"/>
@@ -10,7 +10,7 @@
   <line class="arrow" x1="180" y1="113" x2="240" y2="113" marker-end="url(#m1)"/>
   <text class="mono" x="210" y="100" font-size="13" text-anchor="middle">PASTE</text>
   <rect class="model" x="248" y="73" width="190" height="80"/>
-  <text class="strong" x="343" y="108" font-size="23" text-anchor="middle">model</text>
+  <text class="strong" x="343" y="108" font-size="22" text-anchor="middle">strongest model</text>
   <text x="343" y="136" font-size="17" text-anchor="middle">maximum effort</text>
   </g>
   <g class="fragment" data-fragment-index="2">

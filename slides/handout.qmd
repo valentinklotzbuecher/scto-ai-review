@@ -68,18 +68,33 @@ The preprint's last author, Ruslan Rust, on X:
 
 So the question is less whether to use these tools than how.
 
-## And our internal review?
+## Three kinds of review
+
+::: dg-wrap
+{{< include diagrams/_review-kinds.qmd >}}
+:::
+
+Peer review of papers, for journals, where King and Worthington's AI reviews beat paid
+expert reviews. The review of statistics and methods (the design, the estimand, the
+numbers), where the models in the preprint found more of the methodological errors in
+trial reports than human reviewers did. And code: does it run, and does it do what the
+text says? Errors in analysis code are not visible in the text, as the preprint's
+authors note; there the AI has to run the code, as Certify, from Gary King, Yiqing Xu
+and Leo Yang at Harvard, has your own AI assistant do to certify a replication package.
+Our internal consistency review needs all three.
+
+## Internal consistency review
 
 ::: dg-wrap
 {{< include diagrams/_question.qmd >}}
 :::
 
-Journals are one thing. What can these tools do, more specifically, for our own review:
-the consistency review of sample size estimations, analysis plans and reports, where a
-second statistician checks the methods, the numbers and the code? The four ways below
-are what I explored, as a basis for the discussion.
+Sample size estimations, analysis plans and reports go to a second statistician, who
+checks the methods, the numbers and the code. Where could AI come in: before the second
+statistician, as a check the author runs first, or alongside the reviewer? That is open.
+The four approaches below are what I explored, as a basis for the discussion.
 
-## Four ways I explored
+## Four approaches
 
 ::: dg-wrap
 {{< include diagrams/_overview.qmd >}}
@@ -102,17 +117,25 @@ has worked well since OpenAI's o1 pro, in December 2024, and King and Worthingto
 reviews were made this way. What you don't get: a record of what was checked, the same
 answer twice, or any code run.
 
-You can also give the chat your own checklist, as a skill: a folder of instructions,
-reference files and small scripts. The model always sees only the skill's name and
-description; it reads `SKILL.md`, the checklist, when a task matches, and opens the
-references and runs the scripts when it needs them. No prompt is pasted. `dkf-document-check` is the first stage of my review skills on its own, for
-Claude chat: it names the design and the estimand attribute by attribute, recomputes
-every printed number with scripts and logs each check. It runs no product code. My
-skills are adapted from research_skills, released by Joe Francis.
+You can also give the chat your own checklist, as a skill: a folder you upload once and
+then name in your request.
 
-::: dg-wrap
-{{< include diagrams/_skill-layers.qmd >}}
-:::
+> Please review this using /dkf-document-check.
+
+What its `SKILL.md` holds:
+
+- **Rules:** only cleared documents; the print decides; no product code runs.
+- **1 Documents and versions:** is it what it says, and does it match the protocol, the
+  SAP, the registry entry?
+- **2 Printed numbers:** do they agree and add up? Each is recomputed by a script.
+- **3 Design, estimand and method:** do they answer the question the product states?
+- **Output:** findings, a consistency table, a check log.
+
+Next to it: `references/` (estimands, clinical guidelines, product profiles) and
+`scripts/recompute.py`. The model reads only the names and descriptions of its skills
+until a request matches, then loads the rest. `dkf-document-check` is the first stage of
+my review skills on its own; it runs no product code. My skills are adapted from
+research_skills, released by Joe Francis.
 
 ::: starter
 Starter: [tools/1-chat](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat): the prompt, the settings, the skill, the data rules

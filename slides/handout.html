@@ -2205,8 +2205,9 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#models-find-more-errors-than-reviewers-did" id="toc-models-find-more-errors-than-reviewers-did" class="nav-link active" data-scroll-target="#models-find-more-errors-than-reviewers-did">Models find more errors than reviewers did</a></li>
-  <li><a href="#and-our-internal-review" id="toc-and-our-internal-review" class="nav-link" data-scroll-target="#and-our-internal-review">And our internal review?</a></li>
-  <li><a href="#four-ways-i-explored" id="toc-four-ways-i-explored" class="nav-link" data-scroll-target="#four-ways-i-explored">Four ways I explored</a>
+  <li><a href="#three-kinds-of-review" id="toc-three-kinds-of-review" class="nav-link" data-scroll-target="#three-kinds-of-review">Three kinds of review</a></li>
+  <li><a href="#internal-consistency-review" id="toc-internal-consistency-review" class="nav-link" data-scroll-target="#internal-consistency-review">Internal consistency review</a></li>
+  <li><a href="#four-approaches" id="toc-four-approaches" class="nav-link" data-scroll-target="#four-approaches">Four approaches</a>
   <ul class="collapse">
   <li><a href="#paste-it-into-the-chat" id="toc-paste-it-into-the-chat" class="nav-link" data-scroll-target="#paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</a></li>
   <li><a href="#review-services" id="toc-review-services" class="nav-link" data-scroll-target="#review-services"><span class="num">02</span>Review services</a></li>
@@ -2280,10 +2281,35 @@ vertical-align: -.125em;
 </blockquote>
 <p>So the question is less whether to use these tools than how.</p>
 </section>
-<section id="and-our-internal-review" class="level2">
-<h2 data-anchor-id="and-our-internal-review">And our internal review?</h2>
+<section id="three-kinds-of-review" class="level2">
+<h2 data-anchor-id="three-kinds-of-review">Three kinds of review</h2>
 <div class="dg-wrap">
-<svg class="dg" style="max-height: 300px; margin-top: 40px" viewbox="0 0 1000 190" role="img" aria-label="Sample size estimations, analysis plans and reports go to a second statistician, who checks their methods, numbers and code. Then a question mark: where does AI come in?">
+<svg class="dg" style="margin-top: 30px" viewbox="0 0 1100 240" role="img" aria-label="Three kinds of review that AI is changing. Peer review of papers, for journals: AI reviews beat paid experts. Statistics and methods: design, estimand and numbers, where models find more errors. Code: whether it runs and does what it says, where AI reruns the analysis.">
+  <rect class="box" x="20" y="20" width="330" height="200" />
+  <text class="strong" x="44" y="80" font-size="34">Peer review</text>
+  <text class="soft" x="44" y="122" font-size="21">of papers, for journals</text>
+  <text x="44" y="186" font-size="21">AI reviews beat paid experts</text>
+  <g class="fragment" data-fragment-index="1">
+  <rect class="box" x="385" y="20" width="330" height="200" />
+  <text class="strong" x="409" y="80" font-size="34">Statistics, methods</text>
+  <text class="soft" x="409" y="122" font-size="21">design, estimand, numbers</text>
+  <text x="409" y="186" font-size="21">models find more errors</text>
+  </g>
+  <g class="fragment" data-fragment-index="2">
+  <rect class="box" x="750" y="20" width="330" height="200" />
+  <text class="strong" x="774" y="80" font-size="34">Code</text>
+  <text class="soft" x="774" y="122" font-size="21">does it run, does it do</text>
+  <text class="soft" x="774" y="148" font-size="21">what the text says?</text>
+  <text x="774" y="186" font-size="21">AI reruns the analysis</text>
+  </g>
+</svg>
+</div>
+<p>Peer review of papers, for journals, where King and Worthington’s AI reviews beat paid expert reviews. The review of statistics and methods (the design, the estimand, the numbers), where the models in the preprint found more of the methodological errors in trial reports than human reviewers did. And code: does it run, and does it do what the text says? Errors in analysis code are not visible in the text, as the preprint’s authors note; there the AI has to run the code, as Certify, from Gary King, Yiqing Xu and Leo Yang at Harvard, has your own AI assistant do to certify a replication package. Our internal consistency review needs all three.</p>
+</section>
+<section id="internal-consistency-review" class="level2">
+<h2 data-anchor-id="internal-consistency-review">Internal consistency review</h2>
+<div class="dg-wrap">
+<svg class="dg" style="max-height: 300px; margin-top: 40px" viewbox="0 0 1100 200" role="img" aria-label="Sample size estimations, analysis plans and reports go to a second statistician, who checks their methods, numbers and code. Then two question marks: AI before the second statistician, or alongside them? Where it belongs is open.">
   <defs><marker id="mq" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
   <path class="doc" d="M30 40 h56 l18 18 v84 h-74 z" /><path class="fold" d="M86 40 v18 h18" />
   <text class="mono" x="67" y="112" font-size="16" text-anchor="middle">SSE</text>
@@ -2291,21 +2317,25 @@ vertical-align: -.125em;
   <text class="mono" x="177" y="112" font-size="16" text-anchor="middle">SAP</text>
   <path class="doc" d="M250 40 h56 l18 18 v84 h-74 z" /><path class="fold" d="M306 40 v18 h18" />
   <text class="mono" x="287" y="112" font-size="14" text-anchor="middle">REPORT</text>
-  <line class="arrow" x1="345" y1="92" x2="420" y2="92" marker-end="url(#mq)"></line>
-  <rect class="box" x="428" y="42" width="320" height="100" />
-  <text class="strong" x="588" y="84" font-size="25" text-anchor="middle">second statistician</text>
-  <text class="soft" x="588" y="118" font-size="20" text-anchor="middle">methods · numbers · code</text>
+  <line class="arrow" x1="345" y1="92" x2="540" y2="92" marker-end="url(#mq)"></line>
+  <rect class="box" x="548" y="42" width="320" height="100" />
+  <text class="strong" x="708" y="84" font-size="25" text-anchor="middle">second statistician</text>
+  <text class="soft" x="708" y="118" font-size="20" text-anchor="middle">methods · numbers · code</text>
   <g class="fragment" data-fragment-index="1">
-  <line class="arrow cut" x1="748" y1="92" x2="800" y2="92"></line>
-  <rect class="ghost" x="800" y="42" width="170" height="100" />
-  <text class="accent" x="885" y="104" font-size="34" text-anchor="middle">AI?</text>
+  <rect class="ghost" x="382" y="52" width="122" height="80" style="fill: #FCFAF4" />
+  <text class="accent" x="443" y="104" font-size="30" text-anchor="middle">AI?</text>
+  <text class="mono" x="443" y="160" font-size="13" text-anchor="middle">BEFORE</text>
+  <line class="arrow cut" x1="868" y1="92" x2="912" y2="92"></line>
+  <rect class="ghost" x="912" y="52" width="122" height="80" />
+  <text class="accent" x="973" y="104" font-size="30" text-anchor="middle">AI?</text>
+  <text class="mono" x="973" y="160" font-size="13" text-anchor="middle">ALONGSIDE</text>
   </g>
 </svg>
 </div>
-<p>Journals are one thing. What can these tools do, more specifically, for our own review: the consistency review of sample size estimations, analysis plans and reports, where a second statistician checks the methods, the numbers and the code? The four ways below are what I explored, as a basis for the discussion.</p>
+<p>Sample size estimations, analysis plans and reports go to a second statistician, who checks the methods, the numbers and the code. Where could AI come in: before the second statistician, as a check the author runs first, or alongside the reviewer? That is open. The four approaches below are what I explored, as a basis for the discussion.</p>
 </section>
-<section id="four-ways-i-explored" class="level2">
-<h2 data-anchor-id="four-ways-i-explored">Four ways I explored</h2>
+<section id="four-approaches" class="level2">
+<h2 data-anchor-id="four-approaches">Four approaches</h2>
 <div class="dg-wrap">
 <svg class="dg" style="margin-top: 56px" viewbox="0 0 1100 250" role="img" aria-label="Four ways to an AI review, in the order of the talk: a chat, where you paste and ask; a review service, someone else&#39;s pipeline; an API script, your own pipeline; and, after a dividing line, an agent that runs the code in the repository.">
   <rect class="box" x="45" y="30" width="230" height="190" />
@@ -2336,7 +2366,7 @@ vertical-align: -.125em;
 <section id="paste-it-into-the-chat" class="level3">
 <h3 data-anchor-id="paste-it-into-the-chat"><span class="num">01</span>Paste it into the chat</h3>
 <div class="dg-wrap">
-<svg class="dg" style="max-height: 430px" viewbox="0 0 640 262" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; one model at maximum effort reads them and answers. A skill, a folder with your checklist, can go into the chat too.">
+<svg class="dg" style="max-height: 430px" viewbox="0 0 640 262" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort reads them and answers. A skill, a folder with your checklist, can go into the chat too.">
   <defs><marker id="m1" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
   <text class="soft" x="10" y="26" font-size="20" font-style="italic">“Please check if this is consistent.”</text>
   <path class="doc" d="M10 70 h52 l18 18 v68 h-70 z" /><path class="fold" d="M62 70 v18 h18" />
@@ -2347,7 +2377,7 @@ vertical-align: -.125em;
   <line class="arrow" x1="180" y1="113" x2="240" y2="113" marker-end="url(#m1)"></line>
   <text class="mono" x="210" y="100" font-size="13" text-anchor="middle">PASTE</text>
   <rect class="model" x="248" y="73" width="190" height="80" />
-  <text class="strong" x="343" y="108" font-size="23" text-anchor="middle">model</text>
+  <text class="strong" x="343" y="108" font-size="22" text-anchor="middle">strongest model</text>
   <text x="343" y="136" font-size="17" text-anchor="middle">maximum effort</text>
   </g>
   <g class="fragment" data-fragment-index="2">
@@ -2364,33 +2394,19 @@ vertical-align: -.125em;
 </svg>
 </div>
 <p>Choose the strongest model your plan offers at its maximum reasoning setting, attach the PDF and the Quarto source, and ask whether it is consistent. In my experience this has worked well since OpenAI’s o1 pro, in December 2024, and King and Worthington’s AI reviews were made this way. What you don’t get: a record of what was checked, the same answer twice, or any code run.</p>
-<p>You can also give the chat your own checklist, as a skill: a folder of instructions, reference files and small scripts. The model always sees only the skill’s name and description; it reads <code>SKILL.md</code>, the checklist, when a task matches, and opens the references and runs the scripts when it needs them. No prompt is pasted. <code>dkf-document-check</code> is the first stage of my review skills on its own, for Claude chat: it names the design and the estimand attribute by attribute, recomputes every printed number with scripts and logs each check. It runs no product code. My skills are adapted from research_skills, released by Joe Francis.</p>
-<div class="dg-wrap">
-<svg class="dg" viewbox="0 0 1100 392" role="img" aria-label="Inside the skill dkf-document-check, in three layers. Always in view: its name and description, which says to use it when asked to check, review or consistency-review a statistical document in a chat. When the task matches: SKILL.md, the checklist: rules; documents, versions and consistency; printed consistency and arithmetic; design, estimand and method; output. When needed: references on estimands, clinical guidelines and product profiles, and a script that recomputes the printed numbers.">
-  <text class="file" x="0" y="20" font-size="19">dkf-document-check/</text>
-  <rect class="model" x="0" y="36" width="1100" height="102" />
-  <text class="mono" x="20" y="70" font-size="14">ALWAYS IN VIEW</text>
-  <text class="strong" x="250" y="72" font-size="22">name and description</text>
-  <text class="soft" x="250" y="102" font-size="18">“Document check of a statistical product … before a second statistician reviews it.</text>
-  <text class="soft" x="250" y="126" font-size="18">Use when asked to check, review or consistency-review such a document in a chat.”</text>
-  <g class="fragment" data-fragment-index="1">
-  <rect class="tool" x="0" y="152" width="1100" height="108" />
-  <text class="mono" x="20" y="186" font-size="14">WHEN THE TASK</text>
-  <text class="mono" x="20" y="206" font-size="14">MATCHES</text>
-  <text class="strong" x="250" y="188" font-size="22">SKILL.md: the checklist</text>
-  <text x="250" y="218" font-size="18">Rules · 1 Documents, versions and consistency · 2 Printed consistency</text>
-  <text x="250" y="243" font-size="18">and arithmetic · 3 Design, estimand and method · Output</text>
-  </g>
-  <g class="fragment" data-fragment-index="2">
-  <rect class="box" x="0" y="274" width="1100" height="108" />
-  <text class="mono" x="20" y="308" font-size="14">WHEN NEEDED</text>
-  <text class="file" x="250" y="310" font-size="17">references/</text>
-  <text x="400" y="310" font-size="18">estimands, clinical guidelines, product profiles</text>
-  <text class="file" x="250" y="350" font-size="17">scripts/</text>
-  <text x="400" y="350" font-size="18">recompute.py: recomputes the printed numbers</text>
-  </g>
-</svg>
-</div>
+<p>You can also give the chat your own checklist, as a skill: a folder you upload once and then name in your request.</p>
+<blockquote class="blockquote">
+<p>Please review this using /dkf-document-check.</p>
+</blockquote>
+<p>What its <code>SKILL.md</code> holds:</p>
+<ul>
+<li><strong>Rules:</strong> only cleared documents; the print decides; no product code runs.</li>
+<li><strong>1 Documents and versions:</strong> is it what it says, and does it match the protocol, the SAP, the registry entry?</li>
+<li><strong>2 Printed numbers:</strong> do they agree and add up? Each is recomputed by a script.</li>
+<li><strong>3 Design, estimand and method:</strong> do they answer the question the product states?</li>
+<li><strong>Output:</strong> findings, a consistency table, a check log.</li>
+</ul>
+<p>Next to it: <code>references/</code> (estimands, clinical guidelines, product profiles) and <code>scripts/recompute.py</code>. The model reads only the names and descriptions of its skills until a request matches, then loads the rest. <code>dkf-document-check</code> is the first stage of my review skills on its own; it runs no product code. My skills are adapted from research_skills, released by Joe Francis.</p>
 <div class="starter">
 <p>Starter: <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat">tools/1-chat</a>: the prompt, the settings, the skill, the data rules</p>
 </div>

@@ -74,7 +74,7 @@ it writes no DKF form; for those, the agent.
 3. In a new chat, attach the rendered product (PDF) and, if you like, its Quarto source
    and the governing documents, and ask:
 
-   > Check this sample size estimation with dkf-document-check.
+   > Please review this using /dkf-document-check.
 
 The skill is condensed from the document stage of the `dkf-review` skill, which is
 adapted from Joe Francis's [research_skills](https://github.com/isitcredible/research_skills)
