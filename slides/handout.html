@@ -2221,7 +2221,12 @@ vertical-align: -.125em;
   </ul></li>
   <li><a href="#the-demo" id="toc-the-demo" class="nav-link" data-scroll-target="#the-demo">The demo</a></li>
   <li><a href="#data-rules" id="toc-data-rules" class="nav-link" data-scroll-target="#data-rules">Data rules</a></li>
-  <li><a href="#links-and-sources" id="toc-links-and-sources" class="nav-link" data-scroll-target="#links-and-sources">Links and sources</a></li>
+  <li><a href="#links-and-sources" id="toc-links-and-sources" class="nav-link" data-scroll-target="#links-and-sources">Links and sources</a>
+  <ul class="collapse">
+  <li><a href="#the-talk-and-its-tools" id="toc-the-talk-and-its-tools" class="nav-link" data-scroll-target="#the-talk-and-its-tools">The talk and its tools</a></li>
+  <li><a href="#studies" id="toc-studies" class="nav-link" data-scroll-target="#studies">Studies</a></li>
+  <li><a href="#learning" id="toc-learning" class="nav-link" data-scroll-target="#learning">Learning</a></li>
+  </ul></li>
   </ul>
 </nav>
 </div>
@@ -2775,19 +2780,61 @@ vertical-align: -.125em;
 </section>
 <section id="links-and-sources" class="level2">
 <h2 data-anchor-id="links-and-sources">Links and sources</h2>
+<section id="the-talk-and-its-tools" class="level3">
+<h3 data-anchor-id="the-talk-and-its-tools">The talk and its tools</h3>
+<ul>
+<li>The kit: <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>; the review skills: <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">github.com/valentinklotzbuecher/stats_review</a></li>
+<li>Agents: <a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code on the web</a>; the <a href="https://code.claude.com/docs/en/agent-sdk/overview">Agent SDK</a></li>
+<li>The API: <a href="https://platform.claude.com/docs/en/about-claude/models/overview">Claude models, effort and prices</a>; the <a href="https://github.com/anthropics/anthropic-sdk-python">Anthropic Python SDK</a>; in R, <a href="https://ellmer.tidyverse.org">ellmer</a>, <a href="https://vitals.tidyverse.org">vitals</a> (evaluations), <a href="https://ragnar.tidyverse.org">ragnar</a> (retrieval) and <a href="https://rstudio.github.io/reticulate/">reticulate</a> (Python from R)</li>
+<li>Services: <a href="https://refine.ink">refine.ink</a>, <a href="https://reviewer3.com">reviewer3.com</a>, <a href="https://paperreview.ai">paperreview.ai</a>, <a href="https://openaireview.org">openaireview.org</a>, <a href="https://coarse.ink">coarse.ink</a>, Google’s <a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a>, <a href="https://www.qedscience.com/">QED Science</a></li>
+<li>Joe Francis: <a href="https://github.com/isitcredible/reviewer2">Reviewer 2</a> and its paper <em>Yell at It</em> (<code>paper/yellatit.pdf</code> there); <a href="https://github.com/isitcredible/research_skills">research_skills</a></li>
+<li>Certify, replication certificates (King, Xu and Yang, Harvard): <a href="https://certify.iq.harvard.edu/">certify.iq.harvard.edu</a></li>
+<li>The posts on X by Ruslan Rust (28 October), Rex Douglass (15 and 23 October) and Joe Francis (26 October 2026): screenshots and transcriptions in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/material"><code>material/</code></a></li>
+</ul>
+</section>
+<section id="studies" class="level3">
+<h3 data-anchor-id="studies">Studies</h3>
+<p>In this talk:</p>
 <ul>
 <li>Brian, Pereira Hernández, Yin, Koury and Rust, <em>Large language models detect methodological errors that human peer review misses in clinical trials</em>, medRxiv, 28 October 2026: <a href="https://doi.org/10.64898/2026.10.25.26366455">doi.org/10.64898/2026.10.25.26366455</a></li>
 <li>King and Worthington, <em>AI Article Reviews Dominate Human Peer Reviews at Their Best: Evidence and Policy Choices</em>, working paper, version of 28 October 2026: <a href="https://gking.harvard.edu/peerless/">gking.harvard.edu/peerless</a></li>
-<li>Rich Sutton, <em>The Bitter Lesson</em>, 2019: <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">incompleteideas.net/IncIdeas/BitterLesson.html</a></li>
-<li>Services: <a href="https://refine.ink">refine.ink</a>, <a href="https://reviewer3.com">reviewer3.com</a>, <a href="https://paperreview.ai">paperreview.ai</a>, <a href="https://openaireview.org">openaireview.org</a>, <a href="https://coarse.ink">coarse.ink</a>, Google’s <a href="https://research.google/blog/analyzing-technical-documents-with-deep-review/">Deep Review</a></li>
-<li>Joe Francis: <a href="https://github.com/isitcredible/reviewer2">Reviewer 2</a> and its paper <em>Yell at It</em> (<code>paper/yellatit.pdf</code> there); <a href="https://github.com/isitcredible/research_skills">research_skills</a></li>
 <li>Liu, Guo, Hartline and Hullman, <em>Learning Checklists to Reduce Lottery Effects in Scientific Peer Review</em>, arXiv, 14 October 2026: <a href="https://arxiv.org/abs/2610.28666">arxiv.org/abs/2610.28666</a></li>
 <li>Ghosh, Saim and Jiang, <em>AI Reviews Are Biased Towards the Appendix</em>, arXiv, 13 November 2026: <a href="https://arxiv.org/abs/2611.17811">arxiv.org/abs/2611.17811</a></li>
-<li>Certify, replication certificates (King, Xu and Yang, Harvard): <a href="https://certify.iq.harvard.edu/">certify.iq.harvard.edu</a></li>
-<li><a href="https://ellmer.tidyverse.org">ellmer</a> and <a href="https://vitals.tidyverse.org">vitals</a>, <a href="https://rstudio.github.io/reticulate/">reticulate</a>, the <a href="https://github.com/anthropics/anthropic-sdk-python">Anthropic Python SDK</a>, <a href="https://code.claude.com/docs/en/claude-code-on-the-web">Claude Code on the web</a>, the <a href="https://code.claude.com/docs/en/agent-sdk/overview">Agent SDK</a></li>
-<li>The kit: <a href="https://github.com/valentinklotzbuecher/scto-ai-review">github.com/valentinklotzbuecher/scto-ai-review</a>; the review skills: <a href="https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1">github.com/valentinklotzbuecher/stats_review</a></li>
-<li>The posts on X by Ruslan Rust (28 October), Rex Douglass (15 and 23 October) and Joe Francis (26 October 2026): screenshots and transcriptions in the kit’s <a href="https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/material"><code>material/</code></a></li>
+<li>Rich Sutton, <em>The Bitter Lesson</em>, 2019: <a href="http://www.incompleteideas.net/IncIdeas/BitterLesson.html">incompleteideas.net/IncIdeas/BitterLesson.html</a></li>
 </ul>
+<p>AI in peer review:</p>
+<ul>
+<li>Thakkar et al., <em>A Large-Scale Randomized Study of Large Language Model Feedback in Peer Review</em>, Nature Machine Intelligence, 2026: <a href="https://doi.org/10.1038/s42256-026-01188-x">doi.org/10.1038/s42256-026-01188-x</a></li>
+<li>Kim et al., <em>Use and Effects of LLMs in Peer Review: A Randomized Experiment and Survey at ICML 2026</em>, arXiv: <a href="https://arxiv.org/abs/2609.19420">arxiv.org/abs/2609.19420</a></li>
+<li>Biswas et al., <em>AI-Assisted Peer Review at Scale: The AAAI-26 AI Review Pilot</em>, arXiv: <a href="https://arxiv.org/abs/2604.13940">arxiv.org/abs/2604.13940</a></li>
+<li>Zancanaro, Giannopoulos, Gimelli and Kresoja, <em>AI as a Peer Reviewer: A Blinded Comparative Study of LLM-Generated and Human Reviews in a Cardiology Journal</em>, European Heart Journal – Imaging Methods and Practice, 2026: <a href="https://doi.org/10.1093/ehjimp/qyag097">doi.org/10.1093/ehjimp/qyag097</a></li>
+<li>Russo Latona et al., <em>The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost Paper Scores and Acceptance Rates</em>, arXiv, 2024: <a href="https://doi.org/10.48550/arXiv.2405.02150">doi.org/10.48550/arXiv.2405.02150</a></li>
+<li>Choi et al., <em>Invisible Text Injection and Peer Review by AI Models</em>, JAMA Network Open, 2026: <a href="https://doi.org/10.1001/jamanetworkopen.2025.52099">doi.org/10.1001/jamanetworkopen.2025.52099</a></li>
+</ul>
+<p>Analysis and reproducibility:</p>
+<ul>
+<li>Asher, Malzahn, Persano, Paschal, Myers and Hall, <em>Do Claude Code and Codex P-Hack? Sycophancy and Statistical Analysis in Large Language Models</em>, 2026; replication archive: <a href="https://github.com/janetmalzahn/llm-phacking">github.com/janetmalzahn/llm-phacking</a></li>
+<li>Xu and Yang, <em>Scaling Reproducibility: An AI-Assisted Workflow for Large-Scale Reanalysis</em>, 2026: <a href="https://yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf">yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf</a></li>
+<li>Brodeur et al., <em>Comparing Human-Only, AI-Assisted, and AI-Led Teams on Assessing Research Reproducibility in Quantitative Social Science</em>, 2025: <a href="https://hdl.handle.net/10419/308508">hdl.handle.net/10419/308508</a></li>
+<li>Kohler, Zollikofer, Einsiedler, Hoyle and Ash, <em>Read the Paper, Write the Code: Agentic Reproduction of Social-Science Results</em>, arXiv (EMNLP): <a href="https://arxiv.org/abs/2604.21965">arxiv.org/abs/2604.21965</a></li>
+<li>Son et al., <em>FLAWS: A Benchmark for Error Identification and Localization in Scientific Papers</em>, arXiv, 2025: <a href="https://arxiv.org/abs/2511.21843">arxiv.org/abs/2511.21843</a></li>
+</ul>
+<p>Our Unjournal project:</p>
+<ul>
+<li>Klotzbücher, Reinstein, Pacchiardi and Zhang, <em>Just Ask the Model: One-Shot LLM Research Evaluation and Structured Expert Review</em>, working paper: <a href="https://llm-uj-research-eval.netlify.app/">llm-uj-research-eval.netlify.app</a></li>
+</ul>
+</section>
+<section id="learning" class="level3">
+<h3 data-anchor-id="learning">Learning</h3>
+<ul>
+<li><a href="https://anthropic.skilljar.com/">Anthropic Academy</a>, free courses: Building with the Anthropic SDK; Claude Code in Action</li>
+<li>Hadley Wickham, <a href="https://sites.google.com/view/dariia-mykhailyshyna/main/r-workshops-for-ukraine">Using LLMs with ellmer</a> (R Workshops for Ukraine), and its scripts: <a href="https://github.com/hadley/workshop-llm-hackathon">github.com/hadley/workshop-llm-hackathon</a></li>
+<li>Paul Goldsmith-Pinkham, <a href="https://bcf.princeton.edu/events/paul-goldsmith-pinkham-mini-series-on-claude-code-for-applied-economists/">Claude Code for applied economists</a>, a mini-series at Princeton</li>
+<li>Chris Blattman’s collection on Claude for researchers: <a href="https://claudeblattman.com/">claudeblattman.com</a></li>
+<li><a href="https://reproai.org/">reproai.org</a>: reproducibility and AI in research</li>
+<li>Ethan Mollick, <a href="https://www.oneusefulthing.org/">One Useful Thing</a>, to stay current</li>
+</ul>
+</section>
 </section>
 
 </main>

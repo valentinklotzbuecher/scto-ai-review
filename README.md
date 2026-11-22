@@ -170,5 +170,10 @@ If you re-render one, re-run every tool on the new PDF.
   instruction in `stats_review`; the earlier prototype's prompt on the archived deck's
   backup slide
 - "Since o1 pro" (December 2024) is the speaker's own experience, said as such
+- Further reading on the Links slides and in the handout: from the speaker's exploration
+  notes (the Sources of `03-extensions.qmd` in dkf-llm-explorations) and the Unjournal
+  project's bibliography (`references.bib` on the `working-paper` branch of
+  llm-uj-research-eval); every link was checked to answer on 22 November 2026 (the
+  journal pages through their DOI, the GitHub repositories through GitHub's search)
 - Costs and times of the demo runs: `demo/runs/`, each with the session record
   summarised in its `SCORE.md`

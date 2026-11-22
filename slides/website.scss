@@ -142,6 +142,9 @@ $code-color: $ink;
 }
 .reveal ul li::marker { color: $mauve; }
 .reveal .tight li { margin: 0.18em 0; }
+.reveal .links { font-size: 0.56em; }
+.reveal .links p { margin: 0.5em 0 0.15em 0; }
+.reveal .links li { margin: 0.1em 0; }
 .reveal .compact { font-size: 0.85em; }
 
 /* Links: in the ink, marked by a faint rule; mauve on hover */

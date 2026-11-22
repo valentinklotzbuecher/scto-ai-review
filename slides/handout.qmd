@@ -435,35 +435,101 @@ about half a participant per group. The agent was right, and the key was correct
 
 ## Links and sources
 
+### The talk and its tools
+
+- The kit: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review);
+  the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
+- Agents: [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web);
+  the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
+- The API: [Claude models, effort and prices](https://platform.claude.com/docs/en/about-claude/models/overview);
+  the [Anthropic Python SDK](https://github.com/anthropics/anthropic-sdk-python); in R,
+  [ellmer](https://ellmer.tidyverse.org), [vitals](https://vitals.tidyverse.org)
+  (evaluations), [ragnar](https://ragnar.tidyverse.org) (retrieval) and
+  [reticulate](https://rstudio.github.io/reticulate/) (Python from R)
+- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com),
+  [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org),
+  [coarse.ink](https://coarse.ink), Google's
+  [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/),
+  [QED Science](https://www.qedscience.com/)
+- Joe Francis: [Reviewer 2](https://github.com/isitcredible/reviewer2) and its paper
+  *Yell at It* (`paper/yellatit.pdf` there);
+  [research_skills](https://github.com/isitcredible/research_skills)
+- Certify, replication certificates (King, Xu and Yang, Harvard):
+  [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
+- The posts on X by Ruslan Rust (28 October), Rex Douglass (15 and 23 October) and Joe
+  Francis (26 October 2026): screenshots and transcriptions in the kit's
+  [`material/`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/material)
+
+### Studies
+
+In this talk:
+
 - Brian, Pereira Hernández, Yin, Koury and Rust, *Large language models detect
   methodological errors that human peer review misses in clinical trials*, medRxiv,
   28 October 2026: [doi.org/10.64898/2026.10.25.26366455](https://doi.org/10.64898/2026.10.25.26366455)
 - King and Worthington, *AI Article Reviews Dominate Human Peer Reviews at Their Best:
   Evidence and Policy Choices*, working paper, version of 28 October 2026:
   [gking.harvard.edu/peerless](https://gking.harvard.edu/peerless/)
-- Rich Sutton, *The Bitter Lesson*, 2019:
-  [incompleteideas.net/IncIdeas/BitterLesson.html](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
-- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com),
-  [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org),
-  [coarse.ink](https://coarse.ink), Google's
-  [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/)
-- Joe Francis: [Reviewer 2](https://github.com/isitcredible/reviewer2) and its paper
-  *Yell at It* (`paper/yellatit.pdf` there);
-  [research_skills](https://github.com/isitcredible/research_skills)
 - Liu, Guo, Hartline and Hullman, *Learning Checklists to Reduce Lottery Effects in
   Scientific Peer Review*, arXiv, 14 October 2026:
   [arxiv.org/abs/2610.28666](https://arxiv.org/abs/2610.28666)
 - Ghosh, Saim and Jiang, *AI Reviews Are Biased Towards the Appendix*, arXiv, 13 November
   2026: [arxiv.org/abs/2611.17811](https://arxiv.org/abs/2611.17811)
-- Certify, replication certificates (King, Xu and Yang, Harvard):
-  [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
-- [ellmer](https://ellmer.tidyverse.org) and [vitals](https://vitals.tidyverse.org),
-  [reticulate](https://rstudio.github.io/reticulate/), the
-  [Anthropic Python SDK](https://github.com/anthropics/anthropic-sdk-python),
-  [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web), the
-  [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
-- The kit: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review);
-  the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
-- The posts on X by Ruslan Rust (28 October), Rex Douglass (15 and 23 October) and Joe
-  Francis (26 October 2026): screenshots and transcriptions in the kit's
-  [`material/`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/material)
+- Rich Sutton, *The Bitter Lesson*, 2019:
+  [incompleteideas.net/IncIdeas/BitterLesson.html](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+
+AI in peer review:
+
+- Thakkar et al., *A Large-Scale Randomized Study of Large Language Model Feedback in
+  Peer Review*, Nature Machine Intelligence, 2026:
+  [doi.org/10.1038/s42256-026-01188-x](https://doi.org/10.1038/s42256-026-01188-x)
+- Kim et al., *Use and Effects of LLMs in Peer Review: A Randomized Experiment and Survey
+  at ICML 2026*, arXiv: [arxiv.org/abs/2609.19420](https://arxiv.org/abs/2609.19420)
+- Biswas et al., *AI-Assisted Peer Review at Scale: The AAAI-26 AI Review Pilot*, arXiv:
+  [arxiv.org/abs/2604.13940](https://arxiv.org/abs/2604.13940)
+- Zancanaro, Giannopoulos, Gimelli and Kresoja, *AI as a Peer Reviewer: A Blinded
+  Comparative Study of LLM-Generated and Human Reviews in a Cardiology Journal*, European
+  Heart Journal – Imaging Methods and Practice, 2026:
+  [doi.org/10.1093/ehjimp/qyag097](https://doi.org/10.1093/ehjimp/qyag097)
+- Russo Latona et al., *The AI Review Lottery: Widespread AI-Assisted Peer Reviews Boost
+  Paper Scores and Acceptance Rates*, arXiv, 2024:
+  [doi.org/10.48550/arXiv.2405.02150](https://doi.org/10.48550/arXiv.2405.02150)
+- Choi et al., *Invisible Text Injection and Peer Review by AI Models*, JAMA Network
+  Open, 2026: [doi.org/10.1001/jamanetworkopen.2025.52099](https://doi.org/10.1001/jamanetworkopen.2025.52099)
+
+Analysis and reproducibility:
+
+- Asher, Malzahn, Persano, Paschal, Myers and Hall, *Do Claude Code and Codex P-Hack?
+  Sycophancy and Statistical Analysis in Large Language Models*, 2026; replication
+  archive: [github.com/janetmalzahn/llm-phacking](https://github.com/janetmalzahn/llm-phacking)
+- Xu and Yang, *Scaling Reproducibility: An AI-Assisted Workflow for Large-Scale
+  Reanalysis*, 2026:
+  [yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf](https://yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf)
+- Brodeur et al., *Comparing Human-Only, AI-Assisted, and AI-Led Teams on Assessing
+  Research Reproducibility in Quantitative Social Science*, 2025:
+  [hdl.handle.net/10419/308508](https://hdl.handle.net/10419/308508)
+- Kohler, Zollikofer, Einsiedler, Hoyle and Ash, *Read the Paper, Write the Code: Agentic
+  Reproduction of Social-Science Results*, arXiv (EMNLP):
+  [arxiv.org/abs/2604.21965](https://arxiv.org/abs/2604.21965)
+- Son et al., *FLAWS: A Benchmark for Error Identification and Localization in
+  Scientific Papers*, arXiv, 2025: [arxiv.org/abs/2511.21843](https://arxiv.org/abs/2511.21843)
+
+Our Unjournal project:
+
+- Klotzbücher, Reinstein, Pacchiardi and Zhang, *Just Ask the Model: One-Shot LLM
+  Research Evaluation and Structured Expert Review*, working paper:
+  [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app/)
+
+### Learning
+
+- [Anthropic Academy](https://anthropic.skilljar.com/), free courses: Building with the
+  Anthropic SDK; Claude Code in Action
+- Hadley Wickham, [Using LLMs with ellmer](https://sites.google.com/view/dariia-mykhailyshyna/main/r-workshops-for-ukraine)
+  (R Workshops for Ukraine), and its scripts:
+  [github.com/hadley/workshop-llm-hackathon](https://github.com/hadley/workshop-llm-hackathon)
+- Paul Goldsmith-Pinkham, [Claude Code for applied economists](https://bcf.princeton.edu/events/paul-goldsmith-pinkham-mini-series-on-claude-code-for-applied-economists/),
+  a mini-series at Princeton
+- Chris Blattman's collection on Claude for researchers:
+  [claudeblattman.com](https://claudeblattman.com/)
+- [reproai.org](https://reproai.org/): reproducibility and AI in research
+- Ethan Mollick, [One Useful Thing](https://www.oneusefulthing.org/), to stay current

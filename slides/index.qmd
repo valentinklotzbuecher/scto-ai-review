@@ -492,17 +492,68 @@ trials; is AI-only review? Thank you; the links are in the appendix.
 
 # Appendix {.divider}
 
-## Links
+## Links: the talk and its tools
 
 ::: {.small .tight}
-- This talk, with a handout, the review document and two test cases: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
+- **This talk**, with a handout, the review document and two test cases: [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review); the review skills: [github.com/valentinklotzbuecher/stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1)
+- **Agents:** [Claude Code on the web](https://code.claude.com/docs/en/claude-code-on-the-web); the [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)
+- **The API:** [Claude models, effort and prices](https://platform.claude.com/docs/en/about-claude/models/overview); in R, [ellmer](https://ellmer.tidyverse.org), [vitals](https://vitals.tidyverse.org) (evaluations), [ragnar](https://ragnar.tidyverse.org) (retrieval) and [reticulate](https://rstudio.github.io/reticulate/) (Python from R)
+- **Services:** [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), Google's [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/), [QED Science](https://www.qedscience.com/)
+- **Open source:** [Reviewer 2](https://github.com/isitcredible/reviewer2) and [research_skills](https://github.com/isitcredible/research_skills), by Joe Francis
+- **Certify**, replication certificates run by your own AI assistant (King, Xu and Yang, Harvard): [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
+:::
+
+## Links: studies
+
+:::: {.columns}
+::: {.column width="49%"}
+::: links
+**In this talk**
+
 - Brian et al., medRxiv 2026: [doi.org/10.64898/2026.10.25.26366455](https://doi.org/10.64898/2026.10.25.26366455)
 - King and Worthington, working paper 2026: [gking.harvard.edu/peerless](https://gking.harvard.edu/peerless/)
-- Services: [refine.ink](https://refine.ink), [reviewer3.com](https://reviewer3.com), [paperreview.ai](https://paperreview.ai), [openaireview.org](https://openaireview.org), [coarse.ink](https://coarse.ink), Google's [Deep Review](https://research.google/blog/analyzing-technical-documents-with-deep-review/)
-- Certify, replication certificates run by your own AI assistant (King, Xu and Yang, Harvard): [certify.iq.harvard.edu](https://certify.iq.harvard.edu/)
-- Reviewer 2: [github.com/isitcredible/reviewer2](https://github.com/isitcredible/reviewer2); research_skills: [github.com/isitcredible/research_skills](https://github.com/isitcredible/research_skills)
-- Claude Code on the web: [code.claude.com/docs/en/claude-code-on-the-web](https://code.claude.com/docs/en/claude-code-on-the-web)
-- Agent SDK: [code.claude.com/docs/en/agent-sdk](https://code.claude.com/docs/en/agent-sdk/overview)
-- ellmer and vitals: [ellmer.tidyverse.org](https://ellmer.tidyverse.org), [vitals.tidyverse.org](https://vitals.tidyverse.org)
-- Rich Sutton, The Bitter Lesson: [incompleteideas.net/IncIdeas/BitterLesson.html](http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+- Liu et al., learned checklists against the reviewer lottery: [arXiv 2610.28666](https://arxiv.org/abs/2610.28666)
+- Ghosh et al., AI reviews biased towards the appendix: [arXiv 2611.17811](https://arxiv.org/abs/2611.17811)
+- Sutton, [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html), 2019
+
+**Our Unjournal project**
+
+- Klotzbücher, Reinstein, Pacchiardi and Zhang, Just Ask the Model: one-shot LLM research evaluation and structured expert review: [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app/)
+:::
+:::
+
+::: {.column width="2%"}
+:::
+
+::: {.column width="49%"}
+::: links
+**AI in peer review**
+
+- Thakkar et al., randomized LLM feedback to reviewers: [Nature Machine Intelligence 2026](https://doi.org/10.1038/s42256-026-01188-x)
+- Kim et al., a randomized experiment at ICML 2026: [arXiv 2609.19420](https://arxiv.org/abs/2609.19420)
+- Biswas et al., the AAAI-26 AI review pilot: [arXiv 2604.13940](https://arxiv.org/abs/2604.13940)
+- Zancanaro et al., LLM and human reviews compared blind in a cardiology journal: [EHJ Imaging Methods and Practice 2026](https://doi.org/10.1093/ehjimp/qyag097)
+- Russo Latona et al., the AI review lottery: [arXiv 2405.02150](https://doi.org/10.48550/arXiv.2405.02150)
+- Choi et al., invisible text injection: [JAMA Network Open 2026](https://doi.org/10.1001/jamanetworkopen.2025.52099)
+
+**Analysis and reproducibility**
+
+- Asher et al., do Claude Code and Codex p-hack? 2026: [replication archive](https://github.com/janetmalzahn/llm-phacking)
+- Xu and Yang, AI-assisted reanalysis at scale: [2026](https://yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf)
+- Brodeur et al., human, AI-assisted and AI-led teams on reproducibility: [2025](https://hdl.handle.net/10419/308508)
+- Kohler et al., agentic reproduction from the methods section: [arXiv 2604.21965](https://arxiv.org/abs/2604.21965)
+- Son et al., FLAWS, finding errors in papers: [arXiv 2511.21843](https://arxiv.org/abs/2511.21843)
+:::
+:::
+::::
+
+## Links: learning
+
+::: {.small .tight}
+- [Anthropic Academy](https://anthropic.skilljar.com/), free courses: Building with the Anthropic SDK; Claude Code in Action
+- Hadley Wickham, [Using LLMs with ellmer](https://sites.google.com/view/dariia-mykhailyshyna/main/r-workshops-for-ukraine) (R Workshops for Ukraine), and its scripts, [github.com/hadley/workshop-llm-hackathon](https://github.com/hadley/workshop-llm-hackathon)
+- Paul Goldsmith-Pinkham, [Claude Code for applied economists](https://bcf.princeton.edu/events/paul-goldsmith-pinkham-mini-series-on-claude-code-for-applied-economists/) (Princeton, a mini-series)
+- Chris Blattman's collection on Claude for researchers: [claudeblattman.com](https://claudeblattman.com/)
+- [reproai.org](https://reproai.org/): reproducibility and AI in research
+- Ethan Mollick, [One Useful Thing](https://www.oneusefulthing.org/), to stay current
 :::
