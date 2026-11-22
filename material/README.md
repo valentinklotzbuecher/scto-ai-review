@@ -4,6 +4,7 @@
 |---|---|---|
 | `brian-2026-llm-peer-review-medrxiv-v2.pdf` | Brian D, Pereira Hernández XI, Yin H, Koury J, Rust R. *Large language models detect methodological errors that human peer review misses in clinical trials.* medRxiv, version 2 posted 28 October 2026. doi:10.64898/2026.10.25.26366455 | CC BY 4.0: reuse with attribution. `slides/assets/brian2026-fig1b.png` is cropped from its Fig. 1b. Not peer reviewed. |
 | `liu-2026-learning-checklists-arxiv-2610.28666.pdf` | Liu X, Guo Z, Hartline J, Hullman J. *Learning Checklists to Reduce Lottery Effects in Scientific Peer Review.* arXiv:2610.28666, 14 October 2026 | CC BY 4.0. The reviewer lottery and the checklist item on "To discuss" (notes and handout); see below |
+| (not kept here) | Aparicio JP, Valenta D, Mikola D, Fiala L, … Brodeur A (the speaker among the authors). *Generative AI boosts productivity across the expertise ladder.* Manuscript, not yet public | The follow-up to Brodeur et al., PNAS 2026 (on the Links slide). Neither the manuscript nor its results are kept in this repository until it is public. Listed without a link under "Projects I am (to some extent) involved in" on the Links slide "studies" and in the handout, and mentioned without numbers in the notes of "Internal consistency review" and in the handout ("with newer tools AI access helped, while checking each suspected error stayed with the researcher"); see below |
 | `rust-2026-10-tweet.png` | Ruslan Rust (last author) on X announcing the preprint; the date is not visible in the screenshot | Source of the quote on the discussion slide, "And in five years?" (on the opening slide of the demo deck) |
 | `francis-2026-10-26-tweet.jpeg` | Joseph Francis on X, 26 October 2026, retiring Reviewer 2 | Source of the quote on "The bitter lesson" ("Reviewer 2—he dead. … I will also be open sourcing a better system shortly"; "Yes, I decided it was obsolete. Something better and free coming shortly"); in the demo deck, of the quotes in the notes of "What carries over" and on the backup slide "Others built review pipelines" |
 | `francis-2026-10-26-skills-tweet.png` | Joseph Francis on X, 26 October 2026, releasing his review skills (/review, /audit-review, /review-digest): "When using them, you should remember that the results have been produced by robots and should be verified by humans." … "this is only how I begin my reviews. Quite a lot of human labour can go into them subsequently." | Source of the second quote on "The bitter lesson" (the opening sentence and /review; "… should be verified by humans" is in its notes and in those of "To discuss") |
@@ -182,6 +183,14 @@ Its introduction calls the design "the simplest possible setup—a single prompt
 frontier model, with no bespoke pipeline". The talk cited the earlier 80% until
 19 November 2026 and has not cited the working paper since; the quote stays here
 because the archived deck still carries the superseded figure.
+
+## Aparicio et al. 2026 (not yet public)
+
+The second AI Replication Games experiment (2025–26), after the 2024 one in Brodeur et
+al., PNAS 2026. The speaker is among its authors and has the manuscript; until it is
+public, neither the manuscript nor its results are kept or quoted in this repository.
+The talk and the handout say only that with newer tools AI access helped, while checking
+each suspected error stayed with the researcher.
 
 ## Where it is used in the talk
 
