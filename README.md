@@ -1,4 +1,4 @@
-# A Third Pair of Eyes? AI-Assisted Review of Statistical Reports and Code
+# A Third Pair of Eyes (and Hands)? AI-Assisted Review of Statistical Reports and Code
 
 The kit for a 20-minute SCTO talk: the slides, a handout to read later, a starter for
 each of three ways to get an AI review of a statistical product (a sample size
@@ -72,8 +72,8 @@ slides/website.scss     the deck's theme, after valentinklotzbuecher.github.io: 
                         spruce-green ink, mauve; Zen Kaku Gothic New and IBM Plex Mono
 slides/handout.scss     the same style for the handout
 slides/assets/          the preprint's Fig. 1b, King and Worthington's Fig. 1, the
-                        excerpt of the demo run's review and the QR code to the kit;
-                        the posts are quoted as text
+                        excerpt of the demo run's review, the QR code to the kit and
+                        the logo; the posts are quoted as text
 tools/                  one folder per way, each with a README; tools/2-api has the review
                         document
 demo/sse/               the synthetic SSE (.qmd and rendered PDF): the only reviewable part
@@ -198,6 +198,9 @@ If you re-render one, re-run every tool on the new PDF.
 - Icons for the three approaches (overview, crumbs, "Try it yourself"): Bootstrap Icons
   1.11.3, chat-dots, file-earmark-code and robot (MIT licence, The Bootstrap Authors),
   as inline paths in `slides/diagrams/_overview.qmd` and `slides/website.scss`
+- The logo on the title slide, `slides/assets/third-pair-of-eyes.svg`: drawn for this
+  kit, in code; its wordmark is outlines of IBM Plex Mono Medium (SIL Open Font
+  License). The same file is the logo of the skills' repository
 - The QR code to the kit, `slides/assets/qr-kit.svg`: made with segno 1.6.6 for
   https://github.com/valentinklotzbuecher/scto-ai-review (error correction M), its
   two-module border cropped from the viewBox so that the code's edge lines up with the

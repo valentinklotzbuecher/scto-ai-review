@@ -1,5 +1,5 @@
 ---
-title: "A Third Pair of Eyes?"
+title: "A Third Pair of Eyes (and Hands)?"
 subtitle: "AI-Assisted Review of Statistical Reports and Code"
 author: "Valentin Klotzbücher · DKF Basel"
 date: 2026-11-22

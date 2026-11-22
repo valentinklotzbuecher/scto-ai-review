@@ -1,5 +1,5 @@
 ---
-title: "A Third Pair of Eyes?"
+title: "A Third Pair of Eyes [(and Hands)]{.hands}?"
 subtitle: "AI-Assisted Review of Statistical Reports and Code"
 author: "Valentin Klotzbücher · DKF Basel"
 date: 2026-11-23
@@ -341,8 +341,6 @@ Please review this using
 
 ::: {.tight .compact}
 - the easiest start
-- upload its ZIP in Claude
-- attach the PDF and .qmd
 - on your plan
 :::
 :::
@@ -365,7 +363,6 @@ to_be_reviewed/
 ```
 
 ::: {.tight .compact}
-- open review.qmd in RStudio
 - set cfg, run, render
 - an API key, paid per use
 :::
@@ -391,8 +388,6 @@ the consistency review.
 
 ::: {.tight .compact}
 - claude.ai/code, on your plan
-- your repo + third-pair-of-eyes
-- setup: tools/web_setup.sh
 - still in development
 :::
 :::

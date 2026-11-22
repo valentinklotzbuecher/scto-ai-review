@@ -42,6 +42,9 @@ page.
 - The deck and the handout include the same diagrams from `slides/diagrams/`; change
   one there, and re-render both. A diagram's SVG holds no slide-only spacing: where it
   sits on its slide is set in `slides/website.scss`, by its `dg-…` class.
+- The title slide's logo is `slides/assets/third-pair-of-eyes.svg`, copied into
+  `slides/website.scss` as a data URI so that the deck stays one file; change the
+  drawing in both, and in `third-pair-of-eyes` (`logo.svg`).
 - Alignment on the slides: text, figures and code hang from the left margin, the
   heading's left edge; a diagram either fills the width, its `viewBox` cropped to the
   drawing so that it ends where the heading's rule ends, or is centred; arrows run
