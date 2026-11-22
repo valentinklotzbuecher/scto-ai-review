@@ -11,7 +11,8 @@ recommendation.
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
 - **The slides**, [`slides/index.html`](slides/index.html): ten slides and an
-  appendix; press S for the speaker notes.
+  appendix; press S for the speaker notes and O for the overview, the whole deck on one
+  screen with one column for each part of the talk.
 - **A starter for each way**, in [`tools/`](tools/):
 
 | | Way | Starter |
@@ -101,9 +102,11 @@ Rscript archive/assets/make-figures.R      # the earlier deck's power figure (ba
 
 `slides/index.html` is one self-contained file: fonts, figures, icons and scripts are
 embedded and it fetches nothing, so it can be shared on its own and opens in a browser
-offline. `slides/index.pdf` is the backup, each slide's last step on one page; to print
-it again, open `slides/index.html?print-pdf` in Chrome and save it as PDF, with no
-margins and background graphics on.
+offline. Its slides lie in two dimensions, the parts of the talk side by side and each
+part's slides below one another; the arrow keys, the space bar and a clicker still step
+through all of them in order. `slides/index.pdf` is the backup, each slide's last step
+on one page; to print it again, open `slides/index.html?print-pdf` in Chrome and save it
+as PDF, with no margins and background graphics on.
 
 The rendered PDFs in `demo/sse/` and `demo-crt/sse/` are the ones every tool reviews.
 If you re-render one, re-run every tool on the new PDF.

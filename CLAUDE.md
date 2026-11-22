@@ -45,6 +45,15 @@ page.
 - The title slide's logo is `slides/assets/third-pair-of-eyes.svg`, copied into
   `slides/website.scss` as a data URI so that the deck stays one file; change the
   drawing in both, and in `third-pair-of-eyes` (`logo.svg`).
+- The deck is laid out in two dimensions, for the overview (O): each part of the talk
+  is a column, opened in `slides/index.qmd` by a level-1 heading with
+  `visibility="hidden"`, which leaves no slide of its own; a slide goes under its
+  part's heading. Navigation stays linear: the keys step through all slides in order,
+  and the script in the YAML header makes moving on into a part start at its first
+  slide. The same script and the last rules of `slides/website.scss` make the
+  overview a map of the whole deck on one screen, each slide in its last step; after
+  a change to the parts, open it at a wide and a narrow window: every slide must lie
+  inside it.
 - Alignment on the slides: text, figures and code hang from the left margin, the
   heading's left edge; a diagram either fills the width, its `viewBox` cropped to the
   drawing so that it ends where the heading's rule ends, or is centred; arrows run

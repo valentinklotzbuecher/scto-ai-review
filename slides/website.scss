@@ -429,3 +429,18 @@ html.print-pdf .reveal .fragment.fade-out { display: none !important; }
    under the first links slide's list it starts at the left margin */
 .reveal img.qr { width: 108px; height: 108px; margin: 34px 0 0 auto; display: block; }
 .reveal img.qr.below { width: 150px; height: 150px; margin: 0.8em 0 0 0; }
+
+/* The overview (O) is a map of the whole deck: the parts of the talk side by side, each
+   part's slides below one another, all on one screen. The script in index.qmd works out
+   the scale and the shift and sets the class; without it reveal.js's own overview, which
+   shows the slides around the current one, stays. Every slide shows its last step, the
+   current one is framed in mauve, the one under the pointer in ink. */
+.reveal.overview.overview-map .slides { transform: var(--overview-map) !important; }
+.reveal.overview .slides section .fragment:not(.fade-out) { opacity: 1 !important; visibility: visible !important; }
+.reveal.overview .slides section .fragment.fade-out { display: none !important; }
+.reveal.overview .slides section:not(.stack):hover { outline: 10px solid rgba($ink, 0.3); outline-offset: 10px; }
+.reveal.overview .slides > section.present:not(.stack),
+.reveal.overview .slides > section.stack.present > section.present { outline: 10px solid rgba($mauve, 0.6); outline-offset: 10px; }
+/* The title slide looks in the overview as it does on the screen: centred, with its logo */
+.reveal.overview .slides section.quarto-title-block { display: flex !important; flex-direction: column; justify-content: center; }
+.reveal.overview .slides section.quarto-title-block::before { display: block !important; }

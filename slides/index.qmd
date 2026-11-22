@@ -19,7 +19,41 @@ format:
     hash-type: number
     preview-links: false
     code-line-numbers: false
+    include-after-body:
+      text: |
+        <script>
+        (function () {
+          // The deck is laid out in two dimensions (see the hidden level-1 headings): moving
+          // on into a part always starts at its first slide, also after a jump in the overview.
+          var deck = document.querySelector('.reveal'), slides = deck.querySelector('.slides');
+          function parts() {
+            return [].slice.call(slides.children).filter(function (el) { return el.tagName === 'SECTION'; });
+          }
+          parts().forEach(function (part) {
+            if (part.querySelector(':scope > section')) part.setAttribute('data-start-indexv', '0');
+          });
+          // The overview (O) shows the whole deck on one screen: website.scss uses this
+          // transform in place of reveal.js's own, which centres on the current slide.
+          function map() {
+            var cols = parts();
+            var rows = Math.max.apply(null, cols.map(function (part) {
+              return part.querySelectorAll(':scope > section').length || 1;
+            }));
+            var gap = 70;  // reveal.js sets the overview's slides this far apart
+            var w = slides.offsetWidth + gap, h = slides.offsetHeight + gap;
+            var scale = 0.96 * Math.min(window.innerWidth / (cols.length * w - gap), window.innerHeight / (rows * h - gap));
+            var centred = slides.style.left === '50%' ? 'translate(-50%, -50%) ' : '';
+            slides.style.setProperty('--overview-map', centred + 'scale(' + scale + ') translate(' +
+              -(cols.length - 1) / 2 * w + 'px, ' + -(rows - 1) / 2 * h + 'px)');
+            deck.classList.add('overview-map');
+          }
+          deck.addEventListener('overviewshown', map);
+          window.addEventListener('resize', function () { if (deck.classList.contains('overview')) map(); });
+        })();
+        </script>
 ---
+
+# The question {visibility="hidden"}
 
 ## How well does AI review research papers?
 
@@ -114,6 +148,8 @@ as templates for it. [click] And then something different: an agent that runs th
 the repository.
 :::
 
+# Chat {visibility="hidden"}
+
 ## Paste it into the chat
 
 ::: crumbs
@@ -143,6 +179,8 @@ the rest. Mine is the first stage of my review skills, adapted from the skills J
 Francis released (research_skills, MIT licence); the agent's skills are built the same
 way.
 :::
+
+# Script {visibility="hidden"}
 
 ## An API review prototype
 
@@ -286,6 +324,8 @@ and it's over". [click] So how much more should I build on my script, when tools
 obsolete this fast? What I did based on that is the agent.
 :::
 
+# Agent {visibility="hidden"}
+
 ## Agentic review
 
 ::: crumbs
@@ -322,6 +362,8 @@ every run found all six, and said by how much the five that matter change the sa
 size or the power; the quick run took 34 minutes, about ten dollars at API list prices.
 A second test case is next.
 :::
+
+# Your turn {visibility="hidden"}
 
 ## Try it yourself
 
@@ -493,6 +535,8 @@ traceable to the code that makes it? The preprint's last author calls human-only
 dangerous for clinical trials; is AI-only review? Thank you; the links are on the last
 two slides.
 :::
+
+# Links {visibility="hidden"}
 
 ## Links: the talk and its tools
 
