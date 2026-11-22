@@ -6,8 +6,8 @@ brings your checklist along.
 
 ## How
 
-1. Choose the strongest model your plan offers and its maximum effort (in ChatGPT a Pro
-   model; in Claude, Opus or Fable at maximum effort).
+1. Choose the strongest model your plan offers and its maximum effort: in ChatGPT, GPT-6
+   Pro (on the Pro plans); in Claude, Opus 5.5 or Fable 5.2 at maximum effort.
 2. Attach the rendered product (PDF) and its source (`.qmd`), and the documents it
    depends on (protocol, SAP) if you may share them.
 3. Ask:

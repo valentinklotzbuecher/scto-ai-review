@@ -47,8 +47,8 @@ folder it calls (SKILL.md, references, scripts). An API review prototype: my
 review prototype, a Quarto document that sends the product through the API (settings in R, the
 request with the Python SDK through reticulate), keeps every run and renders the review,
 shown as it is set up; because it is a script, it can be scored on test cases (in R,
-vitals). Review services as templates for it: what they do, Refine and the open-source
-Reviewer 2, which I was planning to fork. Then the bitter lesson: Joe Francis retiring
+vitals). Further development, with review services as templates: what they do, such as
+Refine and the open-source Reviewer 2, which I was planning to fork. Then the bitter lesson: Joe Francis retiring
 Reviewer 2 for something better and free, Sutton's quote, the question how much more to
 build when tools become obsolete this fast, and the skills Francis released the same
 day. What I did based on that: a coding agent in the product's repository, such as Claude Code or Codex, with skills
@@ -128,7 +128,7 @@ If you re-render one, re-run every tool on the new PDF.
   arXiv:2611.17811, 13 November 2026: in the notes of "To discuss" and in the handout;
   quoted with pages in `material/README.md`
 - Aniket Panjwani on X, on Refine's costs and on evals (date not visible; transcribed in
-  `material/README.md`): in the notes of "Review services as templates"
+  `material/README.md`): in the notes of "Further development: review services as templates"
 - Certify (Gary King, Yiqing Xu and Leo Yang, Harvard), replication certificates run by
   your own AI assistant: certify.iq.harvard.edu, quoted in `material/README.md`; in the
   discussion slide's notes, the handout and `tools/3-agent`
@@ -170,11 +170,15 @@ If you re-render one, re-run every tool on the new PDF.
   `tools/2-api/prompt.md`; `chat-skills/dkf-document-check/SKILL.md` and the agent
   instruction in `stats_review`; the earlier prototype's prompt on the archived deck's
   backup slide
+- GPT-6 Pro in ChatGPT, on the Pro plans and powered by GPT-6 Astra: OpenAI's help
+  centre, help.openai.com/en/articles/20001354, as of November 2026 (rolling out); Claude
+  Opus 5.5 and Fable 5.2: Anthropic's model overview, November 2026
 - "Since o1 pro" (December 2024) is the speaker's own experience, said as such
 - Further reading on the Links slides and in the handout: from the speaker's exploration
   notes (the Sources of `03-extensions.qmd` in dkf-llm-explorations) and the Unjournal
   project's bibliography (`references.bib` on the `working-paper` branch of
-  llm-uj-research-eval); every link was checked to answer on 22 November 2026 (the
+  llm-uj-research-eval), and Brodeur et al. in PNAS 2026 (doi:10.1073/pnas.2524747123,
+  title and issue from Crossref); every link was checked to answer on 22 November 2026 (the
   journal pages through their DOI, the GitHub repositories through GitHub's search)
 - Costs and times of the demo runs: `demo/runs/`, each with the session record
   summarised in its `SCORE.md`

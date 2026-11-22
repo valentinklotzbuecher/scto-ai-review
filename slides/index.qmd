@@ -21,52 +21,52 @@ format:
 ## Models find more errors than reviewers did
 
 :::: {.columns}
-::: {.column width="44%" .plate}
-![](assets/brian2026-fig1b.png){fig-alt="Percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
+::: {.column width="31%" .plate}
+![](assets/brian2026-fig1b.png){style="max-height: 380px" fig-alt="Brian et al., Fig. 1b: percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
 
 ::: {.tiny .muted}
 Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
 :::
 :::
 
-::: {.column width="56%"}
-::: punchline
-Human reviewers found 27% of the major errors; each of 15 models found more, 53 to 96%.
+::: {.column width="69%" .plate}
+![](assets/king-worthington-fig1.png){style="max-height: 380px" fig-alt="King and Worthington, Figure 1: AI reviews dominate human reviews. Of 134 pairs of a human and an AI review of the same manuscript, the AI judge ranked the AI review higher in all 134, and three journal editors in 26 of 30 judgments (87%). By review area the AI review won 92 to 100% of the pairs, and its mean rating from 0 to 10 was higher in every area."}
+
+::: {.tiny .muted}
+King and Worthington, working paper, 28 October 2026, Fig. 1: 134 pairs of a human and an AI review of the same manuscript
 :::
 :::
 ::::
 
-```{=html}
-<div class="pop fragment fade-in-then-out" data-fragment-index="1"><figure class="popfig"><img src="assets/king-worthington-fig1.png" style="width: 820px" alt="King and Worthington, Figure 1: AI reviews dominate human reviews. Of 134 pairs of a human and an AI review of the same manuscript, the AI judge ranked the AI review higher in all 134, and three journal editors in 26 of 30 judgments (87%). By review area the AI review won 92 to 100% of the pairs, and its mean rating from 0 to 10 was higher in every area."><figcaption>King and Worthington, working paper, 28 October 2026, Fig. 1: 134 pairs of a human and an AI review of the same manuscript</figcaption></figure></div>
-<div class="pop fragment" data-fragment-index="2"><div class="qcard solo">
-<div class="quote">"From now on I won't do any peer review without AI. For clinical trials, I'd even call human-only review dangerous."</div>
-<div class="attribution">Ruslan Rust, last author, on X, 28 October 2026</div>
-</div></div>
-```
+::: {.fragment .rust}
+::: quote
+"From now on I won't do any peer review without AI. For clinical trials, I'd even call
+human-only review dangerous."
+:::
+
+::: attribution
+Ruslan Rust, last author, on X, 28 October 2026
+:::
+:::
 
 ::: notes
-[0:30–1:45] The debate this autumn: should journals ban AI in peer review? Ruslan Rust's
-group tested it. They repeated the classic BMJ experiment: known errors inserted into
-reports of randomised trials, every review scored against the same answer key. Human
-peer reviewers, in the 2004 study, found about a quarter of the major errors. Every one
-of 15 current models, reading only the text, found more: 53 to 96%. Caveats: a
-preprint, a historical human comparison, language models as judges, and models that
-also flag concerns on clean reports. [click] A second study, from Harvard, the same
-week: King and Worthington compared AI reviews with paid human reviews that editors and
-authors had rated unusually good, and the AI reviews were better by every measure they
-could construct: 124 papers, one review each from Claude Opus 4.8 at its maximum
-reasoning setting, judged by another model and by three former journal editors, who
-preferred the AI review in 26 of 30 judgments. Also a working paper. Or as one
-researcher put it: "It's been true for a year at least." [click] And Rust's own
-conclusion: from now on he won't review without AI, and for clinical trials he calls
-human-only review dangerous.
+[0:30–1:45] The debate this autumn: should journals ban AI in peer review? Two studies,
+the same week. On the left, Ruslan Rust's group repeated the classic BMJ experiment:
+known errors inserted into reports of randomised trials, every review scored against the
+same answer key. Human peer reviewers, in the 2004 study, found about a quarter of the
+major errors; every one of 15 current models, reading only the text, found more: 53 to
+96%. Caveats: a preprint, a historical human comparison, language models as judges, and
+models that also flag concerns on clean reports. On the right, from Harvard: King and
+Worthington compared AI reviews with paid human reviews that editors and authors had
+rated unusually good, and the AI reviews were better by every measure they could
+construct: 124 papers, one review each from Claude Opus 4.8 at its maximum reasoning
+setting, judged by another model and by three former journal editors, who preferred the
+AI review in 26 of 30 judgments. Also a working paper. Or as one researcher put it:
+"It's been true for a year at least." [click] And Rust's own conclusion: from now on he
+won't review without AI, and for clinical trials he calls human-only review dangerous.
 :::
 
 ## Internal consistency review
-
-::: big
-Sample size estimations, analysis plans, reports
-:::
 
 {{< include diagrams/_question.qmd >}}
 
@@ -103,7 +103,8 @@ the repository.
 ::: notes
 [2:45–3:45] The simplest way is what the preprint tested. Paste the PDF and the source
 into a chat and ask it to check whether the document is consistent. [click] Take the
-strongest model, GPT Pro or Claude Fable or Opus, and set its effort to maximum.
+strongest model, GPT-6 Pro in ChatGPT, Claude Opus 5.5 or Fable 5.2, and set its effort
+to maximum.
 [click] You get an answer, and it works surprisingly well; in my experience since
 OpenAI's o1 pro, in December 2024. King and Worthington's AI reviews were made exactly
 this way: one model at its maximum reasoning setting, given the paper and the
@@ -164,7 +165,7 @@ cfg <- list(
   pdf_file         = "DEMO-TKA_SSE.pdf",
   assignment       = "Is the sample size right?",
   anthropic_model  = "claude-opus-5-5",
-  anthropic_effort = "high"
+  anthropic_effort = "max"
 )
 ```
 :::
@@ -196,16 +197,14 @@ the cost; what the review looks like is set in the prompt. One thing it checks i
 run is marked not completed.
 :::
 
-## Review services as templates
+## Further development: review services as templates
 
 ::: crumbs
 <span>Chat</span><span class="on">Script</span><span>Agent</span>
 :::
 
-{{< include diagrams/_services.qmd >}}
-
 ```{=html}
-<div class="svc fragment" data-fragment-index="3">
+<div class="svc">
   <div><div class="n"><a href="https://refine.ink">refine.ink</a></div><div class="t">paid, up to $50</div></div>
   <div><div class="n"><a href="https://reviewer3.com">reviewer3.com</a></div><div class="t">paid</div></div>
   <div><div class="n"><a href="https://paperreview.ai">paperreview.ai</a></div><div class="t">free · Stanford</div></div>
@@ -217,20 +216,23 @@ run is marked not completed.
 </div>
 ```
 
+{{< include diagrams/_services.qmd >}}
+
 ::: notes
-[5:15–6:15] Others have built such pipelines, with many more calls, and offer them as
-services; for the script I just showed, they are templates. You upload the PDF.
-[click] Behind it runs a fixed chain of model calls, with prompts the vendor wrote.
-[click] You get a report. [click] There are more every month. Refine is the oldest:
-founded by Ben Golub, an economist at Northwestern, and Yann Calvó López; it is seen as
-the gold standard, and costs up to fifty dollars a paper. Reviewer3 is paid as well;
-paperreview.ai from Stanford and openaireview from Chicago are free; coarse.ink is open
-source, apparently reverse-engineered from Refine; and in October Google launched Deep
-Review, free for two reviews a week. Reviewer 2, by Joe Francis, is open source: more
-than thirty chained calls, fifteen to forty-five minutes and a few dollars a paper. Its
-first stage, The Breaker, takes a sledgehammer to the text, and a verification cascade
-then removes what the aggression invents. All are built for research papers, and all but
-the open-source ones mean uploading to a third party. And they are no magic: as Aniket
+[5:15–6:15] How could the prototype grow? Others have built such pipelines, with many
+more calls, and offer them as services; for the prototype, they are templates. There
+are more every month. Refine is the oldest: founded by Ben Golub, an economist at
+Northwestern, and Yann Calvó López; it is seen as the gold standard, and costs up to
+fifty dollars a paper. Reviewer3 is paid as well; paperreview.ai from Stanford and
+openaireview from Chicago are free; coarse.ink is open source, apparently
+reverse-engineered from Refine; and in October Google launched Deep Review, free for
+two reviews a week. Reviewer 2, by Joe Francis, is open source: more than thirty
+chained calls, fifteen to forty-five minutes and a few dollars a paper. [click] What
+they do: you upload the PDF, and behind it runs a fixed chain of model calls, with
+prompts the vendor wrote. Reviewer 2's first stage, The Breaker, takes a sledgehammer
+to the text, and a verification cascade then removes what the aggression invents.
+[click] You get a report. All are built for research papers, and all but the
+open-source ones mean uploading to a third party. And they are no magic: as Aniket
 Panjwani worked out on X, if one Refine review costs fifty dollars and ten cost three
 hundred, its inference costs at most about thirty dollars a review, while a ChatGPT Pro
 or Claude Max plan buys thousands of dollars' worth of tokens a month at API prices; a
@@ -441,54 +443,57 @@ estimations with planted issues and an answer key, so you can score what they fi
 - What would you need to see before you sign a product an AI reviewed?
 :::
 
+::: {.fragment}
 ::: group
 Thinking further ahead
 :::
+:::
 
-::: {.tight}
+::: {.tight .incremental}
 - A checklist learned from our past reviews?
-- Should we write our products for AI readers?
 - A replication certificate with every product?
+- Implications for teaching?
 - Build our own tools, or wait for the next model?
-- Implications for teaching: how to train staff, how fast to adopt?
+- Should we write our products for AI readers?
 :::
 
 ::: notes
 [10:00–20:00] To discuss. First, here and now: how should AI complement our internal
 review? For whom: the author, as a check before the second statistician, the reviewer,
 alongside the review, or both? And how deep: one call that reads, or an agent that runs
-everything? One reason to want it: a single reviewer sees only part of what
-more reviewers would raise. In the NeurIPS 2021 reviews, one reviewer raised about a fifth
-of the issues that all of a paper's reviewers raised together; an AI that applies the
-same checks to every product takes some of the luck out of who reviews it. Could our
-review become result-oriented: the AI goes through every line, every number and every
-re-run, and we check that it tested enough, that each chunk, section and analysis does
-what it says, and that the approach and the interpretation hold? A caution from this
-month: the latest GPT and Claude models draw about 62% of their review weaknesses from
-the appendix, human reviewers about 8%; they audit every detail and rarely engage with
-the core of the paper; in ICLR's human reviews that share has risen from below 10% to
-28% since the newest models came out. The
-authors' advice: use them as a tool for checking the details, not as the judge of what
-matters most. That judgement stays with us. Even the author of the skills I build on says the results come from robots and
-should be verified by humans. And what would you need to see before you sign a product
-an AI reviewed? Then, thinking further ahead. Liu, Guo, Hartline and Hullman
+everything? One reason to want it: a single reviewer sees only part of what more
+reviewers would raise. In the NeurIPS 2021 reviews, one reviewer raised about a fifth of
+the issues that all of a paper's reviewers raised together; an AI that applies the same
+checks to every product takes some of the luck out of who reviews it. Could our review
+become result-oriented: the AI goes through every line, every number and every re-run,
+and we check that it tested enough, that each chunk, section and analysis does what it
+says, and that the approach and the interpretation hold? A caution from this month: the
+latest GPT and Claude models draw about 62% of their review weaknesses from the
+appendix, human reviewers about 8%; they audit every detail and rarely engage with the
+core of the paper; in ICLR's human reviews that share has risen from below 10% to 28%
+since the newest models came out. The authors' advice: use them as a tool for checking
+the details, not as the judge of what matters most. That judgement stays with us. Even
+the author of the skills I build on says the results come from robots and should be
+verified by humans. And what would you need to see before you sign a product an AI
+reviewed? [click] Then, thinking further ahead. [click] Liu, Guo, Hartline and Hullman
 turned a corpus of past reviews into a checklist of criticisms: with language-model
 reviewers it cut the error of a three-reviewer committee by 58% on NeurIPS and 21% on
 ICLR, and in a small study with 20 people it more than halved the error of a paper
 ranking. Could our own archive of review forms become such a checklist, for the human
-reviewer and the AI alike? If an AI reads our products first, should
-we write them for it: the estimand in full, every assumption in the text and not only in
-the code, every number traceable to the code that makes it? Certify, from Gary King,
-Yiqing Xu and Leo Yang at Harvard, has your own AI assistant, Claude Code or Codex, rerun
-a replication package on your computer, and certifies that rerunning the code produces
-the results to be published: should our products carry such a certificate? Should we
-build our own tools at all, after the bitter lesson? My own prototype dates with every
-new model, and my skills will too. What carries over to every new model: test cases with
+reviewer and the AI alike? [click] Certify, from Gary King, Yiqing Xu and Leo Yang at
+Harvard, has your own AI assistant, Claude Code or Codex, rerun a replication package on
+your computer, and certifies that rerunning the code produces the results to be
+published: should our products carry such a certificate? [click] The implications for
+teaching: how will junior statisticians learn to review if the AI does the line-by-line
+work? How do we train our staff, and how fast should we adopt? [click] Should we build
+our own tools at all, after the bitter lesson? My own prototype dates with every new
+model, and my skills will too. What carries over to every new model: test cases with
 known answers, standards for what a review must check, rules for what data may go
-where. And the implications: for teaching, how will junior statisticians learn to review
-if the AI does the line-by-line work; how do we train our staff; and how fast should we
-adopt? The preprint's last author calls human-only review dangerous for clinical
-trials; is AI-only review? Thank you; the links are in the appendix.
+where. [click] And if an AI reads our products first, should we write them for it: the
+estimand in full, every assumption in the text and not only in the code, every number
+traceable to the code that makes it? The preprint's last author calls human-only review
+dangerous for clinical trials; is AI-only review? Thank you; the links are in the
+appendix.
 :::
 
 # Appendix {.divider}
@@ -517,8 +522,9 @@ trials; is AI-only review? Thank you; the links are in the appendix.
 - Ghosh et al., AI reviews biased towards the appendix: [arXiv 2611.17811](https://arxiv.org/abs/2611.17811)
 - Sutton, [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html), 2019
 
-**Our Unjournal project**
+**Projects I am involved in**
 
+- Brodeur et al., AI-assisted teams outperform AI-led teams but not human-only teams in assessing research reproducibility: [PNAS 2026](https://doi.org/10.1073/pnas.2524747123)
 - Klotzbücher, Reinstein, Pacchiardi and Zhang, Just Ask the Model: one-shot LLM research evaluation and structured expert review: [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app/)
 :::
 :::
@@ -541,7 +547,6 @@ trials; is AI-only review? Thank you; the links are in the appendix.
 
 - Asher et al., do Claude Code and Codex p-hack? 2026: [replication archive](https://github.com/janetmalzahn/llm-phacking)
 - Xu and Yang, AI-assisted reanalysis at scale: [2026](https://yiqingxu.org/papers/2026_ai/AI_reproducibility.pdf)
-- Brodeur et al., human, AI-assisted and AI-led teams on reproducibility: [2025](https://hdl.handle.net/10419/308508)
 - Kohler et al., agentic reproduction from the methods section: [arXiv 2604.21965](https://arxiv.org/abs/2604.21965)
 - Son et al., FLAWS, finding errors in papers: [arXiv 2511.21843](https://arxiv.org/abs/2511.21843)
 :::
