@@ -19,17 +19,17 @@ format:
     link-external-newwindow: true
 ---
 
-The handout to the talk, to read later: what two studies found this autumn, four ways
+The handout to the talk, to read later: what two studies found this autumn, three ways
 to get an AI review of a statistical product, why building more tools may not pay, the
 questions for the discussion, and a test case to try the tools on. A statistical product
 here is a sample size estimation, an analysis plan or a report, and the review covers
 all of it: the statistical methods, the numbers and the code.
 
-Each of the four ways has a starter in the kit,
+Each of the three ways has a starter in the kit,
 [github.com/valentinklotzbuecher/scto-ai-review](https://github.com/valentinklotzbuecher/scto-ai-review):
 a prompt to paste and a skill for the chat, my review prototype as a Quarto document
-for the API, a list of services, and the review skills for the agent, still in
-development. It is my own exploration, not a DKF
+for the API, and the review skills for the agent, still in development; and there is a
+list of review services. It is my own exploration, not a DKF
 service or recommendation.
 
 ## Models find more errors than reviewers did
@@ -80,17 +80,17 @@ checks the methods, the numbers and the code. Both studies read only the text; e
 data handling or analysis code, the preprint's authors note, are not visible there.
 Where could AI come in: before the second
 statistician, as a check the author runs first, or alongside the reviewer? That is open.
-The four approaches below are what I explored, as a basis for the discussion.
+The three approaches below are what I explored, as a basis for the discussion.
 
-## Four approaches
+## Three approaches
 
 ::: dg-wrap
 {{< include diagrams/_overview.qmd >}}
 :::
 
-The chat; your own pipeline, a script through the API; review services, which are
-someone else's pipeline; and, after a dividing line, an agent that runs the code in the
-repository. Skills, your checklist as a folder, come up twice: in the chat, and as the
+The chat; a script through the API, here my review prototype, with the review
+services, someone else's pipeline, as templates for it; and, after a dividing line, an agent that
+runs the code in the repository. Skills, your checklist as a folder, come up twice: in the chat, and as the
 agent's instructions.
 
 ### [01]{.num}Paste it into the chat
@@ -129,13 +129,13 @@ research_skills, released by Joe Francis.
 Starter: [tools/1-chat](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/1-chat): the prompt, the settings, the skill, the data rules
 :::
 
-### [02]{.num}Your own script
+### [02]{.num}An API review prototype
 
 ::: dg-wrap
 {{< include diagrams/_api.qmd >}}
 :::
 
-Instead of pasting by hand, your own pipeline: my review prototype, a Quarto document
+Instead of pasting by hand, a script through the API: my review prototype, a Quarto document
 that sends the product through the API. It takes the product's Quarto source and its
 PDF. Its chunks hold the settings, in R; the prompt, from a text file; and the request,
 sent with the Anthropic Python SDK through reticulate. ellmer could send it too; the SDK
@@ -183,7 +183,7 @@ as the demo below.
 Starter: [tools/2-api](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/2-api): `review.qmd`, `prompt.md` and the folder `to_be_reviewed/`
 :::
 
-### [03]{.num}Review services as templates
+### Review services as templates
 
 ::: dg-wrap
 {{< include diagrams/_services.qmd >}}
@@ -204,7 +204,7 @@ open-source ones mean uploading to a third party. I was planning to fork Reviewe
 improve it or to learn from it for my own script.
 
 ::: starter
-Starter: [tools/3-services](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-services): the list, with links and sources
+Starter: [tools/services](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/services): the list, with links and sources
 :::
 
 ### The bitter lesson
@@ -238,7 +238,7 @@ A shared set of test cases, written by different people and kept out of every re
 would let anyone measure any tool, and every new model; the [demo](#the-demo) is a first
 one.
 
-### [04]{.num}A coding agent in the repository
+### [03]{.num}A coding agent in the repository
 
 ::: dg-wrap
 {{< include diagrams/_agent.qmd >}}
@@ -274,7 +274,7 @@ synthetic test case, the [demo](#the-demo), where every run found all six plante
 issues.
 
 ::: starter
-Starter: [tools/4-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent): the set-up, the one sentence, the depth and the data modes; the skills are in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), version 0.3.1
+Starter: [tools/3-agent](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-agent): the set-up, the one sentence, the depth and the data modes; the skills are in [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1), version 0.3.1
 :::
 
 ### Try it yourself
@@ -307,7 +307,7 @@ Every run is kept in `review_results/prototype_runs/`.
 **The agent**, still in development, runs on the review skills in
 [stats_review](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.3.1),
 at the tag `skills-v0.3.1`; the steps are in the kit's
-[`tools/4-agent`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/4-agent).
+[`tools/3-agent`](https://github.com/valentinklotzbuecher/scto-ai-review/tree/main/tools/3-agent).
 
 1. At [claude.ai/code](https://claude.ai/code), on your Claude plan, create a cloud
    environment with stats_review's

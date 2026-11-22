@@ -1,6 +1,6 @@
 ```{=html}
-<svg class="dg" style="max-height: 420px" viewBox="0 0 744 272" role="img" aria-label="The review document, review.qmd, takes a product's Quarto source and PDF. Its chunks hold the settings, in R; the prompt, from prompt.md; and the request, sent with the Python SDK. One request goes to the model, paid per use. Every run is saved as .md and .json and kept. Rendering shows the latest run as a report: the review, the prompt and the cost. The saved runs on test cases with known answers give scores, in R with vitals.">
-  <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker></defs>
+<svg class="dg" style="max-height: 420px" viewBox="0 0 744 272" role="img" aria-label="The review document, review.qmd, takes a product's Quarto source and PDF. Its chunks hold the settings, in R; the prompt, from prompt.md; and the request, sent with the Python SDK. One request goes to the model, paid per use. Every run is saved as .md and .json and kept. Rendering shows the latest run as a report: the review, the prompt and the cost. A next step: the saved runs on test cases with known answers give scores, in R with vitals.">
+  <defs><marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F"/></marker><marker id="m2g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7F877E"/></marker></defs>
   <path class="doc" d="M12 40 h48 l16 16 v66 h-64 z"/><path class="fold" d="M60 40 v16 h16"/>
   <text class="mono" x="44" y="98" font-size="14" text-anchor="middle">QMD</text>
   <path class="doc" d="M12 140 h48 l16 16 v66 h-64 z"/><path class="fold" d="M60 140 v16 h16"/>
@@ -38,10 +38,10 @@
   <text x="653" y="102" font-size="15" text-anchor="middle">review, prompt, cost</text>
   </g>
   <g class="fragment" data-fragment-index="4">
-  <path class="arrow" d="M598 162 V144 H465 V132" marker-end="url(#m2)"/>
-  <rect class="out" x="410" y="38" width="110" height="88"/>
+  <path class="arrow cut" d="M598 162 V144 H465 V132" marker-end="url(#m2g)"/>
+  <rect class="ghost" x="400" y="38" width="130" height="88"/>
   <text class="strong" x="465" y="68" font-size="18" text-anchor="middle">scores</text>
-  <text x="465" y="91" font-size="15" text-anchor="middle">on test cases</text>
+  <text class="soft" x="465" y="91" font-size="15" text-anchor="middle">on test cases</text>
   <text class="soft" x="465" y="113" font-size="15" text-anchor="middle">R: vitals</text>
   </g>
 </svg>

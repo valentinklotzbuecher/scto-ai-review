@@ -24,11 +24,11 @@ read the answer key, and then finds the issues without doing the review.
 
 - Chat, with or without the skill: attach the two files
   ([`../tools/1-chat`](../tools/1-chat/README.md)).
-- Your own script: copy the two files into the review document's `to_be_reviewed/`;
+- The API review prototype: copy the two files into the review document's `to_be_reviewed/`;
   it sends only the `.qmd` and PDF it finds there
   ([`../tools/2-api`](../tools/2-api/README.md)).
 - Agent: from a clone of stats_review, never from this kit
-  ([`../tools/4-agent`](../tools/4-agent/README.md)):
+  ([`../tools/3-agent`](../tools/3-agent/README.md)):
 
   ```bash
   python3 .claude/skills/dkf-review/scripts/new_job.py jobs/2026-11_DEMO-TKA \

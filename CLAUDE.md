@@ -1,7 +1,7 @@
 # scto-ai-review: project notes
 
-The kit for an SCTO talk: the deck and a handout (`slides/`), a starter for each of four
-tools (`tools/`), two synthetic demonstration SSEs with planted issues (`demo/`, and
+The kit for an SCTO talk: the deck and a handout (`slides/`), a starter for each of three
+approaches and a list of review services (`tools/`), two synthetic demonstration SSEs with planted issues (`demo/`, and
 `demo-crt/`, a cluster trial whose sample size comes from saved simulation results), the
 sources (`material/`) and the earlier demo deck (`archive/`). `README.md` is the start
 page.
@@ -43,7 +43,7 @@ page.
   one there, and re-render both.
 - The kit links to the review skills at a fixed version, tag `skills-v0.3.1` in
   `stats_review`. For a newer version, update the links in `tools/1-chat`,
-  `tools/4-agent`, the handout and the deck's Links slide.
+  `tools/3-agent`, the handout and the deck's Links slides.
 - `tools/2-api/review.qmd` is the speaker's review prototype, ported from
   `02-review-prototype.qmd` in dkf-llm-explorations with current models. Both read the
   review instructions from their `prompt.md`; keep the two files identical. Keep its

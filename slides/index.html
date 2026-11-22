@@ -1144,33 +1144,27 @@ display:block!important;
 }</style></aside>
 </section>
 <section class="slide level2">
-<h2>Four approaches</h2>
-<svg class="dg" style="margin-top: 56px" viewbox="0 0 1100 250" role="img" aria-label="Four approaches, in the order of the talk: a chat, where you paste and ask; an API script, your own pipeline; a review service, someone else&#39;s pipeline; and, after a dividing line, an agent that runs the code in the repository.">
-  <rect class="box" x="45" y="30" width="230" height="190" />
-  <text class="strong" x="67" y="102" font-size="36">Chat</text>
-  <text class="soft" x="67" y="146" font-size="22">paste and ask</text>
+<h2>Three approaches</h2>
+<svg class="dg" style="margin-top: 56px" viewbox="0 0 1100 250" role="img" aria-label="Three approaches, in the order of the talk: a chat, where you paste and ask; an API script, here a review prototype; and, after a dividing line, an agent that runs the code in the repository.">
+  <rect class="box" x="70" y="30" width="280" height="190" />
+  <text class="strong" x="94" y="102" font-size="36">Chat</text>
+  <text class="soft" x="94" y="146" font-size="22">paste and ask</text>
   <g class="fragment" data-fragment-index="1">
-  <rect class="box" x="295" y="30" width="230" height="190" />
-  <text class="strong" x="317" y="102" font-size="36">API script</text>
-  <text class="soft" x="317" y="146" font-size="22">your own</text>
-  <text class="soft" x="317" y="174" font-size="22">pipeline</text>
+  <rect class="box" x="400" y="30" width="280" height="190" />
+  <text class="strong" x="424" y="102" font-size="36">API script</text>
+  <text class="soft" x="424" y="146" font-size="22">a review</text>
+  <text class="soft" x="424" y="174" font-size="22">prototype</text>
   </g>
   <g class="fragment" data-fragment-index="2">
-  <rect class="box" x="545" y="30" width="230" height="190" />
-  <text class="strong" x="567" y="102" font-size="36">Service</text>
-  <text class="soft" x="567" y="146" font-size="22">someone else&#39;s</text>
-  <text class="soft" x="567" y="174" font-size="22">pipeline</text>
-  </g>
-  <g class="fragment" data-fragment-index="3">
-  <line class="arrow cut" x1="810" y1="20" x2="810" y2="230"></line>
-  <rect class="model" x="845" y="30" width="230" height="190" />
-  <text class="strong" x="867" y="102" font-size="36">Agent</text>
-  <text class="soft" x="867" y="146" font-size="22">runs the code</text>
-  <text class="soft" x="867" y="174" font-size="22">in the repository</text>
+  <line class="arrow cut" x1="725" y1="20" x2="725" y2="230"></line>
+  <rect class="model" x="770" y="30" width="280" height="190" />
+  <text class="strong" x="794" y="102" font-size="36">Agent</text>
+  <text class="soft" x="794" y="146" font-size="22">runs the code</text>
+  <text class="soft" x="794" y="174" font-size="22">in the repository</text>
   </g>
 </svg>
 <aside class="notes">
-<p>[2:15–2:45] Four approaches. The chat: paste and ask. [click] Your own pipeline, a script through the API. [click] Review services: someone else’s pipeline. [click] And then something different: an agent that runs the code in the repository.</p>
+<p>[2:15–2:45] Three approaches. The chat: paste and ask. [click] A script through the API, here my review prototype; the review services, someone else’s pipeline, come in as templates for it. [click] And then something different: an agent that runs the code in the repository.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1186,7 +1180,7 @@ display:block!important;
 <section class="slide level2">
 <h2>Paste it into the chat</h2>
 <div class="crumbs">
-<p><span class="on">Chat</span><span>Script</span><span>Services</span><span>Agent</span></p>
+<p><span class="on">Chat</span><span>Script</span><span>Agent</span></p>
 </div>
 <svg class="dg" style="max-height: 430px" viewbox="0 0 640 266" role="img" aria-label="You paste the PDF and the Quarto source into a chat and ask whether it is consistent; the strongest model at maximum effort reads them and answers. Or you call a skill by name, Please review this using /dkf-document-check: a folder, dkf-document-check, with SKILL.md, references and scripts, which the model loads.">
   <defs><marker id="m1" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
@@ -1232,12 +1226,12 @@ display:block!important;
 }</style></aside>
 </section>
 <section class="slide level2">
-<h2>Your own script</h2>
+<h2>An API review prototype</h2>
 <div class="crumbs">
-<p><span>Chat</span><span class="on">Script</span><span>Services</span><span>Agent</span></p>
+<p><span>Chat</span><span class="on">Script</span><span>Agent</span></p>
 </div>
-<svg class="dg" style="max-height: 420px" viewbox="0 0 744 272" role="img" aria-label="The review document, review.qmd, takes a product&#39;s Quarto source and PDF. Its chunks hold the settings, in R; the prompt, from prompt.md; and the request, sent with the Python SDK. One request goes to the model, paid per use. Every run is saved as .md and .json and kept. Rendering shows the latest run as a report: the review, the prompt and the cost. The saved runs on test cases with known answers give scores, in R with vitals.">
-  <defs><marker id="m2" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
+<svg class="dg" style="max-height: 420px" viewbox="0 0 744 272" role="img" aria-label="The review document, review.qmd, takes a product&#39;s Quarto source and PDF. Its chunks hold the settings, in R; the prompt, from prompt.md; and the request, sent with the Python SDK. One request goes to the model, paid per use. Every run is saved as .md and .json and kept. Rendering shows the latest run as a report: the review, the prompt and the cost. A next step: the saved runs on test cases with known answers give scores, in R with vitals.">
+  <defs><marker id="m2" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker><marker id="m2g" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#7F877E" /></marker></defs>
   <path class="doc" d="M12 40 h48 l16 16 v66 h-64 z" /><path class="fold" d="M60 40 v16 h16" />
   <text class="mono" x="44" y="98" font-size="14" text-anchor="middle">QMD</text>
   <path class="doc" d="M12 140 h48 l16 16 v66 h-64 z" /><path class="fold" d="M60 140 v16 h16" />
@@ -1275,10 +1269,10 @@ display:block!important;
   <text x="653" y="102" font-size="15" text-anchor="middle">review, prompt, cost</text>
   </g>
   <g class="fragment" data-fragment-index="4">
-  <path class="arrow" d="M598 162 V144 H465 V132" marker-end="url(#m2)" />
-  <rect class="out" x="410" y="38" width="110" height="88" />
+  <path class="arrow cut" d="M598 162 V144 H465 V132" marker-end="url(#m2g)" />
+  <rect class="ghost" x="400" y="38" width="130" height="88" />
   <text class="strong" x="465" y="68" font-size="18" text-anchor="middle">scores</text>
-  <text x="465" y="91" font-size="15" text-anchor="middle">on test cases</text>
+  <text class="soft" x="465" y="91" font-size="15" text-anchor="middle">on test cases</text>
   <text class="soft" x="465" y="113" font-size="15" text-anchor="middle">R: vitals</text>
   </g>
 </svg>
@@ -1299,7 +1293,7 @@ display:block!important;
 <section class="slide level2">
 <h2>How it is set up</h2>
 <div class="crumbs">
-<p><span>Chat</span><span class="on">Script</span><span>Services</span><span>Agent</span></p>
+<p><span>Chat</span><span class="on">Script</span><span>Agent</span></p>
 </div>
 <div class="columns">
 <div class="column" style="width:53%;">
@@ -1344,7 +1338,7 @@ display:block!important;
 <section class="slide level2">
 <h2>Review services as templates</h2>
 <div class="crumbs">
-<p><span>Chat</span><span>Script</span><span class="on">Services</span><span>Agent</span></p>
+<p><span>Chat</span><span class="on">Script</span><span>Agent</span></p>
 </div>
 <svg class="dg" style="max-height: 230px" viewbox="0 0 760 200" role="img" aria-label="You upload the PDF to a third-party service, which runs a fixed chain of 30 or more model calls with prompts written by the vendor and returns a report.">
   <defs><marker id="m3" viewbox="0 0 10 10" refx="9" refy="5" markerwidth="8" markerheight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C3A2F" /></marker></defs>
@@ -1445,7 +1439,7 @@ display:block!important;
 <section class="slide level2">
 <h2>A coding agent in the repository</h2>
 <div class="crumbs">
-<p><span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span></p>
+<p><span>Chat</span><span>Script</span><span class="on">Agent</span></p>
 </div>
 <svg class="dg" style="max-height: 530px" viewbox="0 0 770 444" role="img" aria-label="A coding agent, such as Claude Code or Codex. The product&#39;s repository, with the skills as its instructions; tools that read its files, run R and write logs; the agent, Claude Code or Codex on your subscription, whose model decides the next step, the agent and the tools passing steps and results back and forth in a loop until done. The repository and the tools sit in an isolated cloud VM, with the model outside it; your computer is not connected. The review and the logs are pushed to a branch. Then the Agent SDK: the same agent, started from a script. Last, what it adds: it runs the code, challenges its findings, works on synthetic data and is version-controlled; still in development.">
   <defs>

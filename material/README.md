@@ -156,7 +156,7 @@ Evaluation". Description:
 > of their large language model-based products, the package supports prompt
 > engineering, tool usage, multi-turn dialog, and model graded evaluations.
 
-Used on "Your own script" (the scores box and the notes), in the handout and in
+Used on "An API review prototype" (the scores box and the notes), in the handout and in
 `tools/2-api`: scripted calls can be scored on test cases with known answers.
 
 ## Just Ask the Model, our Unjournal working paper (read 19 November 2026)
@@ -221,7 +221,7 @@ screenshots:
 - Francis's "verified by humans" sentence and the retirement of Reviewer 2; Douglass's
   comment of 15 October; the services from the Reviewer 2 paper; Deep Review's terms;
   Certify.
-- The quotes on Claude Code on the web (`tools/4-agent`) and on the Agent SDK.
+- The quotes on Claude Code on the web (`tools/3-agent`) and on the Agent SDK.
 
 In the earlier demo deck (`archive/demo-deck.qmd`):
 

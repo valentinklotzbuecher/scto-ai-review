@@ -35,7 +35,7 @@ nothing else from this kit; the answer key is in it.
 A skill is a folder: a `SKILL.md` with instructions, reference files and small scripts.
 The model reads each skill's name and description and loads the rest when a task
 matches, so the checklist comes along and you no longer paste a prompt. The same skills
-are the agent's instructions in [`../4-agent`](../4-agent/README.md).
+are the agent's instructions in [`../3-agent`](../3-agent/README.md).
 
 `dkf-document-check` is the first stage of the DKF consistency review on its own, for
 Claude chat (version 0.1.1, following the review skills 0.3.1 in

@@ -1,9 +1,9 @@
 # A Third Pair of Eyes? AI-Assisted Review of Statistical Reports and Code
 
 The kit for a 20-minute SCTO talk: the slides, a handout to read later, a starter for
-each of four ways to get an AI review of a statistical product (a sample size
-estimation, an analysis plan, a report: its methods, its numbers and its code), and a
-synthetic test case with a known answer. My own exploration, not a DKF service or
+each of three ways to get an AI review of a statistical product (a sample size
+estimation, an analysis plan, a report: its methods, its numbers and its code), a list
+of review services, and a synthetic test case with a known answer. My own exploration, not a DKF service or
 recommendation.
 
 ## Start here
@@ -17,10 +17,11 @@ recommendation.
 | | Way | Starter |
 |---|---|---|
 | 1 | [Paste it into the chat](tools/1-chat/README.md) | the prompt, the settings, and `dkf-document-check`, a skill for Claude chat |
-| 2 | [Your own script](tools/2-api/README.md) | my review prototype, a Quarto document (`review.qmd`): settings in R, the request through the Anthropic Python SDK, every run kept, the review rendered with its prompt and cost |
-| 3 | [Review services as templates](tools/3-services/README.md) | the list, paid, free and open source, with sources |
-| 4 | [A coding agent in the repository](tools/4-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions; still in development |
+| 2 | [An API review prototype](tools/2-api/README.md) | my review prototype, a Quarto document (`review.qmd`): settings in R, the request through the Anthropic Python SDK, every run kept, the review rendered with its prompt and cost |
+| 3 | [A coding agent in the repository](tools/3-agent/README.md) | Claude Code on the web with the DKF review skills as its instructions; still in development |
 
+- **The services**, [`tools/services/`](tools/services/README.md): the list, paid, free
+  and open source, with sources; templates for a script of your own.
 - **The demo**, [`demo/`](demo/README.md): a two-page synthetic SSE with six planted
   issues, its answer key and the recorded runs. Give a tool only `demo/sse/`; the rest
   of this kit names the issues.
@@ -40,10 +41,10 @@ models found more of the errors inserted into trial reports than human peer revi
 had, then King and Worthington's finding that AI reviews beat paid expert reviews. It
 turns to our internal consistency review (methods, numbers and code; errors in code are
 not visible in the text), leaving open whether AI belongs before the second statistician
-or alongside. Then four
+or alongside. Then three
 approaches. A chat at maximum effort, and with a skill: the request as typed, and the
-folder it calls (SKILL.md, references, scripts). Your own pipeline: my review
-prototype, a Quarto document that sends the product through the API (settings in R, the
+folder it calls (SKILL.md, references, scripts). An API review prototype: my
+review prototype, a Quarto document that sends the product through the API (settings in R, the
 request with the Python SDK through reticulate), keeps every run and renders the review,
 shown as it is set up; because it is a script, it can be scored on test cases (in R,
 vitals). Review services as templates for it: what they do, Refine and the open-source
@@ -130,7 +131,7 @@ If you re-render one, re-run every tool on the new PDF.
   `material/README.md`): in the notes of "Review services as templates"
 - Certify (Gary King, Yiqing Xu and Leo Yang, Harvard), replication certificates run by
   your own AI assistant: certify.iq.harvard.edu, quoted in `material/README.md`; in the
-  discussion slide's notes, the handout and `tools/4-agent`
+  discussion slide's notes, the handout and `tools/3-agent`
 - Rich Sutton, *The Bitter Lesson*, 13 March 2019,
   incompleteideas.net/IncIdeas/BitterLesson.html
 - Reviewer 2: github.com/isitcredible/reviewer2 (README: 30+ chained calls, 15–45

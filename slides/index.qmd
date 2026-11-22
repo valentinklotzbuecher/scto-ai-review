@@ -81,20 +81,21 @@ show them, so that we can discuss this with some experience rather than in the a
 All of it is my own exploration, not something DKF runs or recommends.
 :::
 
-## Four approaches
+## Three approaches
 
 {{< include diagrams/_overview.qmd >}}
 
 ::: notes
-[2:15–2:45] Four approaches. The chat: paste and ask. [click] Your own pipeline, a script
-through the API. [click] Review services: someone else's pipeline. [click] And then
-something different: an agent that runs the code in the repository.
+[2:15–2:45] Three approaches. The chat: paste and ask. [click] A script through the
+API, here my review prototype; the review services, someone else's pipeline, come in
+as templates for it. [click] And then something different: an agent that runs the code in
+the repository.
 :::
 
 ## Paste it into the chat
 
 ::: crumbs
-<span class="on">Chat</span><span>Script</span><span>Services</span><span>Agent</span>
+<span class="on">Chat</span><span>Script</span><span>Agent</span>
 :::
 
 {{< include diagrams/_chat.qmd >}}
@@ -120,10 +121,10 @@ Francis released (research_skills, MIT licence); the agent's skills are built th
 way.
 :::
 
-## Your own script
+## An API review prototype
 
 ::: crumbs
-<span>Chat</span><span class="on">Script</span><span>Services</span><span>Agent</span>
+<span>Chat</span><span class="on">Script</span><span>Agent</span>
 :::
 
 {{< include diagrams/_api.qmd >}}
@@ -147,7 +148,7 @@ The price is code that talks to one provider at one point in time.
 ## How it is set up
 
 ::: crumbs
-<span>Chat</span><span class="on">Script</span><span>Services</span><span>Agent</span>
+<span>Chat</span><span class="on">Script</span><span>Agent</span>
 :::
 
 :::: {.columns}
@@ -198,7 +199,7 @@ run is marked not completed.
 ## Review services as templates
 
 ::: crumbs
-<span>Chat</span><span>Script</span><span class="on">Services</span><span>Agent</span>
+<span>Chat</span><span class="on">Script</span><span>Agent</span>
 :::
 
 {{< include diagrams/_services.qmd >}}
@@ -300,7 +301,7 @@ based on that is the agent.
 ## A coding agent in the repository
 
 ::: crumbs
-<span>Chat</span><span>Script</span><span>Services</span><span class="on">Agent</span>
+<span>Chat</span><span>Script</span><span class="on">Agent</span>
 :::
 
 {{< include diagrams/_agent.qmd >}}

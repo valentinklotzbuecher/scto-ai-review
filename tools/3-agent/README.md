@@ -1,4 +1,4 @@
-# 4 · An agent in the repository
+# 3 · An agent in the repository
 
 An agent works in a copy of the product's repository. It reads the files, runs the R
 code, recomputes the numbers, re-runs the simulations, has its findings challenged by

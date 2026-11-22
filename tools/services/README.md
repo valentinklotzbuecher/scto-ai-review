@@ -1,4 +1,4 @@
-# 3 · Review services as templates
+# Review services as templates
 
 Others built whole review pipelines: you upload the PDF, a fixed chain of model calls
 with prompts the vendor wrote runs behind it, and you get a report. All are built for
@@ -25,7 +25,7 @@ upload anything unpublished.
   On 26 October 2026 its author retired the hosted version, which he had decided was
   obsolete, and released the skills he now begins his reviews with:
   [research_skills](https://github.com/isitcredible/research_skills) (MIT), on which
-  the skills in [`../1-chat`](../1-chat/README.md) and [`../4-agent`](../4-agent/README.md)
+  the skills in [`../1-chat`](../1-chat/README.md) and [`../3-agent`](../3-agent/README.md)
   build.
 - **Deep Review**: Google says uploaded documents are never used to train, fine-tune or
   improve its models, and are stored for one year.

@@ -1,4 +1,4 @@
-# 2 · Your own script
+# 2 · An API review prototype
 
 My review prototype: a Quarto document that sends a product to the model through the API
 with the same review instructions every time, saves every run with its settings, tokens
@@ -113,4 +113,4 @@ change.
 What the document sends goes to the provider under its API terms. Send only documents
 your institution allows, and never patient-level data.
 
-Next: an agent that runs the code, still in development: [`../4-agent`](../4-agent/README.md).
+Next: an agent that runs the code, still in development: [`../3-agent`](../3-agent/README.md).
