@@ -356,11 +356,10 @@ $code-color: $ink;
 }
 .reveal .shot { margin: 0.2em 0 0.4em 0; }
 
-/* Quotes under a figure, and two posts in one column */
+/* A quote under a figure, and one under the services */
 .reveal .rust { margin-top: 0.4em; }
-.reveal .rust .quote { font-size: 0.85em; }
-.reveal .posts .quote { font-size: 0.82em; }
-.reveal .posts .attribution { margin: 0 0 0.8em 26px !important; }
+.reveal .pull { margin-top: 1.1em; }
+.reveal .rust .quote, .reveal .pull .quote { font-size: 0.85em; }
 
 /* Appendix divider: the site's fleuron */
 .reveal .slides section.divider h1::after {

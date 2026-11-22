@@ -10,7 +10,7 @@ recommendation.
 
 - **The handout**, [`slides/handout.html`](slides/handout.html): the talk in more detail,
   with every link. Download it and open it in a browser; it is self-contained.
-- **The slides**, [`slides/index.html`](slides/index.html): eleven slides and an
+- **The slides**, [`slides/index.html`](slides/index.html): ten slides and an
   appendix; press S for the speaker notes.
 - **A starter for each way**, in [`tools/`](tools/):
 
@@ -50,10 +50,10 @@ review prototype, a Quarto document that sends the product through the API (sett
 request with the Python SDK through reticulate), keeps every run and renders the review,
 shown as it is set up; because it is a script, it can be scored on test cases (in R,
 vitals). Further development, with review services as templates: what they do, such as
-Refine and the open-source Reviewer 2, which I was planning to fork. Then the bitter lesson: Joe Francis retiring
-Reviewer 2 for something better and free, Sutton's quote, the question how much more to
-build when tools become obsolete this fast, and the skills Francis released the same
-day. What I did based on that: a coding agent in the product's repository, such as Claude Code or Codex, with skills
+Refine and the open-source Reviewer 2, which I was planning to fork; and, on the same
+slide, Joe Francis retiring Reviewer 2 as obsolete, and the question how much more to
+build when tools become obsolete this fast. Its notes name Sutton's bitter lesson and the
+skills Francis released the same day. What I did based on that: a coding agent in the product's repository, such as Claude Code or Codex, with skills
 adapted from his as its instructions and the Agent SDK to start it from a script, and,
 in the agent's box, what it adds over the script: it runs the code, challenges its
 findings and works on synthetic data; a first shot. One slide

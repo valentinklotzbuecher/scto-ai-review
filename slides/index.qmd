@@ -241,92 +241,49 @@ marked not completed.
 </div>
 ```
 
-{{< include diagrams/_services.qmd >}}
-
-::: notes
-[5:30–6:30] How could the prototype grow? Others have built such pipelines, with many
-more calls, and offer them as services; for the prototype, they are templates. There
-are more every month. Refine is the oldest: founded by Ben Golub, an economist at
-Northwestern, and Yann Calvó López; it is seen as the gold standard, and costs up to
-fifty dollars a paper. Reviewer3 is paid as well; paperreview.ai from Stanford and
-openaireview from Chicago are free; coarse.ink is open source, apparently
-reverse-engineered from Refine; and in October Google launched Deep Review, free for
-two reviews a week. Reviewer 2, by Joe Francis, is open source: more than thirty
-chained calls, fifteen to forty-five minutes and a few dollars a paper. What
-they do: you upload the PDF, and behind it runs a fixed chain of model calls, with
-prompts the vendor wrote. Reviewer 2's first stage, The Breaker, takes a sledgehammer
-to the text, and a verification cascade then removes what the aggression invents.
-You get a report. All are built for research papers, and all but the
-open-source ones mean uploading to a third party. And they are no magic: as Aniket
-Panjwani worked out on X, if one Refine review costs fifty dollars and ten cost three
-hundred, its inference costs at most about thirty dollars a review, while a ChatGPT Pro
-or Claude Max plan buys thousands of dollars' worth of tokens a month at API prices; a
-reasonable set of subagents on your own subscription should do better. The hard part,
-he says, is the evals: well-constructed public test cases would be a public good. I was
-planning to fork Reviewer 2, to see if I could improve it, or learn from it for my own
-script.
-:::
-
-## The bitter lesson
-
-:::: {.columns}
-::: {.column width="47%" .posts}
+::: {.fragment .pull}
 ::: quote
-"Reviewer 2—he dead. … I will also be open sourcing a better system shortly."
-
 "Yes, I decided it was obsolete. Something better and free coming shortly."
 :::
 
 ::: attribution
-Joe Francis on X, 26 October 2026
-:::
-
-::: {.fragment fragment-index=1}
-::: quote
-"These are the three skills that I use to begin my reviews, now freely available for
-anyone to use: … /review: Point your agent at a folder with an article, its
-supplementary material, and replication package, and it will assess it."
-:::
-
-::: attribution
-The same day, releasing his skills
-:::
+Joe Francis, retiring Reviewer 2, on X, 26 October 2026
 :::
 :::
 
-::: {.column width="5%"}
-:::
-
-::: {.column width="48%"}
-::: {.fragment fragment-index=2}
-::: quote
-"… general methods that leverage computation are ultimately the most effective, and by
-a large margin."
-:::
-
-::: attribution
-Rich Sutton, The Bitter Lesson, 2019
-:::
-:::
-
-::: {.fragment fragment-index=3 .punchline}
+::: {.fragment .punchline}
 How much more to build, when tools become obsolete this fast?
 :::
-:::
-::::
 
 ::: notes
-[6:30–7:15] And this is what happened to Reviewer 2. On 26 October Joe Francis took it
-offline: he decided it was obsolete, and something better and free was coming shortly.
-[click] The same day, he released the skills he begins his reviews with: point your
-agent at a folder with an article, its supplementary material and replication package,
-and it assesses it; a second skill verifies that review. And, he writes, the results
-come from robots and should be verified by humans. [click] That is the bitter lesson,
-Rich Sutton's, from seventy years of AI research: hand-built machinery keeps losing to
-general methods that use more computation. Or, as Rex Douglass put it on the day Google
-launched Deep Review: "one of the big three does it and it's over". [click] So how much
-more should I build on my script, when tools become obsolete this fast? What I did
-based on that is the agent.
+[5:30–6:45] How could the prototype grow? Others have built such pipelines, with many
+more calls, and offer them as services; for the prototype, they are templates, and there
+are more every month. Refine, by Ben Golub, an economist at Northwestern, and Yann Calvó
+López, is the oldest and seen as the gold standard, at up to fifty dollars a paper;
+Reviewer3 is paid as well; paperreview.ai from Stanford and openaireview from Chicago
+are free; coarse.ink is open source, apparently reverse-engineered from Refine; and in
+October Google launched Deep Review, free for two reviews a week. What they do: you
+upload the PDF, and behind it runs a fixed chain of model calls, with prompts the vendor
+wrote; you get a report. All are built for research papers, and all but the open-source
+ones mean uploading to a third party. And they are no magic: Aniket Panjwani worked out
+on X that a Refine review costs at most about thirty dollars of inference, and that a
+reasonable set of subagents on your own subscription should do better; the hard part, he
+says, is the evals: well-constructed public test cases would be a public good. Reviewer
+2, by Joe Francis, is the open-source one: more than thirty chained calls, fifteen to
+forty-five minutes and a few dollars a paper; its first stage, The Breaker, takes a
+sledgehammer to the text, and a verification cascade then removes what the aggression
+invents. I was planning to fork it, to see if I could improve it, or learn from it for my
+own script. [click] And then, on 26 October, Joe Francis took it offline: he decided it
+was obsolete, and something better and free was coming shortly. The same day, he
+released the skills he begins his reviews with: point your agent at a folder with an
+article, its supplementary material and replication package, and it assesses it; a
+second skill verifies that review. And, he writes, the results come from robots and
+should be verified by humans. That is the bitter lesson, Rich Sutton's, from seventy
+years of AI research: general methods that leverage computation are ultimately the most
+effective, and by a large margin; hand-built machinery keeps losing to them. Or, as Rex
+Douglass put it on the day Google launched Deep Review: "one of the big three does it
+and it's over". [click] So how much more should I build on my script, when tools become
+obsolete this fast? What I did based on that is the agent.
 :::
 
 ## Agentic review
@@ -338,7 +295,7 @@ based on that is the agent.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[7:15–9:00] So: a coding agent working in the product's repository, with skills adapted
+[6:45–8:30] So: a coding agent working in the product's repository, with skills adapted
 from Joe's as its instructions; here Claude Code on the web, and Codex and others work
 the same way. Three parts. The product's repository, with my review skills in it as the
 agent's instructions: what you type is one sentence, "review the product with
@@ -461,7 +418,7 @@ Use it on your own work.
 :::
 
 ::: notes
-[9:00–9:45] And you can try all three. The skill, in a chat: download its ZIP from
+[8:30–9:15] And you can try all three. The skill, in a chat: download its ZIP from
 stats_review, the repository with my review skills, in the folder chat-skills; upload
 it in Claude, with code execution on; attach the product's PDF and its Quarto source,
 and type one sentence. It runs on your Claude plan. [click] The review document is in
@@ -482,6 +439,7 @@ found. Both repositories, with a handout that walks through each step.
 ::: {.tight}
 - How should AI complement our review? For the author, the reviewer or both? How deep?
 - Review results, not lines?
+- Double programming by default?
 - What would you need to see before you sign a product an AI reviewed?
 :::
 
@@ -499,7 +457,7 @@ Thinking further ahead
 :::
 
 ::: notes
-[9:45–20:00] To discuss. First, here and now: how should AI complement our internal
+[9:15–20:00] To discuss. First, here and now: how should AI complement our internal
 review? For whom: the author, as a check before the second statistician, the reviewer,
 alongside the review, or both? And how deep: one call that reads, or an agent that runs
 everything? One reason to want it: a single reviewer sees only part of what more
@@ -508,7 +466,11 @@ the issues that all of a paper's reviewers raised together; an AI that applies t
 checks to every product takes some of the luck out of who reviews it. Could our review
 become result-oriented: the AI goes through every line, every number and every re-run,
 and we check that it tested enough, that each chunk, section and analysis does what it
-says, and that the approach and the interpretation hold? A caution from this month: the
+says, and that the approach and the interpretation hold? And double programming: a
+second programmer writes the analysis again, independently, from the plan, and the two
+sets of results are compared. It is the fullest internal review, and we do it only in
+part. An agent could write that second version for every product; does double
+programming become the default? A caution from this month: the
 latest GPT and Claude models draw about 62% of their review weaknesses from the
 appendix, human reviewers about 8%; they audit every detail and rarely engage with the
 core of the paper; in ICLR's human reviews that share has risen from below 10% to 28%
