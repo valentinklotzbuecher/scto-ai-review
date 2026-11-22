@@ -1318,7 +1318,7 @@ display:block!important;
 <span id="cb1-3"><a href aria-hidden="true" tabindex="-1"></a>  <span class="at">qmd_file         =</span> <span class="st">&quot;DEMO-TKA_SSE.qmd&quot;</span>,</span>
 <span id="cb1-4"><a href aria-hidden="true" tabindex="-1"></a>  <span class="at">pdf_file         =</span> <span class="st">&quot;DEMO-TKA_SSE.pdf&quot;</span>,</span>
 <span id="cb1-5"><a href aria-hidden="true" tabindex="-1"></a>  <span class="at">assignment       =</span> <span class="st">&quot;Do text and code agree?&quot;</span>,</span>
-<span id="cb1-6"><a href aria-hidden="true" tabindex="-1"></a>  <span class="at">anthropic_model  =</span> <span class="st">&quot;claude-opus-5-5&quot;</span>,</span>
+<span id="cb1-6"><a href aria-hidden="true" tabindex="-1"></a>  <span class="at">anthropic_model  =</span> <span class="st">&quot;claude-fable-5-2&quot;</span>,</span>
 <span id="cb1-7"><a href aria-hidden="true" tabindex="-1"></a>  <span class="at">anthropic_effort =</span> <span class="st">&quot;max&quot;</span></span>
 <span id="cb1-8"><a href aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div><div class="column" style="width:2%;">
@@ -1326,16 +1326,16 @@ display:block!important;
 </div><div class="column" style="width:47%;">
 <div class="tight compact beside-code">
 <ul>
-<li class="fragment"><strong>Put</strong> the .qmd and PDF in to_be_reviewed/</li>
-<li class="fragment"><strong>Set</strong> cfg: files, questions, model, effort</li>
-<li class="fragment"><strong>Edit</strong> prompt.md if you like: a checklist per product type</li>
-<li class="fragment"><strong>Run</strong> the chunks; the last one sends the request</li>
-<li class="fragment"><strong>Render:</strong> the latest review, its prompt and its cost</li>
+<li><strong>Put</strong> the .qmd and PDF in to_be_reviewed/</li>
+<li><strong>Set</strong> cfg: files, questions, model, effort</li>
+<li><strong>Edit</strong> prompt.md if you like: a checklist per product type</li>
+<li><strong>Run</strong> the chunks; the last one sends the request</li>
+<li><strong>Render</strong> the latest review, its prompt and its cost</li>
 </ul>
 </div>
 </div></div>
 <aside class="notes">
-<p>[4:45–5:30] How it is set up. On the left, the first chunk: which files, the assignment, that is the questions the review must answer, best a specific one, the model and the effort. [click] You put the product’s Quarto source and PDF in the folder to_be_reviewed. [click] You set the settings. [click] The prompt is a text file: a senior biostatistician’s first pass, with a checklist for each product type, the sample size estimation, the analysis report, data preparation; and it must say what it could not check. [click] You run the chunks; the last one sends the request. It is set to eval false, so rendering never sends anything. [click] You render, and see the latest review, the prompt as sent and the cost; what the review looks like is set in the prompt. One thing it checks itself: that the model read the whole source, to the last line; otherwise the run is marked not completed.</p>
+<p>[4:45–5:30] How it is set up. On the left, the first chunk: which files, the assignment, that is the questions the review must answer, best a specific one, the model and the effort. On the right, the steps. You put the product’s Quarto source and PDF in the folder to_be_reviewed. You set the settings. The prompt is a text file: a senior biostatistician’s first pass, with a checklist for each product type, the sample size estimation, the analysis report, data preparation; and it must say what it could not check. You run the chunks; the last one sends the request. It is set to eval false, so rendering never sends anything. You render, and see the latest review, the prompt as sent and the cost; what the review looks like is set in the prompt. One thing it checks itself: that the model read the whole source, to the last line; otherwise the run is marked not completed.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;
@@ -1584,7 +1584,7 @@ the consistency review.</code></pre>
 <div class="columns">
 <div class="column" style="width:84%;">
 <div class="punchline">
-<p>Start on the test cases, then on your own work.</p>
+<p>Use it on your own work.</p>
 </div>
 <div class="scope">
 <p><a href="https://github.com/valentinklotzbuecher/scto-ai-review"><strong>github.com/valentinklotzbuecher/scto-ai-review</strong></a>: the kit, a handout, two test cases<br>
@@ -1595,7 +1595,7 @@ the consistency review.</code></pre>
 </div></div>
 </div>
 <aside class="notes">
-<p>[9:00–9:45] And you can try all three. The skill, in a chat: download its ZIP from stats_review, the repository with my review skills, in the folder chat-skills; upload it in Claude, with code execution on; attach the product’s PDF and its Quarto source, and type one sentence. It runs on your Claude plan. [click] The review document is in the kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in RStudio, put the product in to_be_reviewed, set the settings, run the chunks and render. You need an API key, paid per use. [click] And the agent, still in development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start a session with your product’s repository and stats_review, at the tag skills-v0.4.0; its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type one sentence, and the review lands on a branch of your product’s repository, where you merge it. Try all three on the test cases first: synthetic sample size estimations with planted issues and an answer key, so you can score what they find. [click] Then on your own work: a product that has already had its human review, so you can compare. Both repositories, with a handout that walks through each step.</p>
+<p>[9:00–9:45] And you can try all three. The skill, in a chat: download its ZIP from stats_review, the repository with my review skills, in the folder chat-skills; upload it in Claude, with code execution on; attach the product’s PDF and its Quarto source, and type one sentence. It runs on your Claude plan. [click] The review document is in the kit, the repository scto-ai-review, in the folder tools/2-api: open review.qmd in RStudio, put the product in to_be_reviewed, set the settings, run the chunks and render. You need an API key, paid per use. [click] And the agent, still in development: Claude Code on the web, at claude.ai/code, on your Claude plan. You start a session with your product’s repository and stats_review, at the tag skills-v0.4.0; its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You type one sentence, and the review lands on a branch of your product’s repository, where you merge it. [click] Use them on your own work: best a product that has already had its human review, so you can compare what the AI finds with what the reviewer found. Both repositories, with a handout that walks through each step.</p>
 <style type="text/css">
 span.MJX_Assistive_MathML {
 position:absolute!important;

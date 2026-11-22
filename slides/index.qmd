@@ -188,7 +188,7 @@ cfg <- list(
   qmd_file         = "DEMO-TKA_SSE.qmd",
   pdf_file         = "DEMO-TKA_SSE.pdf",
   assignment       = "Do text and code agree?",
-  anthropic_model  = "claude-opus-5-5",
+  anthropic_model  = "claude-fable-5-2",
   anthropic_effort = "max"
 )
 ```
@@ -198,12 +198,12 @@ cfg <- list(
 :::
 
 ::: {.column width="47%"}
-::: {.incremental .tight .compact .beside-code}
+::: {.tight .compact .beside-code}
 - **Put** the .qmd and PDF in to_be_reviewed/
 - **Set** cfg: files, questions, model, effort
 - **Edit** prompt.md if you like: a checklist per product type
 - **Run** the chunks; the last one sends the request
-- **Render:** the latest review, its prompt and its cost
+- **Render** the latest review, its prompt and its cost
 :::
 :::
 ::::
@@ -211,15 +211,15 @@ cfg <- list(
 ::: notes
 [4:45–5:30] How it is set up. On the left, the first chunk: which files, the assignment,
 that is the questions the review must answer, best a specific one, the model and the
-effort. [click] You put
-the product's Quarto source and PDF in the folder to_be_reviewed. [click] You set the
-settings. [click] The prompt is a text file: a senior biostatistician's first pass,
-with a checklist for each product type, the sample size estimation, the analysis
-report, data preparation; and it must say what it could not check. [click] You run the
-chunks; the last one sends the request. It is set to eval false, so rendering never
-sends anything. [click] You render, and see the latest review, the prompt as sent and
-the cost; what the review looks like is set in the prompt. One thing it checks itself: that the model read the whole source, to the last line; otherwise the
-run is marked not completed.
+effort. On the right, the steps. You put the product's Quarto source and PDF in the
+folder to_be_reviewed. You set the settings. The prompt is a text file: a senior
+biostatistician's first pass, with a checklist for each product type, the sample size
+estimation, the analysis report, data preparation; and it must say what it could not
+check. You run the chunks; the last one sends the request. It is set to eval false, so
+rendering never sends anything. You render, and see the latest review, the prompt as
+sent and the cost; what the review looks like is set in the prompt. One thing it checks
+itself: that the model read the whole source, to the last line; otherwise the run is
+marked not completed.
 :::
 
 ## Further development: review services as templates
@@ -445,7 +445,7 @@ the consistency review.
 :::: {.columns}
 ::: {.column width="84%"}
 ::: punchline
-Start on the test cases, then on your own work.
+Use it on your own work.
 :::
 
 ::: scope
@@ -472,10 +472,9 @@ development: Claude Code on the web, at claude.ai/code, on your Claude plan. You
 a session with your product's repository and stats_review, at the tag skills-v0.4.0;
 its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine. You
 type one sentence, and the review lands on a branch of your product's repository,
-where you merge it. Try all three on the test cases first: synthetic sample size
-estimations with planted issues and an answer key, so you can score what they find.
-[click] Then on your own work: a product that has already had its human review, so
-you can compare. Both repositories, with a handout that walks through each step.
+where you merge it. [click] Use them on your own work: best a product that has already
+had its human review, so you can compare what the AI finds with what the reviewer
+found. Both repositories, with a handout that walks through each step.
 :::
 
 ## To discuss

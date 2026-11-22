@@ -57,9 +57,8 @@ day. What I did based on that: a coding agent in the product's repository, such 
 adapted from his as its instructions and the Agent SDK to start it from a script, and,
 in the agent's box, what it adds over the script: it runs the code, challenges its
 findings and works on synthetic data; a first shot. One slide
-shows how to try the chat skill, the review document and the agent, first on the test
-cases, then on your own work. It ends on one
-slide of items to discuss, followed by two slides of links. The talk takes about ten
+shows how to try the chat skill, the review document and the agent on your own work. It
+ends on one slide of items to discuss, followed by two slides of links. The talk takes about ten
 minutes, which leaves the rest of the slot for the discussion.
 
 ## Contents

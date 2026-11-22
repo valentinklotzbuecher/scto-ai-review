@@ -171,8 +171,8 @@ How it is set up, in the kit's `tools/2-api`:
      review_folder    = "to_be_reviewed",
      qmd_file         = "DEMO-TKA_SSE.qmd",
      pdf_file         = "DEMO-TKA_SSE.pdf",
-     assignment       = "Is the sample size right?",
-     anthropic_model  = "claude-opus-5-5",
+     assignment       = "Do text and code agree?",
+     anthropic_model  = "claude-fable-5-2",
      anthropic_effort = "max"
    )
    ```
@@ -335,9 +335,8 @@ at the tag `skills-v0.4.0`; the steps are in the kit's
 
 4. The review lands on a branch of your product's repository; merge it there.
 
-Start with the [demo](#the-demo): a two-page sample size estimation with six planted
-issues and an answer key. Then try it on your own work: a product that has already had
-its human review, so you can compare.
+Try it on your own work: a product that has already had its human review, so you can
+compare.
 
 ## Questions to discuss
 
