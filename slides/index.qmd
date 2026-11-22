@@ -25,7 +25,11 @@ format:
 
 :::: {.columns}
 ::: {.column width="31%" .plate}
-![](assets/brian2026-fig1b.png){style="max-height: 380px" fig-alt="Brian et al., Fig. 1b: percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
+::: label
+Detection of inserted errors
+:::
+
+![](assets/brian2026-fig1b.png){style="max-height: 336px" fig-alt="Brian et al., Fig. 1b: percentage of inserted major and minor errors found per review: human reviewers about 27% of major errors; 15 language models between about 53% and 96%."}
 
 ::: {.tiny .muted}
 Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
@@ -33,10 +37,14 @@ Brian et al., medRxiv 2026, Fig. 1b (CC BY 4.0)
 :::
 
 ::: {.column width="69%" .plate}
-![](assets/king-worthington-fig1.png){style="max-height: 380px" fig-alt="King and Worthington, Figure 1: AI reviews dominate human reviews. Of 134 pairs of a human and an AI review of the same manuscript, the AI judge ranked the AI review higher in all 134, and three journal editors in 26 of 30 judgments (87%). By review area the AI review won 92 to 100% of the pairs, and its mean rating from 0 to 10 was higher in every area."}
+::: label
+Ratings of review quality
+:::
+
+![](assets/king-worthington-fig1.png){style="max-height: 336px" fig-alt="King and Worthington, Figure 1: AI reviews dominate human reviews. Of 134 pairs of a human and an AI review of the same manuscript, the AI judge ranked the AI review higher in all 134, and three journal editors in 26 of 30 judgments (87%). By review area the AI review won 92 to 100% of the pairs, and its mean rating from 0 to 10 was higher in every area."}
 
 ::: {.tiny .muted}
-King and Worthington, working paper, 28 October 2026, Fig. 1: 134 pairs of a human and an AI review of the same manuscript
+King and Worthington, working paper, 28 October 2026, Fig. 1: the AI judge on 134 pairs of a human and an AI review; the human judges, three editors, on 10 of them
 :::
 :::
 ::::
@@ -63,8 +71,9 @@ models that also flag concerns on clean reports. On the right, from Harvard: Kin
 Worthington compared AI reviews with paid human reviews that editors and authors had
 rated unusually good, and the AI reviews were better by every measure they could
 construct: 124 papers, one review each from Claude Opus 4.8 at its maximum reasoning
-setting, judged by another model and by three former journal editors, who preferred the
-AI review in 26 of 30 judgments. Also a working paper. Or as one researcher put it:
+setting, judged by another model on all 134 pairs, and by three former journal editors
+on ten of them, without reading the manuscripts: they preferred the AI review in 26 of
+30 judgments. Also a working paper. Or as one researcher put it:
 "It's been true for a year at least." [click] And Rust's own conclusion: from now on he
 won't review without AI, and for clinical trials he calls human-only review dangerous.
 And it is not only about the code we wrote by hand. More and more code is written by
@@ -178,7 +187,7 @@ cfg <- list(
   review_folder    = "to_be_reviewed",
   qmd_file         = "DEMO-TKA_SSE.qmd",
   pdf_file         = "DEMO-TKA_SSE.pdf",
-  assignment       = "Is the sample size right?",
+  assignment       = "Do text and code agree?",
   anthropic_model  = "claude-opus-5-5",
   anthropic_effort = "max"
 )
@@ -201,7 +210,8 @@ cfg <- list(
 
 ::: notes
 [4:45–5:30] How it is set up. On the left, the first chunk: which files, the assignment,
-that is the questions the review must answer, the model and the effort. [click] You put
+that is the questions the review must answer, best a specific one, the model and the
+effort. [click] You put
 the product's Quarto source and PDF in the folder to_be_reviewed. [click] You set the
 settings. [click] The prompt is a text file: a senior biostatistician's first pass,
 with a checklist for each product type, the sample size estimation, the analysis
@@ -328,7 +338,7 @@ based on that is the agent.
 {{< include diagrams/_agent.qmd >}}
 
 ::: notes
-[7:15–9:15] So: a coding agent working in the product's repository, with skills adapted
+[7:15–9:00] So: a coding agent working in the product's repository, with skills adapted
 from Joe's as its instructions; here Claude Code on the web, and Codex and others work
 the same way. Three parts. The product's repository, with my review skills in it as the
 agent's instructions: what you type is one sentence, "review the product with
@@ -355,6 +365,64 @@ said by how much the five that matter change the sample size or the power; the q
 run took 34 minutes, about ten dollars at API list prices. A second test case is next.
 :::
 
+## One finding, and how it was checked
+
+:::::: {.case}
+::::: {.row}
+:::: k
+The product
+::::
+:::: v
+DEMO-TKA, a synthetic SSE. Table 1: significance level "5%, two-sided". The
+simulation's rejection rule: `pt(t_arm, df = fit$df.residual, lower.tail = FALSE) < alpha`
+::::
+:::::
+
+::::: {.row .fragment}
+:::: k
+The review
+::::
+:::: v
+"The rejection rule … is a one-sided 5% test, while Table 1 and the Sample size section
+state '5%, two-sided'. … 55 per group gives 64.2% power."
+
+[The agent's quick run, Major issue 1; the chat skill found it too]{.src}
+::::
+:::::
+
+::::: {.row .fragment}
+:::: k
+Our check
+::::
+:::: v
+Recomputed in R, apart from any review: 64.2% power at 55 per group; 80 evaluable per
+group for 80%.
+::::
+:::::
+
+::::: {.row .fragment}
+:::: k
+The consequence
+::::
+:::: v
+A major issue: 80 evaluable per group, not 55. The fix is one line:\
+`2 * pt(abs(t_arm), …) < alpha`
+::::
+:::::
+::::::
+
+::: notes
+[9:00–9:45] What does a finding look like? One from the test case, the two-page
+synthetic sample size estimation. Table 1 says the significance level is 5%, two-sided;
+the simulation's rejection rule tests one-sided. [click] The review found it, gave the
+line, and sized it: at 55 per group the stated two-sided test has 64% power. Every
+recorded run found it, the agent's and the chat skill's. [click] The check stays with us:
+our own calculation, apart from any review, gives the same 64.2%, and 80 evaluable per
+group for 80% power. [click] So a major issue: 80 per group, not 55, and the fix is one
+line of code. That is one planted error in a test case we built; what counts is how it
+does on your own work.
+:::
+
 ## Try it yourself
 
 :::: {.columns}
@@ -373,6 +441,7 @@ Please review this using
 ```
 
 ::: {.tight .compact}
+- the easiest start
 - upload its ZIP in Claude
 - attach the PDF and .qmd
 - on your plan
@@ -430,13 +499,19 @@ the consistency review.
 :::
 ::::
 
-::: {.fragment fragment-index=3 .scope}
-**github.com/valentinklotzbuecher/scto-ai-review**: the kit, a handout, two test cases\
-**github.com/valentinklotzbuecher/stats_review**: the review skills
+::: {.fragment fragment-index=3}
+::: punchline
+Start on the test cases, then on your own work.
+:::
+
+::: scope
+[**github.com/valentinklotzbuecher/scto-ai-review**](https://github.com/valentinklotzbuecher/scto-ai-review): the kit, a handout, two test cases\
+[**github.com/valentinklotzbuecher/stats_review**](https://github.com/valentinklotzbuecher/stats_review/tree/skills-v0.4.0): the review skills
+:::
 :::
 
 ::: notes
-[9:15–10:15] And you can try all three. The skill, in a chat: download its ZIP from
+[9:45–10:30] And you can try all three. The skill, in a chat: download its ZIP from
 stats_review, the repository with my review skills, in the folder chat-skills; upload
 it in Claude, with code execution on; attach the product's PDF and its Quarto source,
 and type one sentence. It runs on your Claude plan. [click] The review document is in
@@ -449,7 +524,8 @@ its setup script, tools/web_setup.sh, installs R and Quarto in the cloud machine
 type one sentence, and the review lands on a branch of your product's repository,
 where you merge it. Try all three on the test cases first: synthetic sample size
 estimations with planted issues and an answer key, so you can score what they find.
-[click] Both repositories, with a handout that walks through each step.
+[click] Then on your own work: a product that has already had its human review, so
+you can compare. Both repositories, with a handout that walks through each step.
 :::
 
 ## To discuss
@@ -474,7 +550,7 @@ Thinking further ahead
 :::
 
 ::: notes
-[10:15–20:00] To discuss. First, here and now: how should AI complement our internal
+[10:30–20:00] To discuss. First, here and now: how should AI complement our internal
 review? For whom: the author, as a check before the second statistician, the reviewer,
 alongside the review, or both? And how deep: one call that reads, or an agent that runs
 everything? One reason to want it: a single reviewer sees only part of what more
@@ -491,7 +567,9 @@ since the newest models came out. The authors' advice: use them as a tool for ch
 the details, not as the judge of what matters most. That judgement stays with us. Even
 the author of the skills I build on says the results come from robots and should be
 verified by humans. And what would you need to see before you sign a product an AI
-reviewed? [click] Then, thinking further ahead. [click] Should we build our own tools at
+reviewed? And the harder question: what would give us confidence in a review that
+reports no major problems? Checking a flag is one task; knowing that nothing important
+was missed is another. [click] Then, thinking further ahead. [click] Should we build our own tools at
 all, after the bitter lesson? My own prototype dates with every new model, and my
 skills will too. What carries over to every new model: test cases with known answers,
 standards for what a review must check, rules for what data may go where. [click] Liu,

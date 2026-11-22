@@ -129,6 +129,11 @@ hosts, but they are allowed):
   reasoning setting", given the manuscript and the verbatim rapidPeer reviewer
   guidelines. The judges: GPT-5.5, blinded (p. 5), and three former journal editors,
   who "preferred the AI review in 26 of 30 judgments (87%)" (p. 10).
+  The editors' panel (p. 5): "three former editors of leading scholarly journals … to
+  independently judge 10 randomly selected and blinded review pairs"; footnote (p. 6):
+  "three editors judged the same 10 pairs"; and (p. 19) they "compared ten pairs of
+  reviews without being asked to read the manuscripts". On the intro slide's caption and
+  in its notes.
 - Google Research, *Analyzing technical documents with Deep Review*, 14 October 2026,
   research.google/blog/analyzing-technical-documents-with-deep-review/: "Every user
   receives two complimentary document reviews per week. Users with high-volume workflows
@@ -213,6 +218,9 @@ In the deck (`slides/index.qmd`):
   King and Worthington's Figure 1 side by side, then, on the click, Rust's words. The
   caveats (preprint, 2004 human reviewers, LLM judges, flags on unmodified reports) are
   in its notes, and so is the review bottleneck from Faros's report, below.
+- "One finding, and how it was checked": not from these sources, but from the demo: the
+  quick agent run's Major issue 1 (`demo/runs/2026-11-05_agent/CONSISTENCY_REVIEW.md`),
+  the chat run's D1, and the answer key's numbers from `demo/answer-key.R`.
 - "Internal consistency review" (notes): the boundary sentence above, on errors in data
   handling or analysis code.
 - The discussion slide, "To discuss": the preprint's last author, as the bookend, in its

@@ -56,8 +56,11 @@ build when tools become obsolete this fast, and the skills Francis released the 
 day. What I did based on that: a coding agent in the product's repository, such as Claude Code or Codex, with skills
 adapted from his as its instructions and the Agent SDK to start it from a script, and,
 in the agent's box, what it adds over the script: it runs the code, challenges its
-findings and works on synthetic data; a first shot. One slide
-shows how to try the chat skill, the review document and the agent. It ends on one
+findings and works on synthetic data; a first shot. One slide shows one finding on the
+demo and how it was checked: the planted one-sided test, the review's words, the
+recomputation and the consequence. One slide
+shows how to try the chat skill, the review document and the agent, first on the test
+cases, then on your own work. It ends on one
 slide of items to discuss, followed by two slides of links. The talk takes about ten
 minutes, which leaves the rest of the slot for the discussion.
 
@@ -118,7 +121,8 @@ If you re-render one, re-run every tool on the new PDF.
 - King and Worthington, *AI Article Reviews Dominate Human Peer Reviews at Their Best:
   Evidence and Policy Choices*, working paper, version of 28 October 2026,
   gking.harvard.edu/files/peerless.pdf: the abstract (p. 1) and the details (pp. 4, 5,
-  10), quoted in `material/README.md`; Rex Douglass's comment is from his post of
+  10; the editors compared 10 of the pairs, p. 5, without reading the manuscripts,
+  p. 19), quoted in `material/README.md`; Rex Douglass's comment is from his post of
   23 October (screenshot in `material/`)
 - Google's Deep Review: News from Google on X, 14 October 2026 (agentic; manuscripts,
   design docs, proposals; pilots on over 15,000 papers), quoted in Rex Douglass's post
@@ -196,5 +200,9 @@ If you re-render one, re-run every tool on the new PDF.
 - Icons for the three approaches (overview, crumbs, "Try it yourself"): Bootstrap Icons
   1.11.3, chat-dots, file-earmark-code and robot (MIT licence, The Bootstrap Authors),
   as inline paths in `slides/diagrams/_overview.qmd` and `slides/website.scss`
+- The example slide, "One finding, and how it was checked": the quick agent run's Major
+  issue 1 (`demo/runs/2026-11-05_agent/CONSISTENCY_REVIEW.md`) and the chat run's D1
+  (`demo/runs/2026-11-20_chat_skill/SCORE.md`); the check's numbers (64.2% power at 55
+  per group, 80 evaluable per group) from `Rscript demo/answer-key.R`
 - Costs and times of the demo runs: `demo/runs/`, each with the session record
   summarised in its `SCORE.md`

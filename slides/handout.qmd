@@ -60,10 +60,11 @@ The same week, King and Worthington compared AI reviews with paid human reviews 
 submissions, reviews that editors and authors had rated unusually good. One review per
 paper from Claude Opus 4.8 at its maximum reasoning setting, given the manuscript and
 the reviewer guidelines, was better "by every measure we could construct"; three former
-journal editors preferred it in 26 of 30 judgments. It is a working paper, too.
+journal editors, comparing ten of the pairs without reading the manuscripts, preferred it
+in 26 of 30 judgments. It is a working paper, too.
 
 ::: {.plate}
-![AI reviews dominate human reviews: of 134 pairs of a human and an AI review of the same manuscript, the AI review was ranked higher in all 134 by the AI judge and in 26 of 30 judgments by three journal editors. King and Worthington, working paper, 28 October 2026, Fig. 1.](assets/king-worthington-fig1.png){fig-alt="King and Worthington, Figure 1: pairwise rankings and mean ratings of human and AI reviews, overall and in seven review areas; the AI review wins 92 to 100% of the pairs in every area." width="640"}
+![AI reviews dominate human reviews: of 134 pairs of a human and an AI review of the same manuscript, the AI review was ranked higher in all 134 by the AI judge and in 26 of 30 judgments by three journal editors, who compared 10 of the pairs. King and Worthington, working paper, 28 October 2026, Fig. 1.](assets/king-worthington-fig1.png){fig-alt="King and Worthington, Figure 1: pairwise rankings and mean ratings of human and AI reviews, overall and in seven review areas; the AI review wins 92 to 100% of the pairs in every area." width="640"}
 :::
 
 The preprint's last author, Ruslan Rust, on X:
@@ -335,7 +336,8 @@ at the tag `skills-v0.4.0`; the steps are in the kit's
 4. The review lands on a branch of your product's repository; merge it there.
 
 Start with the [demo](#the-demo): a two-page sample size estimation with six planted
-issues and an answer key.
+issues and an answer key. Then try it on your own work: a product that has already had
+its human review, so you can compare.
 
 ## Questions to discuss
 
