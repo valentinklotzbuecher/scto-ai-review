@@ -524,9 +524,10 @@ appendix.
 - Ghosh et al., AI reviews biased towards the appendix: [arXiv 2611.17811](https://arxiv.org/abs/2611.17811)
 - Sutton, [The Bitter Lesson](http://www.incompleteideas.net/IncIdeas/BitterLesson.html), 2019
 
-**Projects I am involved in**
+**Projects I am (to some extent) involved in**
 
 - Brodeur et al., AI-assisted teams outperform AI-led teams but not human-only teams in assessing research reproducibility: [PNAS 2026](https://doi.org/10.1073/pnas.2524747123)
+- Aparicio et al., generative AI boosts productivity across the expertise ladder, the 2025–26 AI Replication Games: working paper, not yet public
 - Klotzbücher, Reinstein, Pacchiardi and Zhang, Just Ask the Model: one-shot LLM research evaluation and structured expert review: [llm-uj-research-eval.netlify.app](https://llm-uj-research-eval.netlify.app/)
 :::
 :::
