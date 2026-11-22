@@ -37,7 +37,7 @@ The model reads each skill's name and description and loads the rest when a task
 matches, so the checklist comes along and you no longer paste a prompt. The same skills
 are the agent's instructions in [`../3-agent`](../3-agent/README.md).
 
-`stats-document-check` is the first stage of the DKF consistency review on its own, for
+`stats-document-check` is the first stage of the consistency review on its own, for
 Claude chat (version 0.2.1, following the review skills 0.4.1 in
 [third-pair-of-eyes](https://github.com/valentinklotzbuecher/third-pair-of-eyes/tree/skills-v0.4.1/chat-skills)).
 It reads the product as an argument before any code, with four questions:
